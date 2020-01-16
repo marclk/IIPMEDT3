@@ -47,7 +47,8 @@
                  static-body="shape: sphere; sphereRadius: 0.11"
                  physics-collider
                  collision-filter = "collidesWith: default, red, green, blue;
-                                     collisionForces: false" >
+                                     collisionForces: false"
+                >
         </a-mixin>
         <!-- <a-mixin id="cube" geometry="width: 0.5; height: 0.5; depth: 0.5" dynamic-body
                  hoverable grabbable></a-mixin>
@@ -68,13 +69,31 @@
 
 
 <a-entity id="cameraRig">
-      <!-- camera -->
-      <a-entity id="head" camera wasd-controls look-controls></a-entity>
-      <!-- hand controls -->
-      <a-entity id="leftHand" hand-controls="left" mixin="controller"  teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head;" ></a-entity>
-      <a-entity id="rightHand" hand-controls="right" mixin="controller"  teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head;"></a-entity>
-    </a-entity>
-
+  <a-entity id="head" camera wasd-controls look-controls></a-entity>
+  <a-entity teleport-controls="cameraRig: #cameraRig; button: trigger;"
+    vive-controls="hand: left"
+    oculus-touch-controls="hand: left"
+    microsoft-motion-controls="hand: left"
+    daydream-controls="left" gearvr-controls="left"
+    super-hands="colliderEvent: collisions;
+                 colliderEventProperty: els;
+                 colliderEndEvent: collisions;
+                 colliderEndEventProperty: clearedEls;
+                 grabStartButtons: gripdown, pointdown, triggerdown;
+                 grabEndButtons: gripup, pointup, triggerup"
+    static-body="shape: sphere; sphereRadius: 0.11"
+    physics-collider
+    collision-filter = "collidesWith: default, red, green, blue;
+                        collisionForces: false">
+  </a-entity>
+  <a-entity teleport-controls="cameraRig: #cameraRig; type: line; button: trigger;"
+    vive-controls="hand: right"
+    microsoft-motion-controls="hand: right"
+    oculus-touch-controls="hand: right"
+    daydream-controls="right" gearvr-controls="right">
+  </a-entity>
+  </a-entity>
+ <!-- hand-controls="right" -->
 
 
       <!-- <a-box mixin="cube" sleepy position="0 1 -1" src="#red"
