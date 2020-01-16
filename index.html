@@ -5,8 +5,10 @@
     <script src="https://aframe.io/releases/0.7.0/aframe.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v2.1.0/dist/aframe-physics-system.min.js"></script>
     <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/super-hands/dist/super-hands.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+
     <script src="build.js"></script>
     <script>
       window.onload = function (e) {
@@ -51,10 +53,19 @@
         <a-mixin id="cube-hovered" material="opacity: 0.7; transparent: true"></a-mixin> -->
       </a-assets>
 
-      <a-entity id="rightHand" hand-controls="right" mixin="controller">
-      </a-entity>
-      <a-entity id="leftHand" hand-controls="left" mixin="controller">
-      </a-entity>
+      <a-entity id="rig"
+          movement-controls
+          position="25 0 25">
+  <a-entity camera
+            position="0 1.6 0"
+            look-controls="pointerLockEnabled: true"></a-entity>
+            <a-entity id="rightHand" hand-controls="right" mixin="controller">
+            </a-entity>
+            <a-entity id="leftHand" hand-controls="left" mixin="controller">
+            </a-entity>
+</a-entity>
+
+
 
       <!-- <a-box mixin="cube" sleepy position="0 1 -1" src="#red"
              collision-filter="group: red; collidesWith: default, red, blue">
