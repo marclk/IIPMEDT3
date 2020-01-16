@@ -70,7 +70,7 @@
 
 <a-entity id="cameraRig">
   <a-entity id="head" camera wasd-controls look-controls></a-entity>
-  <a-entity teleport-controls="cameraRig: #cameraRig; button: thumbsticktouchstart;"
+  <a-entity teleport-controls="cameraRig: #cameraRig; button: thumbstick;"
     vive-controls="hand: left"
     oculus-touch-controls="hand: left"
     microsoft-motion-controls="hand: left"
@@ -86,7 +86,7 @@
     collision-filter = "collidesWith: default, red, green, blue;
                         collisionForces: false">
   </a-entity>
-  <a-entity teleport-controls="cameraRig: #cameraRig; type: line; button: thumbsticktouchstart;"
+  <a-entity teleport-controls="cameraRig: #cameraRig; type: line; button: thumbstick;"
     vive-controls="hand: right"
     microsoft-motion-controls="hand: right"
     oculus-touch-controls="hand: right"
