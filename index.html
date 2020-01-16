@@ -113,7 +113,9 @@
       <a-entity gltf-model="scene/SceneV4.gltf" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive: box;" collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
        <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
 
-       <a-entity gltf-model="models/Pipet/pipetLowPoly.gltf" scale="1 1 1" position="3 2 1"></a-entity>
+       <a-entity gltf-model="models/Pipet/pipetLowPoly.gltf" geometry="primitive: box; width: .125; height: 1; depth: .125"  scale="1 1 1" position="3 2 1" modify-materials grabbable hoverable collision- dynamic-body collision-filter="group: green; collidesWith: default, green"></a-entity>
+
+       <a-entity gltf-model="models/Pipet/pipetLowPoly.gltf" geometry="primitive: box; width: .125; height: 1; depth: .125"  scale="1 1 1" position="-.5 2 -.5" modify-materials grabbable hoverable collision- dynamic-body collision-filter="group: green; collidesWith: default, green"></a-entity>
 
      <a-entity geometry="primitive: sphere; radius:0.25 "  modify-materials dynamic-body hoverable grabbable gltf-model="url(Pokeball/models/scene.gltf)" scale="0.003 0.003 0.003" rotation="0 180 0" position="-0.5 2 -0.5"  collision-filter="group: green; collidesWith: default, green" ></a-entity>
 
