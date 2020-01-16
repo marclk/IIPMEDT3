@@ -113,7 +113,9 @@
       <a-entity gltf-model="scene/SceneV4.gltf" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive: box;" collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
        <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
 
-     <a-entity geometry="primitive: sphere; radius:0.25 "  modify-materials dynamic-body hoverable grabbable gltf-model="url(models/scene.gltf)" scale="0.003 0.003 0.003" rotation="0 180 0" position="-0.5 2 -0.5"  collision-filter="group: green; collidesWith: default, green" ></a-entity>
+       <a-entity gltf-model="models/Pipet/pipetLowPoly.gltf" scale="1 1 1" position="0 1 2"></a-entity>
+
+     <a-entity geometry="primitive: sphere; radius:0.25 "  modify-materials dynamic-body hoverable grabbable gltf-model="url(Pokeball/models/scene.gltf)" scale="0.003 0.003 0.003" rotation="0 180 0" position="-0.5 2 -0.5"  collision-filter="group: green; collidesWith: default, green" ></a-entity>
 
      <!-- Long wall sheared -->
      <a-plane width="5" height="15"  position="-1.738 1.015 1.013" color="red" rotation="0 86.530 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
