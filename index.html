@@ -30,7 +30,7 @@
     <link rel="stylesheet" type="text/css" href="examples.css">
   </head>
   <body>
-    <body>
+
 
     <a-scene physics="gravity: -8.8;debug:true;" >
       <a-assets>
@@ -42,7 +42,7 @@
                               colliderEventProperty: els;
                               colliderEndEvent: collisions;
                               colliderEndEventProperty: clearedEls;
-                              grabStartButtons: gripdown, pointdown, triggerdown;
+                              grabStartButtons: gripdown, pointdown, triggerdown, thumbsticktouchstart;
                               grabEndButtons: gripup, pointup, triggerup"
                  static-body="shape: sphere; sphereRadius: 0.11"
                  physics-collider
@@ -53,11 +53,21 @@
         <!-- <a-mixin id="cube" geometry="width: 0.5; height: 0.5; depth: 0.5" dynamic-body
                  hoverable grabbable></a-mixin>
         <a-mixin id="cube-hovered" material="opacity: 0.7; transparent: true"></a-mixin> -->
+
+        <a-mixin id="box"
+          geometry="primitive: box; width: 2; height: 0.5; depth: 0.5"
+          randomcolor
+        ></a-mixin>
+        <a-mixin id="sphere"
+          geometry="primitive: sphere; radius: 0.5"
+          randomcolor
+        ></a-mixin>
+
       </a-assets>
 
-      <!-- <a-entity id="rig"
-          movement-controls
-          position="25 0 25">
+      <a-entity id="rig"
+          movement-controls="speed:0.15;"
+          position="0.054 0 3.653" >
   <a-entity camera
             position="0 0 0"
             look-controls="pointerLockEnabled: true"></a-entity>
@@ -65,12 +75,17 @@
             </a-entity>
             <a-entity id="leftHand" hand-controls="left" mixin="controller">
             </a-entity>
-</a-entity> -->
+</a-entity>
 
 
-<a-entity id="cameraRig">
+<!-- <a-entity id="cameraRig">
+
   <a-entity id="head" camera wasd-controls look-controls></a-entity>
+<<<<<<< HEAD
   <a-entity teleport-controls="cameraRig: #cameraRig; button: trigger;"
+=======
+  <a-entity teleport-controls="cameraRig: #cameraRig; button: trigger;collisionEntities:#tsst;"
+>>>>>>> development
     vive-controls="hand: left"
     oculus-touch-controls="hand: left"
     microsoft-motion-controls="hand: left"
@@ -92,7 +107,7 @@
     oculus-touch-controls="hand: right"
     daydream-controls="right" gearvr-controls="right">
   </a-entity>
-  </a-entity>
+  </a-entity> -->
  <!-- hand-controls="right" -->
 
 
@@ -113,7 +128,11 @@
       <a-entity gltf-model="scene/SceneV4.gltf" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive: box;" collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
        <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
 
-     <a-entity geometry="primitive: sphere; radius:0.25 "  modify-materials dynamic-body hoverable grabbable gltf-model="url(models/scene.gltf)" scale="0.003 0.003 0.003" rotation="0 180 0" position="-0.5 2 -0.5"  collision-filter="group: green; collidesWith: default, green" ></a-entity>
+       <a-entity gltf-model="models/Pipet/pipetLowPoly.gltf" geometry="primitive: box; width: .125; height: 1; depth: .125"  scale="1 1 1" position="3 2 1" modify-materials grabbable hoverable  dynamic-body collision-filter="group: green; collidesWith: default, green"></a-entity>
+
+       <a-entity gltf-model="models/Pipet/pipetLowPoly.gltf" geometry="primitive: box; width: .125; height: 1; depth: .125"  scale="1 1 1" position="-.5 2 -.5" modify-materials grabbable hoverable  dynamic-body collision-filter="group: green; collidesWith: default, green"></a-entity>
+
+     <a-entity geometry="primitive: sphere; radius:0.25 "  modify-materials dynamic-body hoverable grabbable gltf-model="url(Pokeball/models/scene.gltf)" scale="0.003 0.003 0.003" rotation="0 180 0" position="-0.5 2 -0.5"  collision-filter="group: green; collidesWith: default, green" ></a-entity>
 
      <!-- Long wall sheared -->
      <a-plane width="5" height="15"  position="-1.738 1.015 1.013" color="red" rotation="0 86.530 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
@@ -121,8 +140,11 @@
      <!-- short wall with door -->
      <a-plane width="5" height="4"  position="-0.035 1.015 -8.406" color="red" rotation="0 90 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
+     <a-plane width="1" height="1"  id="tsst"  position="2.937 0.1 -1.136" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
+
+
      <!-- floor -->
-     <a-plane width="20" height="14"  position="2.937 0 -1.136" color="red" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
+     <a-plane width="12" height="21"  id="tsst" geometry="primitive: plane; width: 21; height: 20" position="2.937 0 -1.136" color="red" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
 
      <!-- Long wall with door -->
@@ -165,8 +187,8 @@
       </a-box> -->
       <!-- Terrain -->
       <a-grid static-body
-              collision-filter="group: default; collides With: red, green, blue">
-      </a-grid>
+              collision-filter="group: default; collides With: red, green, blue" width="15" height="20">
+      </a-grid >
 
       <!-- <a-plane width="5" height="5"  position="0 0 0" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
       <a-plane width="5" height="5"  position="-2.332 0 0" color="white" rotation="0 90 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
@@ -184,5 +206,6 @@
       <a-entity light="type: point; color: #f4f4f4; intensity: 0.6; distance: 0" position="-8 10 -18"></a-entity>
       <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.4;" position="-8 10 -18"></a-entity>
     </a-scene>
+
   </body>
 </html>
