@@ -1,2 +1,2 @@
 # IIPMEDT3
-Groep A :)
+Gruppe A
