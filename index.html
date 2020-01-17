@@ -70,7 +70,7 @@
 
 <a-entity id="cameraRig">
   <a-entity id="head" camera wasd-controls look-controls></a-entity>
-  <a-entity teleport-controls="cameraRig: #cameraRig; button: thumbstick;"
+  <a-entity teleport-controls="cameraRig: #cameraRig; button: thumbstick;collisionEntities: #floorgeometry;"
     vive-controls="hand: left"
     oculus-touch-controls="hand: left"
     microsoft-motion-controls="hand: left"
@@ -126,7 +126,7 @@
      <a-plane width="5" height="4"  position="-0.035 1.015 -8.406" color="red" rotation="0 90 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
      <!-- floor -->
-     <a-plane width="20" height="14"  position="2.937 0 -1.136" color="red" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
+     <a-plane width="20" height="14"  id="floorgeometry" position="2.937 0 -1.136" color="red" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
 
      <!-- Long wall with door -->
