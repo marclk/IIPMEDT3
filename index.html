@@ -81,11 +81,7 @@
 <!-- <a-entity id="cameraRig">
 
   <a-entity id="head" camera wasd-controls look-controls></a-entity>
-<<<<<<< HEAD
   <a-entity teleport-controls="cameraRig: #cameraRig; button: trigger;"
-=======
-  <a-entity teleport-controls="cameraRig: #cameraRig; button: trigger;collisionEntities:#tsst;"
->>>>>>> development
     vive-controls="hand: left"
     oculus-touch-controls="hand: left"
     microsoft-motion-controls="hand: left"
@@ -128,9 +124,9 @@
       <a-entity gltf-model="scene/SceneV4.gltf" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive: box;" collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
        <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
 
-       <a-entity gltf-model="models/Pipet/pipetLowPoly.gltf" geometry="primitive: box; width: .125; height: 1; depth: .125"  scale="1 1 1" position="3 2 1" modify-materials grabbable hoverable  dynamic-body collision-filter="group: green; collidesWith: default, green"></a-entity>
+       <a-entity class="js--pipet" gltf-model="models/Pipet/pipetLowPoly.gltf" geometry="primitive: box; width: .025; height: 1; depth: .025"  scale="1 1 1" position="3 2 1" modify-materials grabbable hoverable  dynamic-body collision-filter="group: green; collidesWith: default, green"></a-entity>
 
-       <a-entity gltf-model="models/Pipet/pipetLowPoly.gltf" geometry="primitive: box; width: .125; height: 1; depth: .125"  scale="1 1 1" position="-.5 2 -.5" modify-materials grabbable hoverable  dynamic-body collision-filter="group: green; collidesWith: default, green"></a-entity>
+       <a-entity class="js--pipet" gltf-model="models/Pipet/pipetLowPoly.gltf" geometry="primitive: box; width: .025; height: .25; depth: .025"  scale="1 1 1" position="-.5 2 -.5" modify-materials grabbable hoverable  dynamic-body collision-filter="group: green; collidesWith: default, green"></a-entity>
 
      <a-entity geometry="primitive: sphere; radius:0.25 "  modify-materials dynamic-body hoverable grabbable gltf-model="url(Pokeball/models/scene.gltf)" scale="0.003 0.003 0.003" rotation="0 180 0" position="-0.5 2 -0.5"  collision-filter="group: green; collidesWith: default, green" ></a-entity>
 

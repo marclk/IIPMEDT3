@@ -1,3 +1,3 @@
 window.onload = function () {
-  const pipet = document.getElementById('js--pipet');
+  const pipet = document.getElementsByClassName('js--pipet');
 }
