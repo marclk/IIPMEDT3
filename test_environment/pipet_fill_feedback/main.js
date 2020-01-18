@@ -1,20 +1,24 @@
 window.onload = function () {
   const bar = document.getElementById('js--bar');
+  let pressedKey = 0;
   let lastKey = 0;
   let start;
-  // let end;
   let deltaG = 0;
   let deltaH = 0;
+  // let delta = 0;
   let visualFeedback;
   let initialBarHeight = .3;
   let modifiedDelta;
+  let gKeyHeld = false;
+  let hKeyHeld = false;
 
   console.log("press and hold [G] to rise, press and hold [H] to diminish");
 
   document.addEventListener("keydown", function(event) {
     // keycode for [G], increase
-    if (event.keyCode == 71 && event.keyCode != lastKey) {
-      lastKey = event.keyCode;
+    if (event.keyCode == 71 && event.keyCode != pressedKey && hKeyHeld == false) {
+      pressedKey = event.keyCode;
+      gKeyHeld = true;
       console.log('keydown');
       start = new Date();
 
@@ -28,10 +32,11 @@ window.onload = function () {
         bar.setAttribute("position", "0 " + (modifiedDelta/2) + " -3");
       }, 50);
 
-    }
+    } else
       // keycode for [H], decrease
-      if (event.keyCode == 72 && event.keyCode != lastKey) {
-        lastKey = event.keyCode;
+      if (event.keyCode == 72 && event.keyCode != pressedKey && gKeyHeld == false) {
+        pressedKey = event.keyCode;
+        hKeyHeld = true;
         console.log('keydown');
         start = new Date();
 
@@ -51,12 +56,14 @@ window.onload = function () {
   document.addEventListener("keyup", function(event) {
     if (event.keyCode == 71) {
       console.log('keyup');
-      lastKey = 0;
+      gKeyHeld = false;
+      deltaH = deltaH + deltaG;
       clearInterval(visualFeedback);
     }
     if (event.keyCode == 72) {
       console.log('keyup');
-      lastKey = 0;
+      hKeyHeld = false;
+      deltaG = deltaG - deltaH;
       clearInterval(visualFeedback);
 
       // if (delta > 0 && delta < 500) {
@@ -67,5 +74,6 @@ window.onload = function () {
       //   console.log("more than 1s");
       // }
     }
+    pressedKey = 0;
   })
 }
