@@ -67,7 +67,7 @@
       </a-assets>
 
       <a-entity id="rig"
-          movement-controls="speed:0.15;"
+          movement-controls="speed:0.15; constrainToNavMesh: true;"
           position="-2.428 0 -8.202" rotation="0 -90 0" >
   <a-entity camera
             position="0 1.6 0"
@@ -133,7 +133,7 @@
       <!-- <a-box mixin="cube" position="-0.5 2 -0.5" src="#green"
              collision-filter="group: green; collidesWith: default, green">
       </a-box> -->
-
+      <a-entity gltf-model="scene/navmesh.gltf" nav-mesh></a-entity>
       <a-entity gltf-model="scene/SceneV4.gltf" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive: box;" collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
        <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
        <a-entity class="js--bril" gltf-model="models/SafetyBril/SafetyGoggle.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials grabbable hoverable  static-body ></a-entity>
