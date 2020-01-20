@@ -4,14 +4,15 @@
     <title>A-Frame Lab</title>
       <script src="https://aframe.io/releases/0.9.1/aframe.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v2.1.0/dist/aframe-physics-system.min.js"></script>
-    <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
+
+    <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/super-hands/dist/super-hands.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
-    <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
-    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+    <!-- <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script> -->
 
-    <!-- <script src="build.js"></script> -->
+    <!-- pls dont delete is pickup -->
+    <script src="build.js"></script>
     <script>
       window.onload = function (e) {
         document.querySelector('#leftHand').addEventListener('pointingstart', function (e2) {
@@ -28,12 +29,11 @@
         })
       }
     </script>
-    <link rel="stylesheet" type="text/css" href="examples.css">
   </head>
   <body>
 
 
-    <a-scene physics="gravity: -8.8;debug:true;" >
+    <a-scene physics="gravity: -8.8;debug:true;">
       <a-assets>
           <!-- <img id="red" src="textures/red.png">
           <img id="blue" src="textures/blue.png">
@@ -43,7 +43,7 @@
                               colliderEventProperty: els;
                               colliderEndEvent: collisions;
                               colliderEndEventProperty: clearedEls;
-                              grabStartButtons: gripdown, pointdown, triggerdown, thumbsticktouchstart;
+                              grabStartButtons: gripdown, pointdown, triggerdown;
                               grabEndButtons: gripup, pointup, triggerup"
                  static-body="shape: sphere; sphereRadius: 0.11"
                  physics-collider
@@ -67,34 +67,28 @@
       </a-assets>
 
       <a-entity id="rig"
-          movement-controls="speed:0.15; constrainToNavMesh: true;"
+          movement-controls="speed:0.15;"
           position="-2.428 0 -8.202" rotation="0 -90 0" >
   <a-entity camera
             position="0 1.6 0"
-            look-controls="pointerLockEnabled: true">
-            <a-gui-cursor id="cursor"
-						  raycaster="objects: [gui-interactable]"
-						  fuse="true" fuse-timeout="1000"
-						  design="ring"	>
-				</a-gui-cursor>
-          <a-plane id="js--clipBoard" width="0.5" height="0.810" rotation="-9.230 45 0" position="-0.950 -0.360 -0.910">
-            <a-entity>
-              <a-gui-radio active-color="#26ed21" id="js--gui-radio"  width="3" height="0.75"	 	value="Veiligheidsbril op " 	font-family="Arial" 	margin="0 0 0.05 0"  font-size="100px"  scale="0.2 .2 .2"   position="0.045 0.193 0.022"> </a-gui-radio>
-              <a-gui-radio active-color="#26ed21" id="js--gui-radio-second" width="3.2" height="0.75" active="false" checked="true" 	value="Labjas aan" 	font-family="Arial" font-size="100px" 	margin="0 0 0.05 0"   scale="0.2 .2 .2"   position="0.067 0.074 0.015"> </a-gui-radio>
-            </a-entity>
-            <a-entity id="js--clipboardContent" position="99 99 99">
-              <a-gui-radio  active-color="#26ed21" width="3" height="0.75"	 	value="Pak pipet " 	font-family="Arial" 	margin="0 0 0.05 0"  font-size="100px"  scale="0.2 .2 .2"   position="0.045 0.193 0.022"> </a-gui-radio>
-              <a-gui-radio active-color="#26ed21" width="3.2" height="0.75" active="false" checked="true" 	value="Gebruik pipet" 	font-family="Arial" font-size="100px" 	margin="0 0 0.05 0"   scale="0.2 .2 .2"   position="0.067 0.074 0.015"> </a-gui-radio>
-            </a-entity>
+            look-controls="pointerLockEnabled: false">
 
 
-          </a-plane>
+
           </a-entity>
-            <a-entity id="rightHand" hand-controls="right" mixin="controller">
+            <a-entity id="rightHand" hand-controls="right" laser-controls mixin="controller">
             </a-entity>
             <a-entity id="leftHand" hand-controls="left" mixin="controller">
+              <!-- <a-plane id="js--clipBoard" width="0.5" height="0.810" rotation="-9.230 45 0" position="0 0 1">
+                <a-entity>
+                </a-entity>
+                <a-entity id="js--clipboardContent" position="99 99 99">
+                </a-entity>
 
+
+              </a-plane> -->
             </a-entity>
+
 </a-entity>
 
 
@@ -144,8 +138,8 @@
       <a-entity gltf-model="scene/SceneV4.gltf" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive: box;" collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
        <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
 
-       <a-entity id="js--bril" gui-interactable gltf-model="models/SafetyBril/SafetyGoggle.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials grabbable hoverable  static-body ></a-entity>
-       <a-entity id="js--labcoat"  gui-interactable gltf-model="models/Labjas/labjas.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -165.820 0" scale=".7 .7 .7" position="-0.086 1.560 -8.074" modify-materials grabbable hoverable  static-body ></a-entity>
+       <a-entity id="js--bril" gltf-model="models/SafetyBril/SafetyGoggle.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials    static-body ></a-entity>
+       <a-entity id="js--labcoat"   gltf-model="models/Labjas/labjas.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -165.820 0" scale=".7 .7 .7" position="-0.086 1.560 -8.074" modify-materials    static-body ></a-entity>
 
 
 
@@ -230,7 +224,7 @@
       <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.4;" position="-8 10 -18"></a-entity>
 
     </a-scene>
-    <script src="main.js"></script>
+    <!-- <script src="main.js"></script> -->
 
   </body>
 </html>
