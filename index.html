@@ -148,13 +148,15 @@
        <a-entity id="js--bril" gui-interactable gltf-model="models/SafetyBril/SafetyGoggle.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials grabbable hoverable  static-body ></a-entity>
        <a-entity id="js--labcoat"  gui-interactable gltf-model="models/Labjas/labjas.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -165.820 0" scale=".7 .7 .7" position="-0.086 1.560 -8.074" modify-materials grabbable hoverable  static-body ></a-entity>
 
+      <a-entity geometry="primitive: box; width: .025; height: .25; depth: .025" position="3 2 1" modify-materials grabbable hoverable  dynamic-body collision-filter="group: green; collidesWith: default, green">
+         <a-entity class="js--pipet" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
+        <a-plane id="js--bar" color="crimson" width=".02" height=".3" position="0 0 0"></a-plane>
+      </a-entity>
 
-       <a-entity class="js--pipet" gltf-model="models/Pipet/pipetLowPoly.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025"  scale="2 2 2" position="3 2 1" modify-materials grabbable hoverable  dynamic-body collision-filter="group: green; collidesWith: default, green">
-       </a-entity>
-
-       <a-entity class="js--pipet" gltf-model="models/Pipet/pipetLowPoly.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025"  scale="2 2 2" position="-.5 2 -.5" modify-materials grabbable hoverable  dynamic-body collision-filter="group: green; collidesWith: default, green">
-         <a-plane id="js--bar" color="crimson" width=".02" height=".3" position="0 0 0"></a-plane>
-       </a-entity>
+      <a-entity geometry="primitive: box; width: .025; height: .25; depth: .025" position="-.5 2 -.5" modify-materials grabbable hoverable  dynamic-body collision-filter="group: green; collidesWith: default, green">
+         <a-entity class="js--pipet" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
+        <a-plane id="js--bar" color="crimson" width=".02" height=".3" position="0 0 0"></a-plane>
+      </a-entity>
 
      <a-entity geometry="primitive: sphere; radius:0.25 "  modify-materials dynamic-body hoverable grabbable gltf-model="url(Pokeball/models/scene.gltf)" scale="0.003 0.003 0.003" rotation="0 180 0" position="-0.5 2 -0.5"  collision-filter="group: green; collidesWith: default, green" ></a-entity>
 
