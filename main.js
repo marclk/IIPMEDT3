@@ -43,14 +43,13 @@ function checkIfSafetyIsGood(labCoatOn,goggleOnHead){
 
   if(labCoatOn === true && goggleOnHead === true){
     console.log("jeej safety");
-  //console.log(document.getElementById('js--gui-radio-second').getAttribute("gui-radio"));
+
+      setTimeout(function(){
+        document.getElementById("js--clipBoard").firstElementChild.remove();
+        document.getElementById("js--clipboardContent").setAttribute("position", {z:0,y:0,x:0});
+      }, 1000);
 
 
-    //document.getElementById('part2OfClipboardContent').setAttribute("position",{x:0,y:0,z:0});
-
-    console.log(document.getElementById("js--clipBoard"));
-    document.getElementById("js--clipBoard").firstElementChild.remove();
-document.getElementById("js--clipboardContent").setAttribute("position", {z:0,y:0,x:0});
 
 
   }else{
