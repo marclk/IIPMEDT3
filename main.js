@@ -2,8 +2,8 @@ window.onload = function () {
   const pipet = document.getElementsByClassName('js--pipet');
   const SAFETY_GOGGLE = document.getElementById('js--bril');
   const LAB_COAT = document.getElementById('js--labcoat');
-  const GUI_RADIO = document.getElementById('js--gui-radio');
-  const GUI_RADIO_SECOND = document.getElementById('js--gui-radio-second');
+  // const GUI_RADIO = document.getElementById('js--gui-radio');
+  // const GUI_RADIO_SECOND = document.getElementById('js--gui-radio-second');
 
 
   var goggleOnHead = false
@@ -12,12 +12,13 @@ window.onload = function () {
   SAFETY_GOGGLE.addEventListener('click', function(evnt){
     console.log("Im registerd!!!");
    //this.remove();
-    GUI_RADIO.click();
-    GUI_RADIO.click();
-    goggleOnHead = true;
-    this.removeAttribute("gui-interactable");
-    this.setAttribute("visible","false");
-    checkIfSafetyIsGood(labCoatOn,goggleOnHead);
+    // GUI_RADIO.click();
+    // GUI_RADIO.click();
+    // goggleOnHead = true;
+    // this.removeAttribute("gui-interactable");
+    // this.setAttribute("visible","false");
+    // checkIfSafetyIsGood(labCoatOn,goggleOnHead);
+    this.remove();
 
 
   });
@@ -25,11 +26,11 @@ window.onload = function () {
   LAB_COAT.addEventListener('click', function(evnt){
     console.log("Im registerd!!!");
     //this.remove();
-    GUI_RADIO_SECOND.click();
+    // GUI_RADIO_SECOND.click();
     labCoatOn = true;
-    this.removeAttribute("gui-interactable");
-    this.setAttribute("visible","false");
-    checkIfSafetyIsGood(labCoatOn,goggleOnHead);
+    // this.removeAttribute("gui-interactable");
+    // this.setAttribute("visible","false");
+    // checkIfSafetyIsGood(labCoatOn,goggleOnHead);
 
   });
 
