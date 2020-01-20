@@ -8,43 +8,50 @@ window.onload = function () {
   let delta = 0;
   let visualFeedback;
   let initialBarHeight = .3;
+  let activeBarHeight = 0;
   let modifiedDelta;
-  let gKeyHeld = false;
-  let hKeyHeld = false;
+  let aButtonHeld = false;
+  let bButtonHeld = false;
 
   document.querySelector('#rig').addEventListener('abuttondown', function (e) {
-    start = new Date();
+    aButtonHeld = true;
+    if (!bButtonHeld) {
+      start = new Date();
 
-    visualFeedback = setInterval(f => {
-      let end = new Date();
-      delta = end - start;
-      //add activeHeight to modifiedDelta
-      modifiedDelta = (delta/2000)+initialBarHeight;
-      bar.setAttribute("height", modifiedDelta);
-      bar.setAttribute("position", "0 " + (modifiedDelta/2) + " -3");
-    }, 50);
+      visualFeedback = setInterval(f => {
+        let end = new Date();
+        delta = end - start;
+        modifiedDelta = (delta/2000) + initialBarHeight + activeBarHeight;
+        bar.setAttribute("height", modifiedDelta);
+        bar.setAttribute("position", "0 " + (modifiedDelta/2) + " -3");
+      }, 50);
+    }
   })
 
   document.querySelector('#rig').addEventListener('abuttonup', function (e) {
-    //save final delta into activeHeight
+    aButtonHeld = false;
+    activeBarHeight = activeBarHeight + delta/2000;
     clearInterval(visualFeedback);
   })
 
   document.querySelector('#rig').addEventListener('bbuttondown', function (e) {
-    start = new Date();
+    bButtonHeld = true;
+    if (!aButtonHeld) {
+      start = new Date();
 
-    visualFeedback = setInterval(f => {
-      let end = new Date();
-      delta = -(end - start);
-      //add activeHeight to modifiedDelta
-      modifiedDelta = delta/2000+initialBarHeight;
-      bar.setAttribute("height", modifiedDelta);
-      bar.setAttribute("position", "0 " + (modifiedDelta/2) + " -3");
-    }, 50);
+      visualFeedback = setInterval(f => {
+        let end = new Date();
+        delta = -(end - start);
+        modifiedDelta = (delta/2000) + initialBarHeight + activeBarHeight;
+        bar.setAttribute("height", modifiedDelta);
+        bar.setAttribute("position", "0 " + (modifiedDelta/2) + " -3");
+      }, 50);
+    }
   })
 
   document.querySelector('#rig').addEventListener('bbuttonup', function (e) {
-    //save final delta into activeHeight
+    bButtonHeld = false;
+    activeBarHeight = activeBarHeight + delta/2000;
     clearInterval(visualFeedback);
   })
 

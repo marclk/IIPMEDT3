@@ -17,7 +17,7 @@ window.onload = function () {
 
   document.addEventListener("keydown", function(event) {
     // keycode for [G], increase
-    if (event.keyCode == 71 && event.keyCode != pressedKey && hKeyHeld == false) {
+    if (event.keyCode == 71 && event.keyCode != pressedKey && !hKeyHeld) {
       pressedKey = event.keyCode;
       gKeyHeld = true;
       console.log('keydown');
@@ -35,7 +35,7 @@ window.onload = function () {
 
     } else
       // keycode for [H], decrease
-      if (event.keyCode == 72 && event.keyCode != pressedKey && gKeyHeld == false) {
+      if (event.keyCode == 72 && event.keyCode != pressedKey && !gKeyHeld) {
         pressedKey = event.keyCode;
         hKeyHeld = true;
         console.log('keydown');
