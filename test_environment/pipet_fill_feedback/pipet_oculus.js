@@ -1,10 +1,6 @@
 window.onload = function () {
   const bar = document.getElementById('js--bar');
-  let pressedKey = 0;
-  let lastKey = 0;
   let start;
-  let deltaG = 0;
-  let deltaH = 0;
   let delta = 0;
   let visualFeedback;
   let initialBarHeight = .3;
