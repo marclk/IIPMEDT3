@@ -8,6 +8,7 @@ window.onload = function () {
   // let delta = 0;
   let visualFeedback;
   let initialBarHeight = .3;
+  let activeBarHeight = 0;
   let modifiedDelta;
   let gKeyHeld = false;
   let hKeyHeld = false;
@@ -24,9 +25,9 @@ window.onload = function () {
 
       visualFeedback = setInterval(f => {
         let end = new Date();
-        deltaG = deltaH + (end - start);
+        deltaG = end - start;
         console.log("deltaG: " + deltaG);
-        modifiedDelta = deltaG/2000+initialBarHeight;
+        modifiedDelta = (deltaG/2000) + initialBarHeight + activeBarHeight;
         console.log("modified: " + modifiedDelta);
         bar.setAttribute("height", modifiedDelta);
         bar.setAttribute("position", "0 " + (modifiedDelta/2) + " -3");
@@ -42,9 +43,9 @@ window.onload = function () {
 
         visualFeedback = setInterval(f => {
           let end = new Date();
-          deltaH =  deltaG - (end - start);
+          deltaH =  -(end - start);
           console.log("deltaH: " + deltaH);
-          modifiedDelta = deltaH/2000+initialBarHeight;
+          modifiedDelta = (deltaH/2000) + initialBarHeight + activeBarHeight;
           console.log("modified: " + modifiedDelta);
           bar.setAttribute("height", modifiedDelta);
           bar.setAttribute("position", "0 " + (modifiedDelta/2) + " -3");
@@ -57,13 +58,13 @@ window.onload = function () {
     if (event.keyCode == 71) {
       console.log('keyup');
       gKeyHeld = false;
-      deltaH = deltaH + deltaG;
+      activeBarHeight = activeBarHeight + deltaG/2000;
       clearInterval(visualFeedback);
     }
     if (event.keyCode == 72) {
       console.log('keyup');
       hKeyHeld = false;
-      deltaG = deltaG - deltaH;
+      activeBarHeight = activeBarHeight + deltaH/2000;
       clearInterval(visualFeedback);
 
       // if (delta > 0 && delta < 500) {
