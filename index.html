@@ -53,14 +53,6 @@
                  hoverable grabbable></a-mixin>
         <a-mixin id="cube-hovered" material="opacity: 0.7; transparent: true"></a-mixin> -->
 
-        <a-mixin id="box"
-          geometry="primitive: box; width: 2; height: 0.5; depth: 0.5"
-          randomcolor
-        ></a-mixin>
-        <a-mixin id="sphere"
-          geometry="primitive: sphere; radius: 0.5"
-          randomcolor
-        ></a-mixin>
 
 
         <a-mixin id="touch"
@@ -81,9 +73,9 @@
       </a-assets>
 
       <a-entity id="rig"
-          movement-controls="speed:0.15; constrainToNavMesh:true;"
-          position="0 0 2" rotation="0 0 0" >
-        <a-entity camera     position="0 1.6 0" look-controls="pointerLockEnabled: true">
+          movement-controls="speed:0.15; constrainToNavMesh: true"
+          position="0 0.1 0" rotation="0 0 0" >
+        <a-entity camera     position="0 1.7 0" look-controls="pointerLockEnabled: true">
 
           </a-entity>
             <!-- <a-entity id="rightHand" hand-controls="right" mixin="controller">
