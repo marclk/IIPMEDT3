@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>A-Frame Physics Extras Example</title>
-      <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <title>A-Frame Lab</title>
+      <script src="https://aframe.io/releases/0.9.1/aframe.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v2.1.0/dist/aframe-physics-system.min.js"></script>
     <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
@@ -11,7 +11,7 @@
     <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
     <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
 
-    <script src="build.js"></script>
+    <!-- <script src="build.js"></script> -->
     <script>
       window.onload = function (e) {
         document.querySelector('#leftHand').addEventListener('pointingstart', function (e2) {
@@ -77,11 +77,18 @@
 						  fuse="true" fuse-timeout="1000"
 						  design="ring"	>
 				</a-gui-cursor>
-          <a-plane width="0.5" height="0.810" rotation="-9.230 45 0" position="-0.950 -0.360 -0.910">
+          <a-plane id="js--clipBoard" width="0.5" height="0.810" rotation="-9.230 45 0" position="-0.950 -0.360 -0.910">
+            <a-entity>
+              <a-gui-radio id="js--gui-radio"  width="3" height="0.75"	 	value="Veiligheidsbril op " 	font-family="Arial" 	margin="0 0 0.05 0"  font-size="100px"  scale="0.2 .2 .2"   position="0.045 0.193 0.022"> </a-gui-radio>
+              <a-gui-radio id="js--gui-radio-second" width="3.2" height="0.75" active="false" checked="true" 	value="Labjas aan" 	font-family="Arial" font-size="100px" 	margin="0 0 0.05 0"   scale="0.2 .2 .2"   position="0.067 0.074 0.015"> </a-gui-radio>
+            </a-entity>
+            <a-entity id="js--clipboardContent" position="99 99 99">
+              <a-gui-radio   width="3" height="0.75"	 	value="Pak pipet " 	font-family="Arial" 	margin="0 0 0.05 0"  font-size="100px"  scale="0.2 .2 .2"   position="0.045 0.193 0.022"> </a-gui-radio>
+              <a-gui-radio  width="3.2" height="0.75" active="false" checked="true" 	value="Gebruik pipet" 	font-family="Arial" font-size="100px" 	margin="0 0 0.05 0"   scale="0.2 .2 .2"   position="0.067 0.074 0.015"> </a-gui-radio>
+            </a-entity>
 
-            <a-gui-radio width="3" height="0.75"	onclick="toggleActionFunction" 	value="Labjas aan" 	font-family="Arial" 	margin="0 0 0.05 0"  font-size="100px"  scale="0.2 .2 .2"   position="0.045 0.193 0.022"> </a-gui-radio>
-            <a-gui-radio width="3.2" height="0.75" active="false" checked="true"	onclick="toggleActionFunction" 	value="Veiligheidsbril op" 	font-family="Arial" font-size="100px" 	margin="0 0 0.05 0"   scale="0.2 .2 .2"   position="0.067 0.074 0.015"> </a-gui-radio>
-            </a-plane>
+
+          </a-plane>
           </a-entity>
             <a-entity id="rightHand" hand-controls="right" mixin="controller">
             </a-entity>
@@ -136,9 +143,9 @@
       <a-entity gltf-model="scene/navmesh.gltf" nav-mesh></a-entity>
       <a-entity gltf-model="scene/SceneV4.gltf" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive: box;" collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
        <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
-       <a-entity class="js--bril" gltf-model="models/SafetyBril/SafetyGoggle.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials grabbable hoverable  static-body ></a-entity>
 
-       <a-entity class="js--coat" gltf-model="models/Labjas/labjas.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -165.820 0" scale=".7 .7 .7" position="-0.086 1.560 -8.074" modify-materials grabbable hoverable  static-body ></a-entity>
+       <a-entity id="js--bril" gui-interactable gltf-model="models/SafetyBril/SafetyGoggle.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials grabbable hoverable  static-body ></a-entity>
+       <a-entity id="js--labcoat"  gui-interactable gltf-model="models/Labjas/labjas.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -165.820 0" scale=".7 .7 .7" position="-0.086 1.560 -8.074" modify-materials grabbable hoverable  static-body ></a-entity>
 
 
 
@@ -221,7 +228,9 @@
       <a-entity light="type: point; color: #f4f4f4; intensity: 0.2; distance: 0" position="8 10 18"></a-entity>
       <a-entity light="type: point; color: #f4f4f4; intensity: 0.6; distance: 0" position="-8 10 -18"></a-entity>
       <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.4;" position="-8 10 -18"></a-entity>
+
     </a-scene>
+    <script src="main.js"></script>
 
   </body>
 </html>
