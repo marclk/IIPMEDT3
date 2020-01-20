@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>A-Frame Lab</title>
-      <script src="https://aframe.io/releases/0.9.1/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/0.9.1/aframe.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v2.1.0/dist/aframe-physics-system.min.js"></script>
     <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
@@ -11,7 +11,8 @@
     <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
     <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
 
-    <!-- <script src="build.js"></script> -->
+    <!-- <script src="pipet_oculus.js"></script> -->
+    <script src="build.js"></script>
     <script>
       window.onload = function (e) {
         document.querySelector('#leftHand').addEventListener('pointingstart', function (e2) {
@@ -69,14 +70,14 @@
       <a-entity id="rig"
           movement-controls="speed:0.15; constrainToNavMesh: true;"
           position="-2.428 0 -8.202" rotation="0 -90 0" >
-  <a-entity camera
+        <a-entity camera
             position="0 1.6 0"
             look-controls="pointerLockEnabled: true">
-            <a-gui-cursor id="cursor"
+          <a-gui-cursor id="cursor"
 						  raycaster="objects: [gui-interactable]"
 						  fuse="true" fuse-timeout="1000"
 						  design="ring"	>
-				</a-gui-cursor>
+				  </a-gui-cursor>
           <a-plane id="js--clipBoard" width="0.5" height="0.810" rotation="-9.230 45 0" position="-0.950 -0.360 -0.910">
             <a-entity>
               <a-gui-radio active-color="#26ed21" id="js--gui-radio"  width="3" height="0.75"	 	value="Veiligheidsbril op " 	font-family="Arial" 	margin="0 0 0.05 0"  font-size="100px"  scale="0.2 .2 .2"   position="0.045 0.193 0.022"> </a-gui-radio>
@@ -148,10 +149,12 @@
        <a-entity id="js--labcoat"  gui-interactable gltf-model="models/Labjas/labjas.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -165.820 0" scale=".7 .7 .7" position="-0.086 1.560 -8.074" modify-materials grabbable hoverable  static-body ></a-entity>
 
 
+       <a-entity class="js--pipet" gltf-model="models/Pipet/pipetLowPoly.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025"  scale="2 2 2" position="3 2 1" modify-materials grabbable hoverable  dynamic-body collision-filter="group: green; collidesWith: default, green">
+       </a-entity>
 
-       <a-entity class="js--pipet" gltf-model="models/Pipet/pipetLowPoly.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025"  scale="2 2 2" position="3 2 1" modify-materials grabbable hoverable  dynamic-body collision-filter="group: green; collidesWith: default, green"></a-entity>
-
-       <a-entity class="js--pipet" gltf-model="models/Pipet/pipetLowPoly.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025"  scale="2 2 2" position="-.5 2 -.5" modify-materials grabbable hoverable  dynamic-body collision-filter="group: green; collidesWith: default, green"></a-entity>
+       <a-entity class="js--pipet" gltf-model="models/Pipet/pipetLowPoly.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025"  scale="2 2 2" position="-.5 2 -.5" modify-materials grabbable hoverable  dynamic-body collision-filter="group: green; collidesWith: default, green">
+         <a-plane id="js--bar" color="crimson" width=".02" height=".3" position="0 0 0"></a-plane>
+       </a-entity>
 
      <a-entity geometry="primitive: sphere; radius:0.25 "  modify-materials dynamic-body hoverable grabbable gltf-model="url(Pokeball/models/scene.gltf)" scale="0.003 0.003 0.003" rotation="0 180 0" position="-0.5 2 -0.5"  collision-filter="group: green; collidesWith: default, green" ></a-entity>
 
