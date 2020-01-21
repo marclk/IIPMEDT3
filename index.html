@@ -35,7 +35,7 @@
   <body>
 
 
-    <a-scene physics="gravity: -8.8;debug:true;" renderer="antialias: true;sortObjects:true;" shadow="type: pcfsoft; renderReverseSided:true">
+    <a-scene physics="gravity: -8.8;debug:false;" renderer="antialias: true;sortObjects:true;" shadow="type: pcfsoft; renderReverseSided:true">
       <a-assets>
           <!-- <img id="red" src="textures/red.png">
           <img id="blue" src="textures/blue.png">
@@ -244,9 +244,13 @@
                <a-plane id="js--controls-next" color="black" width="2.5" height="0.75" onclick="nextControl()"><a-text id="volgende-knop" value="Volgende >" color="white" position="-0.484 0 0 "> </a-text></a-plane>
              </a-entity>
 
+             <a-text align="center" value="Oppakbaar:"  color="#fff" position="2.103 1.497 0.010"></a-text>
 
-             <a-text align="center" value="Een pipet:"  color="#fff" position="1.350 0.055 0.010"></a-text>
-            <a-entity position="2.334 -0.044 0.101" scale="7 7 7" rotation="0 90 0" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
+             <a-text align="center" value="Pipet:"  color="#fff" position="1.057 0.609 0.010"></a-text>
+            <a-entity position="2.334 0.559 0.101" scale="6 6 6" rotation="0 90 0" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
+
+            <a-text align="center" value="Erlenmeyer:"  color="#fff" position="1.350 -0.476 0.010"></a-text>
+            <a-entity position="1.924 -0.75 0.101" scale=".2 .2 .2" rotation="0 0 0" gltf-model="models/Erlenmeyer/Flask.gltf"></a-entity>
 
            </a-plane>
       </a-entity>
