@@ -15,7 +15,6 @@ window.onload = function(){
   });
 
   controllerInput.addEventListener("ybuttondown", function (e){
-    alert("pressed!");
     nextControl();
   });
 
