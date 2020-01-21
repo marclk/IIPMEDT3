@@ -141,8 +141,8 @@
 
 
       <a-entity gltf-model="scene/navmesh-kamer.gltf"  nav-mesh></a-entity>
-      <a-entity gltf-model="scene/navmesh-full.gltf"  nav-mesh></a-entity>
-      <a-entity gltf-model="scene/SceneV6.gltf" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive: box;" collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
+      <a-entity gltf-model="scene/navmesh-full.gltf" visible="false" position="0 -0.179 0"  nav-mesh></a-entity>
+      <a-entity gltf-model="scene/SceneV6.gltf" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive:  box; height: 0.001; depth: 0.001;width:0.001;" collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
        <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
 
        <a-entity id="js--bril" gltf-model="models/SafetyBril/SafetyGoggle.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials    static-body ></a-entity>
@@ -166,16 +166,37 @@
      <!-- short wall with door -->
      <a-plane width="5" visible="false" height="4"  position="-0.035 1.015 -8.406" color="red" rotation="0 90 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
-     <!-- <a-plane visible="true"  geometry="primitive:  box; height: 3.250; depth: .910;width:1.380"  id="tsst"  position="2.706 0.481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane> -->
-     <a-box height="3.250" width="1.380" depth=".910"   position="2.706 0.481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body>
-       <a-box height="0.180" width="0.370" depth="0.590" position="-0.009 -0.441 0.680" collision-filter="group: green; collidesWith: default, green"></a-box>
-       <a-box height="0.180" width="0.370" depth="0.590" position="-0.009 0.835 0.680" collision-filter="group: green; collidesWith: default, green"></a-box>
+     <a-box  geometry="primitive:  box; height: 13.560; depth: 1.920;width:1.350" visible="false" id="tsst"  position="7.463 0.272 -0.105" color="yellow" rotation="0 90 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+     <a-box  geometry="primitive:  box; height: 6.4; depth: 1.130;width:3.150" visible="false" id="tsst"   position="-1.879 1.531 1.711" color="yellow" rotation="0 86.290 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+     <a-entity visible="false">
+     <a-box  geometry="primitive:  box; height: 3.250; depth: .910;width:1.380"  id="tsst"  position="2.706 0.481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+    <a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="1.869 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+    <a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="3.147 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+  </a-entity>
 
-     </a-box>
+     <a-entity position="0 0 8.998" visible="false">
+     <a-box  geometry="primitive:  box; height: 3.250; depth: .910;width:1.380"  id="tsst"  position="2.706 0.481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+    <a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="1.869 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+    <a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="3.147 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+  </a-entity>
 
+  <a-entity position="0 0 2.991" visible="false">
+  <a-box  geometry="primitive:  box; height: 3.250; depth: .910;width:1.380"  id="tsst"  position="2.706 0.481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+ <a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="1.869 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+ <a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="3.147 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+</a-entity>
 
+<a-entity position="0 0 5.998" visible="false">
+<a-box  geometry="primitive:  box; height: 3.250; depth: .910;width:1.380"  id="tsst"  position="2.706 0.481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+<a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="1.869 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+<a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="3.147 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+</a-entity>
 
-
+<a-entity position="6.084 0 -3.542" rotation="0 90 0" visible="false">
+<a-box  geometry="primitive:  box; height: 3.250; depth: .910;width:1.380"  id="tsst"  position="2.706 0.481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+<a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="1.869 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+<a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="3.147 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+</a-entity>
      <!-- floor -->
      <a-plane width="12" height="21"  visible="false" id="tsst" geometry="primitive: plane; width: 21; height: 20" position="2.937 0 -1.136" color="red" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
