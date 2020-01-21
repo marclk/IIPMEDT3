@@ -22,6 +22,8 @@ window.onload = function () {
   let aButtonHeld = false;
   let bButtonHeld = false;
 
+  let dropletSound = new Audio("drop.mp3");
+
   SAFETY_GOGGLE.addEventListener('click', function(evnt){
     console.log("Im registerd!!!");
    //this.remove();
@@ -73,6 +75,7 @@ function checkIfSafetyIsGood(labCoatOn,goggleOnHead){
   document.querySelector('#rhand').addEventListener('abuttondown', function (e) {
     aButtonHeld = true;
     if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
+      dropletSound.play();
       fillPipetStart();
     }
   })
@@ -86,6 +89,7 @@ function checkIfSafetyIsGood(labCoatOn,goggleOnHead){
 
   document.querySelector('#rhand').addEventListener('bbuttondown', function (e) {
     bButtonHeld = true;
+    dropletSound.play();
     if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
       emptyPipetStart();
     }
