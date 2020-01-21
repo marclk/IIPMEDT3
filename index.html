@@ -10,6 +10,7 @@
      <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
      <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
 
+
     <!-- <script src="pipet_oculus.js"></script> -->
 
     <!-- pls dont delete is pickup -->
@@ -239,8 +240,8 @@
                <a-text align="center" value="Knop B > Pipet: Legen"  color="#000"></a-text>
              </a-plane>
 
-             <a-entity id="js--controls" position="2 -1.758 0">
-               <a-plane value="Next >" color="black" width="2.5" height="0.75" onclick="nextControl()"></a-gui-button>
+             <a-entity id="js--controls" position="2 -1.758 .5">
+               <a-plane id="js--controls-next" value="Next >" color="black" width="2.5" height="0.75" onclick="nextControl()"></a-plane>
              </a-entity>
 
            </a-plane>
@@ -371,6 +372,7 @@
     </a-scene>
     <script src="main.js"></script>
     <script src="pipet_oculus.js"></script>
+    <script src="tutorial.js"></script>
 
 
 
