@@ -35,7 +35,7 @@
   <body>
 
 
-    <a-scene physics="gravity: -8.8;debug:false;" renderer="antialias: true;sortObjects:true;" shadow="type: pcfsoft; renderReverseSided:true">
+    <a-scene physics="gravity: -8.8;debug:true;" renderer="antialias: true;sortObjects:true;" shadow="type: pcfsoft; renderReverseSided:true">
       <a-assets>
           <!-- <img id="red" src="textures/red.png">
           <img id="blue" src="textures/blue.png">
@@ -186,9 +186,9 @@
 
 
 
-      <a-entity visible="false"id="second-navmesh" gltf-model="scene/navmesh-full.gltf"  position="0 -0.179 0"  nav-mesh></a-entity>
+      <a-entity visible="false"id="second-navmesh" gltf-model="scene/navmesh-full.gltf"   position="0 -0.179 0"  nav-mesh></a-entity>
       <!-- <a-entity id="first-navmesh" gltf-model="scene/navmesh-kamer.gltf"   position="0 -0.179 0" nav-mesh></a-entity> -->
-      <a-entity gltf-model="src: url(scene/SceneV6.gltf)" shadow="receive: true"scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive:  box; height: 0.001; depth: 0.001;width:0.001;" collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
+      <a-entity gltf-model="scene/SceneV6.gltf" shadow="receive: true" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive:  box; height: 1; depth: 1;width:1;" collision-filter="group: green; collidesWith: default, green" ></a-entity>
        <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
 
        <a-entity id="js--bril" gltf-model="src: url(models/SafetyBril/SafetyGoggle.gltf)"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials    static-body ></a-entity>
@@ -262,10 +262,11 @@
 
 
       <!-- <a-entity id="bigbox" geometry="primitive: box; depth:1;height:1;width:1; "  modify-materials dynamic-body hoverable grabbable rotation="0 180 0" position="-0.5 2 -0.5"  collision-filter="group: green; collidesWith: default, green" ></a-entity> -->
+      <a-entity scale="0.1 0.1 0.1" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 1; height:1; depth:1" color="white"  position="-3.793 0.820 -5.560" collision-filter="group: green; collidesWith: green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity  scale="0.1 0.1 0.1" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 1; height:1; depth:1" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
 
-
-      <a-entity id="js--pipet-container-2" geometry="primitive: box; width: 0.08; height: 0.450; depth: 0.06"   position="-3.793 0.820 -5.560"  modify-materials grabbable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green">
-         <a-entity id="js--pipet" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
+      <a-entity  >
+         <a-entity id="js--pipet-container-2" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf" geometry="primitive: box; width: 1; height:1; depth:1" color="white"  position="-3.793 0.820 -5.560" collision-filter="group: green; collidesWith: green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
         <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".001" position="0 0 0"></a-plane>
       </a-entity>
 
@@ -386,10 +387,7 @@
 
 
 
-    }, 3000);
 
-
-    </script>
 
   </body>
 </html>
