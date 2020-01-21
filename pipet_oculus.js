@@ -85,8 +85,8 @@ window.onload = function () {
       visualFeedbackInterval = setInterval(f => {
         let endPipetFeedbackTimer = new Date();
         deltaPipetFeedbackTimer = endPipetFeedbackTimer - startPipetFeedbackTimer;
-        modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight + activeFeedbackBarHeight;
-        // modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight;
+        // modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight + activeFeedbackBarHeight;
+        modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight;
         PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
         PIPET_FEEDBAR.setAttribute("position", "-.06 " + (modifiedDeltaPipetFeedbackTimer/2) + " -.03");
       }, 50);
@@ -94,7 +94,7 @@ window.onload = function () {
   }
 
   fillPipetEnd = () => {
-    activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
+    // activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
     clearInterval(visualFeedbackInterval);
   }
 
