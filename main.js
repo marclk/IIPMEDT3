@@ -72,32 +72,32 @@ function checkIfSafetyIsGood(labCoatOn,goggleOnHead){
     console.log("not yet");
   }
 
-  document.querySelector('#rhand').addEventListener('abuttondown', function (e) {
+  document.querySelector('#rig').addEventListener('abuttondown', function (e) {
     aButtonHeld = true;
-    if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
+    if (PIPET_CONTAINER.getAttribute("grabbed") != null) {
       dropletSound.play();
       fillPipetStart();
     }
   })
 
-  document.querySelector('#rhand').addEventListener('abuttonup', function (e) {
+  document.querySelector('#rig').addEventListener('abuttonup', function (e) {
     aButtonHeld = false;
-    if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
+    if (PIPET_CONTAINER.getAttribute("grabbed") != null) {
       fillPipetEnd();
     }
   })
 
-  document.querySelector('#rhand').addEventListener('bbuttondown', function (e) {
+  document.querySelector('#rig').addEventListener('bbuttondown', function (e) {
     bButtonHeld = true;
     dropletSound.play();
-    if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
+    if (PIPET_CONTAINER.getAttribute("grabbed") != null) {
       emptyPipetStart();
     }
   })
 
-  document.querySelector('#rhand').addEventListener('bbuttonup', function (e) {
+  document.querySelector('#rig').addEventListener('bbuttonup', function (e) {
     bButtonHeld = false;
-    if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
+    if (PIPET_CONTAINER.getAttribute("grabbed") != null) {
       emptyPipetEnd();
     }
   })
