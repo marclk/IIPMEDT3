@@ -1,10 +1,23 @@
-let index, controlsR;
+let index, controlsR, controlsL, controlSteps;
 
 window.onload = function(){
   controlsR = document.getElementsByClassName("js--oculus-touch-controls-R");
   controlsL = document.getElementsByClassName("js--oculus-touch-controls-L");
 
   controlSteps = document.getElementsByClassName("js--control-step");
+
+  controlBtnNext = document.getElementById("js--controls-next");
+
+  controllerInput = document.querySelector("#rig");
+
+  controlBtnNext.addEventListener("onclick", function (e){
+    nextControl();
+  });
+
+  controllerInput.addEventListener("ybuttondown", function (e){
+    alert("pressed!");
+    nextControl();
+  });
 
   nextControl = () =>{
     for (let i = 0; i < controlsR.length; i++) {
