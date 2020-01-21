@@ -1,6 +1,7 @@
-window.onload = function () {
+
   const bar = document.getElementById('js--pipet-feedbar');
   const PIPET_CONTAINER = document.getElementById('js--pipet-container');
+  const GRABBABLES = document.getElementsByClassName('js--grabbable');
   let pressedKey = 0;
   let lastKey = 0;
   let start;
@@ -20,21 +21,53 @@ window.onload = function () {
 
   document.addEventListener("keydown", function(event) {
     // keycode for [G], increase
-    if (event.keyCode == 71 && event.keyCode != pressedKey && !hKeyHeld) {
-      gKeyHeld = true;
-      console.log(PIPET_CONTAINER.getAttribute("grabbed"));
-      if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
-        fillPipetStart();
+
+      for (var i = 0; i < GRABBABLES.length; i++) {
+
+        console.log(GRABBABLES[i].getAttribute("grabbed"));
+        console.log(GRABBABLES[i].id);
+
+        if (GRABBABLES[i].getAttribute("grabbed") == "") {
+          let ID = GRABBABLES[i].id;
+
+          switch (ID) {
+            case "js--pipet-container":
+              if (event.keyCode == 71 && event.keyCode != pressedKey && !hKeyHeld) {
+                pressedKey = event.keyCode;
+                gKeyHeld = true;
+                fillPipetStart();
+              } else if (event.keyCode == 72 && event.keyCode != pressedKey && !gKeyHeld) {
+                pressedKey = event.keyCode;
+                hKeyHeld = true;
+                emptyPipetStart();
+              }
+              break;
+
+            case "js--other-grabbables":
+              //FUNCTION
+              break;
+            default:
+
+          }
+        }
       }
 
-    } else if (event.keyCode == 72 && event.keyCode != pressedKey && !gKeyHeld) {
-      hKeyHeld = true;
-      if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
-        emptyPipetStart();
-      }
+    // if (event.keyCode == 71 && event.keyCode != pressedKey && !hKeyHeld) {
+    //   gKeyHeld = true;
+    //   console.log(PIPET_CONTAINER.getAttribute("grabbed"));
+    //   if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
+    //     fillPipetStart();
+    //   }
+    //
+    // } else if (event.keyCode == 72 && event.keyCode != pressedKey && !gKeyHeld) {
+    //   hKeyHeld = true;
+    //   if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
+    //     emptyPipetStart();
+    //   }
+    //
+    //
+    // }
 
-
-    }
   })
 
   document.addEventListener("keyup", function(event) {
@@ -64,16 +97,15 @@ window.onload = function () {
   })
 
   fillPipetStart = () => {
-    pressedKey = event.keyCode;
     console.log('keydown');
     start = new Date();
 
     visualFeedback = setInterval(f => {
       let end = new Date();
       deltaG = end - start;
-      console.log("deltaG: " + deltaG);
+      // console.log("deltaG: " + deltaG);
       modifiedDelta = (deltaG/2000) + initialBarHeight + activeBarHeight;
-      console.log("modified: " + modifiedDelta);
+      // console.log("modified: " + modifiedDelta);
       bar.setAttribute("height", modifiedDelta);
       bar.setAttribute("position", "0 " + (modifiedDelta/2) + " 0");
     }, 50);
@@ -86,16 +118,15 @@ window.onload = function () {
   }
 
   emptyPipetStart = () => {
-      pressedKey = event.keyCode;
       console.log('keydown');
       start = new Date();
 
       visualFeedback = setInterval(f => {
         let end = new Date();
         deltaH =  -(end - start);
-        console.log("deltaH: " + deltaH);
+        // console.log("deltaH: " + deltaH);
         modifiedDelta = (deltaH/2000) + initialBarHeight + activeBarHeight;
-        console.log("modified: " + modifiedDelta);
+        // console.log("modified: " + modifiedDelta);
         bar.setAttribute("height", modifiedDelta);
         bar.setAttribute("position", "0 " + (modifiedDelta/2) + " 0");
       }, 50);
@@ -106,4 +137,3 @@ window.onload = function () {
     activeBarHeight = activeBarHeight + deltaH/2000;
     clearInterval(visualFeedback);
   }
-}

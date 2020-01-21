@@ -22,6 +22,8 @@ window.onload = function () {
   let aButtonHeld = false;
   let bButtonHeld = false;
 
+  let dropletSound = new Audio("drop.mp3");
+
   SAFETY_GOGGLE.addEventListener('click', function(evnt){
     console.log("Im registerd!!!");
    //this.remove();
@@ -70,28 +72,30 @@ function checkIfSafetyIsGood(labCoatOn,goggleOnHead){
     console.log("not yet");
   }
 
-  document.querySelector('#rig').addEventListener('abuttondown', function (e) {
+  document.querySelector('#rhand').addEventListener('abuttondown', function (e) {
     aButtonHeld = true;
     if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
+      dropletSound.play();
       fillPipetStart();
     }
   })
 
-  document.querySelector('#rig').addEventListener('abuttonup', function (e) {
+  document.querySelector('#rhand').addEventListener('abuttonup', function (e) {
     aButtonHeld = false;
     if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
       fillPipetEnd();
     }
   })
 
-  document.querySelector('#rig').addEventListener('bbuttondown', function (e) {
+  document.querySelector('#rhand').addEventListener('bbuttondown', function (e) {
     bButtonHeld = true;
+    dropletSound.play();
     if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
       emptyPipetStart();
     }
   })
 
-  document.querySelector('#rig').addEventListener('bbuttonup', function (e) {
+  document.querySelector('#rhand').addEventListener('bbuttonup', function (e) {
     bButtonHeld = false;
     if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
       emptyPipetEnd();
