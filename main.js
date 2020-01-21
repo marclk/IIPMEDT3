@@ -70,28 +70,28 @@ function checkIfSafetyIsGood(labCoatOn,goggleOnHead){
     console.log("not yet");
   }
 
-  document.querySelector('#rig').addEventListener('abuttondown', function (e) {
+  document.querySelector('#rhand').addEventListener('abuttondown', function (e) {
     aButtonHeld = true;
     if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
       fillPipetStart();
     }
   })
 
-  document.querySelector('#rig').addEventListener('abuttonup', function (e) {
+  document.querySelector('#rhand').addEventListener('abuttonup', function (e) {
     aButtonHeld = false;
     if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
       fillPipetEnd();
     }
   })
 
-  document.querySelector('#rig').addEventListener('bbuttondown', function (e) {
+  document.querySelector('#rhand').addEventListener('bbuttondown', function (e) {
     bButtonHeld = true;
     if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
       emptyPipetStart();
     }
   })
 
-  document.querySelector('#rig').addEventListener('bbuttonup', function (e) {
+  document.querySelector('#rhand').addEventListener('bbuttonup', function (e) {
     bButtonHeld = false;
     if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
       emptyPipetEnd();

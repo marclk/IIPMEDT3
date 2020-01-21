@@ -1,6 +1,7 @@
 window.onload = function () {
   const bar = document.getElementById('js--pipet-feedbar');
   const PIPET_CONTAINER = document.getElementById('js--pipet-container');
+  const GRABBABLES = document.getElementsByClassName('js--grabbable');
   let pressedKey = 0;
   let lastKey = 0;
   let start;
@@ -20,21 +21,51 @@ window.onload = function () {
 
   document.addEventListener("keydown", function(event) {
     // keycode for [G], increase
-    if (event.keyCode == 71 && event.keyCode != pressedKey && !hKeyHeld) {
-      gKeyHeld = true;
-      console.log(PIPET_CONTAINER.getAttribute("grabbed"));
-      if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
-        fillPipetStart();
+
+      for (var i = 0; i < GRABBABLES.length; i++) {
+
+        console.log(GRABBABLES[i].getAttribute("grabbed"));
+        console.log(GRABBABLES[i].id);
+
+        if (GRABBABLES[i].getAttribute("grabbed") == "") {
+          let ID = GRABBABLES[i].id;
+
+          switch (ID) {
+            case "js--pipet-container":
+              if (event.keyCode == 71 && event.keyCode != pressedKey && !hKeyHeld) {
+                gKeyHeld = true;
+                fillPipetStart();
+              } else if (event.keyCode == 72 && event.keyCode != pressedKey && !gKeyHeld) {
+                hKeyHeld = true;
+                emptyPipetStart();
+              }
+              break;
+
+            case "js--other-grabbables":
+              //FUNCTION
+              break;
+            default:
+
+          }
+        }
       }
 
-    } else if (event.keyCode == 72 && event.keyCode != pressedKey && !gKeyHeld) {
-      hKeyHeld = true;
-      if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
-        emptyPipetStart();
-      }
+    // if (event.keyCode == 71 && event.keyCode != pressedKey && !hKeyHeld) {
+    //   gKeyHeld = true;
+    //   console.log(PIPET_CONTAINER.getAttribute("grabbed"));
+    //   if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
+    //     fillPipetStart();
+    //   }
+    //
+    // } else if (event.keyCode == 72 && event.keyCode != pressedKey && !gKeyHeld) {
+    //   hKeyHeld = true;
+    //   if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
+    //     emptyPipetStart();
+    //   }
+    //
+    //
+    // }
 
-
-    }
   })
 
   document.addEventListener("keyup", function(event) {
