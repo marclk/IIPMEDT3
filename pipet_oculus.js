@@ -1,5 +1,8 @@
 window.onload = function () {
-  const bar = document.getElementById('js--bar');
+  const PIPET_FEEDBAR = document.getElementById('js--pipet-feedbar');
+  const PIPET = document.getElementById('js--pipet');
+  const PIPET_CONTAINER = document.getElementById('js--pipet-container');
+
   let start;
   let delta = 0;
   let visualFeedback;
@@ -9,19 +12,11 @@ window.onload = function () {
   let aButtonHeld = false;
   let bButtonHeld = false;
 
+  console.log(PIPET_CONTAINER.getAttribute("grabbable"));
+
   document.querySelector('#rig').addEventListener('abuttondown', function (e) {
     aButtonHeld = true;
-    if (!bButtonHeld) {
-      start = new Date();
-
-      visualFeedback = setInterval(f => {
-        let end = new Date();
-        delta = end - start;
-        modifiedDelta = (delta/2000) + initialBarHeight + activeBarHeight;
-        bar.setAttribute("height", modifiedDelta);
-        bar.setAttribute("position", "0 " + (modifiedDelta/2) + " -3");
-      }, 50);
-    }
+    fillPipet();
   })
 
   document.querySelector('#rig').addEventListener('abuttonup', function (e) {
@@ -32,17 +27,7 @@ window.onload = function () {
 
   document.querySelector('#rig').addEventListener('bbuttondown', function (e) {
     bButtonHeld = true;
-    if (!aButtonHeld) {
-      start = new Date();
-
-      visualFeedback = setInterval(f => {
-        let end = new Date();
-        delta = -(end - start);
-        modifiedDelta = (delta/2000) + initialBarHeight + activeBarHeight;
-        bar.setAttribute("height", modifiedDelta);
-        bar.setAttribute("position", "0 " + (modifiedDelta/2) + " -3");
-      }, 50);
-    }
+    emptyPipet();
   })
 
   document.querySelector('#rig').addEventListener('bbuttonup', function (e) {
@@ -50,5 +35,33 @@ window.onload = function () {
     activeBarHeight = activeBarHeight + delta/2000;
     clearInterval(visualFeedback);
   })
+
+  fillPipet = () => {
+    if (!bButtonHeld) {
+      start = new Date();
+
+      visualFeedback = setInterval(f => {
+        let end = new Date();
+        delta = end - start;
+        modifiedDelta = (delta/2000) + initialBarHeight + activeBarHeight;
+        PIPET_FEEDBAR.setAttribute("height", modifiedDelta);
+        PIPET_FEEDBAR.setAttribute("position", "0 " + (modifiedDelta/2) + " -3");
+      }, 50);
+    }
+  }
+
+  emptyPipet = () => {
+    if (!aButtonHeld) {
+      start = new Date();
+
+      visualFeedback = setInterval(f => {
+        let end = new Date();
+        delta = -(end - start);
+        modifiedDelta = (delta/2000) + initialBarHeight + activeBarHeight;
+        PIPET_FEEDBAR.setAttribute("height", modifiedDelta);
+        PIPET_FEEDBAR.setAttribute("position", "0 " + (modifiedDelta/2) + " -3");
+      }, 50);
+    }
+  }
 
 }

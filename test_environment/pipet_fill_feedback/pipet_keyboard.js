@@ -18,40 +18,12 @@ window.onload = function () {
   document.addEventListener("keydown", function(event) {
     // keycode for [G], increase
     if (event.keyCode == 71 && event.keyCode != pressedKey && !hKeyHeld) {
-      pressedKey = event.keyCode;
-      gKeyHeld = true;
-      console.log('keydown');
-      start = new Date();
+      fillPipet();
 
-      visualFeedback = setInterval(f => {
-        let end = new Date();
-        deltaG = end - start;
-        console.log("deltaG: " + deltaG);
-        modifiedDelta = (deltaG/2000) + initialBarHeight + activeBarHeight;
-        console.log("modified: " + modifiedDelta);
-        bar.setAttribute("height", modifiedDelta);
-        bar.setAttribute("position", "0 " + (modifiedDelta/2) + " -3");
-      }, 50);
+    } else if (event.keyCode == 72 && event.keyCode != pressedKey && !gKeyHeld) {
+      emptyPipet();
 
-    } else
-      // keycode for [H], decrease
-      if (event.keyCode == 72 && event.keyCode != pressedKey && !gKeyHeld) {
-        pressedKey = event.keyCode;
-        hKeyHeld = true;
-        console.log('keydown');
-        start = new Date();
-
-        visualFeedback = setInterval(f => {
-          let end = new Date();
-          deltaH =  -(end - start);
-          console.log("deltaH: " + deltaH);
-          modifiedDelta = (deltaH/2000) + initialBarHeight + activeBarHeight;
-          console.log("modified: " + modifiedDelta);
-          bar.setAttribute("height", modifiedDelta);
-          bar.setAttribute("position", "0 " + (modifiedDelta/2) + " -3");
-        }, 50);
-
-      }
+    }
   })
 
   document.addEventListener("keyup", function(event) {
@@ -77,4 +49,38 @@ window.onload = function () {
     }
     pressedKey = 0;
   })
+
+  fillPipet = () => {
+    pressedKey = event.keyCode;
+    gKeyHeld = true;
+    console.log('keydown');
+    start = new Date();
+
+    visualFeedback = setInterval(f => {
+      let end = new Date();
+      deltaG = end - start;
+      console.log("deltaG: " + deltaG);
+      modifiedDelta = (deltaG/2000) + initialBarHeight + activeBarHeight;
+      console.log("modified: " + modifiedDelta);
+      bar.setAttribute("height", modifiedDelta);
+      bar.setAttribute("position", "0 " + (modifiedDelta/2) + " -3");
+    }, 50);
+  }
+
+  emptyPipet = () => {
+      pressedKey = event.keyCode;
+      hKeyHeld = true;
+      console.log('keydown');
+      start = new Date();
+
+      visualFeedback = setInterval(f => {
+        let end = new Date();
+        deltaH =  -(end - start);
+        console.log("deltaH: " + deltaH);
+        modifiedDelta = (deltaH/2000) + initialBarHeight + activeBarHeight;
+        console.log("modified: " + modifiedDelta);
+        bar.setAttribute("height", modifiedDelta);
+        bar.setAttribute("position", "0 " + (modifiedDelta/2) + " -3");
+      }, 50);
+  }
 }

@@ -1,10 +1,8 @@
 window.onload = function () {
-  const pipet = document.getElementsByClassName('js--pipet');
   const SAFETY_GOGGLE = document.getElementById('js--bril');
   const LAB_COAT = document.getElementById('js--labcoat');
   // const GUI_RADIO = document.getElementById('js--gui-radio');
   // const GUI_RADIO_SECOND = document.getElementById('js--gui-radio-second');
-
 
   var goggleOnHead = false
   var labCoatOn = false;
