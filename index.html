@@ -265,7 +265,7 @@
       <a-entity scale="0.1 0.1 0.1" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 1; height:1; depth:1" color="white"  position="-3.793 0.820 -5.560" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
       <a-entity  scale="0.1 0.1 0.1" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 1; height:1; depth:1" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
 
-      <a-entity id="js--pipet-container-2" geometry="primitive: box; width: 0.08; height: 0.450; depth: 0.06"   position="-3.793 0.820 -5.560"  modify-materials grabbable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green">
+      <a-entity material="visible:false" id="js--pipet-container-2" geometry="primitive: box; width: 0.08; height: 0.450; depth: 0.06"   position="-3.793 0.820 -5.560"  modify-materials grabbable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green">
          <a-entity id="js--pipet" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
          <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".001" position="0 0 0"></a-plane>
       </a-entity>
