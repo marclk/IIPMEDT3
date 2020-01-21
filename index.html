@@ -34,7 +34,7 @@
   <body>
 
 
-    <a-scene physics="gravity: -8.8;debug:true;">
+    <a-scene physics="gravity: -8.8;debug:true;" renderer="antialias: false;sortObjects:true;" shadow="type: pcfsoft;">
       <a-assets>
           <!-- <img id="red" src="textures/red.png">
           <img id="blue" src="textures/blue.png">
@@ -139,17 +139,31 @@
       </a-box> -->
 
 
+      <a-plane width="2.5" height="3" position="2.516 1.918 8.044" rotation="0 180 0">
+        <a-text value="Nog te doen:" position="-0.622 1.263 0" color="black"></a-text>
+        <a-text value="Pipet vastpakken" position="-0.895 0.576" color="black"> </a-text>
+        <a-text value="Pipet indrukken en legen" position="-1.227 0.247" color="black"></a-text>
+      </a-plane>
+
+
+      <a-plane width="2.5" height="3" position="-3.093 1.918 -9.961" rotation="0 0 0">
+        <a-text value="Nog te doen:" position="-0.622 1.263 0" color="black"></a-text>
+        <a-text value="Bril opzetten" position="-0.895 0.576" color="black"> </a-text>
+        <a-text value="Labjas aandoen" position="-.903 0.247 0" color="black"></a-text>
+      </a-plane>
+
+
 
       <a-entity gltf-model="scene/navmesh-kamer.gltf"  nav-mesh></a-entity>
       <a-entity gltf-model="scene/navmesh-full.gltf" visible="false" position="0 -0.179 0"  nav-mesh></a-entity>
-      <a-entity gltf-model="scene/SceneV6.gltf" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive:  box; height: 0.001; depth: 0.001;width:0.001;" collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
+      <a-entity gltf-model="src: url(scene/SceneV6.gltf)" shadow="receive: true"scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive:  box; height: 0.001; depth: 0.001;width:0.001;" collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
        <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
 
-       <a-entity id="js--bril" gltf-model="models/SafetyBril/SafetyGoggle.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials    static-body ></a-entity>
-       <a-entity id="js--labcoat"   gltf-model="models/Labjas/labjas.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -165.820 0" scale=".7 .7 .7" position="-0.086 1.560 -8.074" modify-materials    static-body ></a-entity>
+       <a-entity id="js--bril" gltf-model="src: url(models/SafetyBril/SafetyGoggle.gltf)"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials    static-body ></a-entity>
+       <a-entity id="js--labcoat"   gltf-model="src: url(models/Labjas/labjas.gltf)"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -165.820 0" scale=".7 .7 .7" position="-0.086 1.560 -8.074" modify-materials    static-body ></a-entity>
 
       <a-entity id="js--pipet-container" geometry="primitive: box; width: .025; height: .25; depth: .025" position="3  1" modify-materials grabbable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green">
-         <a-entity id="js--pipet" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
+         <a-entity id="js--pipet" scale="2 2 2" gltf-model="src: url(models/Pipet/pipetLowPoly.gltf)"></a-entity>
         <a-plane id="js--pipet-feedbar" color="crimson" width=".02" height=".3" position="0 0 -.03"></a-plane>
       </a-entity>
 
@@ -258,9 +272,9 @@
       <a-plane width="5" height="5"  position="1.419 0 0.147" color="white" rotation="-45 -90 0" collision-filter="group: green; collidesWith: default, green" static-body></a-plane> -->
 
       <!-- Lighting -->
-      <a-entity light="type: point; color: #f4f4f4; intensity: 0.2; distance: 0" position="8 10 18"></a-entity>
+      <a-entity light="type: point; color: #f4f4f4; intensity: 0.2; distance: 0" shadow="cast: true" position="8 10 18"></a-entity>
       <a-entity light="type: point; color: #f4f4f4; intensity: 0.6; distance: 0" position="-8 10 -18"></a-entity>
-      <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.4;" position="-8 10 -18"></a-entity>
+      <a-entity light="type:  point;  color:  #f4f4f4;  intensity:  0.2;  castShadow:  true;  shadowMapHeight:  500;  shadowMapWidth:  500" position="-8 10 -18"></a-entity>
 
     </a-scene>
     <script src="main.js"></script>
