@@ -3,12 +3,12 @@ window.onload = function () {
   const PIPET = document.getElementById('js--pipet');
   const PIPET_CONTAINER = document.getElementById('js--pipet-container');
 
-  let start;
-  let delta = 0;
-  let visualFeedback;
-  let initialBarHeight = 0;
-  let activeBarHeight = 0;
-  let modifiedDelta;
+  let startPipetFeedbackTimer;
+  let deltaPipetFeedbackTimer = 0;
+  let visualFeedbackInterval;
+  let initialFeedbackBarHeight = 0;
+  let activeFeedbackBarHeight = 0;
+  let modifiedDeltaPipetFeedbackTimer;
   let aButtonHeld = false;
   let bButtonHeld = false;
 
@@ -44,40 +44,40 @@ window.onload = function () {
 
   fillPipetStart = () => {
     if (!bButtonHeld) {
-      start = new Date();
+      startPipetFeedbackTimer = new Date();
 
-      visualFeedback = setInterval(f => {
-        let end = new Date();
-        delta = end - start;
-        modifiedDelta = (delta/2000) + initialBarHeight + activeBarHeight;
-        PIPET_FEEDBAR.setAttribute("height", modifiedDelta);
-        PIPET_FEEDBAR.setAttribute("position", "0 " + (modifiedDelta/2) + " -.03");
+      visualFeedbackInterval = setInterval(f => {
+        let endPipetFeedbackTimer = new Date();
+        deltaPipetFeedbackTimer = endPipetFeedbackTimer - startPipetFeedbackTimer;
+        modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/2000) + initialFeedbackBarHeight + activeFeedbackBarHeight;
+        PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
+        PIPET_FEEDBAR.setAttribute("position", "0 " + (modifiedDeltaPipetFeedbackTimer/2) + " -.03");
       }, 50);
     }
   }
 
   fillPipetEnd = () => {
-    activeBarHeight = activeBarHeight + delta/2000;
-    clearInterval(visualFeedback);
+    activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/2000;
+    clearInterval(visualFeedbackInterval);
   }
 
   emptyPipetStartStart = () => {
     if (!aButtonHeld) {
-      start = new Date();
+      startPipetFeedbackTimer = new Date();
 
-      visualFeedback = setInterval(f => {
-        let end = new Date();
-        delta = -(end - start);
-        modifiedDelta = (delta/2000) + initialBarHeight + activeBarHeight;
-        PIPET_FEEDBAR.setAttribute("height", modifiedDelta);
-        PIPET_FEEDBAR.setAttribute("position", "0 " + (modifiedDelta/2) + " -.03");
+      visualFeedbackInterval = setInterval(f => {
+        let endPipetFeedbackTimer = new Date();
+        deltaPipetFeedbackTimer = -(endPipetFeedbackTimer - startPipetFeedbackTimer);
+        modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/2000) + initialFeedbackBarHeight + activeFeedbackBarHeight;
+        PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
+        PIPET_FEEDBAR.setAttribute("position", "0 " + (modifiedDeltaPipetFeedbackTimer/2) + " -.03");
       }, 50);
     }
   }
 
   emptyPipetEnd = () => {
-    activeBarHeight = activeBarHeight + delta/2000;
-    clearInterval(visualFeedback);
+    activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/2000;
+    clearInterval(visualFeedbackInterval);
   }
 
 }
