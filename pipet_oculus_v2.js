@@ -25,7 +25,7 @@ window.onload = function () {
 
   })
 
-  console.log(PIPET_CONTAINER.components.grabbable);
+  // console.log(PIPET_CONTAINER.components.grabbable);
 
   // document.querySelector('#rig').addEventListener('abuttondown', function (e) {
   //   aButtonHeld = true;
