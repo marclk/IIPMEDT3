@@ -43,6 +43,14 @@ window.onload = function(){
           controlSteps[i+1].setAttribute("scale", "1.1 1.1 1.1");
           controlSteps[i+1].setAttribute("color", "yellow");
         }
+
+        if(i == (controlsR.length - 2)){
+          document.getElementById("deur-dicht").remove();
+          document.getElementById("volgende-knop").setAttribute("value", "Ga door de deur");
+          document.getElementById("volgende-knop").setAttribute("position", {x:-0.789});
+            document.getElementById("volgende-knop").setAttribute("color", "black");
+          document.getElementById("js--controls-next").setAttribute("color", "yellow");
+        }
         return;
       }
     }

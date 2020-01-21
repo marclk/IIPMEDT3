@@ -104,7 +104,7 @@
 
       <a-entity id="rig"
           movement-controls="speed:0.15; constrainToNavMesh: true"
-          position="-3.793 0.020 -4.560" rotation="0 0 0">
+          position="-3.793 0.020 -5.559" rotation="0 0 0">
         <a-entity camera     position="0 1.6 0" look-controls="pointerLockEnabled: true">
           <a-cursor color="black"></a-cursor>
         </a-entity>
@@ -218,31 +218,35 @@
 
            <a-plane color="#000" component-padding="0.1" opacity="0.7" width="7" height="4.5" position="0 3 -4" rotation="0 0 0">
 
-             <a-text align="center" value="Elite 2000 MkII Control Scheme v0.8"  color="#fff" position="-1.25 1.8 0.01"></a-text>
+             <a-text align="center" value="Elite 2000 MkII Control Scheme v0.8 (uitleg)"  color="#fff" position="-1.25 1.8 0.01"></a-text>
 
              <a-plane class="js--control-step" color="yellow" scale="1.1 1.1 1.1" component-padding="0.1" width="3" height=".6 "position="-1.6 1 0.01">
-               <a-text align="center" value="Thumbstick > Bewegen"  color="#000"></a-text>
+               <a-text align="center" value="Thumbstick = Bewegen"  color="#000"></a-text>
              </a-plane>
 
              <a-plane class="js--control-step" color="#dedede" component-padding="0.1" width="3" height=".6" position="-1.6 .3 0.01">
-               <a-text align="center" value="Grip > Vast pakken"  color="#000"></a-text>
+               <a-text align="center" value="Grip = Iets vastpakken"  color="#000"></a-text>
              </a-plane>
 
              <a-plane class="js--control-step" color="#dedede" component-padding="0.1" width="3" height=".6" position="-1.6 -.4 0.01">
-               <a-text align="center" value="Trigger > Vast pakken"  color="#000"></a-text>
+               <a-text align="center" value="Trigger = Iets vastpakken"  color="#000"></a-text>
              </a-plane>
 
              <a-plane class="js--control-step" color="#dedede" component-padding="0.1" width="3" height=".6" position="-1.6 -1.1 0.01">
-               <a-text align="center" value="Knop A > Pipet: Opzuigen"  color="#000"></a-text>
+               <a-text align="center" value="Knop A = Pipet: Opzuigen"  color="#000"></a-text>
              </a-plane>
 
              <a-plane class="js--control-step" color="#dedede" component-padding="0.1" width="3" height=".6" position="-1.6 -1.8 0.01">
-               <a-text align="center" value="Knop B > Pipet: Legen"  color="#000"></a-text>
+               <a-text align="center" value="Knop B = Pipet: Legen"  color="#000"></a-text>
              </a-plane>
 
-             <a-entity id="js--controls" position="2 -1.758 .5">
-               <a-plane id="js--controls-next" value="Next >" color="black" width="2.5" height="0.75" onclick="nextControl()"></a-plane>
+             <a-entity id="js--controls" position="2 -1.758 0.077">
+               <a-plane id="js--controls-next" color="black" width="2.5" height="0.75" onclick="nextControl()"><a-text id="volgende-knop" value="Volgende >" color="white" position="-0.484 0 0 "> </a-text></a-plane>
              </a-entity>
+
+
+             <a-text align="center" value="Een pipet:"  color="#fff" position="1.350 0.055 0.010"></a-text>
+            <a-entity position="2.334 -0.044 0.101" scale="7 7 7" rotation="0 90 0" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
 
            </a-plane>
       </a-entity>
@@ -264,6 +268,10 @@
          <a-entity id="js--pipet" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
         <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".001" position="0 0 0"></a-plane>
       </a-entity>
+
+      <a-entity id="deur-open" scale="1 1 1" gltf-model="models/deur/deur-open.gltf" position="0 0 -7.520" rotation="0 90 0"></a-entity>
+      <a-entity id="deur-dicht" scale="1 1 1" gltf-model="models/deur/deur-dicht.gltf" position="0 0 -7.624" rotation="0 90 0"></a-entity>
+
 
      <a-entity geometry="primitive: sphere; radius:0.25 "  modify-materials dynamic-body hoverable grabbable scale="0.003 0.003 0.003" rotation="0 180 0" position="-0.5 2 -0.5"  collision-filter="group: green; collidesWith: default, green" ></a-entity>
 
@@ -307,11 +315,9 @@
      <!-- floor -->
      <a-plane width="12" height="21"  visible="false" id="tsst" geometry="primitive: plane; width: 21; height: 20" position="2.937 0 -1.136" color="red" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
-<<<<<<< HEAD
-     <!-- <a-plane width="12" height="21" visible="false"  id="tsst" geometry="primitive: plane; width: 21; height: 20" position="2.937 4 -1.136" color="red" rotation="90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane> -->
-=======
+
      <a-plane width="12" height="21" visible="true"  id="roof" geometry="primitive: plane; width: 21; height: 20" position="-1.814 3.397 -1.136" color="white" rotation="90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
->>>>>>> ad1f7b0bd20f0a6a624254296958bbe5c9230049
+
 
 
      <!-- Long wall with door -->
@@ -371,7 +377,7 @@
       <!-- Lighting -->
       <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.3; distance: 0"  position="8 10 18"></a-entity>
       <a-entity light="type: point; color: #f4f4f4; intensity: 0.6; distance: 0" position="1.87 14 -8.613"></a-entity>
-      <a-entity light="type:  point;  color:  #f4f4f4;  intensity:  0.6;  castShadow:  true;  shadowMapHeight:  500;  shadowMapWidth:  500" position="11.544 3.298 0.180"></a-entity>
+      <a-entity light="type:  point;  color:  #f4f4f4;  intensity:  0.6;  castShadow:  true;  shadowCameraFov:80" position="11.544 3.298 0.180"></a-entity>
       <a-entity id="light" light="type: spot; color: #ffff97; intensity: 0.260; distance: 0;angle:27;"  position="-3.396 4.223 -8.519" rotation="-57.670 -3.290 0"></a-entity>
     </a-scene>
     <script src="main.js"></script>
