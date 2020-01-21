@@ -64,8 +64,7 @@
                                       colliderEndEvent: collisions;
                                       colliderEndEventProperty: clearedEls;
                                       grabStartButtons: gripdown, pointdown, triggerdown;
-                                      grabEndButtons: gripup, pointup, triggerup"
-                                        >
+                                      grabEndButtons: gripup, pointup, triggerup">
                 </a-mixin>
 
 
@@ -74,8 +73,8 @@
 
       <a-entity id="rig"
           movement-controls="speed:0.15; constrainToNavMesh: true"
-          position="0 0.1 0" rotation="0 0 0" >
-        <a-entity camera     position="0 1.7 0" look-controls="pointerLockEnabled: true">
+          position="-2.180 0.2 -6.80" rotation="0 0 0" >
+        <a-entity camera     position="0 1.6 0" look-controls="pointerLockEnabled: true">
 
           </a-entity>
             <!-- <a-entity id="rightHand" hand-controls="right" mixin="controller">
@@ -149,7 +148,7 @@
        <a-entity id="js--bril" gltf-model="models/SafetyBril/SafetyGoggle.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials    static-body ></a-entity>
        <a-entity id="js--labcoat"   gltf-model="models/Labjas/labjas.gltf"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -165.820 0" scale=".7 .7 .7" position="-0.086 1.560 -8.074" modify-materials    static-body ></a-entity>
 
-      <a-entity geometry="primitive: box; width: .025; height: .25; depth: .025" position="3 2 1" modify-materials grabbable hoverable  dynamic-body collision-filter="group: green; collidesWith: default, green">
+      <a-entity geometry="primitive: box; width: .025; height: .25; depth: .025" position="2.652 1.022 -2.93" modify-materials grabbable hoverable  dynamic-body collision-filter="group: green; collidesWith: default, green">
          <a-entity class="js--pipet" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
         <a-plane id="js--bar" color="crimson" width=".02" height=".3" position="0 0 0"></a-plane>
       </a-entity>
