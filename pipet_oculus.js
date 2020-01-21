@@ -1,54 +1,83 @@
 window.onload = function () {
-  const bar = document.getElementById('js--bar');
-  let start;
-  let delta = 0;
-  let visualFeedback;
-  let initialBarHeight = .3;
-  let activeBarHeight = 0;
-  let modifiedDelta;
+  const PIPET_FEEDBAR = document.getElementById('js--pipet-feedbar');
+  const PIPET = document.getElementById('js--pipet');
+  const PIPET_CONTAINER = document.getElementById('js--pipet-container');
+
+  let startPipetFeedbackTimer;
+  let deltaPipetFeedbackTimer = 0;
+  let visualFeedbackInterval;
+  let initialFeedbackBarHeight = 0;
+  let activeFeedbackBarHeight = 0;
+  let modifiedDeltaPipetFeedbackTimer;
   let aButtonHeld = false;
   let bButtonHeld = false;
 
+  console.log(PIPET_CONTAINER.getAttribute("grabbable"));
+
   document.querySelector('#rig').addEventListener('abuttondown', function (e) {
     aButtonHeld = true;
-    if (!bButtonHeld) {
-      start = new Date();
-
-      visualFeedback = setInterval(f => {
-        let end = new Date();
-        delta = end - start;
-        modifiedDelta = (delta/2000) + initialBarHeight + activeBarHeight;
-        bar.setAttribute("height", modifiedDelta);
-        bar.setAttribute("position", "0 " + (modifiedDelta/2) + " -3");
-      }, 50);
+    if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
+      fillPipetStart();
     }
   })
 
   document.querySelector('#rig').addEventListener('abuttonup', function (e) {
     aButtonHeld = false;
-    activeBarHeight = activeBarHeight + delta/2000;
-    clearInterval(visualFeedback);
+    if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
+      fillPipetEnd();
+    }
   })
 
   document.querySelector('#rig').addEventListener('bbuttondown', function (e) {
     bButtonHeld = true;
-    if (!aButtonHeld) {
-      start = new Date();
-
-      visualFeedback = setInterval(f => {
-        let end = new Date();
-        delta = -(end - start);
-        modifiedDelta = (delta/2000) + initialBarHeight + activeBarHeight;
-        bar.setAttribute("height", modifiedDelta);
-        bar.setAttribute("position", "0 " + (modifiedDelta/2) + " -3");
-      }, 50);
+    if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
+      emptyPipetStart();
     }
   })
 
   document.querySelector('#rig').addEventListener('bbuttonup', function (e) {
     bButtonHeld = false;
-    activeBarHeight = activeBarHeight + delta/2000;
-    clearInterval(visualFeedback);
+    if (PIPET_CONTAINER.getAttribute("grabbed") == "") {
+      emptyPipetEnd();
+    }
   })
+
+  fillPipetStart = () => {
+    if (!bButtonHeld) {
+      startPipetFeedbackTimer = new Date();
+
+      visualFeedbackInterval = setInterval(f => {
+        let endPipetFeedbackTimer = new Date();
+        deltaPipetFeedbackTimer = endPipetFeedbackTimer - startPipetFeedbackTimer;
+        modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/2000) + initialFeedbackBarHeight + activeFeedbackBarHeight;
+        PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
+        PIPET_FEEDBAR.setAttribute("position", "0 " + (modifiedDeltaPipetFeedbackTimer/2) + " -.03");
+      }, 50);
+    }
+  }
+
+  fillPipetEnd = () => {
+    activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/2000;
+    clearInterval(visualFeedbackInterval);
+  }
+
+  emptyPipetStartStart = () => {
+    if (!aButtonHeld) {
+      startPipetFeedbackTimer = new Date();
+
+      visualFeedbackInterval = setInterval(f => {
+        let endPipetFeedbackTimer = new Date();
+        deltaPipetFeedbackTimer = -(endPipetFeedbackTimer - startPipetFeedbackTimer);
+        modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/2000) + initialFeedbackBarHeight + activeFeedbackBarHeight;
+        PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
+        PIPET_FEEDBAR.setAttribute("position", "0 " + (modifiedDeltaPipetFeedbackTimer/2) + " -.03");
+      }, 50);
+    }
+  }
+
+  emptyPipetEnd = () => {
+    activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/2000;
+    clearInterval(visualFeedbackInterval);
+  }
 
 }
