@@ -16,9 +16,16 @@
   <body>
     <a-scene>
 
-      <a-plane rotation="90 0 0" side="double" opacity=".3" height="20" width="20" color="darkslategray"></a-plane>
+      <!-- <a-plane rotation="90 0 0" side="double" opacity=".3" height="20" width="20" color="darkslategray"></a-plane> -->
 
-      <a-plane id="js--bar" color="crimson" width=".03" height=".3" position="0 .15 -3"></a-plane>
+      <!-- <a-plane id="js--bar" grabbed color="crimson" width=".03" height=".3" position="0 .15 -3"></a-plane> -->
+
+      <a-plane width="12" height="21"  visible="true" id="tsst" geometry="primitive: plane; width: 21; height: 20" position="2.937 0 -1.136" color="darkslategray" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
+
+     <a-entity id="js--pipet-container" geometry="primitive: box; width: .025; height: .25; depth: .025" position="0 2 -3" modify-materials grabbable hoverable grabbed dynamic-body collision-filter="group: green; collidesWith: default, green">
+        <!-- <a-entity id="js--pipet" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity> -->
+       <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".3" position="0 0 0"></a-plane>
+     </a-entity>
 
     </a-scene>
   </body>
