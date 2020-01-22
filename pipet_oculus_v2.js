@@ -3,6 +3,7 @@
 const PIPET_FEEDBAR = document.getElementById('js--pipet-feedbar');
 // const PIPET = document.getElementById('js--pipet');
 const PIPET_CONTAINER = document.getElementById('js--pipet-container');
+const GRABBABLES = document.getElementsByClassName('js--grabbable')
 
 let startPipetFeedbackTimer;
 let deltaPipetFeedbackTimer = 0;
@@ -17,38 +18,79 @@ let grabbedObject = false;
 
 let dropletSound = new Audio("drop.mp3");
 
+for (let i = 0; i < GRABBABLES.length; i++) {
+  GRABBABLES[i].addEventListener('grab-start', function (e) {
+    grabbedObject = true;
 
-document.getElementById('js--pipet-container').addEventListener('grab-start', function (e) {
-//  aButtonHeld = true;
-  // alert("hello");
-  grabbedObject = true;
+    let ID = GRABBABLES[i].id;
 
+    switch (ID) {
+      case "js--pipet-container":
 
-      document.getElementById('rig').addEventListener('abuttondown', function (e) {
-        fillPipetStart();
-        aButtonHeld = true;
-      })
-      document.getElementById('rig').addEventListener('bbuttondown', function (e) {
-        // alert("b button pressed")
-        emptyPipetStart();
-        bButtonHeld = true;
-      })
-      document.getElementById('rig').addEventListener('abuttonup', function (e) {
-        // alert("abutton released")
-        aButtonHeld = false;
-        fillPipetEnd();
-      })
-      document.getElementById('rig').addEventListener('bbuttonup', function (e) {
-        bButtonHeld = false;
-        emptyPipetEnd();
-      })
+        document.getElementById('rig').addEventListener('abuttondown', function (e) {
+          fillPipetStart();
+          aButtonHeld = true;
+        })
+        document.getElementById('rig').addEventListener('bbuttondown', function (e) {
+          // alert("b button pressed")
+          emptyPipetStart();
+          bButtonHeld = true;
+        })
+        document.getElementById('rig').addEventListener('abuttonup', function (e) {
+          // alert("abutton released")
+          aButtonHeld = false;
+          fillPipetEnd();
+        })
+        document.getElementById('rig').addEventListener('bbuttonup', function (e) {
+          bButtonHeld = false;
+          emptyPipetEnd();
+        })
+        break;
 
-})
+      case "js--labjas":
+        break;
+      // default:
 
-document.getElementById('js--pipet-container').addEventListener('grab-end', function (e) {
-  grabbedObject = false;
-})
+    }
 
+  })
+
+  GRABBABLES[i].addEventListener('grab-end', function (e) {
+    grabbedObject = false;
+  })
+}
+
+// document.getElementById('js--pipet-container').addEventListener('grab-start', function (e) {
+// //  aButtonHeld = true;
+//   // alert("hello");
+//   grabbedObject = true;
+//
+//
+//       document.getElementById('rig').addEventListener('abuttondown', function (e) {
+//         fillPipetStart();
+//         aButtonHeld = true;
+//       })
+//       document.getElementById('rig').addEventListener('bbuttondown', function (e) {
+//         // alert("b button pressed")
+//         emptyPipetStart();
+//         bButtonHeld = true;
+//       })
+//       document.getElementById('rig').addEventListener('abuttonup', function (e) {
+//         // alert("abutton released")
+//         aButtonHeld = false;
+//         fillPipetEnd();
+//       })
+//       document.getElementById('rig').addEventListener('bbuttonup', function (e) {
+//         bButtonHeld = false;
+//         emptyPipetEnd();
+//       })
+//
+// })
+//
+// document.getElementById('js--pipet-container').addEventListener('grab-end', function (e) {
+//   grabbedObject = false;
+// })
+//
 // document.getElementById('js--pipet-container-2').addEventListener('grab-end', function (e) {
 //   document.getElementById('js--pipet-container-2').removeEventlistener('abuttondown')
 // }

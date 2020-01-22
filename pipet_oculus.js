@@ -17,7 +17,7 @@ let bButtonHeld = false;
 let dropletSound = new Audio("drop.mp3");
 
 
-document.getElementById('js--pipet-container-2').addEventListener('grab-start', function (e) {
+document.getElementById('js--pipet-container').addEventListener('grab-start', function (e) {
 //  aButtonHeld = true;
   // alert("hello");
 
