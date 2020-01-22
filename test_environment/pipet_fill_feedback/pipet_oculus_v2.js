@@ -1,7 +1,7 @@
 // window.onload = function () {
 //==================== PIPET STUFF
 const PIPET_FEEDBAR = document.getElementById('js--pipet-feedbar');
-const PIPET = document.getElementById('js--pipet');
+// const PIPET = document.getElementById('js--pipet');
 const PIPET_CONTAINER = document.getElementById('js--pipet-container');
 
 let startPipetFeedbackTimer;
@@ -18,27 +18,26 @@ let dropletSound = new Audio("drop.mp3");
 
 
 document.getElementById('js--pipet-container-2').addEventListener('grab-start', function (e) {
-//  aButtonHeld = true;
-  // alert("hello");
 
-      document.getElementById('rig').addEventListener('abuttondown', function (e) {
-        fillPipetStart();
-        aButtonHeld = true;
-      })
-      document.getElementById('rig').addEventListener('bbuttondown', function (e) {
-        // alert("b button pressed")
-        emptyPipetStart();
-        bButtonHeld = true;
-      })
-      document.getElementById('rig').addEventListener('abuttonup', function (e) {
-        // alert("abutton released")
-        aButtonHeld = false;
-        fillPipetEnd();
-      })
-      document.getElementById('rig').addEventListener('bbuttonup', function (e) {
-        bButtonHeld = false;
-        emptyPipetEnd();
-      })
+      document.getElementById('rig').addEventListener('abuttondown', fillPipetStart()})
+
+      document.getElementById('rig').addEventListener('bbuttondown', emptyPipetStart()})
+
+      document.getElementById('rig').addEventListener('abuttonup', fillPipetEnd()})
+
+      document.getElementById('rig').addEventListener('bbuttonup', emptyPipetEnd()})
+
+})
+
+getElementById('js--pipet-container-2').addEventListener('grab-end', function (e) {
+
+      document.getElementById('rig').removeEventlistener('abuttondown', fillPipetStart()})
+
+      document.getElementById('rig').removeEventlistener('bbuttondown', emptyPipetStart()})
+
+      document.getElementById('rig').removeEventlistener('abuttonup', fillPipetEnd()})
+
+      document.getElementById('rig').removeEventlistener('bbuttonup', emptyPipetEnd()})
 
 })
 
@@ -93,12 +92,14 @@ fillPipetStart = () => {
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
     }, 50);
+    aButtonHeld = true;
   }
 }
 
 fillPipetEnd = () => {
-  activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
   clearInterval(visualFeedbackInterval);
+  aButtonHeld = false;
+  activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
 }
 
 emptyPipetStart = () => {
@@ -115,12 +116,14 @@ emptyPipetStart = () => {
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
     }, 50);
+    bButtonHeld = true;
   }
 }
 
 emptyPipetEnd = () => {
-  activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
+  // activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
   clearInterval(visualFeedbackInterval);
+  bButtonHeld = false;
 }
 
 // }
