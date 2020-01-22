@@ -7,7 +7,7 @@
      <script src="vendor/aframe-physics-system.min.js"></script>
      <script src="vendor/aframe-event-set-component.min.js"></script>
      <script src="vendor/aframe-physics-extras.min.js"></script>
-     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+
      <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
 
 
@@ -35,7 +35,7 @@
   <body>
 
 
-    <a-scene physics="gravity: -8.8;debug:false;"  shadow="type: pcfsoft;">
+    <a-scene physics="gravity: -8.8;debug:true;"  shadow="type: pcfsoft;">
       <a-assets>
           <!-- <img id="red" src="textures/red.png">
           <img id="blue" src="textures/blue.png">
@@ -65,7 +65,8 @@
                                       colliderEndEvent: collisions;
                                       colliderEndEventProperty: clearedEls;
                                       grabStartButtons: gripdown, pointdown, triggerdown;
-                                      grabEndButtons: gripup, pointup, triggerup">
+                                      grabEndButtons: gripup, pointup, triggerup"
+                          orientationOffset ="x:0, y:0,z:0">
         </a-mixin>
 
         <a-asset-item id="touch-body-l-obj-body" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_body.obj"></a-asset-item>
@@ -411,6 +412,7 @@
       <a-entity light="type:  point;  color:  #f4f4f4;  intensity:  0.6;  castShadow:  true;  shadowCameraFov:80" position="11.544 3.298 0.180"></a-entity>
       <a-entity id="light" light="type: spot; color: #ffff97; intensity: 0.260; distance: 0;angle:27;"  position="-3.396 4.223 -8.519" rotation="-57.670 -3.290 0"></a-entity>
     </a-scene>
+         <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
     <script src="main.js"></script>
     <script src="pipet_oculus.js"></script>
     <script src="tutorial.js"></script>
