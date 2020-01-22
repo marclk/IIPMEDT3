@@ -1,4 +1,4 @@
-window.onload = function () {
+
   //==================== PIPET STUFF
   const PIPET_FEEDBAR = document.getElementById('js--pipet-feedbar');
   const PIPET = document.getElementById('js--pipet');
@@ -116,5 +116,3 @@ window.onload = function () {
     activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
     clearInterval(visualFeedbackInterval);
   }
-
-}
