@@ -3,11 +3,11 @@
   <head>
     <title>A-Frame Lab</title>
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+
     <script src="https://unpkg.com/super-hands/dist/super-hands.min.js"></script>
      <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script>
      <script src="https://unpkg.com/aframe-event-set-component@^4.1.1/dist/aframe-event-set-component.min.js"></script>
      <script src="https://unpkg.com/aframe-physics-extras/dist/aframe-physics-extras.min.js"></script>
-     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
      <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
 
 
@@ -35,7 +35,7 @@
   <body>
 
 
-    <a-scene physics="gravity: -8.8;debug:false;" renderer="antialias: true;sortObjects:true;" shadow="type: pcfsoft; renderReverseSided:true">
+    <a-scene physics="gravity: -8.8;debug:false;"  shadow="type: pcfsoft;">
       <a-assets>
           <!-- <img id="red" src="textures/red.png">
           <img id="blue" src="textures/blue.png">
@@ -105,8 +105,8 @@
       <a-entity id="rig"
           movement-controls="speed:0.15; constrainToNavMesh: true"
           position="-3.793 0.020 -5.559" rotation="0 0 0">
-        <a-entity camera     position="0 1.6 0" look-controls="pointerLockEnabled: true">
-          <a-cursor color="black"></a-cursor>
+        <a-entity camera position="0 1.6 0" look-controls="pointerLockEnabled: true">
+          <!-- <a-cursor color="black"></a-cursor> -->
         </a-entity>
             <!-- <a-entity id="rightHand" hand-controls="right" mixin="controller">
             </a-entity>
@@ -290,7 +290,7 @@
       <a-entity scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 1; height:1; depth:1" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
 
 
-      <a-entity material="visible:false" id="js--pipet-container-2" geometry="primitive: box; width: 0.08; height: 0.450; depth: 0.06"   position="2.369 1.092 0.173"  modify-materials grabbable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green">
+      <a-entity  id="js--pipet-container-2" geometry="primitive: box; width: 0.08; height: 0.450; depth: 0.06"   position="2.369 1.092 0.173"  modify-materials grabbable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green">
          <a-entity id="js--pipet" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
          <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".001" position="0 0 0"></a-plane>
       </a-entity>
@@ -413,8 +413,8 @@
     </a-scene>
     <script src="main.js"></script>
     <script src="pipet_oculus.js"></script>
-    <script src="tutorial.js"></script>
-
+    <script src="tutorial.js"></script> 
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
 
 
 
