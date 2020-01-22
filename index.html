@@ -3,11 +3,12 @@
   <head>
     <title>A-Frame Lab</title>
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+
     <script src="vendor/super-hands.min.js"></script>
      <script src="vendor/aframe-physics-system.min.js"></script>
      <script src="vendor/aframe-event-set-component.min.js"></script>
      <script src="vendor/aframe-physics-extras.min.js"></script>
-    <script src="https://raw.githubusercontent.com/donmccurdy/aframe-extras/master/dist/aframe-extras.controls.min.js"></script>
+
 
      <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
 
@@ -67,7 +68,7 @@
                                       colliderEndEventProperty: clearedEls;
                                       grabStartButtons: gripdown, pointdown, triggerdown;
                                       grabEndButtons: gripup, pointup, triggerup"
-                          orientationOffset ="x:0, y:0,z:0">
+                        >
         </a-mixin>
 
         <a-asset-item id="touch-body-l-obj-body" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_body.obj"></a-asset-item>
@@ -414,14 +415,14 @@
       <a-entity id="light" light="type: spot; color: #ffff97; intensity: 0.260; distance: 0;angle:27;"  position="-3.396 4.223 -8.519" rotation="-57.670 -3.290 0"></a-entity>
     </a-scene>
 
-  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+
 
     <script src="main.js"></script>
     <script src="pipet_oculus.js"></script>
     <script src="tutorial.js"></script>
 
 
-
+    <script src="vendor/aframe-extras.min.js"></script>
 
 
   </body>
