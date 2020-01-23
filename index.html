@@ -107,7 +107,7 @@
 
       <a-entity id="rig"
           movement-controls="speed:0.15; constrainToNavMesh: true"
-          position="-3.793 0.020 -5.559" rotation="0 0 0">
+          position="-3.793 0.020 -9.807" rotation="0 180 0">
         <a-entity camera position="0 1.6 0" look-controls="pointerLockEnabled: true">
           <!-- <a-cursor color="black"></a-cursor> -->
         </a-entity>
@@ -189,16 +189,16 @@
 
 
 
-      <a-entity visible="false"id="second-navmesh" gltf-model="scene/navmesh-full.gltf"   position="0 -0.179 0"  nav-mesh></a-entity>
+      <a-entity visible="false"id="second-navmesh" gltf-model="scene/navmesh.gltf"   position="0 -0.179 0"  nav-mesh></a-entity>
       <!-- <a-entity id="first-navmesh" gltf-model="scene/navmesh-kamer.gltf"   position="0 -0.179 0" nav-mesh></a-entity> -->
-      <a-entity gltf-model="scene/SceneV6.gltf" shadow="receive: true" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive:  box; height: 1; depth: 1;width:1;" collision-filter="group: green; collidesWith: default, green" ></a-entity>
+      <a-entity gltf-model="scene/scene.gltf" shadow="receive: true" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive:  box; height: 1; depth: 1;width:1;" collision-filter="group: green; collidesWith: default, green" ></a-entity>
        <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
 
        <a-entity id="js--bril" gltf-model="src: url(models/SafetyBril/SafetyGoggle.gltf)"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials    static-body ></a-entity>
        <a-entity id="js--labcoat"   gltf-model="src: url(models/Labjas/labjas.gltf)"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -165.820 0" scale=".7 .7 .7" position="-0.086 1.560 -8.074" modify-materials    static-body ></a-entity>
 
 <!-- Controller Tutorial in gang -->
-      <a-entity id="js--tutorial" position="-3.260 0.5860 -7.884" scale="0.5 0.5 0.5">
+      <a-entity id="js--tutorial" position="-3.514 0.586 -7.917" scale="0.5 0.5 0.5" rotation="0 180 0">
 
        <a-entity id="js--oculus-touch-l" position="0 .5 -3" rotation="0 -90 0" scale="10 10 10">
          <a-obj-model src="#touch-body-l-obj-body" mtl="#touch-body-l-mtl-body" color="black"></a-obj-model>
