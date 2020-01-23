@@ -9,8 +9,9 @@
 
 //==================== PIPET STUFF
 const PIPET_FEEDBAR = document.getElementById('js--pipet-feedbar');
-// const PIPET = document.getElementById('js--pipet');
 const PIPET_CONTAINER = document.getElementById('js--pipet-container');
+const TEST_CYLINDER = document.getElementById('js--test-cylinder');
+
 const GRABBABLES = document.getElementsByClassName('js--grabbable')
 
 const INTERVAL_FREQ = 100;
@@ -144,7 +145,7 @@ for (let i = 0; i < GRABBABLES.length; i++) {
       //
       //   })
       //   break;
-
+      //
       // default:
 
     }
@@ -175,6 +176,8 @@ fillPipetStart = () => {
       // modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight;
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
+      TEST_CYLINDER.setAttribute("scale", ".5 " + -(modifiedDeltaPipetFeedbackTimer) + " .5");
+      TEST_CYLINDER.setAttribute("position", "0 " + -(modifiedDeltaPipetFeedbackTimer/2) + " -3");
     }, INTERVAL_FREQ);
   }
 }
@@ -189,7 +192,7 @@ fillPipetEnd = () => {
 }
 
 emptyPipetStart = () => {
-  if (!aButtonHeld && !bButtonHeld && grabbedObject) {
+  if (!aButtonHeld && !bButtonHeld && grabbedObject && activeFeedbackBarHeight != 0) {
     startPipetFeedbackTimer = new Date();
 
     visualFeedbackInterval = setInterval(f => {

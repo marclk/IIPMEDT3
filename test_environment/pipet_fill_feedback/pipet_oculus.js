@@ -1,8 +1,9 @@
 // window.onload = function () {
 //==================== PIPET STUFF
 const PIPET_FEEDBAR = document.getElementById('js--pipet-feedbar');
-// const PIPET = document.getElementById('js--pipet');
 const PIPET_CONTAINER = document.getElementById('js--pipet-container');
+const TEST_CYLINDER_SUCC = document.getElementById('js--test-cylinder-succ');
+const TEST_CYLINDER_FILL = document.getElementById('js--test-cylinder-fill');
 
 const INTERVAL_FREQ = 100;
 
@@ -33,7 +34,7 @@ document.addEventListener('gamepadbuttondown', function (e) {
   // console.log(e.detail.index);
 
   if (e.detail.index == 0) {
-    fillPipetStart();
+    fillPipetStart(TEST_CYLINDER_SUCC);
     aButtonHeld = true;
   }
 
@@ -43,7 +44,7 @@ document.addEventListener('gamepadbuttondown', function (e) {
   // console.log(e.detail.index);
 
   if (e.detail.index == 1) {
-    emptyPipetStart();
+    emptyPipetStart(TEST_CYLINDER_FILL);
     bButtonHeld = true;
   }
 
@@ -127,7 +128,7 @@ document.addEventListener('gamepadbuttonup', function (e) {
 //   }
 // })
 
-fillPipetStart = () => {
+fillPipetStart = (substance) => {
   if (!bButtonHeld && !aButtonHeld && grabbedObject) {
     startPipetFeedbackTimer = new Date();
 
@@ -145,20 +146,23 @@ fillPipetStart = () => {
       // modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight;
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
+      substance.setAttribute("scale", ".02 " + (1-(modifiedDeltaPipetFeedbackTimer)) + " .02");
+      substance.setAttribute("position", "0 " + (.5-(modifiedDeltaPipetFeedbackTimer/2)) + " -2");
     }, INTERVAL_FREQ);
   }
 }
 
 fillPipetEnd = () => {
+  clearInterval(visualFeedbackInterval);
   activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
   if (activeFeedbackBarHeight > .5) {
     activeFeedbackBarHeight = .5
   }
+  console.log(deltaPipetFeedbackTimer);
   // console.log("active height fill end: " + activeFeedbackBarHeight);
-  clearInterval(visualFeedbackInterval);
 }
 
-emptyPipetStart = () => {
+emptyPipetStart = (substance) => {
   if (!aButtonHeld && !bButtonHeld && grabbedObject) {
     startPipetFeedbackTimer = new Date();
 
@@ -171,18 +175,22 @@ emptyPipetStart = () => {
       } else if (modifiedDeltaPipetFeedbackTimer > .5) {
         modifiedDeltaPipetFeedbackTimer = .5;
       }
+      console.log("modified delta after: " + modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
+      substance.setAttribute("scale", ".02 " + (.001-(deltaPipetFeedbackTimer/6000)) + " .02");
+      substance.setAttribute("position", "-.5 " + (.5-(modifiedDeltaPipetFeedbackTimer)/2) + " -2");
     }, INTERVAL_FREQ);
   }
 }
 
 emptyPipetEnd = () => {
+  clearInterval(visualFeedbackInterval);
   activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
   if (activeFeedbackBarHeight < 0) {
     activeFeedbackBarHeight = 0
   }
-  clearInterval(visualFeedbackInterval);
+  console.log(deltaPipetFeedbackTimer);
 }
 
 // }
