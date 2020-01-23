@@ -101,6 +101,10 @@
         <a-asset-item id="touch-body-r-mtl-thumbstick" src="models/oculus_cv1_controller_right/oculus_cv1_controller_right_thumbstick.mtl"></a-asset-item>
         <a-asset-item id="touch-body-r-mtl-trigger" src="models/oculus_cv1_controller_right/oculus_cv1_controller_right_trigger.mtl"></a-asset-item>
          <img id="sky" src="img/hdrisky.jpg">
+
+         <a-asset-item id="Erlenmeyer-obj" src="models/Erlenmeyer/FlaskV2.obj"></a-asset-item>
+         <a-asset-item id="Erlenmeyer-mtl" src="models/Erlenmeyer/FlaskV2.mtl"></a-asset-item>
+
       </a-assets>
  <a-sky src="#sky" rotation="0 -75 0"></a-sky>
 
@@ -178,6 +182,7 @@
         <a-text value="Pipet indrukken en legen" position="-1.227 0.247" color="black"></a-text>
       </a-plane>
 
+<a-entity id="flasstest"obj-model="obj: #Erlenmeyer-obj; mtl: #Erlenmeyer-mtl" position="0 1 0" scale="0.08 0.08 0.08" geometry="primitive: box; width: 2; height:4; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
 
       <!-- <a-plane width="2.5" height="3" position="-3.093 1.918 -9.961" rotation="0 0 0">
         <a-text value="Nog te doen:" position="-0.622 1.263 0" color="black"></a-text>
@@ -264,6 +269,8 @@
          <a-entity id="js--pipet" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
         <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".3" position="0 0 -.03"></a-plane>
       </a-entity>  -->
+
+
 
       <a-entity  scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:4; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
       <a-entity  scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
