@@ -19,6 +19,15 @@ let grabbedObject = true;
 
 let dropletSound = new Audio("drop.mp3");
 
+// let testID = PIPET_CONTAINER.id;
+// switch (testID) {
+//   case 'js--pipet-container' || 'js--pipet':
+//     console.log(testID);
+//     break;
+//   default:
+//
+// }
+
 // DOWN
 document.addEventListener('gamepadbuttondown', function (e) {
   // console.log(e.detail.index);
@@ -27,6 +36,11 @@ document.addEventListener('gamepadbuttondown', function (e) {
     fillPipetStart();
     aButtonHeld = true;
   }
+
+});
+
+document.addEventListener('gamepadbuttondown', function (e) {
+  // console.log(e.detail.index);
 
   if (e.detail.index == 1) {
     emptyPipetStart();
@@ -43,6 +57,11 @@ document.addEventListener('gamepadbuttonup', function (e) {
     aButtonHeld = false;
     fillPipetEnd();
   }
+
+});
+
+document.addEventListener('gamepadbuttonup', function (e) {
+  // console.log(e.detail.index);
 
   if (e.detail.index == 1) {
     bButtonHeld = false;

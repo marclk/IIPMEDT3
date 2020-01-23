@@ -87,7 +87,6 @@ for (let i = 0; i < GRABBABLES.length; i++) {
 
     switch (ID) {
       case "js--pipet-container":
-
         document.getElementById('rig').addEventListener('abuttondown', function (e) {
           fillPipetStart();
           aButtonHeld = true;
@@ -108,8 +107,44 @@ for (let i = 0; i < GRABBABLES.length; i++) {
         })
         break;
 
-      case "js--labjas":
+      case "js--labcoat" || "js--bril":
+        document.getElementById('rig').addEventListener('abuttondown', function (e) {
+
+          aButtonHeld = true;
+        })
+        document.getElementById('rig').addEventListener('bbuttondown', function (e) {
+
+          bButtonHeld = true;
+        })
+        document.getElementById('rig').addEventListener('abuttonup', function (e) {
+          aButtonHeld = false;
+          GRABBABLES[i].remove()
+        })
+        document.getElementById('rig').addEventListener('bbuttonup', function (e) {
+          bButtonHeld = false;
+          GRABBABLES[i].remove()
+        })
         break;
+
+      // case "js--bril":
+      //   document.getElementById('rig').addEventListener('abuttondown', function (e) {
+      //
+      //     aButtonHeld = true;
+      //   })
+      //   document.getElementById('rig').addEventListener('bbuttondown', function (e) {
+      //
+      //     bButtonHeld = true;
+      //   })
+      //   document.getElementById('rig').addEventListener('abuttonup', function (e) {
+      //     aButtonHeld = false;
+      //
+      //   })
+      //   document.getElementById('rig').addEventListener('bbuttonup', function (e) {
+      //     bButtonHeld = false;
+      //
+      //   })
+      //   break;
+
       // default:
 
     }
