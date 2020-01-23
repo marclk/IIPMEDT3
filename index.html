@@ -70,7 +70,16 @@
                                       grabEndButtons: gripup, pointup, triggerup"
                         >
         </a-mixin>
-
+        <a-mixin id="point" raycaster="showLine: true; objects: .pcikup"
+                 collision-filter="collisionForces: false"
+                 static-body="shape: sphere; sphereRadius: 0.001"
+                 super-hands="colliderEvent: raycaster-intersection;
+                              colliderEventProperty: els;
+                              colliderEndEvent:raycaster-intersection-cleared;
+                              colliderEndEventProperty: clearedEls;
+                              grabStartButtons: gripdown, pointdown, triggerdown;
+                              grabEndButtons: gripup, pointup, triggerup;"
+                ></a-mixin>
         <a-asset-item id="touch-body-l-obj-body" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_body.obj"></a-asset-item>
         <a-asset-item id="touch-body-l-obj-b-enter" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_button_enter.obj"></a-asset-item>
         <a-asset-item id="touch-body-l-obj-b-x" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_button_x.obj"></a-asset-item>
@@ -121,12 +130,12 @@
 
             </a-entity> -->
 
-            <a-entity id="rhand" mixin="touch"
+            <a-entity id="rhand" mixin="point"
 
                               oculus-touch-controls="hand: right"
                               >
                     </a-entity>
-                    <a-entity id="lhand"  mixin="touch"
+                    <a-entity id="lhand"  mixin="point"
                                       oculus-touch-controls="hand: left"
                                       >
                             </a-entity>
@@ -272,32 +281,32 @@
 
 
 
-      <a-entity  scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:4; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity  scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity  scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity  scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity  scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity  scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity  scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup"  scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:4; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
 
       <!-- <a-entity id="bigbox" geometry="primitive: box; depth:1;height:1;width:1; "  modify-materials dynamic-body hoverable grabbable rotation="0 180 0" position="-0.5 2 -0.5"  collision-filter="group: green; collidesWith: default, green" ></a-entity> -->
-      <a-entity scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
 
-      <a-entity scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
 
-      <a-entity scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
-      <a-entity scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
 
 
       <a-entity class="js--grabbable" id="js--pipet-container" material="visible: false"  geometry="primitive: box; width: 0.08; height: 0.450; depth: 0.06"   position="2.369 1.092 0.173"  modify-materials grabbable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green">
