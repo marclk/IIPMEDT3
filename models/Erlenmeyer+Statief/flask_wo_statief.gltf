@@ -1,0 +1,127 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v0.9.36",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Sphere",
+            "scale" : [
+                1.0219402313232422,
+                1.0219402313232422,
+                1.0219402313232422
+            ],
+            "translation" : [
+                0.014153864234685898,
+                0.8864995837211609,
+                -0.010478287935256958
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "name" : "Material.001",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929,
+                    1
+                ],
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.5
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Sphere",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 2139,
+            "max" : [
+                1.2592333555221558,
+                3.0960044860839844,
+                1.227746605873108
+            ],
+            "min" : [
+                -1.2592332363128662,
+                -1.0890694856643677,
+                -1.2907195091247559
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 2139,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 2139,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 2793,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 25668,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 25668,
+            "byteOffset" : 25668
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 17112,
+            "byteOffset" : 51336
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 5586,
+            "byteOffset" : 68448
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 74036,
+            "uri" : "flask_wo_statief.bin"
+        }
+    ]
+}
