@@ -13,6 +13,8 @@ const PIPET_FEEDBAR = document.getElementById('js--pipet-feedbar');
 const PIPET_CONTAINER = document.getElementById('js--pipet-container');
 const GRABBABLES = document.getElementsByClassName('js--grabbable')
 
+const INTERVAL_FREQ = 100;
+
 let startPipetFeedbackTimer;
 let deltaPipetFeedbackTimer = 0;
 let visualFeedbackInterval;
@@ -119,6 +121,7 @@ for (let i = 0; i < GRABBABLES.length; i++) {
   })
 }
 
+
 fillPipetStart = () => {
   if (!bButtonHeld && !aButtonHeld && grabbedObject) {
     startPipetFeedbackTimer = new Date();
@@ -127,18 +130,26 @@ fillPipetStart = () => {
       let endPipetFeedbackTimer = new Date();
       deltaPipetFeedbackTimer = endPipetFeedbackTimer - startPipetFeedbackTimer;
       modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight + activeFeedbackBarHeight;
-      if (modifiedDeltaPipetFeedbackTimer > .5) {
+      // console.log("modified delta before: " + modifiedDeltaPipetFeedbackTimer);
+      if (modifiedDeltaPipetFeedbackTimer < 0) {
+        modifiedDeltaPipetFeedbackTimer = 0;
+      } else if (modifiedDeltaPipetFeedbackTimer > .5) {
         modifiedDeltaPipetFeedbackTimer = .5;
       }
+      // console.log("modified delta after: " + modifiedDeltaPipetFeedbackTimer);
       // modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight;
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
-    }, 50);
+    }, INTERVAL_FREQ);
   }
 }
 
 fillPipetEnd = () => {
-  // activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
+  activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
+  if (activeFeedbackBarHeight > .5) {
+    activeFeedbackBarHeight = .5
+  }
+  // console.log("active height fill end: " + activeFeedbackBarHeight);
   clearInterval(visualFeedbackInterval);
 }
 
@@ -152,14 +163,19 @@ emptyPipetStart = () => {
       modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight + activeFeedbackBarHeight;
       if (modifiedDeltaPipetFeedbackTimer < 0) {
         modifiedDeltaPipetFeedbackTimer = 0;
+      } else if (modifiedDeltaPipetFeedbackTimer > .5) {
+        modifiedDeltaPipetFeedbackTimer = .5;
       }
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
-    }, 50);
+    }, INTERVAL_FREQ);
   }
 }
 
 emptyPipetEnd = () => {
-  // activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
+  activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
+  if (activeFeedbackBarHeight < 0) {
+    activeFeedbackBarHeight = 0
+  }
   clearInterval(visualFeedbackInterval);
 }
