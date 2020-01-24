@@ -10,7 +10,8 @@
 //==================== PIPET STUFF
 const PIPET_FEEDBAR = document.getElementById('js--pipet-feedbar');
 const PIPET_CONTAINER = document.getElementById('js--pipet-container');
-const TEST_CYLINDER = document.getElementById('js--test-cylinder');
+const TEST_CYLINDER_SUCC = document.getElementById('js--test-cylinder-succ');
+const TEST_CYLINDER_FILL = document.getElementById('js--test-cylinder-fill');
 
 const GRABBABLES = document.getElementsByClassName('js--grabbable')
 
@@ -22,6 +23,7 @@ let visualFeedbackInterval;
 let initialFeedbackBarHeight = 0;
 let activeFeedbackBarHeight = 0;
 let modifiedDeltaPipetFeedbackTimer;
+let fillCylinderRatio = 0;
 
 let aButtonHeld = false;
 let bButtonHeld = false;
@@ -89,12 +91,12 @@ for (let i = 0; i < GRABBABLES.length; i++) {
     switch (ID) {
       case "js--pipet-container":
         document.getElementById('rig').addEventListener('abuttondown', function (e) {
-          fillPipetStart();
+          fillPipetStart(TEST_CYLINDER_SUCC);
           aButtonHeld = true;
         })
         document.getElementById('rig').addEventListener('bbuttondown', function (e) {
           // alert("b button pressed")
-          emptyPipetStart();
+          emptyPipetStart(TEST_CYLINDER_SUCC);
           bButtonHeld = true;
         })
         document.getElementById('rig').addEventListener('abuttonup', function (e) {
@@ -157,8 +159,7 @@ for (let i = 0; i < GRABBABLES.length; i++) {
   })
 }
 
-
-fillPipetStart = () => {
+fillPipetStart = (substance) => {
   if (!bButtonHeld && !aButtonHeld && grabbedObject) {
     startPipetFeedbackTimer = new Date();
 
@@ -176,44 +177,59 @@ fillPipetStart = () => {
       // modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight;
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
-      TEST_CYLINDER.setAttribute("scale", ".5 " + -(modifiedDeltaPipetFeedbackTimer) + " .5");
-      TEST_CYLINDER.setAttribute("position", "0 " + -(modifiedDeltaPipetFeedbackTimer/2) + " -3");
+      substance.setAttribute("scale", ".02 " + (1-(modifiedDeltaPipetFeedbackTimer)) + " .02");
+      substance.setAttribute("position", "0 " + (.5-(modifiedDeltaPipetFeedbackTimer/2)) + " -2");
     }, INTERVAL_FREQ);
   }
 }
 
 fillPipetEnd = () => {
+  clearInterval(visualFeedbackInterval);
   activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
   if (activeFeedbackBarHeight > .5) {
     activeFeedbackBarHeight = .5
   }
+  console.log(deltaPipetFeedbackTimer);
   // console.log("active height fill end: " + activeFeedbackBarHeight);
-  clearInterval(visualFeedbackInterval);
 }
 
-emptyPipetStart = () => {
-  if (!aButtonHeld && !bButtonHeld && grabbedObject && activeFeedbackBarHeight != 0) {
+emptyPipetStart = (substance) => {
+  if (!aButtonHeld && !bButtonHeld && grabbedObject) {
     startPipetFeedbackTimer = new Date();
 
     visualFeedbackInterval = setInterval(f => {
       let endPipetFeedbackTimer = new Date();
       deltaPipetFeedbackTimer = -(endPipetFeedbackTimer - startPipetFeedbackTimer);
+      deltaPipetFeedbackTimerFill = endPipetFeedbackTimer - startPipetFeedbackTimer;
+
       modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight + activeFeedbackBarHeight;
+      // modifiedDeltaPipetFeedbackTimerFill = (deltaPipetFeedbackTimerFill/6000) + initialFeedbackBarHeight + activeFeedbackBarHeight;
+
+      // console.log("delta empty: " + deltaPipetFeedbackTimerFill);
+
       if (modifiedDeltaPipetFeedbackTimer < 0) {
         modifiedDeltaPipetFeedbackTimer = 0;
       } else if (modifiedDeltaPipetFeedbackTimer > .5) {
         modifiedDeltaPipetFeedbackTimer = .5;
       }
+      // console.log("modified delta after: " + modifiedDeltaPipetFeedbackTimerFill);
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
+
+      fillCylinderRatio = fillCylinderRatio + .02
+
+      substance.setAttribute("scale", ".02 " + (.001+ (fillCylinderRatio)) + " .02");
+      substance.setAttribute("position", "-.5 " + (fillCylinderRatio/2) + " -2");
+
     }, INTERVAL_FREQ);
   }
 }
 
 emptyPipetEnd = () => {
+  clearInterval(visualFeedbackInterval);
   activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
   if (activeFeedbackBarHeight < 0) {
     activeFeedbackBarHeight = 0
   }
-  clearInterval(visualFeedbackInterval);
+  console.log(deltaPipetFeedbackTimer);
 }

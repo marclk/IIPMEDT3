@@ -313,6 +313,10 @@
          <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".001" position="0 0 0"></a-plane>
       </a-entity>
 
+      <a-cylinder id="js--test-cylinder-succ" color="crimson" scale=".02 1 .02" position="3.936 1.424 -5.260"></a-cylinder>
+
+      <a-cylinder id="js--test-cylinder-fill" color="orange" scale=".02 .001 .02" position="3.235 0.964 -5.011"></a-cylinder>
+
 
          <!--
       <a-entity  >
@@ -323,7 +327,7 @@
       <a-entity id="deur-open" scale="1 1 1" gltf-model="models/deur/deur-open.gltf" position="0 0 -7.520" rotation="0 90 0"></a-entity>
       <a-entity id="deur-dicht" scale="1 1 1" gltf-model="models/deur/deur-dicht.gltf" position="0 0 -7.624" rotation="0 90 0"></a-entity>
 
-
+      <!-- pokeball -->
      <a-entity geometry="primitive: sphere; radius:0.25 "  modify-materials dynamic-body hoverable grabbable scale="0.003 0.003 0.003" rotation="0 180 0" position="-0.5 2 -0.5"  collision-filter="group: green; collidesWith: default, green" ></a-entity>
 
      <!-- Long wall sheared -->
@@ -332,6 +336,7 @@
      <!-- short wall with door -->
      <a-plane width="5" visible="false" height="4"  position="-0.035 1.015 -8.406" color="red" rotation="0 90 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
+      <!-- tables -->
      <a-box  geometry="primitive:  box; height: 13.560; depth: 1.920;width:1.350" visible="false" id="tsst"  position="7.463 0.272 -0.105" color="yellow" rotation="0 90 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
      <a-box  geometry="primitive:  box; height: 6.4; depth: 1.130;width:3.150" visible="false" id="tsst"   position="-1.879 1.531 1.711" color="yellow" rotation="0 86.290 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
      <a-entity visible="true">
@@ -363,6 +368,7 @@
 <a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="1.869 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
 <a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="3.147 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
 </a-entity>
+
      <!-- floor -->
      <a-plane width="12" height="21"  visible="false" id="tsst" geometry="primitive: plane; width: 21; height: 20" position="2.937 0 -1.136" color="red" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
@@ -434,7 +440,7 @@
 
 
 
-    <script src="main.js"></script>
+    <script src="main_controller.js"></script>
     <!-- <script src="pipet_oculus.js"></script> -->
     <script src="tutorial.js"></script>
 

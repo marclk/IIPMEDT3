@@ -148,7 +148,7 @@ fillPipetStart = (substance) => {
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
       substance.setAttribute("scale", ".02 " + (1-(modifiedDeltaPipetFeedbackTimer)) + " .02");
-      substance.setAttribute("position", "0 " + (.5-(modifiedDeltaPipetFeedbackTimer/2)) + " -2");
+      substance.setAttribute("position", "3.936 " + (1.424-(modifiedDeltaPipetFeedbackTimer/2)) + " -5.260");
     }, INTERVAL_FREQ);
   }
 }
@@ -189,7 +189,7 @@ emptyPipetStart = (substance) => {
       fillCylinderRatio = fillCylinderRatio + .02
 
       substance.setAttribute("scale", ".02 " + (.001+ (fillCylinderRatio)) + " .02");
-      substance.setAttribute("position", "-.5 " + (fillCylinderRatio/2) + " -2");
+      substance.setAttribute("position", "3.235 " + (0.964+(fillCylinderRatio/2)) + " -5.011");
 
     }, INTERVAL_FREQ);
   }
