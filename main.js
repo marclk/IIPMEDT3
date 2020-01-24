@@ -7,6 +7,17 @@
 // var goggleOnHead = false
 // var labCoatOn = false;
 
+AFRAME.registerComponent('test-tube', {
+      play: function() {
+        this.el.addEventListener('dragover-start', function(evt) {
+          // evt.detail.dropped.setAttribute('material', 'color',
+          //   '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+          //  // notify super-hands that the gesture was accepted
+          // evt.preventDefault()
+        })
+      }
+    })
+
 //==================== PIPET STUFF
 const PIPET_FEEDBAR = document.getElementById('js--pipet-feedbar');
 const PIPET_CONTAINER = document.getElementById('js--pipet-container');

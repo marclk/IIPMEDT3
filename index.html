@@ -274,12 +274,6 @@
 
       <!-- END Controller Tutorial in gang -->
 
-      <!-- <a-entity class="grabbable" id="js--pipet-container-1" geometry="primitive: box; width: .04; height: .25; depth: .04" position="3 1 1" modify-materials grabbable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green">
-         <a-entity id="js--pipet" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
-        <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".3" position="0 0 -.03"></a-plane>
-      </a-entity>  -->
-
-
 
       <a-entity class="pcikup"  scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:4; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
       <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
@@ -308,7 +302,7 @@
       <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
 
 
-      <a-entity class="pcikup" class="js--grabbable" id="js--pipet-container" material="visible: false"  geometry="primitive: box; width: 0.08; height: 0.450; depth: 0.06"   position="2.369 1.092 0.173"  modify-materials grabbable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green">
+      <a-entity class="pcikup" class="js--grabbable" id="js--pipet-container" material="visible: false"  geometry="primitive: box; width: 0.08; height: 0.450; depth: 0.06"   position="2.369 1.092 0.173"  modify-materials grabbable draggable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green">
          <a-entity id="js--pipet" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
          <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".001" position="0 0 0"></a-plane>
       </a-entity>
@@ -316,6 +310,8 @@
       <a-cylinder id="js--test-cylinder-succ" color="crimson" scale=".02 1 .02" position="3.936 1.424 -5.260"></a-cylinder>
 
       <a-cylinder id="js--test-cylinder-fill" color="orange" scale=".02 .001 .02" position="3.235 0.964 -5.011"></a-cylinder>
+
+      <a-box  geometry="primitive:  box; height: 0.8; depth: 0.2;width:0.2" position="3.235 0.964 -5.011" color="green" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable static-body></a-box>
 
 
          <!--
