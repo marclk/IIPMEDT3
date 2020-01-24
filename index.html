@@ -8,7 +8,7 @@
      <script src="vendor/aframe-physics-system.min.js"></script>
      <script src="vendor/aframe-event-set-component.min.js"></script>
      <script src="vendor/aframe-physics-extras.min.js"></script>
-
+     <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
 
      <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
 
@@ -17,7 +17,7 @@
 
     <!-- pls dont delete is pickup -->
     <!-- <script src="build.js"></script> -->
-    <script>
+    <!-- <script>
       window.onload = function (e) {
         document.querySelector('#leftHand').addEventListener('pointingstart', function (e2) {
           e2.target.setAttribute('collision-filter', {collisionForces: true})
@@ -32,6 +32,18 @@
           e2.target.setAttribute('collision-filter', {collisionForces: false})
         })
       }
+    </script> -->
+    <script>
+      //color randomizer
+      AFRAME.registerComponent('color-randomizer', {
+        play: function () {
+          this.el.addEventListener('drag-drop', function (evt) {
+            evt.detail.dropped.setAttribute('material', 'color',
+              '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+            // color randomizer credit: http://stackoverflow.com/questions/1484506/random-color-generator-in-javascript#comment6801353_5365036
+          })
+        }
+      })
     </script>
   </head>
   <body>
@@ -57,7 +69,18 @@
         <a-mixin id="cube-hovered" material="opacity: 0.7; transparent: true"></a-mixin> -->
 
 
+        <a-mixin id="transformer" class="pcikup" color-randomizer droppable static-body
+                 event-set__dragon="_event: dragover-start; material.wireframe: true"
+                 event-set__dragoff="_event: dragover-end; material.wireframe: false"
+                 collision-filter="collisionForces: false"
+                 geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.5"></a-mixin>
 
+
+                 <a-mixin id="cube" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"
+                          hoverable grabbable stretchable draggable
+                          event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+                          event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
+                          dynamic-body shadow></a-mixin>
         <a-mixin id="touch"
                          physics-collider phase-shift
                         collision-filter = "collidesWith: default, red, green, blue;   collisionForces: false"
@@ -70,7 +93,7 @@
                                       grabEndButtons: gripup, pointup, triggerup"
                         >
         </a-mixin>
-        <a-mixin id="point" raycaster="showLine: true; objects: .pcikup"
+        <a-mixin id="point" raycaster="showLine: true; objects: .pcikup;far:0.5;"
                  collision-filter="collisionForces: false"
                  static-body="shape: sphere; sphereRadius: 0.001"
                  super-hands="colliderEvent: raycaster-intersection;
@@ -116,58 +139,48 @@
 
       </a-assets>
  <a-sky src="#sky" rotation="0 -75 0"></a-sky>
+ <!-- <a-entity id="rightHand" hand-controls="right" mixin="controller">
+ </a-entity>
+ <a-entity id="leftHand" hand-controls="left" mixin="controller">
+  <!-- <a-cursor color="black"></a-cursor>
+ </a-entity> -->
 
 
-      <a-entity id="rig"
+
+      <!-- <a-entity id="rig"
           movement-controls="speed:0.15; constrainToNavMesh: true"
           position="-3.793 0.020 -9.807" rotation="0 180 0">
         <a-entity camera position="0 1.6 0" look-controls="pointerLockEnabled: true">
-          <!-- <a-cursor color="black"></a-cursor> -->
+
         </a-entity>
-            <!-- <a-entity id="rightHand" hand-controls="right" mixin="controller">
-            </a-entity>
-            <a-entity id="leftHand" hand-controls="left" mixin="controller">
 
-            </a-entity> -->
 
-            <a-entity id="rhand" mixin="point"
+      <a-entity id="rhand" mixin="point"
 
-                              oculus-touch-controls="hand: right"
-                              teleport-controls="	cameraRig: #cameraRig;			teleportOrigin: #camera;		collisionEntities: .floorRight;">
-                    </a-entity>
-                    <a-entity id="lhand"  mixin="point"
-                                      oculus-touch-controls="hand: left"
-                                      >
-                            </a-entity>
-</a-entity>
+                oculus-touch-controls="hand: right"
+                teleport-controls="	cameraRig: #cameraRig;			teleportOrigin: #camera;		collisionEntities: .floorRight;">
+      </a-entity>
+        <a-entity id="lhand"  mixin="point"
+                          oculus-touch-controls="hand: left"
+                          >
+                </a-entity>
+</a-entity> -->
+<a-entity class="transformer" mixin="transformer" position = "0 1.6 -1"
+          material="src:#colortransform" shadow></a-entity>
 
-<!-- <a-entity id="cameraRig">
+
+  <a-entity class="cube pcikup" mixin="cube" position="0 0.265 0" material="color: red"></a-entity>
+<a-entity id="cameraRig" class="camera-parent teleport-object">
 
   <a-entity id="head" camera wasd-controls look-controls></a-entity>
-  <a-entity teleport-controls="cameraRig: #cameraRig; button: trigger;"
-    vive-controls="hand: left"
-    oculus-touch-controls="hand: left"
-    microsoft-motion-controls="hand: left"
-    daydream-controls="left" gearvr-controls="left"
-    super-hands="colliderEvent: collisions;
-                 colliderEventProperty: els;
-                 colliderEndEvent: collisions;
-                 colliderEndEventProperty: clearedEls;
-                 grabStartButtons: gripdown, pointdown, triggerdown;
-                 grabEndButtons: gripup, pointup, triggerup"
-    static-body="shape: sphere; sphereRadius: 0.11"
-    physics-collider
-    collision-filter = "collidesWith: default, red, green, blue;
-                        collisionForces: false">
+  <a-entity teleport-controls="cameraRig: #cameraRig; button: xbutton;teleportOrigin: #head;collisionEntities: .second-navmesh;" oculus-touch-controls="hand: left"   mixin="point">
+
+
   </a-entity>
-  <a-entity teleport-controls="cameraRig: #cameraRig; type: line; button: trigger;"
-    vive-controls="hand: right"
-    microsoft-motion-controls="hand: right"
-    oculus-touch-controls="hand: right"
-    daydream-controls="right" gearvr-controls="right">
+  <a-entity  oculus-touch-controls="hand: right"  mixin="point">
   </a-entity>
-  </a-entity> -->
- <!-- hand-controls="right" -->
+  </a-entity>
+ <!-- hand-controls="right"
 
 
       <!-- <a-box mixin="cube" sleepy position="0 1 -1" src="#red"
@@ -183,6 +196,8 @@
       <!-- <a-box mixin="cube" position="-0.5 2 -0.5" src="#green"
              collision-filter="group: green; collidesWith: default, green">
       </a-box> -->
+
+
 
 
       <a-plane width="2.5" height="3" position="2.516 1.918 8.044" rotation="0 180 0">
@@ -201,11 +216,11 @@
 
 
 
+      <!-- <a-entity visible="true" id="smallroommesh" class="second-navmesh " gltf-model="scene/navmesh(2).gltf"   position="0 0 0" ></a-entity> -->
 
-
-      <a-entity visible="false"id="second-navmesh" gltf-model="scene/navmesh.gltf"   position="0 -0.179 0"  nav-mesh></a-entity>
+      <a-entity visible="true" id="normalMesh" class="second-navmesh" gltf-model="scene/navmesh(1).gltf"   position="0 4.124  0" ></a-entity>
       <!-- <a-entity id="first-navmesh" gltf-model="scene/navmesh-kamer.gltf"   position="0 -0.179 0" nav-mesh></a-entity> -->
-      <a-entity gltf-model="scene/scene.gltf" shadow="receive: true" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive:  box; height: 1; depth: 1;width:1;" collision-filter="group: green; collidesWith: default, green" ></a-entity>
+      <a-entity class=" " gltf-model="scene/scene.gltf" shadow="receive: true" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive:  box; height: 1; depth: 1;width:1;" collision-filter="group: green; collidesWith: default, green" ></a-entity>
        <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
 
        <a-entity id="js--bril" class="pcikup" class="js--grabbable" gltf-model="src: url(models/SafetyBril/SafetyGoggle.gltf)"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials    static-body ></a-entity>
@@ -314,14 +329,21 @@
       <a-box  geometry="primitive:  box; height: 0.8; depth: 0.2;width:0.2" position="3.235 0.964 -5.011" color="green" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable static-body></a-box>
 
 
+
+
+
+
+
+  <a-entity class="pcikup"  position="0 0.265 0" material="color: red"></a-entity>
+
          <!--
       <a-entity  >
          <a-entity id="js--pipet-container-2" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf" geometry="primitive: box; width: 1; height:1; depth:1" color="white"  position="-3.793 0.820 -5.560" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
         <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".001" position="0 0 0"></a-plane>
       </a-entity> -->
 
-      <a-entity id="deur-open" scale="1 1 1" gltf-model="models/deur/deur-open.gltf" position="0 0 -7.520" rotation="0 90 0"></a-entity>
-      <a-entity id="deur-dicht" scale="1 1 1" gltf-model="models/deur/deur-dicht.gltf" position="0 0 -7.624" rotation="0 90 0"></a-entity>
+      <a-entity class=" " id="deur-open" scale="1 1 1" gltf-model="models/deur/deur-open.gltf" position="0 0 -7.520" rotation="0 90 0"></a-entity>
+      <a-entity class=" " id="deur-dicht" scale="1 1 1" gltf-model="models/deur/deur-dicht.gltf" position="0 0 -7.624" rotation="0 90 0"></a-entity>
 
       <!-- pokeball -->
      <a-entity geometry="primitive: sphere; radius:0.25 "  modify-materials dynamic-body hoverable grabbable scale="0.003 0.003 0.003" rotation="0 180 0" position="-0.5 2 -0.5"  collision-filter="group: green; collidesWith: default, green" ></a-entity>
@@ -335,55 +357,55 @@
       <!-- tables -->
      <a-box  geometry="primitive:  box; height: 13.560; depth: 1.920;width:1.350" visible="false" id="tsst"  position="7.463 0.272 -0.105" color="yellow" rotation="0 90 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
      <a-box  geometry="primitive:  box; height: 6.4; depth: 1.130;width:3.150" visible="false" id="tsst"   position="-1.879 1.531 1.711" color="yellow" rotation="0 86.290 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
-     <a-entity visible="true">
+     <a-entity visible="true" class=" ">
      <a-box  geometry="primitive:  box; height: 3.250; depth: .910;width:1.380"  id="tsst"  position="2.706 0.481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
     <a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="1.869 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
     <a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="3.147 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
   </a-entity>
 
-     <a-entity position="0 0 9.589" visible="false">
-     <a-box  geometry="primitive:  box; height: 3.250; depth: .910;width:1.380"  id="tsst"  position="2.706 0.481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
-    <a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="1.869 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
-    <a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="3.147 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+     <a-entity position="0 0 9.589" visible="false" class=" ">
+     <a-box  class=" " geometry="primitive:  box; height: 3.250; depth: .910;width:1.380"  id="tsst"  position="2.706 0.481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+    <a-box  class=" " geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="1.869 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+    <a-box  class=" " geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="3.147 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
   </a-entity>
 
-  <a-entity position="0 0 3.204" visible="false">
-  <a-box  geometry="primitive:  box; height: 3.250; depth: .910;width:1.380"  id="tsst"  position="2.706 0.481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
- <a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="1.869 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
- <a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="3.147 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+  <a-entity position="0 0 3.204" visible="false" class=" ">
+  <a-box  class=" " geometry="primitive:  box; height: 3.250; depth: .910;width:1.380"  id="tsst"  position="2.706 0.481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+ <a-box  class=" " geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="1.869 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+ <a-box  class=" " geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="3.147 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
 </a-entity>
 
-<a-entity position="0 0 6.396" visible="false">
-<a-box  geometry="primitive:  box; height: 3.250; depth: .910;width:1.380"  id="tsst"  position="2.706 0.481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
-<a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="1.869 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
-<a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="3.147 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+<a-entity position="0 0 6.396" visible="false" class=" ">
+<a-box  class=" " geometry="primitive:  box; height: 3.250; depth: .910;width:1.380"  id="tsst"  position="2.706 0.481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+<a-box  class=" " geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="1.869 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+<a-box  class=" " geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="3.147 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
 </a-entity>
 
-<a-entity position="6.084 0 -3.542" rotation="0 90 0" visible="false">
-<a-box  geometry="primitive:  box; height: 3.250; depth: .910;width:1.380"  id="tsst"  position="2.706 0.481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
-<a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="1.869 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
-<a-box  geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="3.147 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+<a-entity position="6.084 0 -3.542" rotation="0 90 0" visible="false" class=" ">
+<a-box  class=" " geometry="primitive:  box; height: 3.250; depth: .910;width:1.380"  id="tsst"  position="2.706 0.481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+<a-box  class=" " geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="1.869 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+<a-box  class=" " geometry="primitive:  box; height: 0.190; depth: 0.620;width:0.390"  id="tsst"  position="3.147 1.148 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
 </a-entity>
 
      <!-- floor -->
-     <a-plane width="12" height="21"  visible="false" id="tsst" geometry="primitive: plane; width: 21; height: 20" position="2.937 0 -1.136" color="red" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
+     <a-plane width="12" id="floor"height="21" class="floorRight"  visible="false" id="tsst" geometry="primitive: plane; width: 21; height: 20" position="2.937 0 -1.136" color="red" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
 
-     <a-plane width="12" height="21" visible="true"  id="roof" geometry="primitive: plane; width: 21; height: 20" position="-1.814 3.397 -1.136" color="white" rotation="90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
+     <a-plane width="12" height="21" class=" " visible="true"  id="roof" geometry="primitive: plane; width: 21; height: 20" position="-1.814 3.397 -1.136" color="white" rotation="90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
 
 
      <!-- Long wall with door -->
-     <a-plane width="4" height="10.5" visible="false"  position="2.760 1.932 8.164" color="red" rotation="0 -180 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
+     <a-plane width="4" height="10.5" class=" " visible="false"  position="2.760 1.932 8.164" color="red" rotation="0 -180 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
      <!-- Window Wall -->
-     <a-plane width="4" height="20" visible="false"  position="7.510 1.547 -0.314" color="red" rotation="0 -90 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
+     <a-plane width="4" height="20" class=" " visible="false"  position="7.510 1.547 -0.314" color="red" rotation="0 -90 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
      <!-- Short wall at door -->
-     <a-plane width="5" height="10"  visible="false" position="3.540 1.072 -9.953" color="red" rotation="0 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
+     <a-plane width="5" height="10"  class=" " visible="false" position="3.540 1.072 -9.953" color="red" rotation="0 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
      <!-- Shortest wall without door -->
-      <a-plane width="5" height="2"  visible="false" position="-1.046 1.072 -6.419" color="red" rotation="0 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
+      <a-plane width="5" height="2"  class=" " visible="false" position="-1.046 1.072 -6.419" color="red" rotation="0 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
      <!--
         <a-entity geometry="primitive: sphere; radius:0.25 "  modify-materials dynamic-body hoverable grabbable gltf-model="url(models/scene.gltf)" scale="0.003 0.003 0.003" rotation="0 180 0" position="1 2 -0.5"  collision-filter="group: green; collidesWith: default, green" ></a-entity>
@@ -442,6 +464,8 @@
 
 
     <script src="vendor/aframe-extras.min.js"></script>
+
+
 
 
   </body>
