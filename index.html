@@ -166,14 +166,17 @@
                           >
                 </a-entity>
 </a-entity> -->
-<a-entity class="transformer" mixin="transformer" position = "0 1.6 -1"
-          material="src:#colortransform" shadow></a-entity>
+<!-- <a-entity class="transformer" mixin="transformer" position = "0 1.6 -1"
+          material="src:#colortransform" shadow></a-entity> -->
+
+          <!-- <a-entity geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.5"   position = "0 1.6 -1" material="src: textures/Plaster36_COL_VAR1_3K.jpg; color: #dac5c5dw;normalMap:textures/Plaster36_NRM_3K.jpg;"></a-entity> -->
+
 
 
   <a-entity class="cube pcikup" mixin="cube" position="0 0.265 0" material="color: red"></a-entity>
-<a-entity id="cameraRig" class="camera-parent teleport-object" position="0 1.6 0">
+<a-entity id="cameraRig" class="camera-parent teleport-object" position="0 1.6 0"movement-controls="speed:0.15; constrainToNavMesh: true">
 
-  <a-entity id="head" camera wasd-controls look-controls></a-entity>
+  <a-entity id="head" camera  look-controls="pointerLockEnabled: true"></a-entity>
 
   <a-entity
   teleport-controls="cameraRig: #cameraRig; button: thumbupstart;teleportOrigin: #head;collisionEntities: .second-navmesh;"
@@ -212,10 +215,10 @@
 
 
 
-      <a-plane width="2.5" height="3" position="2.516 1.918 8.044" rotation="0 180 0">
-        <a-text value="Nog te doen:" position="-0.622 1.263 0" color="black"></a-text>
-        <a-text value="Pipet vastpakken" position="-0.895 0.576" color="black"> </a-text>
-        <a-text value="Pipet indrukken en legen" position="-1.227 0.247" color="black"></a-text>
+      <a-plane width="3" height="1.140" position="2.691 2.709 6.241" rotation="0 180 0">
+        <a-text value="Nog te doen:" position="-0.622 0.423 0" color="black"></a-text>
+        <a-text value="Pipet vastpakken" position="-0.895 0.128" color="black"> </a-text>
+        <a-text value="Pipet indrukken en legen" position="-1.227 -0.145 0" color="black"></a-text>
       </a-plane>
 
 
@@ -229,7 +232,7 @@
 
       <!-- <a-entity visible="true" id="smallroommesh" class="second-navmesh " gltf-model="scene/navmesh(2).gltf"   position="0 0 0" ></a-entity> -->
 
-      <a-entity visible="true" id="normalMesh" class="second-navmesh" gltf-model="scene/navmesh(1).gltf"   position="0 4.124  0" ></a-entity>
+      <a-entity visible="false" id="normalMesh" class="second-navmesh" gltf-model="scene/navmesh(1).gltf"   position="0 4.124  0" nav-mesh></a-entity>
       <!-- <a-entity id="first-navmesh" gltf-model="scene/navmesh-kamer.gltf"   position="0 -0.179 0" nav-mesh></a-entity> -->
       <a-entity class=" " gltf-model="scene/scene.gltf" shadow="receive: true" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive:  box; height: 1; depth: 1;width:1;" collision-filter="group: green; collidesWith: default, green" ></a-entity>
        <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
@@ -317,7 +320,7 @@
 
 
 
-      <a-entity id="flasstest"obj-model="obj: #Erlenmeyer-obj; mtl: #Erlenmeyer-mtl" position="2.440 1.405 -2.305" scale="0.08 0.08 0.08" geometry="primitive: box; width: 2; height:4; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
+      <a-entity id="flasstest"obj-model="obj: #Erlenmeyer-obj; mtl: #Erlenmeyer-mtl" position="2.440 1.405 -2.305" scale="0.08 0.08 0.08" geometry="primitive: box; width: 2; height:4; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body material="opactity:0.1:" color="white"></a-entity>
 
 
 
@@ -384,7 +387,7 @@
 </a-entity>
 
      <!-- floor -->
-     <a-plane width="12" id="floor"height="21" class="floorRight"  visible="false" id="tsst" geometry="primitive: plane; width: 21; height: 20" position="2.937 0 -1.136" color="red" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
+     <a-plane shadow width="21.780" id="floor"height="14.580" class="floorRight"  visible="true" id="tsst"  position="1.259 0.025 -0.591" color="red" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body material="repeat:2 2;normalTextureRepeat:2 2;src: textures/ConcretePolished001_COL_HIRES.jpg; color: #8d893f;ambientOcclusionMap:textures/ConcretePolished001_AO_HIRES.jpg;normalMap:textures/ConcretePolished001_NRM_HIRES.jpg;roughness:0.380" ></a-plane>
 
 
      <a-plane width="12" height="21" class=" " visible="true"  id="roof" geometry="primitive: plane; width: 21; height: 20" position="-1.814 3.397 -1.136" color="white" rotation="90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
@@ -397,8 +400,13 @@
      <!-- Window Wall -->
      <a-plane width="4" height="20" class=" " visible="false"  position="7.510 1.547 -0.314" color="red" rotation="0 -90 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
+
+     <a-box width="2.620" id="table" height="1.380" depth="0.050" material="repeat:5 3;normalTextureRepeat:5 3;src: textures/white_plaster_02_diff_2k.jpg;ambientOcclusionMap:textures/white_plaster_02_ao_2k.jpg;ambientOcclusionTextureRepeat:4 2; color: #3c3c3c;normalMap:textures/white_plaster_02_nor_2k.jpg;"  class=" " visible="true" position="3.045 0.924 0.779" color="red" rotation="-90 0 0" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+
+
+
      <!-- Short wall at door -->
-     <a-plane width="5" height="10"  class=" " visible="false" position="3.540 1.072 -9.953" color="red" rotation="0 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
+     <a-plane width="5" height="10" material="repeat:5 5;normalTextureRepeat:5 5;src: textures/Plaster35_COL_VAR1_3K.jpg; color: #dac5c5dw;normalMap:textures/Plaster35_NRM_3K.jpg;"  class=" " visible="true" position="3.540 1.072 -9.953" color="red" rotation="0 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
      <!-- Shortest wall without door -->
       <a-plane width="5" height="2"  class=" " visible="false" position="-1.046 1.072 -6.419" color="red" rotation="0 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
