@@ -223,8 +223,8 @@
       <a-entity class=" " gltf-model="scene/scene.gltf" shadow="receive: true" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive:  box; height: 1; depth: 1;width:1;" collision-filter="group: green; collidesWith: default, green" ></a-entity>
        <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
 
-       <a-entity id="js--bril" class="pcikup" class="js--grabbable" gltf-model="src: url(models/SafetyBril/SafetyGoggle.gltf)"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials    static-body ></a-entity>
-       <a-entity id="js--labcoat" class="pcikup" class="js--grabbable" gltf-model="src: url(models/Labjas/labjas.gltf)"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -165.820 0" scale=".7 .7 .7" position="-0.086 1.560 -8.074" modify-materials    static-body ></a-entity>
+       <a-entity id="js--bril" class="pcikup js--grabbable" gltf-model="src: url(models/SafetyBril/SafetyGoggle.gltf)"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials    static-body ></a-entity>
+       <a-entity id="js--labcoat" class="pcikup js--grabbable" gltf-model="src: url(models/Labjas/labjas.gltf)"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -165.820 0" scale=".7 .7 .7" position="-0.086 1.560 -8.074" modify-materials    static-body ></a-entity>
 
 <!-- Controller Tutorial in gang -->
       <a-entity id="js--tutorial" position="-3.514 0.586 -7.917" scale="0.5 0.5 0.5" rotation="0 180 0">
@@ -317,7 +317,7 @@
       <a-entity class="pcikup" scale="0.08 0.08 0.08" gltf-model="models/Erlenmeyer/Flask.gltf" geometry="primitive: box; width: 2; height:5; depth:2" color="white"  position="7.005 1.149 3.097" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body ></a-entity>
 
 
-      <a-entity class="pcikup" class="js--grabbable" id="js--pipet-container" material="visible: false"  geometry="primitive: box; width: 0.08; height: 0.450; depth: 0.06"   position="2.369 1.092 0.173"  modify-materials grabbable draggable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green">
+      <a-entity class="pcikup js--grabbable" id="js--pipet-container" material="visible: false"  geometry="primitive: box; width: 0.08; height: 0.450; depth: 0.06"   position="2.369 1.092 0.173"  modify-materials grabbable draggable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green">
          <a-entity id="js--pipet" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
          <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".001" position="0 0 0"></a-plane>
       </a-entity>
@@ -326,7 +326,7 @@
 
       <a-cylinder id="js--test-cylinder-fill" color="orange" scale=".02 .001 .02" position="3.235 0.964 -5.011"></a-cylinder>
 
-      <a-box  geometry="primitive:  box; height: 0.8; depth: 0.2;width:0.2" position="3.235 0.964 -5.011" color="green" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable static-body></a-box>
+      <a-box id="js--pipet-colision-box" geometry="primitive:  box; height: 0.8; depth: 0.2;width:0.2" position="3.235 0.964 -5.011" color="green" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts="" static-body></a-box>
 
 
 
@@ -458,7 +458,7 @@
 
 
 
-    <script src="main_controller.js"></script>
+    <script src="main.js"></script>
     <!-- <script src="pipet_oculus.js"></script> -->
     <script src="tutorial.js"></script>
 

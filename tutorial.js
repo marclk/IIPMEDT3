@@ -8,7 +8,7 @@ window.onload = function(){
 
   controlBtnNext = document.getElementById("js--controls-next");
 
-  controllerInput = document.querySelector("#rig");
+  controllerInput = document.querySelector("#cameraRig");
 
   controlBtnNext.addEventListener("onclick", function (e){
     nextControl();
