@@ -7,16 +7,16 @@
 // var goggleOnHead = false
 // var labCoatOn = false;
 
-AFRAME.registerComponent('test-tube', {
-      play: function() {
-        this.el.addEventListener('dragover-start', function(evt) {
-          // evt.detail.dropped.setAttribute('material', 'color',
-          //   '#'+(Math.random()*0xFFFFFF<<0).toString(16))
-          //  // notify super-hands that the gesture was accepted
-          // evt.preventDefault()
-        })
-      }
-    })
+// AFRAME.registerComponent('test-tube', {
+//       play: function() {
+//         this.el.addEventListener('dragover-start', function(evt) {
+//           // evt.detail.dropped.setAttribute('material', 'color',
+//           //   '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+//           //  // notify super-hands that the gesture was accepted
+//           // evt.preventDefault()
+//         })
+//       }
+//     })
 
 //==================== PIPET STUFF
 const PIPET_FEEDBAR = document.getElementById('js--pipet-feedbar');
@@ -25,6 +25,12 @@ const TEST_CYLINDER_SUCC = document.getElementById('js--test-cylinder-succ');
 const TEST_CYLINDER_FILL = document.getElementById('js--test-cylinder-fill');
 
 const GRABBABLES = document.getElementsByClassName('js--grabbable')
+console.log(GRABBABLES.length)
+
+document.getElementById('js--pipet-colision-box').addEventListener('drag-drop', function(evt) {
+  alert("hey")
+})
+
 
 const INTERVAL_FREQ = 100;
 
@@ -92,6 +98,7 @@ let dropletSound = new Audio("drop.mp3");
 //     console.log("not yet");
 //   }
 
+
 //===================== PIPET SCRIPT
 for (let i = 0; i < GRABBABLES.length; i++) {
   GRABBABLES[i].addEventListener('grab-start', function (e) {
@@ -101,40 +108,40 @@ for (let i = 0; i < GRABBABLES.length; i++) {
 
     switch (ID) {
       case "js--pipet-container":
-        document.getElementById('rig').addEventListener('abuttondown', function (e) {
+        document.getElementById('cameraRig').addEventListener('abuttondown', function (e) {
           fillPipetStart(TEST_CYLINDER_SUCC);
           aButtonHeld = true;
         })
-        document.getElementById('rig').addEventListener('bbuttondown', function (e) {
+        document.getElementById('cameraRig').addEventListener('bbuttondown', function (e) {
           // alert("b button pressed")
           emptyPipetStart(TEST_CYLINDER_SUCC);
           bButtonHeld = true;
         })
-        document.getElementById('rig').addEventListener('abuttonup', function (e) {
+        document.getElementById('cameraRig').addEventListener('abuttonup', function (e) {
           // alert("abutton released")
           aButtonHeld = false;
           fillPipetEnd();
         })
-        document.getElementById('rig').addEventListener('bbuttonup', function (e) {
+        document.getElementById('cameraRig').addEventListener('bbuttonup', function (e) {
           bButtonHeld = false;
           emptyPipetEnd();
         })
         break;
 
       case "js--labcoat" || "js--bril":
-        document.getElementById('rig').addEventListener('abuttondown', function (e) {
+        document.getElementById('cameraRig').addEventListener('abuttondown', function (e) {
 
           aButtonHeld = true;
         })
-        document.getElementById('rig').addEventListener('bbuttondown', function (e) {
+        document.getElementById('cameraRig').addEventListener('bbuttondown', function (e) {
 
           bButtonHeld = true;
         })
-        document.getElementById('rig').addEventListener('abuttonup', function (e) {
+        document.getElementById('cameraRig').addEventListener('abuttonup', function (e) {
           aButtonHeld = false;
           GRABBABLES[i].remove()
         })
-        document.getElementById('rig').addEventListener('bbuttonup', function (e) {
+        document.getElementById('cameraRig').addEventListener('bbuttonup', function (e) {
           bButtonHeld = false;
           GRABBABLES[i].remove()
         })
