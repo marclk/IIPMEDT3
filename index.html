@@ -9,10 +9,10 @@
      <script src="vendor/aframe-event-set-component.min.js"></script>
      <script src="vendor/aframe-physics-extras.min.js"></script>
      <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
-
+     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
      <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
-
-
+<script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script>
+ <script src="https://unpkg.com/aframe-state-component@6.7.0/dist/aframe-state-component.min.js"></script>
     <!-- <script src="pipet_oculus.js"></script> -->
 
     <!-- pls dont delete is pickup -->
@@ -102,6 +102,7 @@
                               colliderEndEventProperty: clearedEls;
                               grabStartButtons: gripdown, pointdown, triggerdown;
                               grabEndButtons: gripup, pointup, triggerup;"
+                  haptics="events: triggerdown; dur: 1000; force: 0.5"
                 ></a-mixin>
         <a-asset-item id="touch-body-l-obj-body" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_body.obj"></a-asset-item>
         <a-asset-item id="touch-body-l-obj-b-enter" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_button_enter.obj"></a-asset-item>
@@ -170,16 +171,27 @@
 
 
   <a-entity class="cube pcikup" mixin="cube" position="0 0.265 0" material="color: red"></a-entity>
-<a-entity id="cameraRig" class="camera-parent teleport-object">
+<a-entity id="cameraRig" class="camera-parent teleport-object" position="0 1.6 0">
 
   <a-entity id="head" camera wasd-controls look-controls></a-entity>
-  <a-entity teleport-controls="cameraRig: #cameraRig; button: xbutton;teleportOrigin: #head;collisionEntities: .second-navmesh;" oculus-touch-controls="hand: left"   mixin="point">
 
+  <a-entity
+  teleport-controls="cameraRig: #cameraRig; button: thumbupstart;teleportOrigin: #head;collisionEntities: .second-navmesh;"
+  oculus-touch-controls="hand: left"
+  mixin="point"
+  thumb-controls="hand: left" thumb-controls-debug="enabled: true; controllerType: oculus"
+  >
 
   </a-entity>
   <a-entity  oculus-touch-controls="hand: right"  mixin="point">
   </a-entity>
   </a-entity>
+
+<a-plane position="2.503 2.677 0.783" width="1.940" height="0.640" look-at="#head">
+  <a-text value="Pipetteren" position="-0.521"></a-text>
+
+</a-plane>
+
  <!-- hand-controls="right"
 
 
