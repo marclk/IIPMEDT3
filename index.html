@@ -101,14 +101,14 @@
         <a-asset-item id="touch-body-r-mtl-trigger" src="models/oculus_cv1_controller_right/oculus_cv1_controller_right_trigger.mtl"></a-asset-item>
          <img id="sky" src="img/hdrisky.jpg">
 
-         <a-asset-item id="Erlenmeyer-obj" src="models/Erlenmeyer/FlaskV3.obj"></a-asset-item>
-         <a-asset-item id="Erlenmeyer-mtl" src="models/Erlenmeyer/FlaskV3.mtl"></a-asset-item>
 
+         <a-asset-item id="erlenmeyer" src="models/Erlenmeyer/ErlenmeyerV2.gltf" ></a-asset-item>
          <a-asset-item id="labTafel" src="models/tafel/TafelTestV3.gltf" ></a-asset-item>
          <a-asset-item id="safetyBril" src="models/SafetyBril/SafetyGoggleV2.gltf" ></a-asset-item>
       </a-assets>
 
 
+      <a-entity position="2.439 1.209 -2.127" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity>
 
 
   <!-- <a-entity gltf-model="#labTafel"  scale="0.390 0.390 0.390" ></a-entity> -->
@@ -269,11 +269,11 @@
        <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
 
        <!-- <a-entity sound="src: url(sound/SafetyGoggles.mp3); autoplay: false" id="js--bril" class="pcikup js--grabbable" gltf-model="src: url(models/SafetyBril/SafetyGoggle.gltf)"   rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials grabbable static-body ></a-entity> -->
-    
+
        <a-entity scale="0.1 0.1 0.1" position="-0.187 1.308 -8.421" id="bril" rotation="0 180 0" sound="src: url(sound/SafetyGoggles.mp3); autoplay: false" id="js--bril" class="pcikup js--grabbable">
          <a-entity gltf-part="src: #safetyBril; part: bril" material="color:grey"  modify-material collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
-         <a-entity gltf-part="src: #safetyBril; part: glas" material="color: white;opactity:0.1;transparent:true;blending:additive;"  modify-material ></a-entity>
-   </a-entity>
+         <a-entity gltf-part="src: #safetyBril; part: glas" material="color: white;opacity:0.5;blending:additive;"  modify-material ></a-entity>
+       </a-entity>
 
        <a-entity sound="src: url(sound/JacketPutOn.mp3); autoplay: false" id="js--labcoat" class="pcikup js--grabbable" gltf-model="src: url(models/Labjas/labjasV2.gltf)"    rotation="0 -165.820 0" scale="1.5 1.5 1.5" position="-0.505 1.560 -8.996" modify-materials  static-body ></a-entity>
 
@@ -332,7 +332,7 @@
              <a-text align="center" value="Pipet:"  color="#fff" position="1.057 0.609 0.010"></a-text>
             <a-entity position="2.334 0.559 0.101" scale="6 6 6" rotation="0 90 0" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
 
-            <a-text align="center" value="Erlenmeyer:"  color="#fff" position="1.350 -0.476 0.010"></a-text>
+            <a-text align="center" value="Erlenmeyer:"   color="#fff" position="1.350 -0.476 0.010"></a-text>
             <a-entity position="1.924 -0.75 0.101" scale=".2 .2 .2" rotation="0 0 0" gltf-model="models/Erlenmeyer/Flask.gltf"></a-entity>
 
            </a-plane>
@@ -355,7 +355,7 @@
       <a-box id="js--pipet-colision-box" geometry="primitive: box; opacity: 0.5; height: 0.8; depth: 0.2;width:0.2" position="3.235 0.964 -5.011" color="green" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts="" static-body></a-box>
 
 
-      <a-entity id="flasstest"obj-model="obj: #Erlenmeyer-obj; mtl: #Erlenmeyer-mtl" position="2.440 1.405 -2.305" scale="0.08 0.08 0.08" geometry="primitive: box; width: 2; height:4; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body material="opactity:0.1:" color="white"></a-entity>
+      <!-- <a-entity id="flasstest"obj-model="obj: #Erlenmeyer-obj; mtl: #Erlenmeyer-mtl" position="2.440 1.405 -2.305" scale="0.08 0.08 0.08" geometry="primitive: box; width: 2; height:4; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body material="color:white;blending:additive;"></a-entity> -->
 
 
 
