@@ -5,15 +5,15 @@
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-thumb-controls-component@1.1.0/dist/aframe-thumb-controls-component.min.js"></script>
     <script src="vendor/super-hands.min.js"></script>
-     <script src="vendor/aframe-physics-system.min.js"></script>
-     <script src="vendor/aframe-event-set-component.min.js"></script>
-     <script src="vendor/aframe-physics-extras.min.js"></script>
-     <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
-     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-     <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
-      <script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script>
-      <script src="https://unpkg.com/aframe-state-component@6.7.0/dist/aframe-state-component.min.js"></script>
-      <script src="https://unpkg.com/aframe-input-mapping-component/dist/aframe-input-mapping-component.min.js"></script>
+    <script src="vendor/aframe-physics-system.min.js"></script>
+    <script src="vendor/aframe-event-set-component.min.js"></script>
+    <script src="vendor/aframe-physics-extras.min.js"></script>
+    <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
+    <script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-state-component@6.7.0/dist/aframe-state-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-input-mapping-component/dist/aframe-input-mapping-component.min.js"></script>
 
   </head>
   <body>
@@ -30,6 +30,10 @@
         }
       });
     </script>
+  </head>
+  <body>
+
+
     <a-scene physics="gravity: -8.8;debug:true;" shadow="type: pcfsoft;">
       <a-assets>
           <!-- <img id="red" src="textures/red.png">
@@ -48,6 +52,10 @@
         <!-- <a-mixin id="cube" geometry="width: 0.5; height: 0.5; depth: 0.5" dynamic-body
                  hoverable grabbable></a-mixin>
         <a-mixin id="cube-hovered" material="opacity: 0.7; transparent: true"></a-mixin> -->
+
+        <a-gltf-model id="model" texture="assets/blob.png" scale="0.5 0.5 0.5" visible="false"></a-gltf-model>
+    <a-entity position="0 5 -5" sprite-particles="texture: assets/blob.png; velocity: .1 1 .1; acceleration: 0 -1 0..0 -2 0; color: red,yellow"></a-entity>
+    <a-entity position="0 0 -5" sprite-particles="radialVelocity: 1..2; color: red"></a-entity>
 
 
         <a-mixin id="transformer" class="pcikup" color-randomizer droppable static-body
@@ -245,8 +253,9 @@
       <a-entity class=" " gltf-model="scene/scene.gltf" shadow="receive: true" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive:  box; height: 1; depth: 1;width:1;" collision-filter="group: green; collidesWith: default, green" ></a-entity>
        <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
 
-       <a-entity id="js--bril" class="pcikup js--grabbable" gltf-model="src: url(models/SafetyBril/SafetyGoggle.gltf)"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials    static-body ></a-entity>
-       <a-entity id="js--labcoat" class="pcikup js--grabbable" gltf-model="src: url(models/Labjas/labjas.gltf)"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -165.820 0" scale=".7 .7 .7" position="-0.086 1.560 -8.074" modify-materials    static-body ></a-entity>
+       <a-entity id="js--bril" class="pcikup js--grabbable" gltf-model="src: url(models/SafetyBril/SafetyGoggle.gltf)"  geometry="primitive: box; width: .025; height: .25; depth: .025" rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials grabbable static-body ></a-entity>
+
+       <a-entity id="js--labcoat" class="pcikup js--grabbable" gltf-model="src: url(models/Labjas/labjas.gltf)"  geometry="primitive: box; width: 1; height: 1; depth: 1" rotation="0 -165.820 0" scale=".7 .7 .7" position="-0.086 1.560 -8.074" modify-materials  static-body ></a-entity>
 
 <!-- Controller Tutorial in gang -->
       <a-entity id="js--tutorial" position="-3.514 0.586 -7.917" scale="0.5 0.5 0.5" rotation="0 180 0">
