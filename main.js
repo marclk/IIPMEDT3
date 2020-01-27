@@ -25,11 +25,13 @@ const TEST_CYLINDER_SUCC = document.getElementById('js--test-cylinder-succ');
 const TEST_CYLINDER_FILL = document.getElementById('js--test-cylinder-fill');
 
 const GRABBABLES = document.getElementsByClassName('js--grabbable')
-console.log(GRABBABLES.length)
+// console.log(GRABBABLES.length)
+// AFRAME.log("aantal grabbables: " + GRABBABLES.length);
+AFRAME.log("dit is hoe je dingen logt :^)");
 
-document.getElementById('js--pipet-colision-box').addEventListener('drag-drop', function(evt) {
-  alert("hey")
-})
+// document.getElementById('js--pipet-colision-box').addEventListener('drag-drop', function(evt) {
+//   alert("hey")
+// })
 
 document.getElementById('lefthand').addEventListener('thumbupstart', function(evt) {
   alert("hey");
