@@ -3,54 +3,35 @@
   <head>
     <title>A-Frame Lab</title>
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-thumb-controls-component@1.1.0/dist/aframe-thumb-controls-component.min.js"></script>
     <script src="vendor/super-hands.min.js"></script>
-     <script src="vendor/aframe-physics-system.min.js"></script>
-     <script src="vendor/aframe-event-set-component.min.js"></script>
-     <script src="vendor/aframe-physics-extras.min.js"></script>
-     <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
-     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-     <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
-      <script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script>
-      <script src="https://unpkg.com/aframe-state-component@6.7.0/dist/aframe-state-component.min.js"></script>
+    <script src="vendor/aframe-physics-system.min.js"></script>
+    <script src="vendor/aframe-event-set-component.min.js"></script>
+    <script src="vendor/aframe-physics-extras.min.js"></script>
+    <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
+    <script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-state-component@6.7.0/dist/aframe-state-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-log-component/dist/aframe-log-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script>
+     <script src="https://unpkg.com/aframe-gltf-part-component/dist/aframe-gltf-part-component.min.js"></script>
 
 
+  </head>
+  <body>
 
-      <script src="https://unpkg.com/aframe-thumb-controls-component@1.1.0/dist/aframe-thumb-controls-component.min.js"></script>
-      <script src="https://unpkg.com/aframe-log-component/dist/aframe-log-component.min.js"></script>
-      <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script>
-       <script src="https://unpkg.com/aframe-gltf-part-component/dist/aframe-gltf-part-component.min.js"></script>
-
-    <!-- <script src="pipet_oculus.js"></script> -->
-
-    <!-- pls dont delete is pickup -->
-    <!-- <script src="build.js"></script> -->
-    <!-- <script>
-      window.onload = function (e) {
-        document.querySelector('#leftHand').addEventListener('pointingstart', function (e2) {
-          e2.target.setAttribute('collision-filter', {collisionForces: true})
-        })
-        document.querySelector('#rightHand').addEventListener('pointingstart', function (e2) {
-          e2.target.setAttribute('collision-filter', {collisionForces: true})
-        })
-        document.querySelector('#leftHand').addEventListener('pointingend', function (e2) {
-          e2.target.setAttribute('collision-filter', {collisionForces: false})
-        })
-        document.querySelector('#rightHand').addEventListener('pointingend', function (e2) {
-          e2.target.setAttribute('collision-filter', {collisionForces: false})
-        })
-      }
-    </script> -->
     <script>
-      //color randomizer
-      AFRAME.registerComponent('color-randomizer', {
+      //drop test
+      AFRAME.registerComponent('droptest', {
         play: function () {
           this.el.addEventListener('drag-drop', function (evt) {
+            alert("hello mr.box");
             evt.detail.dropped.setAttribute('material', 'color',
-              '#'+(Math.random()*0xFFFFFF<<0).toString(16))
-            // color randomizer credit: http://stackoverflow.com/questions/1484506/random-color-generator-in-javascript#comment6801353_5365036
-          })
+              '#'+(Math.random()*0xFFFFFF<<0).toString(16));
+          });
         }
-      })
+      });
     </script>
   </head>
   <body>
@@ -58,22 +39,6 @@
 
     <a-scene physics="gravity: -8.8;debug:true;" shadow="type: pcfsoft;">
       <a-assets>
-          <!-- <img id="red" src="textures/red.png">
-          <img id="blue" src="textures/blue.png">
-          <img id="green" src="textures/green.png"> -->
-        <!-- <a-mixin id="controller"
-                 super-hands="colliderEvent: collisions;
-                              colliderEventProperty: els;
-                              colliderEndEvent: collisions;
-                              colliderEndEventProperty: clearedEls;
-                              grabStartButtons: gripdown, pointdown, triggerdown;
-                              grabEndButtons: gripup, pointup, triggerup"
-                 static-body="shape: sphere; sphereRadius: 0.11"
-                 physics-collider  collision-filter = "collidesWith: default, red, green, blue;   collisionForces: false" >
-        </a-mixin> -->
-        <!-- <a-mixin id="cube" geometry="width: 0.5; height: 0.5; depth: 0.5" dynamic-body
-                 hoverable grabbable></a-mixin>
-        <a-mixin id="cube-hovered" material="opacity: 0.7; transparent: true"></a-mixin> -->
 
         <a-gltf-model id="model" texture="assets/blob.png" scale="0.5 0.5 0.5" visible="false"></a-gltf-model>
     <a-entity position="0 5 -5" sprite-particles="texture: assets/blob.png; velocity: .1 1 .1; acceleration: 0 -1 0..0 -2 0; color: red,yellow"></a-entity>
@@ -88,22 +53,11 @@
 
 
                  <a-mixin id="cube" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"
-                          hoverable grabbable stretchable draggable
+                          hoverable grabbable draggable
                           event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
                           event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
                           dynamic-body shadow></a-mixin>
-        <a-mixin id="touch"
-                         physics-collider phase-shift
-                        collision-filter = "collidesWith: default, red, green, blue;   collisionForces: false"
-                         static-body="shape: sphere; sphereRadius: 0.11"
-                         super-hands="colliderEvent: collisions;
-                                      colliderEventProperty: els;
-                                      colliderEndEvent: collisions;
-                                      colliderEndEventProperty: clearedEls;
-                                      grabStartButtons: gripdown, pointdown, triggerdown;
-                                      grabEndButtons: gripup, pointup, triggerup"
-                        >
-        </a-mixin>
+
         <a-mixin id="point" raycaster="showLine: true; objects: .pcikup;far:0.5;"
                  collision-filter="collisionForces: false"
                  static-body="shape: sphere; sphereRadius: 0.001"
@@ -114,6 +68,7 @@
                               grabStartButtons: gripdown, pointdown, triggerdown;
                               grabEndButtons: gripup, pointup, triggerup;"
                   haptics="events: triggerdown; dur: 200; force: 0.5"
+                  progressive-controls="objects: #js--pipet-container, js--pipet-colision-box;"
                 ></a-mixin>
         <a-asset-item id="touch-body-l-obj-body" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_body.obj"></a-asset-item>
         <a-asset-item id="touch-body-l-obj-b-enter" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_button_enter.obj"></a-asset-item>
@@ -227,13 +182,13 @@
   <a-entity id="head" camera  look-controls="pointerLockEnabled: true"></a-entity>
 
   <a-entity
-  teleport-controls="cameraRig: #cameraRig; startEvents: teleportstart; endEvents: teleportend; teleportOrigin: #head;collisionEntities: .second-navmesh;"
+  teleport-controls="cameraRig: #cameraRig; button: trigger; teleportOrigin: #head;collisionEntities: .second-navmesh;"
   mixin="point" id="lefthand"
   oculus-touch-controls="hand: left" thumb-controls="hand: left">
   </a-entity>
 
   <a-entity
-  teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head;collisionEntities: .second-navmesh;"
+  teleport-controls="cameraRig: #cameraRig; button: trigger; teleportOrigin: #head;collisionEntities: .second-navmesh;"
   oculus-touch-controls="hand: right" thumb-controls="hand: right" mixin="point">
   </a-entity>
   </a-entity>
@@ -242,6 +197,44 @@
     <a-text value="Pipetteren" position="-0.521"></a-text>
 
   </a-plane>
+  <!-- <a-entity class="cube pcikup" mixin="cube" position="0 0.265 0" material="color: red"></a-entity> -->
+  <a-box
+    dynamic-body
+    hoverable
+    grabbable
+    stretchable
+    draggable
+    event-set__hoveron="_event: hover-start;"
+    event-set__hoveroff="_event: hover-end;"
+    event-set__dragon="_event: dragover-start;"
+    event-set__dragoff="_event: dragover-end; "
+    id="tape_example"
+    class="tape pcikup"
+    color="blue"
+    position="2 0.5 -3"
+    width="1"
+    height="1"
+    depth="1"
+
+      collision-filter="group: green; collidesWith: default, green">
+  </a-box>
+  <!-- droppable box -->
+  <a-box
+    static-body
+    collision-filter="collisionForces: false"
+    droppable
+    droptest
+    id="tape_player"
+    color="red"
+    width="2"
+    height="2"
+    depth="2"
+    opacity="0.5"
+    position="-2 2 -3"
+    class="pcikup"
+    collision-filter="group: green; collidesWith: default, green">
+  </a-box>
+
 
   <a-entity layout="type: line; margin: 1.2" console-pane position="3.3 2.23 0.8">
     <a-entity log="max: 15;" geometry="primitive: plane; height: 1.5" material="color: #002B36" text="color: #6E878F" look-at="#head"></a-entity>
@@ -329,10 +322,10 @@
 
       <!-- END Controller Tutorial in gang -->
 
-
-
-
-      <a-entity class="pcikup js--grabbable" id="js--pipet-container" material="visible: false"  geometry="primitive: box; width: 0.08; height: 0.450; depth: 0.06"   position="2.369 1.092 0.173"  modify-materials grabbable draggable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green">
+      <a-entity class="pcikup js--grabbable" id="js--pipet-container" material="visible: false"  geometry="primitive: box; width: 0.08; height: 0.450; depth: 0.06"   position="3.235 0.964 -5.511"  modify-materials grabbable draggable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green"     event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+          event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
+          event-set__dragon="_event: dragover-start; wireframe: true"
+          event-set__dragoff="_event: dragover-end; wireframe: false">
          <a-entity id="js--pipet" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
          <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".001" position="0 0 0"></a-plane>
       </a-entity>
@@ -341,7 +334,7 @@
 
       <a-cylinder id="js--test-cylinder-fill" color="orange" scale=".02 .001 .02" position="3.235 0.964 -5.011"></a-cylinder>
 
-      <a-box id="js--pipet-colision-box" geometry="primitive:  box; height: 0.8; depth: 0.2;width:0.2" position="3.235 0.964 -5.011" color="green" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable static-body></a-box>
+      <a-box id="js--pipet-colision-box" geometry="primitive: box; opacity: 0.5; height: 0.8; depth: 0.2;width:0.2" position="3.235 0.964 -5.011" color="green" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts="" static-body></a-box>
 
 
       <a-entity id="flasstest"obj-model="obj: #Erlenmeyer-obj; mtl: #Erlenmeyer-mtl" position="2.440 1.405 -2.305" scale="0.08 0.08 0.08" geometry="primitive: box; width: 2; height:4; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body material="opactity:0.1:" color="white"></a-entity>
@@ -454,6 +447,7 @@
     <script src="vendor/aframe-extras.min.js"></script>
 
     <script src="mapping.js"></script>
+
 
 
 

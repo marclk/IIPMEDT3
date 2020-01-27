@@ -21,6 +21,7 @@
 //==================== PIPET STUFF
 const PIPET_FEEDBAR = document.getElementById('js--pipet-feedbar');
 const PIPET_CONTAINER = document.getElementById('js--pipet-container');
+const PIPET_COLISION_BOX = document.getElementById('js--pipet-colision-box');
 const TEST_CYLINDER_SUCC = document.getElementById('js--test-cylinder-succ');
 const TEST_CYLINDER_FILL = document.getElementById('js--test-cylinder-fill');
 
@@ -29,14 +30,9 @@ const GRABBABLES = document.getElementsByClassName('js--grabbable')
 // AFRAME.log("aantal grabbables: " + GRABBABLES.length);
 AFRAME.log("dit is hoe je dingen logt :^)");
 
-
-document.getElementById('js--pipet-colision-box').addEventListener('drag-drop', function(evt) {
-  // alert("hey")
+document.getElementById('cube').addEventListener('hoveron', function(evt) {
+  alert("DROPPED");
 })
-
-// document.getElementById('js--pipet-colision-box').addEventListener('drag-drop', function(evt) {
-//   alert("hey")
-// })
 
 document.getElementById('lefthand').addEventListener('thumbupstart', function(evt) {
 
