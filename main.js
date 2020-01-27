@@ -31,6 +31,10 @@ document.getElementById('js--pipet-colision-box').addEventListener('drag-drop', 
   alert("hey")
 })
 
+document.getElementById('lefthand').addEventListener('thumbupstart', function(evt) {
+  alert("hey");
+})
+
 
 const INTERVAL_FREQ = 100;
 
