@@ -55,6 +55,50 @@ let grabbedObject = false;
 
 let dropletSound = new Audio("drop.mp3");
 
+
+
+
+//https://github.com/harlyq/aframe-sprite-particles-component#properties
+//Flame
+var fireElemnt =   document.getElementById("fire");
+//
+
+  document.getElementById("ruizendevlam").addEventListener('click', function(evnt){
+    fireElemnt.setAttribute("sprite-particles",{enable:true}); //kan je het gelehe element mee aan en uit zetten
+      fireElemnt.pause(); //Nodig om het element te kunnen veranderen.
+        fireElemnt.setAttribute("sprite-particles",{color:"darkblue,black,black"});//Set de kleurvan de vlam
+        fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"}); //scale van de vlam (0..1) = onderkantlamdikte en (2..2) = bovenkantvlamdikte
+        fireElemnt.setAttribute("sprite-particles",{textureCount:3});//wat dikte
+      fireElemnt.play();//Nodig om het element te kunnen starten.
+  });
+
+  document.getElementById("pauzevlam").addEventListener('click', function(evnt){
+      fireElemnt.setAttribute("sprite-particles",{enable:true});
+      fireElemnt.pause();
+        fireElemnt.setAttribute("sprite-particles",{color:"mediumblue, midnightblue, midnightblue,yellow"});
+        fireElemnt.setAttribute("sprite-particles",{scale:"0..1,1..3"});
+        fireElemnt.setAttribute("sprite-particles",{textureCount:0});
+      fireElemnt.play();
+  });
+
+
+  document.getElementById("blauwevlam").addEventListener('click', function(evnt){
+    fireElemnt.setAttribute("sprite-particles",{enable:true});
+      fireElemnt.pause();
+        fireElemnt.setAttribute("sprite-particles",{color:"mediumblue,mediumblue,mediumblue,black"});
+        fireElemnt.setAttribute("sprite-particles",{textureCount:0});
+        fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"});
+      fireElemnt.play();
+  });
+
+
+  document.getElementById("uitzettenVlam").addEventListener('click', function(evnt){
+    fireElemnt.setAttribute("sprite-particles",{enable:false});
+  });
+
+
+
+
 //===================== ROEL'S COAT N GOGGGGGLES
 //
 // SAFETY_GOGGLE.addEventListener('click', function(evnt){

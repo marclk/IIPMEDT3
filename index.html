@@ -16,7 +16,7 @@
     <script src="https://unpkg.com/aframe-log-component/dist/aframe-log-component.min.js"></script>
     <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script>
      <script src="https://unpkg.com/aframe-gltf-part-component/dist/aframe-gltf-part-component.min.js"></script>
-
+      <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script>
 
   </head>
   <body>
@@ -100,6 +100,7 @@
          <a-asset-item id="erlenmeyer" src="models/Erlenmeyer/ErlenmeyerV2.gltf" ></a-asset-item>
          <a-asset-item id="labTafel" src="models/tafel/TafelTestV3.gltf" ></a-asset-item>
          <a-asset-item id="safetyBril" src="models/SafetyBril/SafetyGoggleV2.gltf" ></a-asset-item>
+         <a-asset-item id="brander" src="models/Brander/branderV2.gltf" ></a-asset-item>
       </a-assets>
 
 
@@ -162,11 +163,27 @@
   <a-entity gltf-part="src: #labTafel; part: Wasbak" material="color: white"  modify-material collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
 </a-entity>
 
+<!-- Flame -->
+<a-entity id="fire" rotation="0 0 90" position="2.444 1.163 3.556"
+sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinationOffset: 0; texture: assets/explosion_sheet.png; textureFrame: 5 5; velocity: .2 .1 -.2.. .6 .1 .2; acceleration: 1; spawnRate: 100; scale:0..1,1..2; opacity: 1,0; angularVelocity: 0 00; blending: additive; enableInEditor: true; velocityScale: 2.43; velocityScaleMinMax: 3.34 0.74; emitterTime: 1.87; particleSize: 40; alphaTest: 0.88">
+</a-entity>
+<a-entity position="2.439 1.013 3.550" static-body gltf-part="src: #brander; part: Cylinder" material="color:white;metalness:1;"   modify-material collision-filter="group: green; collidesWith: default, green" scale="0.05 0.05 0.05"></a-entity>
 
+<a-box id="uitzettenVlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="darkblue" position="1.888 0.990 3.426"rotation="-45 180 0" scale="0.4 0.4 0.4">
+    <a-text position="-0.431 0.5 0" color="white" value="Uitzetten"></a-text>
+</a-box>
 
+<a-box id="pauzevlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="yellow" position="3.914 0.990 3.907"rotation="-45 180 0" scale="0.4 0.4 0.4">
+    <a-text position="-0.846 0.5 0" color="white" value="pauze vlam (geelig)"></a-text>
+</a-box>
 
+<a-box id="blauwevlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="blue" position="3.914 0.990 4.382"rotation="-45 180 0" scale="0.4 0.4 0.4">
+    <a-text position="-0.846 0.5 0" color="white" value="blauwe vlam (blauw en stil)"></a-text>
+</a-box>
 
-
+<a-box id="ruizendevlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="darkblue" position="3.914 0.990 3.426"rotation="-45 180 0" scale="0.4 0.4 0.4">
+    <a-text position="-0.846 0.5 0" color="white" value="blauwe vlam (blauw en luid)"></a-text>
+</a-box>
 
 
 
@@ -182,7 +199,16 @@
   <a-entity class="cube pcikup" mixin="cube" position="0 0.265 0" material="color: red"></a-entity>
 <a-entity id="cameraRig" class="camera-parent teleport-object" position="0 1.6 0"  movement-controls>
 
-  <a-entity id="head" camera  look-controls="pointerLockEnabled: true"></a-entity>
+  <a-entity id="head" camera  look-controls="pointerLockEnabled: true">
+
+    <a-entity animation__fusing="property:scale; easing:easeInCubic; dur:500; from:1 1 1; to: 0.1 0.1 0.1; startEvents: fusing"
+              animation__mouseleave="property:scale; easing:easeInCubic; dur:250; to:1 1 1;  startEvents: mouseleave "
+              animation__click="property:scale; easing:easeInCubic; dur:250; to:1 1 1;  startEvents: click"
+              raycaster="objects: .clickable"
+     id="js--cursor"  cursor="fuse:true; FuseTimeout:0" material="color:red; shader:flat;" geometry="primitive: ring; radiusInner:0.01; radiusOuter:0.015" position="0 0 -.5"></a-entity>
+
+
+  </a-entity>
 
   <a-entity
   teleport-controls="cameraRig: #cameraRig; button: trigger; teleportOrigin: #head;collisionEntities: .second-navmesh;"
