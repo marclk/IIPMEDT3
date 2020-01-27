@@ -13,13 +13,50 @@
      <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
       <script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script>
       <script src="https://unpkg.com/aframe-state-component@6.7.0/dist/aframe-state-component.min.js"></script>
+<<<<<<< HEAD
       <script src="https://unpkg.com/aframe-input-mapping-component/dist/aframe-input-mapping-component.min.js"></script>
 
+=======
+      <script src="https://unpkg.com/aframe-thumb-controls-component@1.1.0/dist/aframe-thumb-controls-component.min.js"></script>
+      <script src="https://unpkg.com/aframe-log-component/dist/aframe-log-component.min.js"></script>
+    <!-- <script src="pipet_oculus.js"></script> -->
+
+    <!-- pls dont delete is pickup -->
+    <!-- <script src="build.js"></script> -->
+    <!-- <script>
+      window.onload = function (e) {
+        document.querySelector('#leftHand').addEventListener('pointingstart', function (e2) {
+          e2.target.setAttribute('collision-filter', {collisionForces: true})
+        })
+        document.querySelector('#rightHand').addEventListener('pointingstart', function (e2) {
+          e2.target.setAttribute('collision-filter', {collisionForces: true})
+        })
+        document.querySelector('#leftHand').addEventListener('pointingend', function (e2) {
+          e2.target.setAttribute('collision-filter', {collisionForces: false})
+        })
+        document.querySelector('#rightHand').addEventListener('pointingend', function (e2) {
+          e2.target.setAttribute('collision-filter', {collisionForces: false})
+        })
+      }
+    </script> -->
+    <script>
+      //color randomizer
+      AFRAME.registerComponent('color-randomizer', {
+        play: function () {
+          this.el.addEventListener('drag-drop', function (evt) {
+            evt.detail.dropped.setAttribute('material', 'color',
+              '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+            // color randomizer credit: http://stackoverflow.com/questions/1484506/random-color-generator-in-javascript#comment6801353_5365036
+          })
+        }
+      })
+    </script>
+>>>>>>> cea59a108132679ecbd7fd47b5ddcf52987f7379
   </head>
   <body>
 
 
-    <a-scene physics="gravity: -8.8;debug:true;"  shadow="type: pcfsoft;">
+    <a-scene physics="gravity: -8.8;debug:true;" shadow="type: pcfsoft;">
       <a-assets>
           <!-- <img id="red" src="textures/red.png">
           <img id="blue" src="textures/blue.png">
@@ -160,10 +197,14 @@
   </a-entity>
   </a-entity>
 
-<a-plane position="2.503 2.677 0.783" width="1.940" height="0.640" look-at="#head">
-  <a-text value="Pipetteren" position="-0.521"></a-text>
+  <a-plane position="2.503 2.677 0.783" width="1.940" height="0.640" look-at="#head">
+    <a-text value="Pipetteren" position="-0.521"></a-text>
 
-</a-plane>
+  </a-plane>
+
+  <a-entity layout="type: line; margin: 1.2" console-pane position="3.3 2.23 0.8">
+    <a-entity log="max: 15;" geometry="primitive: plane; height: 1.5" material="color: #002B36" text="color: #6E878F" look-at="#head"></a-entity>
+  </a-entity>
 
  <!-- hand-controls="right"
 
@@ -281,6 +322,7 @@
       <a-cylinder id="js--test-cylinder-fill" color="orange" scale=".02 .001 .02" position="3.235 0.964 -5.011"></a-cylinder>
 
       <a-box id="js--pipet-colision-box" geometry="primitive:  box; height: 0.8; depth: 0.2;width:0.2" position="3.235 0.964 -5.011" color="green" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts="" static-body></a-box>
+
 
       <a-entity id="flasstest"obj-model="obj: #Erlenmeyer-obj; mtl: #Erlenmeyer-mtl" position="2.440 1.405 -2.305" scale="0.08 0.08 0.08" geometry="primitive: box; width: 2; height:4; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body material="opactity:0.1:" color="white"></a-entity>
 
