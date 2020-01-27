@@ -13,6 +13,7 @@
      <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
 <script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script>
  <script src="https://unpkg.com/aframe-state-component@6.7.0/dist/aframe-state-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-log-component/dist/aframe-log-component.min.js"></script>
     <!-- <script src="pipet_oculus.js"></script> -->
 
     <!-- pls dont delete is pickup -->
@@ -45,11 +46,56 @@
         }
       })
     </script>
+    <script>
+      // AFRAME.registerComponent('main', {
+      //   init: function () {
+      //     var self = this;
+      //
+      //     // Using setInterval for demo convenience, but in practice, should use tick.
+      //     // setInterval(function () {
+      //     //   self.logRandomColor();
+      //     // }, 500);
+      //     //
+      //     // setInterval(function () {
+      //     //   self.logRandomNumber();
+      //     // }, 250);
+      //
+      //     this.el.emit('log', {message: 'Logging started!'});
+      //   },
+      //
+      //   // logRandomColor: function () {
+      //   //   var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+      //   //   AFRAME.log(colors[Math.floor(Math.random() * 7)], 'colorz');
+      //   // },
+      //   //
+      //   // logRandomNumber: function () {
+      //   //   AFRAME.log(Math.random() * 10000, 'numberz');
+      //   // },
+      //
+      //   tick: function (t) {
+      //     AFRAME.log('Time: ' + t, 'time');
+      //   }
+      // });
+      AFRAME.registerComponent('console-pane', {
+        init: function () {
+          // Set up the tick throttling.
+          this.tick = AFRAME.utils.throttleTick(this.tick, 1000, this);
+          AFRAME.log("aantal grabbables: " + document.getElementsByClassName('js--grabbable').length);
+        },
+
+        /**
+         * Tick function that will be wrapped to be throttled.
+         */
+        tick: function (t, dt) {
+          AFRAME.log('Time: ' + t, 'time');
+        }
+      });
+    </script>
   </head>
   <body>
 
 
-    <a-scene physics="gravity: -8.8;debug:true;"  shadow="type: pcfsoft;">
+    <a-scene physics="gravity: -8.8;debug:true;" shadow="type: pcfsoft;">
       <a-assets>
           <!-- <img id="red" src="textures/red.png">
           <img id="blue" src="textures/blue.png">
@@ -317,7 +363,16 @@
 
       <a-box id="js--pipet-colision-box" geometry="primitive:  box; height: 0.8; depth: 0.2;width:0.2" position="3.235 0.964 -5.011" color="green" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts="" static-body></a-box>
 
+      <!-- <a-entity log geometry="primitive: plane" material="color: #111" text="color: lightgreen" position="0 2 -4"></a-entity> -->
+      <!-- <a-log position="0 2 -4"></a-log> -->
 
+      <a-entity layout="type: line; margin: 1.2" console-pane position="0 1.5 -3">
+        <!-- <a-entity log="channel: colorz" geometry="primitive: plane; height: 5" material="color: #222; shader: flat"></a-entity>
+        <a-log channel="numberz"></a-log>
+        <a-entity log="channel: time" geometry="primitive: plane; height: 5" material="color: #FAFAFA" text="color: #111"></a-entity>
+        <a-entity log="filter: o" geometry="primitive: plane; height: 5" material="opacity: 0.5"></a-entity> -->
+        <a-entity log="max: 5;" geometry="primitive: plane; height: 3" material="color: #002B36" text="color: #6E878F"></a-entity>
+      </a-entity>
 
 
       <a-entity id="flasstest"obj-model="obj: #Erlenmeyer-obj; mtl: #Erlenmeyer-mtl" position="2.440 1.405 -2.305" scale="0.08 0.08 0.08" geometry="primitive: box; width: 2; height:4; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body material="opactity:0.1:" color="white"></a-entity>
