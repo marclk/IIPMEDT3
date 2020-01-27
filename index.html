@@ -3,7 +3,7 @@
   <head>
     <title>A-Frame Lab</title>
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
-
+    <script src="https://unpkg.com/aframe-thumb-controls-component@1.1.0/dist/aframe-thumb-controls-component.min.js"></script>
     <script src="vendor/super-hands.min.js"></script>
      <script src="vendor/aframe-physics-system.min.js"></script>
      <script src="vendor/aframe-event-set-component.min.js"></script>
@@ -13,38 +13,8 @@
      <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
       <script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script>
       <script src="https://unpkg.com/aframe-state-component@6.7.0/dist/aframe-state-component.min.js"></script>
-      <script src="https://unpkg.com/aframe-thumb-controls-component@1.1.0/dist/aframe-thumb-controls-component.min.js"></script>
+      <script src="https://unpkg.com/aframe-input-mapping-component/dist/aframe-input-mapping-component.min.js"></script>
 
-    <!-- pls dont delete is pickup -->
-    <!-- <script src="build.js"></script> -->
-    <!-- <script>
-      window.onload = function (e) {
-        document.querySelector('#leftHand').addEventListener('pointingstart', function (e2) {
-          e2.target.setAttribute('collision-filter', {collisionForces: true})
-        })
-        document.querySelector('#rightHand').addEventListener('pointingstart', function (e2) {
-          e2.target.setAttribute('collision-filter', {collisionForces: true})
-        })
-        document.querySelector('#leftHand').addEventListener('pointingend', function (e2) {
-          e2.target.setAttribute('collision-filter', {collisionForces: false})
-        })
-        document.querySelector('#rightHand').addEventListener('pointingend', function (e2) {
-          e2.target.setAttribute('collision-filter', {collisionForces: false})
-        })
-      }
-    </script> -->
-    <script>
-      //color randomizer
-      AFRAME.registerComponent('color-randomizer', {
-        play: function () {
-          this.el.addEventListener('drag-drop', function (evt) {
-            evt.detail.dropped.setAttribute('material', 'color',
-              '#'+(Math.random()*0xFFFFFF<<0).toString(16))
-            // color randomizer credit: http://stackoverflow.com/questions/1484506/random-color-generator-in-javascript#comment6801353_5365036
-          })
-        }
-      })
-    </script>
   </head>
   <body>
 
@@ -174,18 +144,19 @@
 
 
   <a-entity class="cube pcikup" mixin="cube" position="0 0.265 0" material="color: red"></a-entity>
-<a-entity id="cameraRig" class="camera-parent teleport-object" position="0 1.6 0">
+<a-entity id="cameraRig" class="camera-parent teleport-object" position="0 0 0">
 
   <a-entity id="head" camera  look-controls="pointerLockEnabled: true"></a-entity>
 
   <a-entity
-  teleport-controls="cameraRig: #cameraRig; button: thumbupstart; teleportOrigin: #head;collisionEntities: .second-navmesh;"
+  teleport-controls="cameraRig: #cameraRig; startEvents: teleportstart; endEvents: teleportend; teleportOrigin: #head;collisionEntities: .second-navmesh;"
   mixin="point" id="lefthand"
-  oculus-touch-controls="hand: left" thumb-controls="hand: left"
-  >
-
+  oculus-touch-controls="hand: left" thumb-controls="hand: left">
   </a-entity>
-  <a-entity  oculus-touch-controls="hand: right"  mixin="point">
+
+  <a-entity
+  teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head;collisionEntities: .second-navmesh;"
+  oculus-touch-controls="hand: right" thumb-controls="hand: right" mixin="point">
   </a-entity>
   </a-entity>
 
@@ -211,9 +182,6 @@
              collision-filter="group: green; collidesWith: default, green">
       </a-box> -->
 
-
-
-
       <a-plane width="3" height="1.140" position="2.691 2.709 6.241" rotation="0 180 0">
         <a-text value="Nog te doen:" position="-0.622 0.423 0" color="black"></a-text>
         <a-text value="Pipet vastpakken" position="-0.895 0.128" color="black"> </a-text>
@@ -226,8 +194,6 @@
         <a-text value="Bril opzetten" position="-0.895 0.576" color="black"> </a-text>
         <a-text value="Labjas aandoen" position="-.903 0.247 0" color="black"></a-text>
       </a-plane> -->
-
-
 
       <!-- <a-entity visible="true" id="smallroommesh" class="second-navmesh " gltf-model="scene/navmesh(2).gltf"   position="0 0 0" ></a-entity> -->
 
@@ -397,12 +363,12 @@
      <a-plane width="4" height="20" class=" " visible="false"  position="7.510 1.547 -0.314" color="red" rotation="0 -90 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
 
-     <a-box width="2.620" id="table" height="1.380" depth="0.050" material="repeat:5 3;normalTextureRepeat:5 3;src: textures/white_plaster_02_diff_2k.jpg;ambientOcclusionMap:textures/white_plaster_02_ao_2k.jpg;ambientOcclusionTextureRepeat:4 2; color: #3c3c3c;normalMap:textures/white_plaster_02_nor_2k.jpg;"  class=" " visible="true" position="3.045 0.924 0.779" color="red" rotation="-90 0 0" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
+     <a-box width="2.620" id="table" height="1.380" depth="0.050" class=" " visible="true" position="3.045 0.924 0.779" color="red" rotation="-90 0 0" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
 
 
 
      <!-- Short wall at door -->
-     <a-plane width="5" height="10" material="repeat:5 5;normalTextureRepeat:5 5;src: textures/Plaster35_COL_VAR1_3K.jpg; color: #dac5c5dw;normalMap:textures/Plaster35_NRM_3K.jpg;"  class=" " visible="true" position="3.540 1.072 -9.953" color="red" rotation="0 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
+     <a-plane width="5" height="10" class=" " visible="true" position="3.540 1.072 -9.953" color="red" rotation="0 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
      <!-- Shortest wall without door -->
       <a-plane width="5" height="2"  class=" " visible="false" position="-1.046 1.072 -6.419" color="red" rotation="0 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
@@ -465,7 +431,39 @@
 
     <script src="vendor/aframe-extras.min.js"></script>
 
+    <script src="mapping.js"></script>
 
+  <!-- pls dont delete is pickup -->
+  <!-- <script src="build.js"></script> -->
+  <!-- <script>
+    window.onload = function (e) {
+      document.querySelector('#leftHand').addEventListener('pointingstart', function (e2) {
+        e2.target.setAttribute('collision-filter', {collisionForces: true})
+      })
+      document.querySelector('#rightHand').addEventListener('pointingstart', function (e2) {
+        e2.target.setAttribute('collision-filter', {collisionForces: true})
+      })
+      document.querySelector('#leftHand').addEventListener('pointingend', function (e2) {
+        e2.target.setAttribute('collision-filter', {collisionForces: false})
+      })
+      document.querySelector('#rightHand').addEventListener('pointingend', function (e2) {
+        e2.target.setAttribute('collision-filter', {collisionForces: false})
+      })
+    }
+  </script> -->
+  <script>
+AFRAME.registerInputMappings(mappings, override)
+    //color randomizer
+    AFRAME.registerComponent('color-randomizer', {
+      play: function () {
+        this.el.addEventListener('drag-drop', function (evt) {
+          evt.detail.dropped.setAttribute('material', 'color',
+            '#'+(Math.random()*0xFFFFFF<<0).toString(16))
+          // color randomizer credit: http://stackoverflow.com/questions/1484506/random-color-generator-in-javascript#comment6801353_5365036
+        })
+      }
+    })
+  </script>
 
 
   </body>

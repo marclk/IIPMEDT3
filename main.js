@@ -28,11 +28,11 @@ const GRABBABLES = document.getElementsByClassName('js--grabbable')
 console.log(GRABBABLES.length)
 
 document.getElementById('js--pipet-colision-box').addEventListener('drag-drop', function(evt) {
-  alert("hey")
+  // alert("hey")
 })
 
 document.getElementById('lefthand').addEventListener('thumbupstart', function(evt) {
-  alert("hey");
+
 })
 
 
