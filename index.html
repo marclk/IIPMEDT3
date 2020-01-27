@@ -11,9 +11,9 @@
      <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
      <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
      <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
-<script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script>
- <script src="https://unpkg.com/aframe-state-component@6.7.0/dist/aframe-state-component.min.js"></script>
-    <!-- <script src="pipet_oculus.js"></script> -->
+      <script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script>
+      <script src="https://unpkg.com/aframe-state-component@6.7.0/dist/aframe-state-component.min.js"></script>
+      <script src="https://unpkg.com/aframe-thumb-controls-component@1.1.0/dist/aframe-thumb-controls-component.min.js"></script>
 
     <!-- pls dont delete is pickup -->
     <!-- <script src="build.js"></script> -->
@@ -102,7 +102,7 @@
                               colliderEndEventProperty: clearedEls;
                               grabStartButtons: gripdown, pointdown, triggerdown;
                               grabEndButtons: gripup, pointup, triggerup;"
-                  haptics="events: triggerdown; dur: 1000; force: 0.5"
+                  haptics="events: triggerdown; dur: 200; force: 0.5"
                 ></a-mixin>
         <a-asset-item id="touch-body-l-obj-body" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_body.obj"></a-asset-item>
         <a-asset-item id="touch-body-l-obj-b-enter" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_button_enter.obj"></a-asset-item>
@@ -174,15 +174,14 @@
 
 
   <a-entity class="cube pcikup" mixin="cube" position="0 0.265 0" material="color: red"></a-entity>
-<a-entity id="cameraRig" class="camera-parent teleport-object" position="0 1.6 0"movement-controls="speed:0.15; constrainToNavMesh: true">
+<a-entity id="cameraRig" class="camera-parent teleport-object" position="0 1.6 0">
 
   <a-entity id="head" camera  look-controls="pointerLockEnabled: true"></a-entity>
 
   <a-entity
-  teleport-controls="cameraRig: #cameraRig; button: thumbupstart;teleportOrigin: #head;collisionEntities: .second-navmesh;"
-  oculus-touch-controls="hand: left"
-  mixin="point"
-  thumb-controls="hand: left" thumb-controls-debug="enabled: true; controllerType: oculus"
+  teleport-controls="cameraRig: #cameraRig; button: thumbupstart; teleportOrigin: #head;collisionEntities: .second-navmesh;"
+  mixin="point" id="lefthand"
+  oculus-touch-controls="hand: left" thumb-controls="hand: left"
   >
 
   </a-entity>
@@ -316,9 +315,6 @@
       <a-cylinder id="js--test-cylinder-fill" color="orange" scale=".02 .001 .02" position="3.235 0.964 -5.011"></a-cylinder>
 
       <a-box id="js--pipet-colision-box" geometry="primitive:  box; height: 0.8; depth: 0.2;width:0.2" position="3.235 0.964 -5.011" color="green" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts="" static-body></a-box>
-
-
-
 
       <a-entity id="flasstest"obj-model="obj: #Erlenmeyer-obj; mtl: #Erlenmeyer-mtl" position="2.440 1.405 -2.305" scale="0.08 0.08 0.08" geometry="primitive: box; width: 2; height:4; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body material="opactity:0.1:" color="white"></a-entity>
 
