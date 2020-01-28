@@ -81,7 +81,7 @@ let grabbedObject = false;
 let dropletSound = new Audio("drop.mp3");
 
 let randomThreshhold = (Math.floor(Math.random()* 20))/100
-AFRAME.log("random pipeteer threshhold: " + randomElement+0.01)
+AFRAME.log("random pipeteer threshhold: " + (randomThreshhold + 0.01))
 
 
 //https://github.com/harlyq/aframe-sprite-particles-component#properties
@@ -328,7 +328,7 @@ emptyPipetEnd = () => {
   activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
   if (activeFeedbackBarHeight <= 0) {
     activeFeedbackBarHeight = .0001
-  }    
+  }
 
   AFRAME.log(TEST_CYLINDER_FILL.getAttribute("height"))
   let filledJuice = TEST_CYLINDER_FILL.getAttribute("height")
