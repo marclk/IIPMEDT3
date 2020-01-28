@@ -189,7 +189,7 @@ for (let i = 0; i < GRABBABLES.length; i++) {
         })
         document.getElementById('cameraRig').addEventListener('bbuttondown', function (e) {
           // alert("b button pressed")
-          emptyPipetStart(TEST_CYLINDER_SUCC);
+          emptyPipetStart(TEST_CYLINDER_FILL);
           bButtonHeld = true;
         })
         document.getElementById('cameraRig').addEventListener('abuttonup', function (e) {
