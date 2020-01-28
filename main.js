@@ -72,6 +72,7 @@ let initialFeedbackBarHeight = 0;
 let activeFeedbackBarHeight = 0;
 let modifiedDeltaPipetFeedbackTimer;
 let fillCylinderRatio = 0;
+let succRatio = 0;
 
 let aButtonHeld = false;
 let bButtonHeld = false;
@@ -79,7 +80,8 @@ let grabbedObject = false;
 
 let dropletSound = new Audio("drop.mp3");
 
-
+let randomThreshhold = (Math.floor(Math.random()* 20))/100
+AFRAME.log("random pipeteer threshhold: " + randomElement+0.01)
 
 
 //https://github.com/harlyq/aframe-sprite-particles-component#properties
@@ -262,7 +264,7 @@ fillPipetStart = (substance) => {
       modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight + activeFeedbackBarHeight;
       // console.log("modified delta before: " + modifiedDeltaPipetFeedbackTimer);
       if (modifiedDeltaPipetFeedbackTimer <= 0) {
-        modifiedDeltaPipetFeedbackTimer = 0;
+        modifiedDeltaPipetFeedbackTimer = .0001;
       } else if (modifiedDeltaPipetFeedbackTimer > .5) {
         modifiedDeltaPipetFeedbackTimer = .5;
       }
@@ -270,8 +272,11 @@ fillPipetStart = (substance) => {
       // modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight;
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
-      substance.setAttribute("height", (1-(modifiedDeltaPipetFeedbackTimer)));
-      substance.setAttribute("position", "0 " + (modifiedDeltaPipetFeedbackTimer/2) + " 0");
+
+      succRatio = succRatio + .005
+      // AFRAME.log(substance.getAttribute("height"))
+      substance.setAttribute("height", (.25-succRatio));
+      substance.setAttribute("position", "0 " + -(succRatio/2)+0.110 + " 0");
     }, INTERVAL_FREQ);
   }
 }
@@ -301,7 +306,7 @@ emptyPipetStart = (substance) => {
       // console.log("delta empty: " + deltaPipetFeedbackTimerFill);
 
       if (modifiedDeltaPipetFeedbackTimer <= 0) {
-        modifiedDeltaPipetFeedbackTimer = 0;
+        modifiedDeltaPipetFeedbackTimer = 0.001;
       } else if (modifiedDeltaPipetFeedbackTimer > .5) {
         modifiedDeltaPipetFeedbackTimer = .5;
       }
@@ -309,9 +314,9 @@ emptyPipetStart = (substance) => {
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
 
-      fillCylinderRatio = fillCylinderRatio + .02
+      fillCylinderRatio = fillCylinderRatio + .005
 
-      substance.setAttribute("height", (.001+ (fillCylinderRatio)));
+      substance.setAttribute("height", (.001+ fillCylinderRatio));
       substance.setAttribute("position", "0 " + ((fillCylinderRatio/2)-0.110) + " 0");
 
     }, INTERVAL_FREQ);
@@ -322,17 +327,16 @@ emptyPipetEnd = () => {
   clearInterval(visualFeedbackInterval);
   activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
   if (activeFeedbackBarHeight <= 0) {
-    activeFeedbackBarHeight = 0
-  }
+    activeFeedbackBarHeight = .0001
+  }    
 
-  AFRAME.log(substance.getAttribute("height"))
-  let filledJuice = substance.getAttribute("height")
-  let randomThreshhold = (Math.floor(Math.random()* 40)/10);
+  AFRAME.log(TEST_CYLINDER_FILL.getAttribute("height"))
+  let filledJuice = TEST_CYLINDER_FILL.getAttribute("height")
   AFRAME.log("pipet fill threshhold minimum: " + randomThreshhold)
-  if (randomThreshhold > filledJuice > randomThreshhold+0.1) {
-    AFRAME.log("you filled the test tube correctly, pass!")
+  if (randomThreshhold > filledJuice > randomThreshhold+0.01) {
+    AFRAME.log("you filled the test tube correctly, pass!" + randomThreshhold + " - " + filledJuice)
   } else {
-    AFRAME.log("sorry but you failed, failure!")
+    AFRAME.log("sorry but you failed, failure!" + randomThreshhold + " - " + filledJuice)
   }
   // console.log(deltaPipetFeedbackTimer);
 }
