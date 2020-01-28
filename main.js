@@ -261,7 +261,7 @@ fillPipetStart = (substance) => {
       deltaPipetFeedbackTimer = endPipetFeedbackTimer - startPipetFeedbackTimer;
       modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight + activeFeedbackBarHeight;
       // console.log("modified delta before: " + modifiedDeltaPipetFeedbackTimer);
-      if (modifiedDeltaPipetFeedbackTimer < 0) {
+      if (modifiedDeltaPipetFeedbackTimer <= 0) {
         modifiedDeltaPipetFeedbackTimer = 0;
       } else if (modifiedDeltaPipetFeedbackTimer > .5) {
         modifiedDeltaPipetFeedbackTimer = .5;
@@ -300,7 +300,7 @@ emptyPipetStart = (substance) => {
 
       // console.log("delta empty: " + deltaPipetFeedbackTimerFill);
 
-      if (modifiedDeltaPipetFeedbackTimer < 0) {
+      if (modifiedDeltaPipetFeedbackTimer <= 0) {
         modifiedDeltaPipetFeedbackTimer = 0;
       } else if (modifiedDeltaPipetFeedbackTimer > .5) {
         modifiedDeltaPipetFeedbackTimer = .5;
@@ -321,8 +321,16 @@ emptyPipetStart = (substance) => {
 emptyPipetEnd = () => {
   clearInterval(visualFeedbackInterval);
   activeFeedbackBarHeight = activeFeedbackBarHeight + deltaPipetFeedbackTimer/6000;
-  if (activeFeedbackBarHeight < 0) {
+  if (activeFeedbackBarHeight <= 0) {
     activeFeedbackBarHeight = 0
   }
-  console.log(deltaPipetFeedbackTimer);
+  
+  AFRAME.log(substance.getAttribute("height"))
+  let filledJuice = substance.getAttribute("height")
+  if (.4 > filledJuice > .25) {
+    AFRAME.log("you filled the test tube correctly, pass!")
+  } else {
+    AFRAME.log("sorry but you failed, failure!")
+  }
+  // console.log(deltaPipetFeedbackTimer);
 }
