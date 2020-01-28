@@ -26,7 +26,7 @@ const ELEMENT_NAME = document.getElementById('js--element-name')
 const ELEMENT_MASS = document.getElementById('js--element-mass')
 
 fetchApiData = () => {
-  let randomElement = Math.floor(Math.random()* 118 + 1);
+  let randomElement = Math.floor(Math.random()* 118);
   fetch( BASE_URL )
   .then( (data) => {
     return data.json();
@@ -324,10 +324,12 @@ emptyPipetEnd = () => {
   if (activeFeedbackBarHeight <= 0) {
     activeFeedbackBarHeight = 0
   }
-  
+
   AFRAME.log(substance.getAttribute("height"))
   let filledJuice = substance.getAttribute("height")
-  if (.4 > filledJuice > .25) {
+  let randomThreshhold = (Math.floor(Math.random()* 40)/10);
+  AFRAME.log("pipet fill threshhold minimum: " + randomThreshhold)
+  if (randomThreshhold > filledJuice > randomThreshhold+0.1) {
     AFRAME.log("you filled the test tube correctly, pass!")
   } else {
     AFRAME.log("sorry but you failed, failure!")

@@ -5,7 +5,7 @@ const ELEMENT_NAME = document.getElementById('js--element-name')
 const ELEMENT_MASS = document.getElementById('js--element-mass')
 
 fetchApiData = () => {
-  let randomElement = Math.floor(Math.random()* 118 + 1);
+  let randomElement = Math.floor(Math.random()* 118);
   fetch( BASE_URL )
   .then( (data) => {
     return data.json();

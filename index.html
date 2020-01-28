@@ -15,8 +15,8 @@
     <script src="https://unpkg.com/aframe-state-component@6.7.0/dist/aframe-state-component.min.js"></script>
     <script src="https://unpkg.com/aframe-log-component/dist/aframe-log-component.min.js"></script>
     <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script>
-     <script src="https://unpkg.com/aframe-gltf-part-component/dist/aframe-gltf-part-component.min.js"></script>
-      <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script>
+    <script src="https://unpkg.com/aframe-gltf-part-component/dist/aframe-gltf-part-component.min.js"></script>
+    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
 
   </head>
   <body>
@@ -387,7 +387,7 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
         <!-- <a-cylinder id="js--test-cylinder-succ" color="crimson" scale=".02 .25 .02" ></a-cylinder> -->
         <a-entity  position="0 -0.381 -0.771">
           <a-entity gltf-part="src: #test-tube; part: Cylinder" material="color:white;opacity:0.5;blending:additive" ></a-entity>
-          <a-cylinder id="js--test-cylinder-succ" radius=".01" height=".2" color="crimson"></a-cylinder>
+          <a-cylinder id="js--test-cylinder-succ" radius=".01" height=".2" color="blue"></a-cylinder>
         </a-entity>
 
         <!-- <a-cylinder   ></a-cylinder> -->
@@ -397,8 +397,8 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
           <a-cylinder id="js--test-cylinder-fill" radius=".01" height=".001" position ="0 -0.110 0" color="orange"></a-cylinder>
         </a-entity>
 
-        <a-box id="js--pipet-colision-box" scale=".05 .47 .05"  material="color:grey;roughness:0.2" position="0.55 -0.333 -0.771" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts=""  modify-material static-body></a-box>
-        <a-box id="js--pipet-colision-box" scale=".05 .47 .05"  material="color:grey;roughness:0.2" position="0 -0.333 -0.771" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts="" modify-material static-body></a-box>
+        <a-box id="js--pipet-colision-box" scale=".05 .47 .05"  material="visible: false;" position="0.55 -0.333 -0.771" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts=""  modify-material static-body></a-box>
+        <a-box id="js--pipet-colision-box" scale=".05 .47 .05"  material="visible: false;" position="0 -0.333 -0.771" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts="" modify-material static-body></a-box>
       </a-entity>
 
 
