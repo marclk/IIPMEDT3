@@ -101,8 +101,11 @@
          <a-asset-item id="labTafel" src="models/tafel/TafelTestV3.gltf" ></a-asset-item>
          <a-asset-item id="safetyBril" src="models/SafetyBril/SafetyGoggleV2.gltf" ></a-asset-item>
          <a-asset-item id="brander" src="models/Brander/branderV2.gltf" ></a-asset-item>
+          <a-asset-item id="prullenbak" src="models/AfvalBak/prullenbak.gltf" ></a-asset-item>
       </a-assets>
 
+      <a-entity position="2.422 1.106 -2.530" scale=".4 .4 .5" gltf-part="src: #prullenbak; part: Cube" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
+      <a-entity position="2.775 1.106 -2.342" scale=".4 .4 .5" gltf-part="src: #prullenbak; part: Cube" material="color:grey;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
 
       <a-entity position="2.439 1.209 -2.127" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity>
 
