@@ -51,6 +51,8 @@
 
     <a-scene physics="gravity: -8.8;debug:true;" shadow="type: pcfsoft;">
       <a-assets>
+        <a-asset-item id="erlenmeyer-statief" src="models/Erlenmeyer+Statief/Erlenmeyer_Statief_Labeled.gltf"></a-asset-item>
+        <a-asset-item id="test-tube" src="models/TestTube/TestTube.gltf"></a-asset-item>
 
         <a-mixin id="transformer" class="pcikup" color-randomizer droppable static-body
                  event-set__dragon="_event: dragover-start; material.wireframe: true"
@@ -112,8 +114,11 @@
          <a-asset-item id="labTafel" src="models/tafel/TafelTestV3.gltf" ></a-asset-item>
          <a-asset-item id="safetyBril" src="models/SafetyBril/SafetyGoggleV2.gltf" ></a-asset-item>
          <a-asset-item id="brander" src="models/Brander/branderV2.gltf" ></a-asset-item>
+          <a-asset-item id="prullenbak" src="models/AfvalBak/prullenbak.gltf" ></a-asset-item>
       </a-assets>
 
+      <a-entity position="2.422 1.106 -2.530" scale=".4 .4 .5" gltf-part="src: #prullenbak; part: Cube" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
+      <a-entity position="2.775 1.106 -2.342" scale=".4 .4 .5" gltf-part="src: #prullenbak; part: Cube" material="color:grey;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
 
       <a-entity position="2.439 1.209 -2.127" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity>
 
@@ -196,12 +201,16 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
     <a-text position="-0.846 0.5 0" color="white" value="blauwe vlam (blauw en luid)"></a-text>
 </a-box>
 
-
+<a-entity scale=".5 .5 .5" rotation="0 200 0" position="2.672 1.378 3.618">
+  <a-plane position="0 0 -.001" color="darkslategray"></a-plane>
+  <a-text id="js--element-number" position="-.46 .29 0" width="4" color="black" value="hahaahha"></a-text>
+  <a-text id="js--element-symbol" position="-.46 .04 0" color="black" value="hahaahha"></a-text>
+  <a-text id="js--element-name" position="-.43 -.19 0" width="2.4" color="black" value="hahaahha"></a-text>
+  <a-text id="js--element-mass" position="-.43 -.33 0" width="2.4" color="black" value="hahaahha"></a-text>
+</a-entity>
 
 
  <a-sky src="#sky" rotation="0 -75 0"></a-sky>
-
-          <a-plane id="js--animation-pane" color="crimson" width=".3" height=".3" position="0 .15 -3" animation="property: components.material.material.color; type: color; from: crimson; to: yellow; dur: 1000; loop: true; dir: alternate; easing: easeInOutCirc"></a-plane>
 
 
 
@@ -354,6 +363,7 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
 
       <!-- END Controller Tutorial in gang -->
 
+<<<<<<< HEAD
       <!-- droppable box -->
       <a-box
         static-body
@@ -388,6 +398,9 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
       </a-box>
 
       <a-entity class="pcikup js--grabbable" id="js--pipet-container" data-color="red" material="visible: false"  geometry="primitive: box; width: 0.08; height: 0.450; depth: 0.06"   position="3.235 0.964 -5.511"  modify-materials grabbable draggable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green"     event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+=======
+      <a-entity class="pcikup js--grabbable" id="js--pipet-container" material="visible: false"  geometry="primitive: box; width: 0.08; height: 0.450; depth: 0.06" position="3.569 1.092 .55"  modify-materials grabbable draggable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green"     event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+>>>>>>> 7be1031e600110021dbbbf8c73fede7250e22d7d
           event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
           event-set__dragon="_event: dragover-start; wireframe: true"
           event-set__dragoff="_event: dragover-end; wireframe: false">
@@ -395,11 +408,24 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
          <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".001" position="0 0 0"></a-plane>
       </a-entity>
 
-      <a-cylinder id="js--test-cylinder-succ" color="crimson" scale=".02 1 .02" position="3.936 1.424 -5.260"></a-cylinder>
+      <a-entity id="pipet-stuff" position="2.157 1.5 1.077">
 
-      <a-cylinder id="js--test-cylinder-fill" color="orange" scale=".02 .001 .02" position="3.235 0.964 -5.011"></a-cylinder>
+        <!-- <a-cylinder id="js--test-cylinder-succ" color="crimson" scale=".02 .25 .02" ></a-cylinder> -->
+        <a-entity  position="0 -0.333 -0.771">
+          <a-entity gltf-part="src: #test-tube; part: Cylinder" material="color:white;opacity:0.5;blending:additive" ></a-entity>
+          <a-cylinder id="js--test-cylinder-succ" radius=".01" height=".2" color="crimson"></a-cylinder>
+        </a-entity>
 
-      <a-box id="js--pipet-colision-box" geometry="primitive: box; opacity: 0.5; height: 0.8; depth: 0.2;width:0.2" position="3.235 0.964 -5.011" color="green" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts="" static-body></a-box>
+        <!-- <a-cylinder   ></a-cylinder> -->
+
+        <a-entity  position="0.55 -0.333 -0.771">
+          <a-entity gltf-part="src: #test-tube; part: Cylinder" material="color:white;opacity:0.5;blending:additive" ></a-entity>
+          <a-cylinder id="js--test-cylinder-fill" radius=".01" height=".001" positino ="0 -0.110 0" color="orange"></a-cylinder>
+        </a-entity>
+
+        <a-box id="js--pipet-colision-box" visible="false" geometry="primitive: box; opacity: 0.5; height: 0.47; depth: 0.2;width:0.2" position="0.55 -0.333 -0.771" color="green" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts="" static-body></a-box>
+        <a-box id="js--pipet-colision-box" visible="false" geometry="primitive: box; opacity: 0.5; height: 0.47; depth: 0.2;width:0.2" position="0 -0.333 -0.771" color="green" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts="" static-body></a-box>
+      </a-entity>
 
       <!-- <a-entity id="flasstest"obj-model="obj: #Erlenmeyer-obj; mtl: #Erlenmeyer-mtl" position="2.440 1.405 -2.305" scale="0.08 0.08 0.08" geometry="primitive: box; width: 2; height:4; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body material="color:white;blending:additive;"></a-entity> -->
 

@@ -18,6 +18,30 @@
 //       }
 //     })
 
+//==================== CHEMISTRY API STUFF
+const BASE_URL = "https://neelpatel05.pythonanywhere.com"
+const ELEMENT_NUMBER = document.getElementById('js--element-number')
+const ELEMENT_SYMBOL = document.getElementById('js--element-symbol')
+const ELEMENT_NAME = document.getElementById('js--element-name')
+const ELEMENT_MASS = document.getElementById('js--element-mass')
+
+fetchApiData = () => {
+  let randomElement = Math.floor(Math.random()* 118 + 1);
+  fetch( BASE_URL )
+  .then( (data) => {
+    return data.json();
+  })
+  .then( (response) => {
+    // AFRAME.log(response[randomElement]);
+    ELEMENT_NUMBER.setAttribute("value", response[randomElement].atomicNumber)
+    ELEMENT_SYMBOL.setAttribute("value", response[randomElement].symbol)
+    ELEMENT_NAME.setAttribute("value", response[randomElement].name)
+    ELEMENT_MASS.setAttribute("value", response[randomElement].atomicMass)
+  });
+}
+
+fetchApiData();
+
 //==================== PIPET STUFF
 const PIPET_FEEDBAR = document.getElementById('js--pipet-feedbar');
 const PIPET_CONTAINER = document.getElementById('js--pipet-container');
@@ -75,7 +99,7 @@ var fireElemnt =   document.getElementById("fire");
   document.getElementById("pauzevlam").addEventListener('click', function(evnt){
       fireElemnt.setAttribute("sprite-particles",{enable:true});
       fireElemnt.pause();
-        fireElemnt.setAttribute("sprite-particles",{color:"mediumblue, midnightblue, midnightblue,yellow"});
+        fireElemnt.setAttribute("sprite-particles",{color:"black,black,white,white,white"});
         fireElemnt.setAttribute("sprite-particles",{scale:"0..1,1..3"});
         fireElemnt.setAttribute("sprite-particles",{textureCount:0});
       fireElemnt.play();
@@ -246,8 +270,8 @@ fillPipetStart = (substance) => {
       // modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight;
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
-      substance.setAttribute("scale", ".02 " + (1-(modifiedDeltaPipetFeedbackTimer)) + " .02");
-      substance.setAttribute("position", "0 " + (.5-(modifiedDeltaPipetFeedbackTimer/2)) + " -2");
+      substance.setAttribute("height", (1-(modifiedDeltaPipetFeedbackTimer)));
+      substance.setAttribute("position", "0 " + (modifiedDeltaPipetFeedbackTimer/2) + " 0");
     }, INTERVAL_FREQ);
   }
 }
@@ -287,8 +311,8 @@ emptyPipetStart = (substance) => {
 
       fillCylinderRatio = fillCylinderRatio + .02
 
-      substance.setAttribute("scale", ".02 " + (.001+ (fillCylinderRatio)) + " .02");
-      substance.setAttribute("position", "-.5 " + (fillCylinderRatio/2) + " -2");
+      substance.setAttribute("height", (.001+ (fillCylinderRatio)));
+      substance.setAttribute("position", "0 " + ((fillCylinderRatio/2)-0.110) + " 0");
 
     }, INTERVAL_FREQ);
   }
