@@ -99,7 +99,7 @@ var fireElemnt =   document.getElementById("fire");
   document.getElementById("pauzevlam").addEventListener('click', function(evnt){
       fireElemnt.setAttribute("sprite-particles",{enable:true});
       fireElemnt.pause();
-        fireElemnt.setAttribute("sprite-particles",{color:"mediumblue, midnightblue, midnightblue,yellow"});
+        fireElemnt.setAttribute("sprite-particles",{color:"black,black,white,white,white"});
         fireElemnt.setAttribute("sprite-particles",{scale:"0..1,1..3"});
         fireElemnt.setAttribute("sprite-particles",{textureCount:0});
       fireElemnt.play();
