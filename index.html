@@ -15,8 +15,8 @@
     <script src="https://unpkg.com/aframe-state-component@6.7.0/dist/aframe-state-component.min.js"></script>
     <script src="https://unpkg.com/aframe-log-component/dist/aframe-log-component.min.js"></script>
     <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script>
-     <script src="https://unpkg.com/aframe-gltf-part-component/dist/aframe-gltf-part-component.min.js"></script>
-      <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script>
+    <script src="https://unpkg.com/aframe-gltf-part-component/dist/aframe-gltf-part-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script>
 
   </head>
   <body>
@@ -26,12 +26,24 @@
       AFRAME.registerComponent('droptest', {
         play: function () {
           this.el.addEventListener('drag-drop', function (evt) {
-            alert("hello mr.box");
-            evt.detail.dropped.setAttribute('material', 'color',
-              '#'+(Math.random()*0xFFFFFF<<0).toString(16));
+            if(this.id == "afval_1" && evt.detail.dropped.dataset.color == "red"){
+              AFRAME.log("Goed gedropped ouwe");
+            }else{
+              AFRAME.log("hahahahha u pleb das fout (Rood) " + evt.detail.dropped.dataset.color);
+            }
+
+            if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
+              AFRAME.log("Goed gedropped ouwe");
+            }else{
+              AFRAME.log("hahahahha u pleb das fout (Groen) " + evt.detail.dropped.dataset.color);
+            }
+
+            // evt.detail.dropped.setAttribute('material', 'color',
+            //   '#'+(Math.random()*0xFFFFFF<<0).toString(16));
           });
         }
       });
+
     </script>
   </head>
   <body>
@@ -46,14 +58,13 @@
                  collision-filter="collisionForces: false"
                  geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.5"></a-mixin>
 
-
                  <a-mixin id="cube" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33"
                           hoverable grabbable draggable
                           event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
                           event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
                           dynamic-body shadow></a-mixin>
 
-        <a-mixin id="point" raycaster="showLine: true; objects: .pcikup;far:0.5;"
+        <a-mixin id="point" raycaster="showLine: true; objects: .pcikup, .clickable;far:0.5;"
                  collision-filter="collisionForces: false"
                  static-body="shape: sphere; sphereRadius: 0.001"
                  super-hands="colliderEvent: raycaster-intersection;
@@ -63,8 +74,8 @@
                               grabStartButtons: gripdown, pointdown, triggerdown;
                               grabEndButtons: gripup, pointup, triggerup;"
                   haptics="events: triggerdown; dur: 200; force: 0.5"
-                  progressive-controls="objects: #js--pipet-container, js--pipet-colision-box;"
-                ></a-mixin>
+                  progressive-controls="objects: #js--pipet-container, js--pipet-colision-box;">
+        </a-mixin>
         <a-asset-item id="touch-body-l-obj-body" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_body.obj"></a-asset-item>
         <a-asset-item id="touch-body-l-obj-b-enter" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_button_enter.obj"></a-asset-item>
         <a-asset-item id="touch-body-l-obj-b-x" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_button_x.obj"></a-asset-item>
@@ -197,7 +208,7 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
 
 
   <a-entity class="cube pcikup" mixin="cube" position="0 0.265 0" material="color: red"></a-entity>
-<a-entity id="cameraRig" class="camera-parent teleport-object" position="0 1.6 0"  movement-controls>
+<a-entity id="cameraRig" class="camera-parent teleport-object" position="0 0 0"  movement-controls>
 
   <a-entity id="head" camera  look-controls="pointerLockEnabled: true">
 
@@ -206,7 +217,6 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
               animation__click="property:scale; easing:easeInCubic; dur:250; to:1 1 1;  startEvents: click"
               raycaster="objects: .clickable"
      id="js--cursor"  cursor="fuse:true; FuseTimeout:0" material="color:red; shader:flat;" geometry="primitive: ring; radiusInner:0.01; radiusOuter:0.015" position="0 0 -.5"></a-entity>
-
 
   </a-entity>
 
@@ -236,7 +246,7 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
 
   </a-plane>
   <!-- <a-entity class="cube pcikup" mixin="cube" position="0 0.265 0" material="color: red"></a-entity> -->
-  <a-box
+  <!-- <a-box
     dynamic-body
     hoverable
     grabbable
@@ -254,39 +264,18 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
     height="1"
     depth="1"
 
-      collision-filter="group: green; collidesWith: default, green">
-  </a-box>
-  <!-- droppable box -->
-  <a-box
-    static-body
-    collision-filter="collisionForces: false"
-    droppable
-    droptest
-    id="tape_player"
-    color="red"
-    width="2"
-    height="2"
-    depth="2"
-    opacity="0.5"
-    position="-2 2 -3"
-    class="pcikup"
     collision-filter="group: green; collidesWith: default, green">
-  </a-box>
-
+  </a-box> -->
 
   <a-entity layout="type: line; margin: 1.2" console-pane position="3.3 2.23 0.8">
     <a-entity log="max: 15;" geometry="primitive: plane; height: 1.5" material="color: #002B36" text="color: #6E878F" look-at="#head"></a-entity>
   </a-entity>
-
-
 
       <a-plane width="3" height="1.140" position="2.691 2.709 6.241" rotation="0 180 0">
         <a-text value="Nog te doen:" position="-0.622 0.423 0" color="black"></a-text>
         <a-text value="Pipet vastpakken" position="-0.895 0.128" color="black"> </a-text>
         <a-text value="Pipet indrukken en legen" position="-1.227 -0.145 0" color="black"></a-text>
       </a-plane>
-
-
 
       <a-entity visible="false" id="normalMesh" class="second-navmesh" gltf-model="scene/navmesh(1).gltf"   position="0 4.124  0" nav-mesh></a-entity>
       <!-- <a-entity id="first-navmesh" gltf-model="scene/navmesh-kamer.gltf"   position="0 -0.179 0" nav-mesh></a-entity> -->
@@ -365,7 +354,40 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
 
       <!-- END Controller Tutorial in gang -->
 
-      <a-entity class="pcikup js--grabbable" id="js--pipet-container" material="visible: false"  geometry="primitive: box; width: 0.08; height: 0.450; depth: 0.06"   position="3.235 0.964 -5.511"  modify-materials grabbable draggable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green"     event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+      <!-- droppable box -->
+      <a-box
+        static-body
+        collision-filter="collisionForces: false"
+        droppable
+        droptest
+        id="afval_1"
+        color="red"
+        width=".5"
+        height=".5"
+        depth=".5"
+        opacity="0.5"
+        position="1.792 .5 -1.107"
+        class="pcikup"
+        collision-filter="group: green; collidesWith: default, green">
+      </a-box>
+
+      <a-box
+        static-body
+        collision-filter="collisionForces: false"
+        droppable
+        droptest
+        id="afval_2"
+        color="green"
+        width=".5"
+        height=".5"
+        depth=".5"
+        opacity="0.5"
+        position="1.889 .275 -3.667"
+        class="pcikup"
+        collision-filter="group: green; collidesWith: default, green">
+      </a-box>
+
+      <a-entity class="pcikup js--grabbable" id="js--pipet-container" data-color="red" material="visible: false"  geometry="primitive: box; width: 0.08; height: 0.450; depth: 0.06"   position="3.235 0.964 -5.511"  modify-materials grabbable draggable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green"     event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
           event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
           event-set__dragon="_event: dragover-start; wireframe: true"
           event-set__dragoff="_event: dragover-end; wireframe: false">
@@ -379,10 +401,7 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
 
       <a-box id="js--pipet-colision-box" geometry="primitive: box; opacity: 0.5; height: 0.8; depth: 0.2;width:0.2" position="3.235 0.964 -5.011" color="green" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts="" static-body></a-box>
 
-
       <!-- <a-entity id="flasstest"obj-model="obj: #Erlenmeyer-obj; mtl: #Erlenmeyer-mtl" position="2.440 1.405 -2.305" scale="0.08 0.08 0.08" geometry="primitive: box; width: 2; height:4; depth:2" color="white"   position="2.440 1.405 -2.305" rotation="0 0 0" collision-filter="group: green; collidesWith: default, green"  modify-materials grabbable hoverable dynamic-body material="color:white;blending:additive;"></a-entity> -->
-
-
 
   <a-entity class="pcikup"  position="0 0.265 0" material="color: red"></a-entity>
 
@@ -445,10 +464,7 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
      <!-- floor -->
      <a-plane shadow width="21.780" id="floor"height="14.580" class="floorRight"  visible="true" id="tsst"  position="1.259 0.025 -0.591" color="red" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body material="repeat:2 2;normalTextureRepeat:2 2;src: textures/ConcretePolished001_COL_HIRES.jpg; color: #8d893f;ambientOcclusionMap:textures/ConcretePolished001_AO_HIRES.jpg;normalMap:textures/ConcretePolished001_NRM_HIRES.jpg;roughness:0.380" ></a-plane>
 
-
      <a-plane width="12" height="21" class=" " visible="true"  id="roof" geometry="primitive: plane; width: 21; height: 20" position="-1.814 3.397 -1.136" color="white" rotation="90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
-
-
 
      <!-- Long wall with door -->
      <a-plane width="4" height="10.5" class=" " visible="false"  position="2.760 1.932 8.164" color="red" rotation="0 -180 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
@@ -479,8 +495,6 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
       <a-entity light="type:  point;  color:  #f4f4f4;  intensity:  0.6;  castShadow:  true;  shadowCameraFov:80" position="11.544 3.298 0.180"></a-entity>
       <a-entity id="light" light="type: spot; color: #ffff97; intensity: 0.260; distance: 0;angle:27;"  position="-3.396 4.223 -8.519" rotation="-57.670 -3.290 0"></a-entity>
     </a-scene>
-
-
 
     <script src="main.js"></script>
     <!-- <script src="pipet_oculus.js"></script> -->
