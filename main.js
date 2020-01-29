@@ -217,6 +217,34 @@ switch(counterFlameNumberCount) {
   });
 
 
+//================================== B R A N D E R  A F S T E L L E N
+let tempCondities = true;
+let startTimer;
+let deltaFlame = 0;
+let temperatureStepper;
+
+//start 1 keer
+riseTemperatureStart = () => {
+  //eventuele condities idk copy paste
+  if (tempCondities) {
+    //beginpunt timer
+    startTimer = new Date();
+
+    //check tijd elke x miliseconde met interval
+    temperatureStepper = setInterval(f => {
+      let endTimer = new Date();
+      //bereken einde en pas aan naar normaal getal; ~330 na 1 seconde
+      deltaFlame = (endTimer - startTimer)/6;
+
+    }, INTERVAL_FREQ);
+  }
+}
+
+// verwijder interval
+riseTemperatureEnd = () => {
+  clearInterval(temperatureStepper);
+}
+
 
 
 //===================== ROEL'S COAT N GOGGGGGLES
