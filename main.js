@@ -73,6 +73,19 @@ document.getElementById('righthand').addEventListener('thumbleftstart', function
   document.getElementById('cameraRig').setAttribute('rotation', {x: head.getAttribute("rotation").x,  y: (head.getAttribute("rotation").y + 45), z: head.getAttribute("rotation").z });
 });
 
+var isactive = false;
+document.getElementById('lefthand').addEventListener('ybuttonup', function(event) {
+  if(isactive == false){
+    document.getElementById("objectives").setAttribute("visible",true);
+    isactive = true;
+  }else{
+    document.getElementById("objectives").setAttribute("visible",false);
+    isactive = false;
+  }
+
+
+});
+
 // document.getElementById('righthand').addEventListener('thumbupstart', function(event) {
 //   // AFRAME.log("Right thumbstick");
 //   let head = document.getElementById('cameraRig');
@@ -107,33 +120,96 @@ AFRAME.log("random pipeteer threshhold: " + randomThreshhold)
 //================================ F I R E
 var fireElemnt =   document.getElementById("fire");
 
-  document.getElementById("ruizendevlam").addEventListener('click', function(evnt){
-    fireElemnt.setAttribute("sprite-particles",{enable:true}); //kan je het gelehe element mee aan en uit zetten
-      fireElemnt.pause(); //Nodig om het element te kunnen veranderen.
-        fireElemnt.setAttribute("sprite-particles",{color:"darkblue,black,black"});//Set de kleurvan de vlam
-        fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"}); //scale van de vlam (0..1) = onderkantlamdikte en (2..2) = bovenkantvlamdikte
-        fireElemnt.setAttribute("sprite-particles",{textureCount:3});//wat dikte
-      fireElemnt.play();//Nodig om het element te kunnen starten.
-  });
+  // document.getElementById("ruizendevlam").addEventListener('click', function(evnt){
+  //   fireElemnt.setAttribute("sprite-particles",{enable:true}); //kan je het gelehe element mee aan en uit zetten
+  //     fireElemnt.pause(); //Nodig om het element te kunnen veranderen.
+  //       fireElemnt.setAttribute("sprite-particles",{color:"darkblue,black,black"});//Set de kleurvan de vlam
+  //       fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"}); //scale van de vlam (0..1) = onderkantlamdikte en (2..2) = bovenkantvlamdikte
+  //       fireElemnt.setAttribute("sprite-particles",{textureCount:3});//wat dikte
+  //     fireElemnt.play();//Nodig om het element te kunnen starten.
+  // });
+  //
+  // document.getElementById("pauzevlam").addEventListener('click', function(evnt){
+  //     fireElemnt.setAttribute("sprite-particles",{enable:true});
+  //     fireElemnt.pause();
+  //       fireElemnt.setAttribute("sprite-particles",{color:"black,black,white,white,white"});
+  //       fireElemnt.setAttribute("sprite-particles",{scale:"0..1,1..3"});
+  //       fireElemnt.setAttribute("sprite-particles",{textureCount:0});
+  //     fireElemnt.play();
+  // });
+  //
+  //
+  // document.getElementById("blauwevlam").addEventListener('click', function(evnt){
+  //   fireElemnt.setAttribute("sprite-particles",{enable:true});
+  //   fireElemnt.pause();
+  //   fireElemnt.setAttribute("sprite-particles",{color:"mediumblue,mediumblue,mediumblue,black"});
+  //   fireElemnt.setAttribute("sprite-particles",{textureCount:0});
+  //   fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"});
+  //     fireElemnt.play();
+  //
+  //
+  // });
 
-  document.getElementById("pauzevlam").addEventListener('click', function(evnt){
-      fireElemnt.setAttribute("sprite-particles",{enable:true});
-      fireElemnt.pause();
-        fireElemnt.setAttribute("sprite-particles",{color:"black,black,white,white,white"});
-        fireElemnt.setAttribute("sprite-particles",{scale:"0..1,1..3"});
-        fireElemnt.setAttribute("sprite-particles",{textureCount:0});
-      fireElemnt.play();
-  });
+
+document.getElementById("nextButtonFlame").addEventListener('click', function(evnt){
+  fireElementSetWay("next");
+});
+
+document.getElementById("previousButtonFlame").addEventListener('click', function(evnt){
+  fireElementSetWay("previous");
+});
+
+var counterFlameNumber = 0;
+
+function fireElementSetWay(way){
+    if(way === "next"){
+      if(counterFlameNumber > 3){
+        counterFlameNumber= 0;
+      }
+      counterFlameNumber++;
+      setFlameNumber(counterFlameNumber);
+    }
+    else{
+      if(counterFlameNumber < 0){
+        counterFlameNumber= 3;
+      }
+      counterFlameNumber--;
+      setFlameNumber(counterFlameNumber);
+    }
 
 
-  document.getElementById("blauwevlam").addEventListener('click', function(evnt){
-    fireElemnt.setAttribute("sprite-particles",{enable:true});
-      fireElemnt.pause();
-        fireElemnt.setAttribute("sprite-particles",{color:"mediumblue,mediumblue,mediumblue,black"});
-        fireElemnt.setAttribute("sprite-particles",{textureCount:0});
-        fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"});
-      fireElemnt.play();
-  });
+}
+
+function setFlameNumber(counterFlameNumberCount){
+  fireElemnt.pause();
+  fireElemnt.setAttribute("sprite-particles",{enable:true});
+switch(counterFlameNumberCount) {
+    case 1:
+    //pauze
+    fireElemnt.setAttribute("sprite-particles",{color:"black,black,white,white,white"});
+    fireElemnt.setAttribute("sprite-particles",{scale:"0..1,1..3"});
+    fireElemnt.setAttribute("sprite-particles",{textureCount:0});
+      break;
+    case 2:
+    //blauw
+      fireElemnt.setAttribute("sprite-particles",{color:"mediumblue,mediumblue,mediumblue,black"});
+      fireElemnt.setAttribute("sprite-particles",{textureCount:0});
+      fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"});
+    break;
+    case 3:
+    //ruis
+      fireElemnt.setAttribute("sprite-particles",{color:"darkblue,black,black"});//Set de kleurvan de vlam
+      fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"}); //scale van de vlam (0..1) = onderkantlamdikte en (2..2) = bovenkantvlamdikte
+      fireElemnt.setAttribute("sprite-particles",{textureCount:3});//wat dikte
+    break;
+    default:
+      // code block
+  }
+  fireElemnt.play();
+
+
+}
+
 
 
   document.getElementById("uitzettenVlam").addEventListener('click', function(evnt){
