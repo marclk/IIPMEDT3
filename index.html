@@ -215,13 +215,13 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
   </a-entity>
 
   <a-entity
-  teleport-controls="cameraRig: #cameraRig; button: trigger; teleportOrigin: #head;collisionEntities: .second-navmesh;"
+  teleport-controls="cameraRig: #cameraRig;  startEvents:  thumbupstart; endEvents: thumbupend; teleportOrigin: #head;collisionEntities: .second-navmesh;"
   mixin="point" id="lefthand"
   oculus-touch-controls="hand: left" thumb-controls="hand: left">
   </a-entity>
 
   <a-entity id="righthand"
-  teleport-controls="cameraRig: #cameraRig; button: trigger; teleportOrigin: #head;collisionEntities: .second-navmesh;"
+  teleport-controls="cameraRig: #cameraRig;  startEvents:  thumbupstart; endEvents: thumbupend; teleportOrigin: #head;collisionEntities: .second-navmesh;"
   oculus-touch-controls="hand: right" thumb-controls="hand: right" mixin="point">
   </a-entity>
   </a-entity>
