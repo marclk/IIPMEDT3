@@ -258,7 +258,7 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
   </a-entity>
 
   <a-entity
-  teleport-controls="cameraRig: #cameraRig; button: trigger; teleportOrigin: #head;collisionEntities: .second-navmesh;"
+  teleport-controls="cameraRig: #cameraRig; startEvents: thumbupstart;endEvents:thumbupstop ;teleportOrigin: #head;collisionEntities: .second-navmesh;"
   mixin="point" id="lefthand"
   oculus-touch-controls="hand: left" thumb-controls="hand: left">
   </a-entity>
