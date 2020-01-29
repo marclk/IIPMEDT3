@@ -103,7 +103,7 @@ let initialFeedbackBarHeight = 0;
 let activeFeedbackBarHeight = 0;
 let modifiedDeltaPipetFeedbackTimer;
 let fillCylinderRatio = 0;
-let succRatio = 0;
+let succCylinderRatio = 0;
 
 let aButtonHeld = false;
 let bButtonHeld = false;
@@ -222,6 +222,7 @@ for (let i = 0; i < GRABBABLES.length; i++) {
     switch (ID) {
       case "js--pipet-container":
         document.getElementById('js--pipet-colision-box-succ').addEventListener('hover-start', function (evt) {
+          AFRAME.log("hovered over the succ test tube")
           document.getElementById('cameraRig').addEventListener('abuttondown', function (e) {
             fillPipetStart(TEST_CYLINDER_SUCC);
             aButtonHeld = true;
@@ -230,8 +231,9 @@ for (let i = 0; i < GRABBABLES.length; i++) {
             aButtonHeld = false;
             fillPipetEnd();
           })
-        }
+        })
         document.getElementById('js--pipet-colision-box-fill').addEventListener('hover-start', function (evt) {
+          AFRAME.log("hovered over the fill test tube")
           document.getElementById('cameraRig').addEventListener('bbuttondown', function (e) {
             emptyPipetStart(TEST_CYLINDER_FILL);
             bButtonHeld = true;
@@ -241,7 +243,7 @@ for (let i = 0; i < GRABBABLES.length; i++) {
             bButtonHeld = false;
             emptyPipetEnd();
           })
-        }
+        })
         break;
 
       case "js--labcoat" || "js--bril":
@@ -312,10 +314,13 @@ fillPipetStart = (substance) => {
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
 
-      succRatio = succRatio + .005
+      if (true) {
+
+      }
+      succCylinderRatio = succCylinderRatio + .005
       // AFRAME.log(substance.getAttribute("height"))
-      substance.setAttribute("height", (.25-succRatio));
-      substance.setAttribute("position", "0 " + -(succRatio/2)+0.110 + " 0");
+      substance.setAttribute("height", (.25-succCylinderRatio));
+      substance.setAttribute("position", "0 " + -(succCylinderRatio/2)+0.110 + " 0");
     }, INTERVAL_FREQ);
   }
 }
@@ -353,6 +358,9 @@ emptyPipetStart = (substance) => {
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
 
+      if (true) {
+
+      }
       fillCylinderRatio = fillCylinderRatio + .005
 
       substance.setAttribute("height", (.001+ fillCylinderRatio));
