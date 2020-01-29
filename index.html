@@ -19,50 +19,6 @@
     <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
   </head>
   <body>
-
-    <audio src="trash.mp3" id="js--trash-audio"></audio>
-    <audio src="wrong.mp3" id="js--wrong-audio"></audio>
-
-    <script>
-
-      trashAudioT1 = document.getElementById("js--trashAudio-t1");
-      trashAudioT2 = document.getElementById("js--trashAudio-t2");
-
-      wrongAudioT1 = document.getElementById("js--wrongAudio-t1");
-      wrongAudioT2 = document.getElementById("js--wrongAudio-t2");
-
-      //drop test
-      AFRAME.registerComponent('droptest', {
-        play: function () {
-          this.el.addEventListener('drag-drop', function (evt) {
-            trashAudioT1.components.sound.stopSound();
-            trashAudioT2.components.sound.stopSound();
-
-            wrongAudioT1.components.sound.stopSound();
-            wrongAudioT2.components.sound.stopSound();
-            if(this.id == "afval_1" && evt.detail.dropped.dataset.color == "red"){
-              AFRAME.log("Goed gedropped ouwe");
-              trashAudioT1.components.sound.playSound();
-              evt.detail.dropped.remove();
-            }else if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
-              trashAudioT2.components.sound.playSound();
-              AFRAME.log("Goed gedropped ouwe");
-              evt.detail.dropped.remove();
-
-            }else{
-              AFRAME.log("hahahahha u pleb das fout " + evt.detail.dropped.dataset.color);
-              wrongAudioT1.components.sound.playSound();
-              wrongAudioT2.components.sound.playSound();
-            }
-          });
-        }
-      });
-
-    </script>
-  </head>
-  <body>
-
-
     <a-scene physics="gravity: -8.8;debug:true;" shadow="type: pcfsoft;">
       <a-assets>
         <a-asset-item id="erlenmeyer-statief" src="models/Erlenmeyer+Statief/Erlenmeyer_Statief_Labeled.gltf"></a-asset-item>
@@ -142,54 +98,57 @@
       <a-entity id="js--trashAudio-t2" sound="src: url(trash.mp3);" position="2.775 1.106 -2.342" ></a-entity>
 
       <!-- END Audio Files -->
-      <a-entity position="3.472 1.083 -2.056" scale="0.05 0.05 0.05" class="pcikup" data-color="green" gltf-part="src: #propje; part: Sphere" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body>
+      <a-entity grabbable draggable droppable position="3.472 1.083 -2.056" scale="0.05 0.05 0.05" class="pcikup" data-color="green" gltf-part="src: #propje; part: Sphere" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body>
         <a-entity material="color: #00FF00; opacity: 0.3;" position="0 0 0" scale="1.2 1.2 1.2" gltf-part="src: #propje; part: Sphere"  modify-material></a-entity>
       </a-entity>
-      <a-entity position="2.942 1.420 -1.960" class="pcikup" rotation="0 90 0" data-color="red" class="pcikup" scale=".3 .3 .3" gltf-part="src: #brokenErlenmeyer; part: Glass" material="color:white;"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body>
+      <a-entity grabbable draggable droppable position="2.942 1.420 -1.960" class="pcikup" rotation="0 90 0" data-color="red" class="pcikup" scale=".3 .3 .3" gltf-part="src: #brokenErlenmeyer; part: Glass" material="color:white;"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body>
         <a-entity material="color: #FF0000; opacity: 0.3;" position="0 0 0" scale="1.3 1 1.3" gltf-part="src: #brokenErlenmeyer; part: Glass"  modify-material></a-entity>
+      </a-entity> 
+
+      <!-- <a-entity position="2.234 1.106 -2.376" scale=".4 .4 .5" gltf-part="src: #prullenbak; part: Cube" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" static-body> -->
       </a-entity>
 
-      <a-entity position="2.234 1.106 -2.376" scale=".4 .4 .5" gltf-part="src: #prullenbak; part: Cube" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" static-body>
-        <a-box
-          collision-filter="collisionForces: false"
-          droppable
-          droptest
-          id="afval_2"
-          color="green"
-          width=".5"
-          height=".5"
-          depth=".5"
-          opacity="0.5"
-          position="0 0 0"
-          scale="2 3 2"
-          class="pcikup"
-          collision-filter="group: green; collidesWith: default, green"
-          >
-        </a-box>
+      <a-box
+        static-body
+        collision-filter="collisionForces: false"
+        droppable
+        droptest
+        id="afval_2"
+        color="green"
+        width=".5"
+        height=".5"
+        depth=".5"
+        opacity="0.5"
+        position="2.234 1.106 -2.376"
+        scale=".75 1 .75"
+        class="pcikup"
+        >
+      </a-box>
+
+      <!-- <a-entity position="2.795 1.106 -2.376" scale=".4 .4 .5" gltf-part="src: #prullenbak; part: Cube" material="color:grey;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" static-body> -->
       </a-entity>
 
-      <a-entity position="2.795 1.106 -2.376" scale=".4 .4 .5" gltf-part="src: #prullenbak; part: Cube" material="color:grey;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" static-body>
-        <a-box
-          static-body
-          collision-filter="collisionForces: false"
-          droppable
-          droptest
-          id="afval_1"
-          color="red"
-          width=".5"
-          height=".5"
-          depth=".5"
-          opacity="0.5"
-          position="0 0 0"
-          scale="2 3 2"
-          class="pcikup"
-          collision-filter="group: green; collidesWith: default, green">
-        </a-box>
-      </a-entity>
-
+<<<<<<< HEAD
       <a-plane width="1.160" height="0.420" position="-0.197 2.668 -7.518" rotation="0 -90 0" id="objectives">
         <a-text value="Let op je veiligheid!"   width="0.8" position="-0.440 0.011 0.056" color="black" text="wrapCount: 15" width="0.8" position="-0.440 0.128 0.056" color="black"> </a-text>
       </a-plane>
+=======
+      <a-box
+        static-body
+        collision-filter="collisionForces: false"
+        droppable
+        droptest
+        id="afval_1"
+        color="red"
+        width=".5"
+        height=".5"
+        depth=".5"
+        opacity="0.5"
+        position="2.795 1.106 -2.376"
+        scale=".75 1 .75"
+        class="pcikup">
+      </a-box>
+>>>>>>> c968615d347a4fdb57ee60b0bf72f4992f43a851
 
       <a-entity position="2.439 1.209 -2.127" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity>
 
@@ -391,11 +350,11 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
        <!-- <a-entity sound="src: url(sound/SafetyGoggles.mp3); autoplay: false" id="js--bril" class="pcikup js--grabbable" gltf-model="src: url(models/SafetyBril/SafetyGoggle.gltf)"   rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials grabbable static-body ></a-entity> -->
 
        <a-entity scale="0.1 0.1 0.1" position="-0.187 1.308 -8.421" id="bril" rotation="0 180 0" sound="src: url(sound/SafetyGoggles.mp3); autoplay: false" id="js--bril" class="pcikup js--grabbable">
-         <a-entity gltf-part="src: #safetyBril; part: bril" material="color:grey"  modify-material collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
+         <a-entity gltf-part="src: #safetyBril; part: bril" grabbable material="color:grey"  modify-material collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
          <a-entity gltf-part="src: #safetyBril; part: glas" material="color: white;opacity:0.5;blending:additive;"  modify-material ></a-entity>
        </a-entity>
 
-       <a-entity sound="src: url(sound/JacketPutOn.mp3); autoplay: false" id="js--labcoat" class="pcikup js--grabbable" gltf-model="src: url(models/Labjas/labjasV2.gltf)"    rotation="0 -165.820 0" scale="1.5 1.5 1.5" position="-0.505 1.560 -8.996" modify-materials  static-body ></a-entity>
+       <a-entity sound="src: url(sound/JacketPutOn.mp3); autoplay: false" id="js--labcoat" class="pcikup js--grabbable" gltf-model="src: url(models/Labjas/labjasV2.gltf)" grabbable   rotation="0 -165.820 0" scale="1.5 1.5 1.5" position="-0.505 1.560 -8.996" modify-materials  static-body ></a-entity>
 
 <!-- Controller Tutorial in gang -->
       <a-entity id="js--tutorial" position="-3.514 0.586 -7.917" scale="0.5 0.5 0.5" rotation="0 180 0">
@@ -487,11 +446,14 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
 
         <a-box id="js--pipet-colision-box-fill" class="pcikup" scale=".05 .6 .05"  material="visible: false;" position="0.55 -0.2 -0.771" rotation="0 0 0" collision-filter="collisionForces: false" droppable accepts=""  modify-material static-body
         event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
-        event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"></a-box>
+        event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false">
+        </a-box>
+        <a-box scale="-.49 -.01 -.761" position="-1.04 -0.48 0" color="green"></a-box>
 
         <a-box id="js--pipet-colision-box-succ" class="pcikup" scale=".05 .6 .05"  material="visible: false;" position="0 -0.2 -0.771" rotation="0 0 0" collision-filter="collisionForces: false" droppable accepts="" modify-material static-body
         event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
-        event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"></a-box>
+        event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false">
+        </a-box>
       </a-entity>
 
 
@@ -592,6 +554,8 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
       <a-entity id="light" light="type: spot; color: #ffff97; intensity: 0.260; distance: 0;angle:27;"  position="-3.396 4.223 -8.519" rotation="-57.670 -3.290 0"></a-entity>
     </a-scene>
 
+    </script>
+
     <script src="main.js"></script>
     <!-- <script src="pipet_oculus.js"></script> -->
     <script src="tutorial.js"></script>
@@ -599,7 +563,41 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
 
     <script src="vendor/aframe-extras.min.js"></script>
 
-    <script src="mapping.js"></script>
+    <script>
+
+      trashAudioT1 = document.getElementById("js--trashAudio-t1");
+      trashAudioT2 = document.getElementById("js--trashAudio-t2");
+
+      wrongAudioT1 = document.getElementById("js--wrongAudio-t1");
+      wrongAudioT2 = document.getElementById("js--wrongAudio-t2");
+
+      //drop test
+      AFRAME.registerComponent('droptest', {
+        play: function () {
+          this.el.addEventListener('drag-drop', function (evt) {
+            trashAudioT1.components.sound.stopSound();
+            trashAudioT2.components.sound.stopSound();
+
+            wrongAudioT1.components.sound.stopSound();
+            wrongAudioT2.components.sound.stopSound();
+            if(this.id == "afval_1" && evt.detail.dropped.dataset.color == "red"){
+              AFRAME.log("Goed gedropped ouwe");
+              trashAudioT1.components.sound.playSound();
+              evt.detail.dropped.remove();
+            }else if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
+              trashAudioT2.components.sound.playSound();
+              AFRAME.log("Goed gedropped ouwe");
+              evt.detail.dropped.remove();
+
+            }else{
+              AFRAME.log("hahahahha u pleb das fout " + evt.detail.dropped.dataset.color);
+              wrongAudioT1.components.sound.playSound();
+              wrongAudioT2.components.sound.playSound();
+            }
+          });
+        }
+      });
+
 
 
 
