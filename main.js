@@ -87,9 +87,8 @@ AFRAME.log("random pipeteer threshhold: " + (randomThreshhold + 0.01))
 
 
 //https://github.com/harlyq/aframe-sprite-particles-component#properties
-//Flame
+//================================ F I R E
 var fireElemnt =   document.getElementById("fire");
-//
 
   document.getElementById("ruizendevlam").addEventListener('click', function(evnt){
     fireElemnt.setAttribute("sprite-particles",{enable:true}); //kan je het gelehe element mee aan en uit zetten
@@ -179,6 +178,12 @@ var fireElemnt =   document.getElementById("fire");
 
 
 //===================== PIPET SCRIPT
+// AFRAME.registerComponent('hover-pipet', {
+//   play: function () {
+//
+//   }
+// });
+
 for (let i = 0; i < GRABBABLES.length; i++) {
   GRABBABLES[i].addEventListener('grab-start', function (e) {
     grabbedObject = true;
@@ -187,24 +192,27 @@ for (let i = 0; i < GRABBABLES.length; i++) {
 
     switch (ID) {
       case "js--pipet-container":
-        document.getElementById('cameraRig').addEventListener('abuttondown', function (e) {
-          fillPipetStart(TEST_CYLINDER_SUCC);
-          aButtonHeld = true;
-        })
-        document.getElementById('cameraRig').addEventListener('bbuttondown', function (e) {
-          // alert("b button pressed")
-          emptyPipetStart(TEST_CYLINDER_FILL);
-          bButtonHeld = true;
-        })
-        document.getElementById('cameraRig').addEventListener('abuttonup', function (e) {
-          // alert("abutton released")
-          aButtonHeld = false;
-          fillPipetEnd();
-        })
-        document.getElementById('cameraRig').addEventListener('bbuttonup', function (e) {
-          bButtonHeld = false;
-          emptyPipetEnd();
-        })
+        document.getElementById('js--pipet-colision-box-succ').addEventListener('hover-start', function (evt) {
+          document.getElementById('cameraRig').addEventListener('abuttondown', function (e) {
+            fillPipetStart(TEST_CYLINDER_SUCC);
+            aButtonHeld = true;
+          })
+          document.getElementById('cameraRig').addEventListener('abuttonup', function (e) {
+            aButtonHeld = false;
+            fillPipetEnd();
+          })
+        }
+        document.getElementById('js--pipet-colision-box-fill').addEventListener('hover-start', function (evt) {
+          document.getElementById('cameraRig').addEventListener('bbuttondown', function (e) {
+            emptyPipetStart(TEST_CYLINDER_FILL);
+            bButtonHeld = true;
+          })
+
+          document.getElementById('cameraRig').addEventListener('bbuttonup', function (e) {
+            bButtonHeld = false;
+            emptyPipetEnd();
+          })
+        }
         break;
 
       case "js--labcoat" || "js--bril":
@@ -335,7 +343,7 @@ emptyPipetEnd = () => {
   AFRAME.log(TEST_CYLINDER_FILL.getAttribute("height"))
   let filledJuice = TEST_CYLINDER_FILL.getAttribute("height")
   AFRAME.log("pipet fill threshhold minimum: " + randomThreshhold)
-  if (randomThreshhold > filledJuice > randomThreshhold+0.01) {
+  if (randomThreshhold > filledJuice > randomThreshhold+0.1) {
     AFRAME.log("you filled the test tube correctly, pass!" + randomThreshhold + " - " + filledJuice)
   } else {
     AFRAME.log("sorry but you failed, failure!" + randomThreshhold + " - " + filledJuice)

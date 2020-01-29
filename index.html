@@ -52,8 +52,6 @@
               wrongAudioT1.components.sound.playSound();
               wrongAudioT2.components.sound.playSound();
             }
-            // evt.detail.dropped.setAttribute('material', 'color',
-            //   '#'+(Math.random()*0xFFFFFF<<0).toString(16));
           });
         }
       });
@@ -90,7 +88,7 @@
                               grabStartButtons: gripdown, pointdown, triggerdown;
                               grabEndButtons: gripup, pointup, triggerup;"
                   haptics="events: triggerdown; dur: 200; force: 0.5"
-                  progressive-controls="objects: #js--pipet-container, js--pipet-colision-box;">
+                  progressive-controls="objects: #js--pipet-container, #js--propje, #js--broken-erlenmeyer;">
         </a-mixin>
         <a-asset-item id="touch-body-l-obj-body" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_body.obj"></a-asset-item>
         <a-asset-item id="touch-body-l-obj-b-enter" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_button_enter.obj"></a-asset-item>
@@ -142,8 +140,8 @@
       <a-entity id="js--trashAudio-t2" sound="src: url(trash.mp3);" position="2.775 1.106 -2.342" ></a-entity>
 
       <!-- END Audio Files -->
-      <a-entity position="3.472 1.083 -2.056" scale="0.05 0.05 0.05" gltf-part="src: #propje; part: Sphere" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body></a-entity>
-      <a-entity position="2.942 1.420 -1.960" rotation="0 90 0" scale=".3 .3 .3" gltf-part="src: #brokenErlenmeyer; part: Glass" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body></a-entity>
+      <a-entity id="js--propje" position="3.472 1.083 -2.056" scale="0.05 0.05 0.05" gltf-part="src: #propje; part: Sphere" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body></a-entity>
+      <a-entity id="js--broken-erlenmeyer" position="2.942 1.420 -1.960" rotation="0 90 0" scale=".3 .3 .3" gltf-part="src: #brokenErlenmeyer; part: Glass" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body></a-entity>
 
 
       <a-entity position="2.422 1.106 -2.530" scale=".4 .4 .5" gltf-part="src: #prullenbak; part: Cube" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
@@ -445,8 +443,13 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
           <a-cylinder id="js--test-cylinder-fill" radius=".01" height=".001" position ="0 -0.110 0" color="orange"></a-cylinder>
         </a-entity>
 
-        <a-box id="js--pipet-colision-box" scale=".05 .47 .05"  material="visible: false;" position="0.55 -0.333 -0.771" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts=""  modify-material static-body></a-box>
-        <a-box id="js--pipet-colision-box" scale=".05 .47 .05"  material="visible: false;" position="0 -0.333 -0.771" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts="" modify-material static-body></a-box>
+        <a-box id="js--pipet-colision-box-fill" class="pcikup" scale=".05 .6 .05"  material="visible: false;" position="0.55 -0.2 -0.771" rotation="0 0 0" collision-filter="collisionForces: false" droppable accepts=""  modify-material static-body
+        event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+        event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"></a-box>
+        
+        <a-box id="js--pipet-colision-box-succ" class="pcikup" scale=".05 .6 .05"  material="visible: false;" position="0 -0.2 -0.771" rotation="0 0 0" collision-filter="collisionForces: false" droppable accepts="" modify-material static-body
+        event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+        event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"></a-box>
       </a-entity>
 
 
