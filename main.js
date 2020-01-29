@@ -73,6 +73,19 @@ document.getElementById('righthand').addEventListener('thumbleftstart', function
   document.getElementById('cameraRig').setAttribute('rotation', {x: head.getAttribute("rotation").x,  y: (head.getAttribute("rotation").y + 45), z: head.getAttribute("rotation").z });
 });
 
+var isactive = false;
+document.getElementById('lefthand').addEventListener('ybuttonup', function(event) {
+  if(isactive == false){
+    document.getElementById("objectives").setAttribute("visible",true);
+    isactive = true;
+  }else{
+    document.getElementById("objectives").setAttribute("visible",false);
+    isactive = false;
+  }
+
+
+});
+
 // document.getElementById('righthand').addEventListener('thumbupstart', function(event) {
 //   // AFRAME.log("Right thumbstick");
 //   let head = document.getElementById('cameraRig');
@@ -90,7 +103,7 @@ let initialFeedbackBarHeight = 0;
 let activeFeedbackBarHeight = 0;
 let modifiedDeltaPipetFeedbackTimer;
 let fillCylinderRatio = 0;
-let succRatio = 0;
+let succCylinderRatio = 0;
 
 let aButtonHeld = false;
 let bButtonHeld = false;
@@ -106,33 +119,67 @@ AFRAME.log("random pipeteer threshhold: " + (randomThreshhold + 0.01))
 //================================ F I R E
 var fireElemnt =   document.getElementById("fire");
 
-  document.getElementById("ruizendevlam").addEventListener('click', function(evnt){
-    fireElemnt.setAttribute("sprite-particles",{enable:true}); //kan je het gelehe element mee aan en uit zetten
-      fireElemnt.pause(); //Nodig om het element te kunnen veranderen.
-        fireElemnt.setAttribute("sprite-particles",{color:"darkblue,black,black"});//Set de kleurvan de vlam
-        fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"}); //scale van de vlam (0..1) = onderkantlamdikte en (2..2) = bovenkantvlamdikte
-        fireElemnt.setAttribute("sprite-particles",{textureCount:3});//wat dikte
-      fireElemnt.play();//Nodig om het element te kunnen starten.
-  });
+  // document.getElementById("ruizendevlam").addEventListener('click', function(evnt){
+  //   fireElemnt.setAttribute("sprite-particles",{enable:true}); //kan je het gelehe element mee aan en uit zetten
+  //     fireElemnt.pause(); //Nodig om het element te kunnen veranderen.
+  //       fireElemnt.setAttribute("sprite-particles",{color:"darkblue,black,black"});//Set de kleurvan de vlam
+  //       fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"}); //scale van de vlam (0..1) = onderkantlamdikte en (2..2) = bovenkantvlamdikte
+  //       fireElemnt.setAttribute("sprite-particles",{textureCount:3});//wat dikte
+  //     fireElemnt.play();//Nodig om het element te kunnen starten.
+  // });
+  //
+  // document.getElementById("pauzevlam").addEventListener('click', function(evnt){
+  //     fireElemnt.setAttribute("sprite-particles",{enable:true});
+  //     fireElemnt.pause();
+  //       fireElemnt.setAttribute("sprite-particles",{color:"black,black,white,white,white"});
+  //       fireElemnt.setAttribute("sprite-particles",{scale:"0..1,1..3"});
+  //       fireElemnt.setAttribute("sprite-particles",{textureCount:0});
+  //     fireElemnt.play();
+  // });
+  //
+  //
+  // document.getElementById("blauwevlam").addEventListener('click', function(evnt){
+  //   fireElemnt.setAttribute("sprite-particles",{enable:true});
+  //   fireElemnt.pause();
+  //   fireElemnt.setAttribute("sprite-particles",{color:"mediumblue,mediumblue,mediumblue,black"});
+  //   fireElemnt.setAttribute("sprite-particles",{textureCount:0});
+  //   fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"});
+  //     fireElemnt.play();
+  //
+  //
+  // });
 
-  document.getElementById("pauzevlam").addEventListener('click', function(evnt){
-      fireElemnt.setAttribute("sprite-particles",{enable:true});
-      fireElemnt.pause();
-        fireElemnt.setAttribute("sprite-particles",{color:"black,black,white,white,white"});
-        fireElemnt.setAttribute("sprite-particles",{scale:"0..1,1..3"});
-        fireElemnt.setAttribute("sprite-particles",{textureCount:0});
-      fireElemnt.play();
-  });
-
-
-  document.getElementById("blauwevlam").addEventListener('click', function(evnt){
+var counterFlameNumber = 0;
+document.getElementById("nextButtonFlame").addEventListener('click', function(evnt){
+    fireElemnt.pause();
     fireElemnt.setAttribute("sprite-particles",{enable:true});
-      fireElemnt.pause();
+  switch(counterFlameNumber) {
+      case 1:
+      //pauze
+      fireElemnt.setAttribute("sprite-particles",{color:"black,black,white,white,white"});
+      fireElemnt.setAttribute("sprite-particles",{scale:"0..1,1..3"});
+      fireElemnt.setAttribute("sprite-particles",{textureCount:0});
+        break;
+      case 2:
+      //blauw
         fireElemnt.setAttribute("sprite-particles",{color:"mediumblue,mediumblue,mediumblue,black"});
         fireElemnt.setAttribute("sprite-particles",{textureCount:0});
         fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"});
-      fireElemnt.play();
-  });
+      break;
+      case 3:
+      //ruis
+        fireElemnt.setAttribute("sprite-particles",{color:"darkblue,black,black"});//Set de kleurvan de vlam
+        fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"}); //scale van de vlam (0..1) = onderkantlamdikte en (2..2) = bovenkantvlamdikte
+        fireElemnt.setAttribute("sprite-particles",{textureCount:3});//wat dikte
+      break;
+      default:
+        // code block
+    }
+    fireElemnt.play();
+    counterFlameNumber++;
+
+
+});
 
 
   document.getElementById("uitzettenVlam").addEventListener('click', function(evnt){
@@ -209,6 +256,7 @@ for (let i = 0; i < GRABBABLES.length; i++) {
     switch (ID) {
       case "js--pipet-container":
         document.getElementById('js--pipet-colision-box-succ').addEventListener('hover-start', function (evt) {
+          AFRAME.log("hovered over the succ test tube")
           document.getElementById('cameraRig').addEventListener('abuttondown', function (e) {
             fillPipetStart(TEST_CYLINDER_SUCC);
             aButtonHeld = true;
@@ -217,8 +265,9 @@ for (let i = 0; i < GRABBABLES.length; i++) {
             aButtonHeld = false;
             fillPipetEnd();
           })
-        }
+        })
         document.getElementById('js--pipet-colision-box-fill').addEventListener('hover-start', function (evt) {
+          AFRAME.log("hovered over the fill test tube")
           document.getElementById('cameraRig').addEventListener('bbuttondown', function (e) {
             emptyPipetStart(TEST_CYLINDER_FILL);
             bButtonHeld = true;
@@ -228,7 +277,7 @@ for (let i = 0; i < GRABBABLES.length; i++) {
             bButtonHeld = false;
             emptyPipetEnd();
           })
-        }
+        })
         break;
 
       case "js--labcoat" || "js--bril":
@@ -299,10 +348,13 @@ fillPipetStart = (substance) => {
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
 
-      succRatio = succRatio + .005
+      if (true) {
+
+      }
+      succCylinderRatio = succCylinderRatio + .005
       // AFRAME.log(substance.getAttribute("height"))
-      substance.setAttribute("height", (.25-succRatio));
-      substance.setAttribute("position", "0 " + -(succRatio/2)+0.110 + " 0");
+      substance.setAttribute("height", (.25-succCylinderRatio));
+      substance.setAttribute("position", "0 " + -(succCylinderRatio/2)+0.110 + " 0");
     }, INTERVAL_FREQ);
   }
 }
@@ -340,6 +392,9 @@ emptyPipetStart = (substance) => {
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
 
+      if (true) {
+
+      }
       fillCylinderRatio = fillCylinderRatio + .005
 
       substance.setAttribute("height", (.001+ fillCylinderRatio));

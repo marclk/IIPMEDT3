@@ -8,7 +8,6 @@
     <script src="vendor/aframe-physics-system.min.js"></script>
     <script src="vendor/aframe-event-set-component.min.js"></script>
     <script src="vendor/aframe-physics-extras.min.js"></script>
-    <script src="vendor/aframe-glow-component.min.js"></script>
     <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
     <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
@@ -18,6 +17,48 @@
     <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script>
     <script src="https://unpkg.com/aframe-gltf-part-component/dist/aframe-gltf-part-component.min.js"></script>
     <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+  </head>
+  <body>
+
+    <audio src="trash.mp3" id="js--trash-audio"></audio>
+    <audio src="wrong.mp3" id="js--wrong-audio"></audio>
+
+    <script>
+
+      trashAudioT1 = document.getElementById("js--trashAudio-t1");
+      trashAudioT2 = document.getElementById("js--trashAudio-t2");
+
+      wrongAudioT1 = document.getElementById("js--wrongAudio-t1");
+      wrongAudioT2 = document.getElementById("js--wrongAudio-t2");
+
+      //drop test
+      AFRAME.registerComponent('droptest', {
+        play: function () {
+          this.el.addEventListener('drag-drop', function (evt) {
+            trashAudioT1.components.sound.stopSound();
+            trashAudioT2.components.sound.stopSound();
+
+            wrongAudioT1.components.sound.stopSound();
+            wrongAudioT2.components.sound.stopSound();
+            if(this.id == "afval_1" && evt.detail.dropped.dataset.color == "red"){
+              AFRAME.log("Goed gedropped ouwe");
+              trashAudioT1.components.sound.playSound();
+              evt.detail.dropped.remove();
+            }else if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
+              trashAudioT2.components.sound.playSound();
+              AFRAME.log("Goed gedropped ouwe");
+              evt.detail.dropped.remove();
+
+            }else{
+              AFRAME.log("hahahahha u pleb das fout " + evt.detail.dropped.dataset.color);
+              wrongAudioT1.components.sound.playSound();
+              wrongAudioT2.components.sound.playSound();
+            }
+          });
+        }
+      });
+
+    </script>
   </head>
   <body>
 
@@ -49,7 +90,7 @@
                               grabStartButtons: gripdown, pointdown, triggerdown;
                               grabEndButtons: gripup, pointup, triggerup;"
                   haptics="events: triggerdown; dur: 200; force: 0.5"
-                  progressive-controls="objects: #js--pipet-container, js--pipet-colision-box;">
+                  progressive-controls="objects: #js--pipet-container, #js--propje, #js--broken-erlenmeyer;">
         </a-mixin>
         <a-asset-item id="touch-body-l-obj-body" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_body.obj"></a-asset-item>
         <a-asset-item id="touch-body-l-obj-b-enter" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_button_enter.obj"></a-asset-item>
@@ -94,19 +135,24 @@
 
       <!-- Audio Files -->
 
-      <a-entity id="js--wrongAudio-t1" sound="src: url(wrong.mp3); autoplay: false;" position="2.422 1.106 -2.530" ></a-entity>
-      <a-entity id="js--wrongAudio-t2" sound="src: url(wrong.mp3); autoplay: false;" position="2.775 1.106 -2.342" ></a-entity>
+      <a-entity id="js--wrongAudio-t1" sound="src: url(wrong.mp3);" position="2.422 1.106 -2.530" ></a-entity>
+      <a-entity id="js--wrongAudio-t2" sound="src: url(wrong.mp3);" position="2.775 1.106 -2.342" ></a-entity>
 
-      <a-entity id="js--trashAudio-t1" sound="src: url(trash.mp3); autoplay: false;" position="2.422 1.106 -2.530" ></a-entity>
-      <a-entity id="js--trashAudio-t2" sound="src: url(trash.mp3); autoplay: false;" position="2.775 1.106 -2.342" ></a-entity>
+      <a-entity id="js--trashAudio-t1" sound="src: url(trash.mp3);" position="2.422 1.106 -2.530" ></a-entity>
+      <a-entity id="js--trashAudio-t2" sound="src: url(trash.mp3);" position="2.775 1.106 -2.342" ></a-entity>
 
       <!-- END Audio Files -->
+<<<<<<< HEAD
       <a-entity position="3.472 1.083 -2.056" scale="0.05 0.05 0.05" class="pcikup" data-color="green" gltf-part="src: #propje; part: Sphere" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body>
         <a-entity material="color: #00FF00; opacity: 0.3;" position="0 0 0" scale="1.2 1.2 1.2" gltf-part="src: #propje; part: Sphere"  modify-material></a-entity>
       </a-entity>
       <a-entity position="2.942 1.420 -1.960" class="pcikup" rotation="0 90 0" data-color="red" class="pcikup" scale=".3 .3 .3" gltf-part="src: #brokenErlenmeyer; part: Glass" material="color:white;"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body>
         <a-entity material="color: #FF0000; opacity: 0.3;" position="0 0 0" scale="1.3 1 1.3" gltf-part="src: #brokenErlenmeyer; part: Glass"  modify-material></a-entity>
       </a-entity>
+=======
+      <a-entity id="js--propje" position="3.472 1.083 -2.056" scale="0.05 0.05 0.05" gltf-part="src: #propje; part: Sphere" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body></a-entity>
+      <a-entity id="js--broken-erlenmeyer" position="2.942 1.420 -1.960" rotation="0 90 0" scale=".3 .3 .3" gltf-part="src: #brokenErlenmeyer; part: Glass" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body></a-entity>
+>>>>>>> b6d78aa0c4a16879cf15dfefa6ab770fecb54d44
 
       <a-entity position="2.234 1.106 -2.376" scale=".4 .4 .5" gltf-part="src: #prullenbak; part: Cube" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" static-body>
         <a-box
@@ -226,6 +272,11 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
     <a-text position="-0.846 0.5 0" color="white" value="blauwe vlam (blauw en luid)"></a-text>
 </a-box>
 
+
+<a-box id="nextButtonFlame"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="blue" position="2.710 0.990 3.425"rotation="-45 180 0" scale="0.4 0.4 0.4">
+    <a-text position="-0.846 0.5 0" color="white" value="NExt"></a-text>
+</a-box>
+
 <a-entity scale=".5 .5 .5" rotation="0 200 0" position="2.672 1.378 3.618">
   <a-plane position="0 0 -.001" color="darkslategray"></a-plane>
   <a-text id="js--element-number" position="-.46 .29 0" width="4" color="black" value="hahaahha"></a-text>
@@ -243,7 +294,17 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
 
   <!-- <a-entity class="cube pcikup" mixin="cube" position="0 0.265 0" material="color: red"></a-entity> -->
 <a-entity id="cameraRig" class="camera-parent teleport-object" position="0 0 0"  movement-controls>
+
+
+
+
   <a-entity id="head" camera  look-controls="pointerLockEnabled: true">
+    <a-plane width="1.140" height="1.320" position="-1.684 0.076 -2.479" rotation="0 0 0" id="objectives">
+      <a-text value="Nog te doen:" width="2.5" position="-0.335 0.497 0.021" color="black"></a-text>
+      <a-text value="Pipetteren"  width="3" position="-0.440 0.271 0.056" color="black"> </a-text>
+      <a-text value="Afval scheiden" width="3" position="-0.451 0.054 0.043" color="black"></a-text>
+      <a-text value="Brander instellen" width="3" position="-0.451 -0.177 0.043" color="black"></a-text>
+    </a-plane>
     <a-entity animation__fusing="property:scale; easing:easeInCubic; dur:500; from:1 1 1; to: 0.1 0.1 0.1; startEvents: fusing"
               animation__mouseleave="property:scale; easing:easeInCubic; dur:250; to:1 1 1;  startEvents: mouseleave "
               animation__click="property:scale; easing:easeInCubic; dur:250; to:1 1 1;  startEvents: click"
@@ -304,9 +365,10 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
   </a-entity>
 
       <a-plane width="3" height="1.140" position="2.691 2.709 6.241" rotation="0 180 0">
-        <a-text value="Nog te doen:" position="-0.622 0.423 0" color="black"></a-text>
-        <a-text value="Pipet vastpakken" position="-0.895 0.128" color="black"> </a-text>
-        <a-text value="Pipet indrukken en legen" position="-1.227 -0.145 0" color="black"></a-text>
+        <a-text value="Te doen om vrij te spelen:" position="-1.251 0.423 0" color="black"></a-text>
+        <a-text value="Pipetteren" position="-0.478 0.163 0" color="black"> </a-text>
+        <a-text value="Afval scheiden" position="-0.705 -0.125 0" color="black"></a-text>
+          <a-text value="Brander instelen" position="-0.716 -0.410 0" color="black"></a-text>
       </a-plane>
 
       <a-entity visible="false" id="normalMesh" class="second-navmesh" gltf-model="scene/navmesh(1).gltf"   position="0 4.124  0" nav-mesh></a-entity>
@@ -411,8 +473,13 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
           <a-cylinder id="js--test-cylinder-fill" radius=".01" height=".001" position ="0 -0.110 0" color="orange"></a-cylinder>
         </a-entity>
 
-        <a-box id="js--pipet-colision-box" scale=".05 .47 .05"  material="visible: false;" position="0.55 -0.333 -0.771" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts=""  modify-material static-body></a-box>
-        <a-box id="js--pipet-colision-box" scale=".05 .47 .05"  material="visible: false;" position="0 -0.333 -0.771" rotation="0 0 0" collision-filter="group: default; collidesWith: default" droppable accepts="" modify-material static-body></a-box>
+        <a-box id="js--pipet-colision-box-fill" class="pcikup" scale=".05 .6 .05"  material="visible: false;" position="0.55 -0.2 -0.771" rotation="0 0 0" collision-filter="collisionForces: false" droppable accepts=""  modify-material static-body
+        event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+        event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"></a-box>
+
+        <a-box id="js--pipet-colision-box-succ" class="pcikup" scale=".05 .6 .05"  material="visible: false;" position="0 -0.2 -0.771" rotation="0 0 0" collision-filter="collisionForces: false" droppable accepts="" modify-material static-body
+        event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+        event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"></a-box>
       </a-entity>
 
 
@@ -522,39 +589,7 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
 
     <script src="mapping.js"></script>
 
-    <script>
 
-      trashAudioT1 = document.getElementById("js--trashAudio-t1");
-      trashAudioT2 = document.getElementById("js--trashAudio-t2");
-
-      wrongAudioT1 = document.getElementById("js--wrongAudio-t1");
-      wrongAudioT2 = document.getElementById("js--wrongAudio-t2");
-
-      //drop test
-      AFRAME.registerComponent('droptest', {
-        play: function () {
-          this.el.addEventListener('drag-drop', function (evt) {
-            if(this.id == "afval_1" && evt.detail.dropped.dataset.color == "red"){
-              AFRAME.log("Goed gedropped ouwe");
-              trashAudioT1.components.sound.playSound();
-              // evt.detail.dropped.remove();
-            }else if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
-              trashAudioT2.components.sound.playSound();
-              AFRAME.log("Goed gedropped ouwe");
-              // evt.detail.dropped.remove();
-
-            }else{
-              AFRAME.log("hahahahha u pleb das fout " + evt.detail.dropped.dataset.color);
-              wrongAudioT1.components.sound.playSound();
-              wrongAudioT2.components.sound.playSound();
-            }
-            // evt.detail.dropped.setAttribute('material', 'color',
-            //   '#'+(Math.random()*0xFFFFFF<<0).toString(16));
-          });
-        }
-      });
-
-    </script>
 
 
   </body>
