@@ -8,6 +8,7 @@
     <script src="vendor/aframe-physics-system.min.js"></script>
     <script src="vendor/aframe-event-set-component.min.js"></script>
     <script src="vendor/aframe-physics-extras.min.js"></script>
+    <script src="vendor/aframe-glow-component.min.js"></script>
     <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
     <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
@@ -17,50 +18,6 @@
     <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script>
     <script src="https://unpkg.com/aframe-gltf-part-component/dist/aframe-gltf-part-component.min.js"></script>
     <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
-  </head>
-  <body>
-
-    <audio src="trash.mp3" id="js--trash-audio"></audio>
-    <audio src="wrong.mp3" id="js--wrong-audio"></audio>
-
-    <script>
-
-      trashAudioT1 = document.getElementById("js--trashAudio-t1");
-      trashAudioT2 = document.getElementById("js--trashAudio-t2");
-
-      wrongAudioT1 = document.getElementById("js--wrongAudio-t1");
-      wrongAudioT2 = document.getElementById("js--wrongAudio-t2");
-
-      //drop test
-      AFRAME.registerComponent('droptest', {
-        play: function () {
-          this.el.addEventListener('drag-drop', function (evt) {
-            trashAudioT1.components.sound.stopSound();
-            trashAudioT2.components.sound.stopSound();
-
-            wrongAudioT1.components.sound.stopSound();
-            wrongAudioT2.components.sound.stopSound();
-            if(this.id == "afval_1" && evt.detail.dropped.dataset.color == "red"){
-              AFRAME.log("Goed gedropped ouwe");
-              trashAudioT1.components.sound.playSound();
-              evt.detail.dropped.remove();
-            }else if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
-              trashAudioT2.components.sound.playSound();
-              AFRAME.log("Goed gedropped ouwe");
-              evt.detail.dropped.remove();
-
-            }else{
-              AFRAME.log("hahahahha u pleb das fout " + evt.detail.dropped.dataset.color);
-              wrongAudioT1.components.sound.playSound();
-              wrongAudioT2.components.sound.playSound();
-            }
-            // evt.detail.dropped.setAttribute('material', 'color',
-            //   '#'+(Math.random()*0xFFFFFF<<0).toString(16));
-          });
-        }
-      });
-
-    </script>
   </head>
   <body>
 
@@ -137,15 +94,15 @@
 
       <!-- Audio Files -->
 
-      <a-entity id="js--wrongAudio-t1" sound="src: url(wrong.mp3);" position="2.422 1.106 -2.530" ></a-entity>
-      <a-entity id="js--wrongAudio-t2" sound="src: url(wrong.mp3);" position="2.775 1.106 -2.342" ></a-entity>
+      <a-entity id="js--wrongAudio-t1" sound="src: url(wrong.mp3); autoplay: false;" position="2.422 1.106 -2.530" ></a-entity>
+      <a-entity id="js--wrongAudio-t2" sound="src: url(wrong.mp3); autoplay: false;" position="2.775 1.106 -2.342" ></a-entity>
 
-      <a-entity id="js--trashAudio-t1" sound="src: url(trash.mp3);" position="2.422 1.106 -2.530" ></a-entity>
-      <a-entity id="js--trashAudio-t2" sound="src: url(trash.mp3);" position="2.775 1.106 -2.342" ></a-entity>
+      <a-entity id="js--trashAudio-t1" sound="src: url(trash.mp3); autoplay: false;" position="2.422 1.106 -2.530" ></a-entity>
+      <a-entity id="js--trashAudio-t2" sound="src: url(trash.mp3); autoplay: false;" position="2.775 1.106 -2.342" ></a-entity>
 
       <!-- END Audio Files -->
-      <a-entity position="3.472 1.083 -2.056" scale="0.05 0.05 0.05" gltf-part="src: #propje; part: Sphere" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body></a-entity>
-      <a-entity position="2.942 1.420 -1.960" rotation="0 90 0" scale=".3 .3 .3" gltf-part="src: #brokenErlenmeyer; part: Glass" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body></a-entity>
+      <a-entity glow="color: green" position="3.472 1.083 -2.056" scale="0.05 0.05 0.05" gltf-part="src: #propje; part: Sphere" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body></a-entity>
+      <a-entity glow="color: red"  position="2.942 1.420 -1.960" rotation="0 90 0" scale=".3 .3 .3" gltf-part="src: #brokenErlenmeyer; part: Glass" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body></a-entity>
 
 
       <a-entity position="2.422 1.106 -2.530" scale=".4 .4 .5" gltf-part="src: #prullenbak; part: Cube" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
@@ -558,7 +515,39 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
 
     <script src="mapping.js"></script>
 
+    <script>
 
+      trashAudioT1 = document.getElementById("js--trashAudio-t1");
+      trashAudioT2 = document.getElementById("js--trashAudio-t2");
+
+      wrongAudioT1 = document.getElementById("js--wrongAudio-t1");
+      wrongAudioT2 = document.getElementById("js--wrongAudio-t2");
+
+      //drop test
+      AFRAME.registerComponent('droptest', {
+        play: function () {
+          this.el.addEventListener('drag-drop', function (evt) {
+            if(this.id == "afval_1" && evt.detail.dropped.dataset.color == "red"){
+              AFRAME.log("Goed gedropped ouwe");
+              trashAudioT1.components.sound.playSound();
+              // evt.detail.dropped.remove();
+            }else if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
+              trashAudioT2.components.sound.playSound();
+              AFRAME.log("Goed gedropped ouwe");
+              // evt.detail.dropped.remove();
+
+            }else{
+              AFRAME.log("hahahahha u pleb das fout " + evt.detail.dropped.dataset.color);
+              wrongAudioT1.components.sound.playSound();
+              wrongAudioT2.components.sound.playSound();
+            }
+            // evt.detail.dropped.setAttribute('material', 'color',
+            //   '#'+(Math.random()*0xFFFFFF<<0).toString(16));
+          });
+        }
+      });
+
+    </script>
 
 
   </body>
