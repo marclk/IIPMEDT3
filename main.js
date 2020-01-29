@@ -149,37 +149,66 @@ var fireElemnt =   document.getElementById("fire");
   //
   // });
 
-var counterFlameNumber = 0;
+
 document.getElementById("nextButtonFlame").addEventListener('click', function(evnt){
-    fireElemnt.pause();
-    fireElemnt.setAttribute("sprite-particles",{enable:true});
-  switch(counterFlameNumber) {
-      case 1:
-      //pauze
-      fireElemnt.setAttribute("sprite-particles",{color:"black,black,white,white,white"});
-      fireElemnt.setAttribute("sprite-particles",{scale:"0..1,1..3"});
-      fireElemnt.setAttribute("sprite-particles",{textureCount:0});
-        break;
-      case 2:
-      //blauw
-        fireElemnt.setAttribute("sprite-particles",{color:"mediumblue,mediumblue,mediumblue,black"});
-        fireElemnt.setAttribute("sprite-particles",{textureCount:0});
-        fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"});
-      break;
-      case 3:
-      //ruis
-        fireElemnt.setAttribute("sprite-particles",{color:"darkblue,black,black"});//Set de kleurvan de vlam
-        fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"}); //scale van de vlam (0..1) = onderkantlamdikte en (2..2) = bovenkantvlamdikte
-        fireElemnt.setAttribute("sprite-particles",{textureCount:3});//wat dikte
-      break;
-      default:
-        // code block
-    }
-    fireElemnt.play();
-    counterFlameNumber++;
-
-
+  fireElementSetWay("next");
 });
+
+document.getElementById("previousButtonFlame").addEventListener('click', function(evnt){
+  fireElementSetWay("previous");
+});
+
+var counterFlameNumber = 0;
+
+function fireElementSetWay(way){
+    if(way === "next"){
+      if(counterFlameNumber > 3){
+        counterFlameNumber= 0;
+      }
+      counterFlameNumber++;
+      setFlameNumber(counterFlameNumber);
+    }
+    else{
+      if(counterFlameNumber < 0){
+        counterFlameNumber= 3;
+      }
+      counterFlameNumber--;
+      setFlameNumber(counterFlameNumber);
+    }
+
+
+}
+
+function setFlameNumber(counterFlameNumberCount){
+  fireElemnt.pause();
+  fireElemnt.setAttribute("sprite-particles",{enable:true});
+switch(counterFlameNumberCount) {
+    case 1:
+    //pauze
+    fireElemnt.setAttribute("sprite-particles",{color:"black,black,white,white,white"});
+    fireElemnt.setAttribute("sprite-particles",{scale:"0..1,1..3"});
+    fireElemnt.setAttribute("sprite-particles",{textureCount:0});
+      break;
+    case 2:
+    //blauw
+      fireElemnt.setAttribute("sprite-particles",{color:"mediumblue,mediumblue,mediumblue,black"});
+      fireElemnt.setAttribute("sprite-particles",{textureCount:0});
+      fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"});
+    break;
+    case 3:
+    //ruis
+      fireElemnt.setAttribute("sprite-particles",{color:"darkblue,black,black"});//Set de kleurvan de vlam
+      fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"}); //scale van de vlam (0..1) = onderkantlamdikte en (2..2) = bovenkantvlamdikte
+      fireElemnt.setAttribute("sprite-particles",{textureCount:3});//wat dikte
+    break;
+    default:
+      // code block
+  }
+  fireElemnt.play();
+
+
+}
+
 
 
   document.getElementById("uitzettenVlam").addEventListener('click', function(evnt){
