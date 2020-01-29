@@ -60,7 +60,12 @@ document.getElementById('cube').addEventListener('hoveron', function(evt) {
   alert("DROPPED");
 })
 
-document.getElementById('lefthand').addEventListener('thumbupstart', function(evt) {
+document.getElementById('lefthand').addEventListener('thumbrightstart', function(event) {
+  AFRAME.log("Right thumbstick");
+  //let position = document.getElementById('cameraRig').getAttribute("rotation");
+  document.getElementById('cameraRig').setAttribute('rotation', {x: this.getAttribute("rotation").x,  y: (this.getAttribute("rotation").z + 45), z: this.getAttribute("rotation").z });
+
+
 
 })
 
