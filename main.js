@@ -73,6 +73,19 @@ document.getElementById('righthand').addEventListener('thumbleftstart', function
   document.getElementById('cameraRig').setAttribute('rotation', {x: head.getAttribute("rotation").x,  y: (head.getAttribute("rotation").y + 45), z: head.getAttribute("rotation").z });
 });
 
+var isactive = false;
+document.getElementById('lefthand').addEventListener('ybuttonup', function(event) {
+  if(isactive == false){
+    document.getElementById("objectives").setAttribute("visible",true);
+    isactive = true;
+  }else{
+    document.getElementById("objectives").setAttribute("visible",false);
+    isactive = false;
+  }
+
+
+});
+
 // document.getElementById('righthand').addEventListener('thumbupstart', function(event) {
 //   // AFRAME.log("Right thumbstick");
 //   let head = document.getElementById('cameraRig');

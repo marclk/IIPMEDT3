@@ -205,7 +205,17 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
 
   <!-- <a-entity class="cube pcikup" mixin="cube" position="0 0.265 0" material="color: red"></a-entity> -->
 <a-entity id="cameraRig" class="camera-parent teleport-object" position="0 0 0"  movement-controls>
+
+
+
+
   <a-entity id="head" camera  look-controls="pointerLockEnabled: true">
+    <a-plane width="1.140" height="1.320" position="-1.684 0.076 -2.479" rotation="0 0 0" id="objectives">
+      <a-text value="Nog te doen:" width="2.5" position="-0.335 0.497 0.021" color="black"></a-text>
+      <a-text value="Pipetteren"  width="3" position="-0.440 0.271 0.056" color="black"> </a-text>
+      <a-text value="Afval scheiden" width="3" position="-0.451 0.054 0.043" color="black"></a-text>
+      <a-text value="Brander instellen" width="3" position="-0.451 -0.177 0.043" color="black"></a-text>
+    </a-plane>
     <a-entity animation__fusing="property:scale; easing:easeInCubic; dur:500; from:1 1 1; to: 0.1 0.1 0.1; startEvents: fusing"
               animation__mouseleave="property:scale; easing:easeInCubic; dur:250; to:1 1 1;  startEvents: mouseleave "
               animation__click="property:scale; easing:easeInCubic; dur:250; to:1 1 1;  startEvents: click"
@@ -266,9 +276,10 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
   </a-entity>
 
       <a-plane width="3" height="1.140" position="2.691 2.709 6.241" rotation="0 180 0">
-        <a-text value="Nog te doen:" position="-0.622 0.423 0" color="black"></a-text>
-        <a-text value="Pipet vastpakken" position="-0.895 0.128" color="black"> </a-text>
-        <a-text value="Pipet indrukken en legen" position="-1.227 -0.145 0" color="black"></a-text>
+        <a-text value="Te doen om vrij te spelen:" position="-1.251 0.423 0" color="black"></a-text>
+        <a-text value="Pipetteren" position="-0.478 0.163 0" color="black"> </a-text>
+        <a-text value="Afval scheiden" position="-0.705 -0.125 0" color="black"></a-text>
+          <a-text value="Brander instelen" position="-0.716 -0.410 0" color="black"></a-text>
       </a-plane>
 
       <a-entity visible="false" id="normalMesh" class="second-navmesh" gltf-model="scene/navmesh(1).gltf"   position="0 4.124  0" nav-mesh></a-entity>
