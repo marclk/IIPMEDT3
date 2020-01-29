@@ -60,13 +60,17 @@ document.getElementById('cube').addEventListener('hoveron', function(evt) {
   alert("DROPPED");
 })
 
-document.getElementById('lefthand').addEventListener('thumbrightstart', function(event) {
-  AFRAME.log("Right thumbstick");
+document.getElementById('righthand').addEventListener('thumbrightstart', function(event) {
+  // AFRAME.log("Right thumbstick");
+  let head = document.getElementById('cameraRig');
   //let position = document.getElementById('cameraRig').getAttribute("rotation");
-  document.getElementById('cameraRig').setAttribute('rotation', {x: this.getAttribute("rotation").x,  y: (this.getAttribute("rotation").z + 45), z: this.getAttribute("rotation").z });
-
-
-
+  document.getElementById('cameraRig').setAttribute('rotation', {x: head.getAttribute("rotation").x,  y: (head.getAttribute("rotation").y - 45), z: head.getAttribute("rotation").z });
+})
+document.getElementById('righthand').addEventListener('thumbleftstart', function(event) {
+  // AFRAME.log("Right thumbstick");
+  let head = document.getElementById('cameraRig');
+  //let position = document.getElementById('cameraRig').getAttribute("rotation");
+  document.getElementById('cameraRig').setAttribute('rotation', {x: head.getAttribute("rotation").x,  y: (head.getAttribute("rotation").y + 45), z: head.getAttribute("rotation").z });
 })
 
 
