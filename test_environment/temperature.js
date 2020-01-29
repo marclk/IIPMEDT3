@@ -1,3 +1,5 @@
+const textField = document.getElementById('js--text-element');
+
 let tempCondities = true;
 let startTimer;
 let deltaFlame = 0;
@@ -10,7 +12,9 @@ riseTemperatureStart = () => {
 
     temperatureStepper = setInterval(f => {
       let endTimer = new Date();
-      deltaFlame = (endTimer - startTimer)/6;
+      deltaFlame = Math.round((endTimer - startTimer)/6);
+
+      textField.setAttribute('value', deltaFlame);
 
     }, INTERVAL_FREQ);
   }

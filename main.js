@@ -220,6 +220,7 @@ switch(counterFlameNumberCount) {
 
 
 //================================== B R A N D E R  A F S T E L L E N
+// const textField = document.getElementById('js--text-element');
 let tempCondities = true;
 let startTimer;
 let deltaFlame = 0;
@@ -237,6 +238,8 @@ riseTemperatureStart = () => {
       let endTimer = new Date();
       //bereken einde en pas aan naar normaal getal; ~330 na 1 seconde
       deltaFlame = (endTimer - startTimer)/6;
+
+      // textField.setAttribute('value', deltaFlame);
 
     }, INTERVAL_FREQ);
   }
