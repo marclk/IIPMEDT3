@@ -35,10 +35,9 @@ fetchApiData = () => {
   })
   .then( (response) => {
     // AFRAME.log(response[randomElement]);
-    ELEMENT_NUMBER.setAttribute("value", response[randomElement].atomicNumber)
-    ELEMENT_SYMBOL.setAttribute("value", response[randomElement].symbol)
-    ELEMENT_NAME.setAttribute("value", response[randomElement].name)
-    ELEMENT_MASS.setAttribute("value", response[randomElement].atomicMass)
+    ELEMENT_NUMBER.setAttribute("value", response[randomElement].name)
+    ELEMENT_SYMBOL.setAttribute("value", response[randomElement].meltingPoint + " K")
+    // ELEMENT_NAME.setAttribute("value", response[randomElement].standardState)
   });
 }
 
@@ -213,6 +212,9 @@ switch(counterFlameNumberCount) {
 
   document.getElementById("uitzettenVlam").addEventListener('click', function(evnt){
     fireElemnt.setAttribute("sprite-particles",{enable:false});
+  });
+  document.getElementById("aanzettenVlam").addEventListener('click', function(evnt){
+    fireElemnt.setAttribute("sprite-particles",{enable:true});
   });
 
 
