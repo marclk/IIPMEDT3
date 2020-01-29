@@ -151,20 +151,37 @@
       <a-entity position="2.439 1.209 -2.127" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity>
 
   <!-- <a-entity gltf-model="#labTafel"  scale="0.390 0.390 0.390" ></a-entity> -->
-  <a-plane width="1.140" height="1.320" position="4.074 1.417 3.946" rotation="0 -90 0" id="objectives">
+
+  <a-plane width="1.140" height="1.320" position="4.041 1.417 -2.383" rotation="0 -90 0" class="objectivesss" visible="false">
+    <a-text value="Doel:" width="2.5" position="-0.335 0.497 0.021" color="black"></a-text>
+    <a-text value="Het jusite afval in de juiste container stoppen"   width="0.8" position="-0.440 0.221 0.056" color="black" text="wrapCount: 12" width="0.8" position="-0.440 0.128 0.056" color="black"> </a-text>
+  </a-plane>
+
+  <a-plane width="1.140" height="1.320" position="4.088 1.417 0.903" rotation="0 -90 0" class="objectivesss" visible="false">
+  <a-text value="Doel:" width="2.5" position="-0.335 0.497 0.021" color="black"></a-text>
+  <a-text value="Pippeteer de juiste hoeveelheid"  width="0.8" position="-0.440 0.221 0.056" color="black" text="wrapCount: 12" width="0.8" position="-0.440 0.128 0.056" color="black"> </a-text>
+</a-plane>
+
+  <a-plane width="1.140" height="1.320" position="4.074 1.417 3.946" rotation="0 -90 0" class="objectivesss" visible="false">
     <a-text value="Doel:" width="2.5" position="-0.335 0.497 0.021" color="black" ></a-text>
     <a-text value="Zet de juiste vlam voor de juiste temperatuur" text="wrapCount: 12" width="0.8" position="-0.440 0.128 0.056" color="black"> </a-text>
   </a-plane>
 
-    <a-plane width="1.140" height="1.320" position="4.088 1.417 0.903" rotation="0 -90 0" id="objectives">
-    <a-text value="Doel:" width="2.5" position="-0.335 0.497 0.021" color="black"></a-text>
-    <a-text value="Pippeteer de juiste hoeveelheid"  width="0.8" position="-0.440 0.221 0.056" color="black" text="wrapCount: 12" width="0.8" position="-0.440 0.128 0.056" color="black"> </a-text>
-  </a-plane>
 
-  <a-plane width="1.140" height="1.320" position="4.041 1.417 -2.383" rotation="0 -90 0" id="objectives">
-    <a-text value="Doel:" width="2.5" position="-0.335 0.497 0.021" color="black"></a-text>
-    <a-text value="Het jusite afval in de juiste container stoppen"   width="0.8" position="-0.440 0.221 0.056" color="black" text="wrapCount: 12" width="0.8" position="-0.440 0.128 0.056" color="black"> </a-text>
-  </a-plane>
+
+
+
+  <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="3.750 0.985 -2.430"  rotation="0 180 0">
+          <a-text value="i" color="white" position="-0.053 0.015 -0.004" rotation="-90"></a-text>
+    </a-cylinder>
+
+    <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="3.750 0.985 0.776" rotation="0 180 0">
+            <a-text value="i" color="white" position="-0.053 0.015 -0.004" rotation="-90"></a-text>
+      </a-cylinder>
+
+      <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="3.750 0.985 4.017" rotation="0 180 0">
+              <a-text value="i" color="white" position="-0.053 0.015 -0.004" rotation="-90"></a-text>
+        </a-cylinder>
 
 <a-entity scale="0.390 0.390 0.390" position="2.157 0.508 1.077" >
       <a-entity gltf-part="src: #labTafel; part: Blad" material="normalTextureRepeat:10 5; color: #3c3c3c;normalMap:models/tafel/white_plaster_02_nor_2k.jpg;"   ></a-entity>
@@ -235,7 +252,7 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
     <a-text position="-0.431 0.5 0" color="white" value="Uitzetten"></a-text>
 </a-box>
 
-
+  <a-text id="js--text-element" position="2.250 1.306 3.705" width="4" color="black" value="hahaahha" rotation="0 180 0"></a-text>
 
 <a-box id="nextButtonFlame"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="blue" position="2.224 0.990 3.425"rotation="-45 180 0" scale="0.4 0.4 0.4">
     <a-text position="-0.846 0.5 0" color="white" value="NExt"></a-text>
@@ -243,6 +260,9 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
 <a-box id="previousButtonFlame"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="blue" position="2.697 0.990 3.425"rotation="-45 180 0" scale="0.4 0.4 0.4">
     <a-text position="-0.846 0.5 0" color="white" value="Previous"></a-text>
 </a-box>
+
+
+
 
 
 <a-entity scale=".5 .5 .5" rotation="0 200 0" position="2.672 1.378 3.618">
@@ -596,7 +616,7 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
         }
       });
 
-
+  </script>
 
 
 

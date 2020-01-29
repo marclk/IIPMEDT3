@@ -150,34 +150,101 @@ var fireElemnt =   document.getElementById("fire");
   // });
 
 
-document.getElementById("nextButtonFlame").addEventListener('click', function(evnt){
-  fireElementSetWay("next");
-});
 
-document.getElementById("previousButtonFlame").addEventListener('click', function(evnt){
-  fireElementSetWay("previous");
-});
+// document.getElementById("nextButtonFlame").addEventListener('click', function(evnt){
+//   fireElementSetWay("next");
+// });
+//
+// document.getElementById("previousButtonFlame").addEventListener('click', function(evnt){
+//   fireElementSetWay("previous");
+// });
 
+var continueTimeer = true;
 var counterFlameNumber = 0;
+var vlamAan = false;
+const textField = document.getElementById('js--text-element');
+textField.setAttribute('value', "-" + " K");
 
-function fireElementSetWay(way){
-    if(way === "next"){
-      if(counterFlameNumber > 3){
-        counterFlameNumber= 0;
-      }
-      counterFlameNumber++;
-      setFlameNumber(counterFlameNumber);
-    }
-    else{
-      if(counterFlameNumber < 0){
-        counterFlameNumber= 3;
-      }
-      counterFlameNumber--;
-      setFlameNumber(counterFlameNumber);
-    }
-
-
+document.getElementById("nextButtonFlame").onmouseenter = (event) => {
+  continueTimeer = true;
+  changeTempWithInterval("plus");
 }
+document.getElementById("nextButtonFlame").onmouseleave = (event) => {
+ continueTimeer = false;
+}
+
+
+document.getElementById("previousButtonFlame").onmouseenter = (event) => {
+  continueTimeer = true;
+  changeTempWithInterval("minus");
+}
+document.getElementById("previousButtonFlame").onmouseleave = (event) => {
+ continueTimeer = false;
+}
+
+
+var tellerWelkeVlam = 300, time = 1000;
+function changeTempWithInterval(direction) {
+    setTimeout(function () {
+      if(continueTimeer == false || vlamAan === false){
+        return;
+      }
+
+      if(continueTimeer === true && direction === "plus" && vlamAan === true){
+            tellerWelkeVlam += 100;
+            textField.setAttribute('value', tellerWelkeVlam + " K");
+            checkFlameNumber(tellerWelkeVlam);
+            changeTempWithInterval("plus");
+      }
+      if(continueTimeer === true && direction === "minus" && vlamAan === true){
+        if(tellerWelkeVlam < 300){
+            tellerWelkeVlam = 294;
+        }else{
+          tellerWelkeVlam -= 100;
+
+        }
+            textField.setAttribute('value', tellerWelkeVlam + " K");
+            checkFlameNumber(tellerWelkeVlam);
+            changeTempWithInterval("minus");
+      }
+    }, 100);
+};
+
+function checkFlameNumber(tellerWelkeVlam){
+  if(tellerWelkeVlam > 290 && tellerWelkeVlam < 525 ){
+    console.log("pauzevlam");
+    setFlameNumber(1);
+  }
+  if(tellerWelkeVlam > 525 && tellerWelkeVlam < 773 ){
+    console.log("blauwevlam");
+    setFlameNumber(2);
+  }
+  if(tellerWelkeVlam > 773 && tellerWelkeVlam < 1023 ){
+      console.log("ruisvlam");
+    setFlameNumber(3);
+  }
+}
+
+
+
+// function fireElementSetWay(way){
+//     if(way === "next"){
+//       if(counterFlameNumber > 3){
+//         counterFlameNumber= 0;
+//       }
+//       counterFlameNumber++;
+//       setFlameNumber(counterFlameNumber);
+//     }
+//     else{
+//       if(counterFlameNumber < 0){
+//         counterFlameNumber= 3;
+//       }
+//       counterFlameNumber--;
+//       setFlameNumber(counterFlameNumber);
+//     }
+//
+//
+// }
 
 function setFlameNumber(counterFlameNumberCount){
   fireElemnt.pause();
@@ -212,11 +279,43 @@ switch(counterFlameNumberCount) {
 
 
   document.getElementById("uitzettenVlam").addEventListener('click', function(evnt){
+    textField.setAttribute('value', "-" + " K");
+    tellerWelkeVlam = 300;
+    vlamAan = false;
     fireElemnt.setAttribute("sprite-particles",{enable:false});
   });
   document.getElementById("aanzettenVlam").addEventListener('click', function(evnt){
+    textField.setAttribute('value', "0" + " K");
+    tellerWelkeVlam = 300;
+    vlamAan = true;
     fireElemnt.setAttribute("sprite-particles",{enable:true});
   });
+
+
+
+//================================= I N F O  B U T T O // NOTE:
+var inforBUttons = document.getElementsByClassName("infoButton");
+var panels = document.getElementsByClassName("objectivesss");
+var isAlreadySet = false;
+
+for (let i = 0; i < inforBUttons.length; i++) {
+  inforBUttons[i].addEventListener('click', function(evnt){
+    if(isAlreadySet === false){
+
+       panels[i].setAttribute("visible",true);
+
+      inforBUttons[i].setAttribute("color","green");
+      isAlreadySet = true;
+    }
+    else{
+
+         panels[i].setAttribute("visible",false);
+        inforBUttons[i].setAttribute("color","blue");
+      isAlreadySet = false;
+    }
+    //console.log("Number " + i);
+  });
+};
 
 
 //================================== B R A N D E R  A F S T E L L E N
