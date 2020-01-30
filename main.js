@@ -198,21 +198,21 @@ textField.setAttribute('value', "-" + " K");
 
 
 document.getElementById("nextButtonFlame").addEventListener('click', function(evnt){
-  continueTimeer = true;
+  // continueTimeer = true;
   changeTempWithInterval("plus");
 });
-document.getElementById("nextButtonFlame").addEventListener('click', function(evnt){
- continueTimeer = false;
-});
+// document.getElementById("nextButtonFlame").addEventListener('triggerup', function(evnt){
+//  continueTimeer = false;
+// });
 
 
 document.getElementById("previousButtonFlame").addEventListener('click', function(evnt){
-  continueTimeer = true;
+  // continueTimeer = true;
   changeTempWithInterval("minus");
 });
-document.getElementById("previousButtonFlame").addEventListener('click', function(evnt){
- continueTimeer = false;
-});
+// document.getElementById("previousButtonFlame").addEventListener('triggerup', function(evnt){
+//  continueTimeer = false;
+// });
 
 
 var tellerWelkeVlam = 300, time = 1000;
@@ -226,7 +226,7 @@ function changeTempWithInterval(direction) {
             tellerWelkeVlam += 50;
             textField.setAttribute('value', tellerWelkeVlam + " Kelvin");
             checkFlameNumber(tellerWelkeVlam);
-            changeTempWithInterval("plus");
+            //changeTempWithInterval("plus");
       }
       if(continueTimeer === true && direction === "minus" && vlamAan === true){
         if(tellerWelkeVlam < 525){
@@ -237,7 +237,7 @@ function changeTempWithInterval(direction) {
         }
             textField.setAttribute('value', tellerWelkeVlam + " Kelvin");
             checkFlameNumber(tellerWelkeVlam);
-            changeTempWithInterval("minus");
+            //changeTempWithInterval("minus");
       }
     }, 500);
 };
