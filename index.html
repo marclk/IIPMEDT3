@@ -128,6 +128,10 @@
       <!-- <a-entity position="2.795 1.106 -2.376" scale=".4 .4 .5" gltf-part="src: #prullenbak; part: Cube" material="color:grey;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" static-body> -->
       </a-entity>
 
+      <a-plane width="1.160" height="0.420" position="-0.197 2.668 -7.518" rotation="0 -90 0" id="objectives">
+        <a-text value="Let op je veiligheid!"   width="0.8" position="-0.440 0.011 0.056" color="black" text="wrapCount: 15" width="0.8" position="-0.440 0.128 0.056" color="black"> </a-text>
+      </a-plane>
+
       <a-box
         static-body
         collision-filter="collisionForces: false"
@@ -147,7 +151,39 @@
       <a-entity position="2.439 1.209 -2.127" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity>
 
   <!-- <a-entity gltf-model="#labTafel"  scale="0.390 0.390 0.390" ></a-entity> -->
-    <a-entity scale="0.390 0.390 0.390" position="2.157 0.508 1.077" >
+
+  <a-plane width="1.140" height="1.320" position="4.041 1.417 -2.383" rotation="0 -90 0" class="objectivesss" visible="false">
+    <a-text value="Doel:" width="2.5" position="-0.335 0.497 0.021" color="black"></a-text>
+    <a-text value="Het jusite afval in de juiste container stoppen"   width="0.8" position="-0.440 0.221 0.056" color="black" text="wrapCount: 12" width="0.8" position="-0.440 0.128 0.056" color="black"> </a-text>
+  </a-plane>
+
+  <a-plane width="1.140" height="1.320" position="4.088 1.417 0.903" rotation="0 -90 0" class="objectivesss" visible="false">
+  <a-text value="Doel:" width="2.5" position="-0.335 0.497 0.021" color="black"></a-text>
+  <a-text value="Pippeteer de juiste hoeveelheid"  width="0.8" position="-0.440 0.221 0.056" color="black" text="wrapCount: 12" width="0.8" position="-0.440 0.128 0.056" color="black"> </a-text>
+</a-plane>
+
+  <a-plane width="1.140" height="1.320" position="4.074 1.417 3.946" rotation="0 -90 0" class="objectivesss" visible="false">
+    <a-text value="Doel:" width="2.5" position="-0.335 0.497 0.021" color="black" ></a-text>
+    <a-text value="Zet de juiste vlam voor de juiste temperatuur" text="wrapCount: 12" width="0.8" position="-0.440 0.128 0.056" color="black"> </a-text>
+  </a-plane>
+
+
+
+
+
+  <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="3.750 0.985 -2.430"  rotation="0 180 0">
+          <a-text value="i" color="white" position="-0.053 0.015 -0.004" rotation="-90"></a-text>
+    </a-cylinder>
+
+    <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="3.750 0.985 0.776" rotation="0 180 0">
+            <a-text value="i" color="white" position="-0.053 0.015 -0.004" rotation="-90"></a-text>
+      </a-cylinder>
+
+      <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="3.750 0.985 4.017" rotation="0 180 0">
+              <a-text value="i" color="white" position="-0.053 0.015 -0.004" rotation="-90"></a-text>
+        </a-cylinder>
+
+<a-entity scale="0.390 0.390 0.390" position="2.157 0.508 1.077" >
       <a-entity gltf-part="src: #labTafel; part: Blad" material="normalTextureRepeat:10 5; color: #3c3c3c;normalMap:models/tafel/white_plaster_02_nor_2k.jpg;"   ></a-entity>
       <a-entity gltf-part="src: #labTafel; part: Cylinder" material="color: white;metalness:0.2;roughness:0.1"  modify-material ></a-entity>
       <a-entity gltf-part="src: #labTafel; part: LadeKast" material="color: white"  modify-material ></a-entity>
@@ -208,22 +244,15 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
 </a-entity>
 <a-entity position="2.439 1.013 3.550" static-body gltf-part="src: #brander; part: Cylinder" material="color:white;metalness:1;"   modify-material collision-filter="group: green; collidesWith: default, green" scale="0.05 0.05 0.05"></a-entity>
 
+<a-box id="aanzettenVlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="darkblue" position="3.355 0.990 3.426"rotation="-45 180 0" scale="0.4 0.4 0.4">
+    <a-text position="-0.431 0.5 0" color="white" value="Aanzetten"></a-text>
+</a-box>
+
 <a-box id="uitzettenVlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="darkblue" position="1.888 0.990 3.426"rotation="-45 180 0" scale="0.4 0.4 0.4">
     <a-text position="-0.431 0.5 0" color="white" value="Uitzetten"></a-text>
 </a-box>
 
-<a-box id="pauzevlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="yellow" position="3.914 0.990 3.907"rotation="-45 180 0" scale="0.4 0.4 0.4">
-    <a-text position="-0.846 0.5 0" color="white" value="pauze vlam (geelig)"></a-text>
-</a-box>
-
-<a-box id="blauwevlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="blue" position="3.914 0.990 4.382"rotation="-45 180 0" scale="0.4 0.4 0.4">
-    <a-text position="-0.846 0.5 0" color="white" value="blauwe vlam (blauw en stil)"></a-text>
-</a-box>
-
-<a-box id="ruizendevlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="darkblue" position="3.914 0.990 3.426"rotation="-45 180 0" scale="0.4 0.4 0.4">
-    <a-text position="-0.846 0.5 0" color="white" value="blauwe vlam (blauw en luid)"></a-text>
-</a-box>
-
+  <a-text id="js--text-element" position="2.250 1.306 3.705" width="4" color="black" value="hahaahha" rotation="0 180 0"></a-text>
 
 <a-box id="nextButtonFlame"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="blue" position="2.224 0.990 3.425"rotation="-45 180 0" scale="0.4 0.4 0.4">
     <a-text position="-0.846 0.5 0" color="white" value="NExt"></a-text>
@@ -233,12 +262,15 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
 </a-box>
 
 
+
+
+
 <a-entity scale=".5 .5 .5" rotation="0 200 0" position="2.672 1.378 3.618">
   <a-plane position="0 0 -.001" color="darkslategray"></a-plane>
   <a-text id="js--element-number" position="-.46 .29 0" width="4" color="black" value="hahaahha"></a-text>
   <a-text id="js--element-symbol" position="-.46 .04 0" color="black" value="hahaahha"></a-text>
-  <a-text id="js--element-name" position="-.43 -.19 0" width="2.4" color="black" value="hahaahha"></a-text>
-  <a-text id="js--element-mass" position="-.43 -.33 0" width="2.4" color="black" value="hahaahha"></a-text>
+  <a-text id="js--element-name" position="-.43 -.19 0" width="2.4" color="black" value=""></a-text>
+  <a-text id="js--element-mass" position="-.43 -.33 0" width="2.4" color="black" value=""></a-text>
 </a-entity>
 
 
@@ -255,12 +287,7 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
 
 
   <a-entity id="head" camera  look-controls="pointerLockEnabled: true">
-    <a-plane width="1.140" height="1.320" position="-0.681 0.105 -2.8" rotation="0 0 0" id="objectives">
-      <a-text value="Nog te doen:" width="2.5" position="-0.335 0.497 0.021" color="black"></a-text>
-      <a-text value="Pipetteren"  width="3" position="-0.440 0.271 0.056" color="black"> </a-text>
-      <a-text value="Afval scheiden" width="3" position="-0.451 0.054 0.043" color="black"></a-text>
-      <a-text value="Brander instellen" width="3" position="-0.451 -0.177 0.043" color="black"></a-text>
-    </a-plane>
+
     <a-entity animation__fusing="property:scale; easing:easeInCubic; dur:500; from:1 1 1; to: 0.1 0.1 0.1; startEvents: fusing"
               animation__mouseleave="property:scale; easing:easeInCubic; dur:250; to:1 1 1;  startEvents: mouseleave "
               animation__click="property:scale; easing:easeInCubic; dur:250; to:1 1 1;  startEvents: click"
@@ -273,6 +300,12 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
   teleport-controls="cameraRig: #cameraRig;  startEvents:  thumbupstart; endEvents: thumbupend; teleportOrigin: #head;collisionEntities: .second-navmesh;"
   mixin="point" id="lefthand"
   oculus-touch-controls="hand: left" thumb-controls="hand: left">
+  <a-plane width="1.140" height="1.320" position="-0.681 0.105 -2.8" rotation="0 0 0" id="objectives">
+    <a-text value="Nog te doen:" width="2.5" position="-0.335 0.497 0.021" color="black"></a-text>
+    <a-text value="Pipetteren"  width="3" position="-0.440 0.271 0.056" color="black"> </a-text>
+    <a-text value="Afval scheiden" width="3" position="-0.451 0.054 0.043" color="black"></a-text>
+    <a-text value="Brander instellen" width="3" position="-0.451 -0.177 0.043" color="black"></a-text>
+  </a-plane>
   </a-entity>
 
   <a-entity id="righthand"
@@ -281,16 +314,16 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
   </a-entity>
   </a-entity>
 
-  <a-plane position="2.503 2.677 0.783" width="1.940" height="0.640" look-at="#head">
+  <a-plane position="2.503 2.677 0.783" width="1.940" height="0.640" look-at="#head" scale="0.4 0.4 0.4">
     <a-text value="Pipetteren" position="-0.521"></a-text>
 
   </a-plane>
-  <a-plane position="2.503 2.677 -2.376" width="1.940" height="0.640" look-at="#head">
-    <a-text value="Afval" position="-0.521"></a-text>
+  <a-plane position="2.503 2.677 -2.376" width="1.940" height="0.640" look-at="#head" scale="0.4 0.4 0.4">
+    <a-text value="Afval scheiden" position="-0.521"></a-text>
 
   </a-plane>
 
-  <a-plane position="2.503 2.677 3.965" width="1.940" height="0.640" look-at="#head">
+  <a-plane position="2.503 2.677 3.965" width="1.940" height="0.640" look-at="#head" scale="0.4 0.4 0.4">
     <a-text value="Brander" position="-0.521"></a-text>
 
   </a-plane>
@@ -335,11 +368,11 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
        <!-- <a-entity sound="src: url(sound/SafetyGoggles.mp3); autoplay: false" id="js--bril" class="pcikup js--grabbable" gltf-model="src: url(models/SafetyBril/SafetyGoggle.gltf)"   rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials grabbable static-body ></a-entity> -->
 
        <a-entity scale="0.1 0.1 0.1" position="-0.187 1.308 -8.421" id="bril" rotation="0 180 0" sound="src: url(sound/SafetyGoggles.mp3); autoplay: false" id="js--bril" class="pcikup js--grabbable">
-         <a-entity gltf-part="src: #safetyBril; part: bril" material="color:grey"  modify-material collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
+         <a-entity gltf-part="src: #safetyBril; part: bril" grabbable material="color:grey"  modify-material collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
          <a-entity gltf-part="src: #safetyBril; part: glas" material="color: white;opacity:0.5;blending:additive;"  modify-material ></a-entity>
        </a-entity>
 
-       <a-entity sound="src: url(sound/JacketPutOn.mp3); autoplay: false" id="js--labcoat" class="pcikup js--grabbable" gltf-model="src: url(models/Labjas/labjasV2.gltf)"    rotation="0 -165.820 0" scale="1.5 1.5 1.5" position="-0.505 1.560 -8.996" modify-materials  static-body ></a-entity>
+       <a-entity sound="src: url(sound/JacketPutOn.mp3); autoplay: false" id="js--labcoat" class="pcikup js--grabbable" gltf-model="src: url(models/Labjas/labjasV2.gltf)" grabbable   rotation="0 -165.820 0" scale="1.5 1.5 1.5" position="-0.505 1.560 -8.996" modify-materials  static-body ></a-entity>
 
 <!-- Controller Tutorial in gang -->
       <a-entity id="js--tutorial" position="-3.514 0.586 -7.917" scale="0.5 0.5 0.5" rotation="0 180 0">
@@ -431,11 +464,14 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
 
         <a-box id="js--pipet-colision-box-fill" class="pcikup" scale=".05 .6 .05"  material="visible: false;" position="0.55 -0.2 -0.771" rotation="0 0 0" collision-filter="collisionForces: false" droppable accepts=""  modify-material static-body
         event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
-        event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"></a-box>
+        event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false">
+        </a-box>
+        <a-box scale="-.49 -.01 -.761" position="-1.04 -0.48 0" color="green"></a-box>
 
         <a-box id="js--pipet-colision-box-succ" class="pcikup" scale=".05 .6 .05"  material="visible: false;" position="0 -0.2 -0.771" rotation="0 0 0" collision-filter="collisionForces: false" droppable accepts="" modify-material static-body
         event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
-        event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"></a-box>
+        event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false">
+        </a-box>
       </a-entity>
 
 
@@ -578,6 +614,46 @@ sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinat
 
     <script src="vendor/aframe-extras.min.js"></script>
 
+<<<<<<< HEAD
+=======
+    <script>
+
+      trashAudioT1 = document.getElementById("js--trashAudio-t1");
+      trashAudioT2 = document.getElementById("js--trashAudio-t2");
+
+      wrongAudioT1 = document.getElementById("js--wrongAudio-t1");
+      wrongAudioT2 = document.getElementById("js--wrongAudio-t2");
+
+      //drop test
+      AFRAME.registerComponent('droptest', {
+        play: function () {
+          this.el.addEventListener('drag-drop', function (evt) {
+            trashAudioT1.components.sound.stopSound();
+            trashAudioT2.components.sound.stopSound();
+
+            wrongAudioT1.components.sound.stopSound();
+            wrongAudioT2.components.sound.stopSound();
+            if(this.id == "afval_1" && evt.detail.dropped.dataset.color == "red"){
+              AFRAME.log("Goed gedropped ouwe");
+              trashAudioT1.components.sound.playSound();
+              evt.detail.dropped.remove();
+            }else if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
+              trashAudioT2.components.sound.playSound();
+              AFRAME.log("Goed gedropped ouwe");
+              evt.detail.dropped.remove();
+
+            }else{
+              AFRAME.log("hahahahha u pleb das fout " + evt.detail.dropped.dataset.color);
+              wrongAudioT1.components.sound.playSound();
+              wrongAudioT2.components.sound.playSound();
+            }
+          });
+        }
+      });
+
+  </script>
+
+>>>>>>> d1aa7b2e778693f93799a0d31e9d717e526ac7d4
 
 
   </body>

@@ -35,10 +35,9 @@ fetchApiData = () => {
   })
   .then( (response) => {
     // AFRAME.log(response[randomElement]);
-    ELEMENT_NUMBER.setAttribute("value", response[randomElement].atomicNumber)
-    ELEMENT_SYMBOL.setAttribute("value", response[randomElement].symbol)
-    ELEMENT_NAME.setAttribute("value", response[randomElement].name)
-    ELEMENT_MASS.setAttribute("value", response[randomElement].atomicMass)
+    ELEMENT_NUMBER.setAttribute("value", response[randomElement].name)
+    ELEMENT_SYMBOL.setAttribute("value", response[randomElement].meltingPoint + " K")
+    // ELEMENT_NAME.setAttribute("value", response[randomElement].standardState)
   });
 }
 
@@ -108,11 +107,12 @@ let succCylinderRatio = 0;
 let aButtonHeld = false;
 let bButtonHeld = false;
 let grabbedObject = false;
+let hoveringOverTube = false;
 
 let dropletSound = new Audio("drop.mp3");
 
 let randomThreshhold = (Math.floor(Math.random()* 20))/100
-AFRAME.log("random pipeteer threshhold: " + (randomThreshhold + 0.01))
+AFRAME.log("random pipeteer threshhold: " + randomThreshhold)
 
 
 //https://github.com/harlyq/aframe-sprite-particles-component#properties
@@ -150,34 +150,101 @@ var fireElemnt =   document.getElementById("fire");
   // });
 
 
-document.getElementById("nextButtonFlame").addEventListener('click', function(evnt){
-  fireElementSetWay("next");
-});
 
-document.getElementById("previousButtonFlame").addEventListener('click', function(evnt){
-  fireElementSetWay("previous");
-});
+// document.getElementById("nextButtonFlame").addEventListener('click', function(evnt){
+//   fireElementSetWay("next");
+// });
+//
+// document.getElementById("previousButtonFlame").addEventListener('click', function(evnt){
+//   fireElementSetWay("previous");
+// });
 
+var continueTimeer = true;
 var counterFlameNumber = 0;
+var vlamAan = false;
+const textField = document.getElementById('js--text-element');
+textField.setAttribute('value', "-" + " K");
 
-function fireElementSetWay(way){
-    if(way === "next"){
-      if(counterFlameNumber > 3){
-        counterFlameNumber= 0;
-      }
-      counterFlameNumber++;
-      setFlameNumber(counterFlameNumber);
-    }
-    else{
-      if(counterFlameNumber < 0){
-        counterFlameNumber= 3;
-      }
-      counterFlameNumber--;
-      setFlameNumber(counterFlameNumber);
-    }
-
-
+document.getElementById("nextButtonFlame").onmouseenter = (event) => {
+  continueTimeer = true;
+  changeTempWithInterval("plus");
 }
+document.getElementById("nextButtonFlame").onmouseleave = (event) => {
+ continueTimeer = false;
+}
+
+
+document.getElementById("previousButtonFlame").onmouseenter = (event) => {
+  continueTimeer = true;
+  changeTempWithInterval("minus");
+}
+document.getElementById("previousButtonFlame").onmouseleave = (event) => {
+ continueTimeer = false;
+}
+
+
+var tellerWelkeVlam = 300, time = 1000;
+function changeTempWithInterval(direction) {
+    setTimeout(function () {
+      if(continueTimeer == false || vlamAan === false){
+        return;
+      }
+
+      if(continueTimeer === true && direction === "plus" && vlamAan === true){
+            tellerWelkeVlam += 100;
+            textField.setAttribute('value', tellerWelkeVlam + " K");
+            checkFlameNumber(tellerWelkeVlam);
+            changeTempWithInterval("plus");
+      }
+      if(continueTimeer === true && direction === "minus" && vlamAan === true){
+        if(tellerWelkeVlam < 300){
+            tellerWelkeVlam = 294;
+        }else{
+          tellerWelkeVlam -= 100;
+
+        }
+            textField.setAttribute('value', tellerWelkeVlam + " K");
+            checkFlameNumber(tellerWelkeVlam);
+            changeTempWithInterval("minus");
+      }
+    }, 100);
+};
+
+function checkFlameNumber(tellerWelkeVlam){
+  if(tellerWelkeVlam > 290 && tellerWelkeVlam < 525 ){
+    console.log("pauzevlam");
+    setFlameNumber(1);
+  }
+  if(tellerWelkeVlam > 525 && tellerWelkeVlam < 773 ){
+    console.log("blauwevlam");
+    setFlameNumber(2);
+  }
+  if(tellerWelkeVlam > 773 && tellerWelkeVlam < 1023 ){
+      console.log("ruisvlam");
+    setFlameNumber(3);
+  }
+}
+
+
+
+// function fireElementSetWay(way){
+//     if(way === "next"){
+//       if(counterFlameNumber > 3){
+//         counterFlameNumber= 0;
+//       }
+//       counterFlameNumber++;
+//       setFlameNumber(counterFlameNumber);
+//     }
+//     else{
+//       if(counterFlameNumber < 0){
+//         counterFlameNumber= 3;
+//       }
+//       counterFlameNumber--;
+//       setFlameNumber(counterFlameNumber);
+//     }
+//
+//
+// }
 
 function setFlameNumber(counterFlameNumberCount){
   fireElemnt.pause();
@@ -212,9 +279,75 @@ switch(counterFlameNumberCount) {
 
 
   document.getElementById("uitzettenVlam").addEventListener('click', function(evnt){
+    textField.setAttribute('value', "-" + " K");
+    tellerWelkeVlam = 300;
+    vlamAan = false;
     fireElemnt.setAttribute("sprite-particles",{enable:false});
   });
+  document.getElementById("aanzettenVlam").addEventListener('click', function(evnt){
+    textField.setAttribute('value', "0" + " K");
+    tellerWelkeVlam = 300;
+    vlamAan = true;
+    fireElemnt.setAttribute("sprite-particles",{enable:true});
+  });
 
+
+
+//================================= I N F O  B U T T O // NOTE:
+var inforBUttons = document.getElementsByClassName("infoButton");
+var panels = document.getElementsByClassName("objectivesss");
+var isAlreadySet = false;
+
+for (let i = 0; i < inforBUttons.length; i++) {
+  inforBUttons[i].addEventListener('click', function(evnt){
+    if(isAlreadySet === false){
+
+       panels[i].setAttribute("visible",true);
+
+      inforBUttons[i].setAttribute("color","green");
+      isAlreadySet = true;
+    }
+    else{
+
+         panels[i].setAttribute("visible",false);
+        inforBUttons[i].setAttribute("color","blue");
+      isAlreadySet = false;
+    }
+    //console.log("Number " + i);
+  });
+};
+
+
+//================================== B R A N D E R  A F S T E L L E N
+// const textField = document.getElementById('js--text-element');
+let tempCondities = true;
+let startTimer;
+let deltaFlame = 0;
+let temperatureStepper;
+
+//start 1 keer
+riseTemperatureStart = () => {
+  //eventuele condities idk copy paste
+  if (tempCondities) {
+    //beginpunt timer
+    startTimer = new Date();
+
+    //check tijd elke x miliseconde met interval
+    temperatureStepper = setInterval(f => {
+      let endTimer = new Date();
+      //bereken einde en pas aan naar normaal getal; ~330 na 1 seconde
+      deltaFlame = (endTimer - startTimer)/6;
+
+      // textField.setAttribute('value', deltaFlame);
+
+    }, INTERVAL_FREQ);
+  }
+}
+
+// verwijder interval
+riseTemperatureEnd = () => {
+  clearInterval(temperatureStepper);
+}
 
 
 
@@ -285,6 +418,7 @@ for (let i = 0; i < GRABBABLES.length; i++) {
     switch (ID) {
       case "js--pipet-container":
         document.getElementById('js--pipet-colision-box-succ').addEventListener('hover-start', function (evt) {
+          hoveringOverTube = true;
           AFRAME.log("hovered over the succ test tube")
           document.getElementById('cameraRig').addEventListener('abuttondown', function (e) {
             fillPipetStart(TEST_CYLINDER_SUCC);
@@ -296,6 +430,7 @@ for (let i = 0; i < GRABBABLES.length; i++) {
           })
         })
         document.getElementById('js--pipet-colision-box-fill').addEventListener('hover-start', function (evt) {
+          hoveringOverTube = true;
           AFRAME.log("hovered over the fill test tube")
           document.getElementById('cameraRig').addEventListener('bbuttondown', function (e) {
             emptyPipetStart(TEST_CYLINDER_FILL);
@@ -306,6 +441,12 @@ for (let i = 0; i < GRABBABLES.length; i++) {
             bButtonHeld = false;
             emptyPipetEnd();
           })
+        })
+        document.getElementById('js--pipet-colision-box-fill').addEventListener('hover-end', function (evt) {
+          hoveringOverTube = false;
+        })
+        document.getElementById('js--pipet-colision-box-succ').addEventListener('hover-end', function (evt) {
+          hoveringOverTube = false;
         })
         break;
 
@@ -359,7 +500,7 @@ for (let i = 0; i < GRABBABLES.length; i++) {
 }
 
 fillPipetStart = (substance) => {
-  if (!bButtonHeld && !aButtonHeld && grabbedObject) {
+  if (!bButtonHeld && !aButtonHeld && grabbedObject && hoveringOverTube) {
     startPipetFeedbackTimer = new Date();
 
     visualFeedbackInterval = setInterval(f => {
@@ -376,12 +517,13 @@ fillPipetStart = (substance) => {
       // modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight;
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
-
-      if (true) {
-
-      }
       succCylinderRatio = succCylinderRatio + .005
       // AFRAME.log(substance.getAttribute("height"))
+
+      if (succCylinderRatio >= .5) {
+        succCylinderRatio = .5
+      }
+
       substance.setAttribute("height", (.25-succCylinderRatio));
       substance.setAttribute("position", "0 " + -(succCylinderRatio/2)+0.110 + " 0");
     }, INTERVAL_FREQ);
@@ -399,7 +541,7 @@ fillPipetEnd = () => {
 }
 
 emptyPipetStart = (substance) => {
-  if (!aButtonHeld && !bButtonHeld && grabbedObject) {
+  if (!aButtonHeld && !bButtonHeld && grabbedObject && hoveringOverTube) {
     startPipetFeedbackTimer = new Date();
 
     visualFeedbackInterval = setInterval(f => {
@@ -421,10 +563,11 @@ emptyPipetStart = (substance) => {
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
       PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
 
-      if (true) {
-
-      }
       fillCylinderRatio = fillCylinderRatio + .005
+
+      if (fillCylinderRatio >= .25) {
+        fillCylinderRatio = .25
+      }
 
       substance.setAttribute("height", (.001+ fillCylinderRatio));
       substance.setAttribute("position", "0 " + ((fillCylinderRatio/2)-0.110) + " 0");

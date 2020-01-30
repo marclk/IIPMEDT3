@@ -37,25 +37,54 @@
         <a-cylinder radius=".01" height=".2" color="crimson"></a-cylinder>
       </a-entity> -->
 
-      <a-entity rotation="0 200 0" position="2.672 1.378 3.618">
+      <!-- <a-entity rotation="0 200 0" position="2.672 1.378 3.618">
         <a-plane position="0 0 -.001" color="darkslategray"></a-plane>
         <a-text id="js--element-number" position="-.46 .29 0" width="4" color="black" value="hahaahha"></a-text>
         <a-text id="js--element-symbol" position="-.46 .04 0" color="black" value="hahaahha"></a-text>
         <a-text id="js--element-name" position="-.43 -.19 0" width="2.4" color="black" value="hahaahha"></a-text>
         <a-text id="js--element-mass" position="-.43 -.33 0" width="2.4" color="black" value="hahaahha"></a-text>
-      </a-entity>
+      </a-entity> -->
 
-      <a-entity id="rig"
+      <a-box id="nextButtonFlame"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="blue" position="1 0 -1.6"rotation="-45 180 0" scale="0.4 0.4 0.4">
+          <a-text position="-0.846 0.5 0" color="black" value="More"></a-text>
+      </a-box>
+      <a-box id="previousButtonFlame"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="blue" position="-0.453 0 -1.6"rotation="-45 180 0" scale="0.4 0.4 0.4">
+          <a-text position="-0.846 0.5 0" color="black" value="Less"></a-text>
+      </a-box>
+
+      <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="0 0 0">
+        <a-text value="i" color="white" position="-0.053 0.015 -0.004" rotation="-90"></a-text>
+      </a-cylinder>
+
+      <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickables" position="-0.349 0 0">
+        <a-text value="i" color="white" position="-0.053 0.015 -0.004" rotation="-90"></a-text>
+      </a-cylinder>
+
+      <a-text id="js--text-element" position="0 0 -1" width="4" color="black" value="hahaahha"></a-text>
+
+
+        <a-camera id="camera" wasd-controls-enabled="true" position="0 0 0">
+          <a-entity animation__fusing="property:scale; easing:easeInCubic; dur:500; from:1 1 1; to: 0.1 0.1 0.1; startEvents: fusing"
+                    animation__mouseleave="property:scale; easing:easeInCubic; dur:250; to:1 1 1;  startEvents: mouseleave "
+                    animation__click="property:scale; easing:easeInCubic; dur:250; to:1 1 1;  startEvents: click"
+                    raycaster="objects: .clickable"
+           id="js--cursor"  cursor="fuse:true; FuseTimeout:0" material="color:red; shader:flat;" geometry="primitive: ring; radiusInner:0.01; radiusOuter:0.015" position="0 0 -.5"></a-entity>
+
+        </a-camera>
+        <!-- <a-cursor color="black"></a-cursor> -->
+        <!-- <a-entity id="rightHand" hand-controls="right" mixin="controller">
+        </a-entity>
+        <a-entity id="leftHand" hand-controls="left" mixin="controller">
+
+        </a-entity> -->
+
+      <!-- <a-entity id="rig"
           movement-controls="speed:0.15; constrainToNavMesh: true"
           position="0 0.020 0" rotation="0 0 0">
         <a-entity camera position="0 0 0" look-controls="pointerLockEnabled: true">
-          <!-- <a-cursor color="black"></a-cursor> -->
-        </a-entity>
-            <!-- <a-entity id="rightHand" hand-controls="right" mixin="controller">
-            </a-entity>
-            <a-entity id="leftHand" hand-controls="left" mixin="controller">
 
-            </a-entity> -->
+        </a-entity>
+
 
             <a-entity id="rhand" mixin="touch"
 
@@ -66,7 +95,7 @@
                                       oculus-touch-controls="hand: left"
                                       >
                             </a-entity>
-</a-entity>
+</a-entity> -->
 
       <!-- <a-plane width="12" height="21"  visible="false" id="tsst" geometry="primitive: plane; width: 21; height: 20" position="2.937 0 -1.136" color="darkslategray" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
 
@@ -80,6 +109,6 @@
      </a-entity> -->
 
     </a-scene>
-    <script src="api_script.js"></script>
+    <script src="temperature.js"></script>
   </body>
 </html>
