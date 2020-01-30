@@ -165,6 +165,29 @@ var fireElemnt =   document.getElementById("fire");
 // document.getElementById("previousButtonFlame").addEventListener('click', function(evnt){
 //   fireElementSetWay("previous");
 // });
+var labcoatAan = false;
+var brilAan = false;
+document.getElementById("js--labcoat").addEventListener('click', function(evnt){
+  this.remove();
+  labcoatAan = true;
+  testIfUserIsSafe()
+    AFRAME.log("clicked labcoat");
+});
+
+document.getElementById("js--bril").addEventListener('click', function(evnt){
+  this.remove();
+  brilAan = true;
+  testIfUserIsSafe()
+  AFRAME.log("clicked Bril");
+});
+
+function testIfUserIsSafe(){
+  if(labcoatAan === true && brilAan === true){
+  document.getElementById("normalMesh").setAttribute("position",{z:0, y:4.124, x:0});
+  document.getElementById("deur-dicht").remove();
+  }
+}
+
 
 var continueTimeer = true;
 var counterFlameNumber = 0;
@@ -172,22 +195,24 @@ var vlamAan = false;
 const textField = document.getElementById('js--text-element');
 textField.setAttribute('value', "-" + " K");
 
-document.getElementById("nextButtonFlame").onmouseenter = (event) => {
+
+
+document.getElementById("nextButtonFlame").addEventListener('click', function(evnt){
   continueTimeer = true;
   changeTempWithInterval("plus");
-}
-document.getElementById("nextButtonFlame").onmouseleave = (event) => {
+});
+document.getElementById("nextButtonFlame").addEventListener('click', function(evnt){
  continueTimeer = false;
-}
+});
 
 
-document.getElementById("previousButtonFlame").onmouseenter = (event) => {
+document.getElementById("previousButtonFlame").addEventListener('click', function(evnt){
   continueTimeer = true;
   changeTempWithInterval("minus");
-}
-document.getElementById("previousButtonFlame").onmouseleave = (event) => {
+});
+document.getElementById("previousButtonFlame").addEventListener('click', function(evnt){
  continueTimeer = false;
-}
+});
 
 
 var tellerWelkeVlam = 300, time = 1000;
@@ -469,24 +494,23 @@ for (let i = 0; i < GRABBABLES.length; i++) {
         })
         break;
 
-      case "js--labcoat" || "js--bril":
-        document.getElementById('cameraRig').addEventListener('abuttondown', function (e) {
-
-          aButtonHeld = true;
-        })
-        document.getElementById('cameraRig').addEventListener('bbuttondown', function (e) {
-
-          bButtonHeld = true;
-        })
-        document.getElementById('cameraRig').addEventListener('abuttonup', function (e) {
-          aButtonHeld = false;
-          GRABBABLES[i].remove()
-        })
-        document.getElementById('cameraRig').addEventListener('bbuttonup', function (e) {
-          bButtonHeld = false;
-          GRABBABLES[i].remove()
-        })
-        break;
+      // case "js--labcoat" || "js--bril":
+      //   document.getElementById('cameraRig').addEventListener('abuttondown', function (e) {
+      //     aButtonHeld = true;
+      //   })
+      //   document.getElementById('cameraRig').addEventListener('bbuttondown', function (e) {
+      //
+      //     bButtonHeld = true;
+      //   })
+      //   document.getElementById('cameraRig').addEventListener('abuttonup', function (e) {
+      //     aButtonHeld = false;
+      //     GRABBABLES[i].remove()
+      //   })
+      //   document.getElementById('cameraRig').addEventListener('bbuttonup', function (e) {
+      //     bButtonHeld = false;
+      //     GRABBABLES[i].remove()
+      //   })
+      //   break;
 
       // case "js--bril":
       //   document.getElementById('rig').addEventListener('abuttondown', function (e) {
