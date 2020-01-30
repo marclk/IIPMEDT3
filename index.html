@@ -87,6 +87,7 @@
           <a-asset-item id="prullenbak" src="models/AfvalBak/prullenbak.gltf" ></a-asset-item>
           <a-asset-item id="brokenErlenmeyer" src="models/Afval/brokenErlenmeyer.gltf" ></a-asset-item>
           <a-asset-item id="propje" src="models/Afval/Propje.gltf" ></a-asset-item>
+          <a-asset-item id="erlenmeyer-statief" src="models/Erlenmeyer+Statief/Erlenmeyer_Statief_Labeled.gltf"></a-asset-item>
       </a-assets>
 
       <!-- Audio Files -->
@@ -235,11 +236,17 @@
   </a-entity>
 
 <!-- Flame -->
-  <a-entity id="fire" rotation="0 0 90" position="2.444 1.163 3.556"
-    sprite-particles="enable:false;lifeTime:0.5;drag:2;destinationWeight:0; destinationOffset: 0; texture: assets/explosion_sheet.png; textureFrame: 5 5; velocity: .2 .1 -.2.. .6 .1 .2; acceleration: 1; spawnRate: 100; scale:0..1,1..2; opacity: 1,0; angularVelocity: 0 00; blending: additive; enableInEditor: true; velocityScale: 2.43; velocityScaleMinMax: 3.34 0.74; emitterTime: 1.87; particleSize: 40; alphaTest: 0.88">
+  <a-entity id="fire" rotation="0 0 90" position="2.447 1.156 3.556"
+    sprite-particles="enable:false;lifeTime:0.3;drag:2;destinationWeight:0; destinationOffset: 0; texture: assets/explosion_sheet.png; textureFrame: 5 5; velocity: .2 .1 -.2.. .6 .1 .2; acceleration: 1; spawnRate: 100; scale:0..1,1..2; opacity: 1,0; angularVelocity: 0 00; blending: additive; enableInEditor: true; velocityScale: 2.43; velocityScaleMinMax: 3.34 0.74; emitterTime: 1.87; particleSize: 30; alphaTest: 0.88">
   </a-entity>
 
-  <a-entity position="2.439 1.013 3.550" static-body gltf-part="src: #brander; part: Cylinder" material="color:white;metalness:1;"   modify-material collision-filter="group: green; collidesWith: default, green" scale="0.05 0.05 0.05"></a-entity>
+  <a-entity position="2.439 1.007 3.550" static-body gltf-part="src: #brander; part: Cylinder" material="color:white;metalness:1;"   modify-material collision-filter="group: green; collidesWith: default, green" scale="0.05 0.045 0.05"></a-entity>
+
+ <a-entity  position="2.444 1.176 3.553" scale=".6 .6 .6">
+    <a-entity gltf-part="src: #erlenmeyer-statief; part: erlenmeyer" material="color: white; opacity: .5;" position="0 0.063 0"></a-entity>
+    <a-entity gltf-part="src: #erlenmeyer-statief; part: statief" material="color: darkslategray;" scale="1 1.330 1" position="0 0.043 0"></a-entity>
+    <a-cone radius-top="0.09" radius-bottom=".11" height="0.120" color="crimson" position="0 0.204 0"></a-cone>
+  </a-entity>
 
   <a-box id="aanzettenVlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="darkblue" position="3.355 0.990 3.426"rotation="-45 180 0" scale="0.4 0.4 0.4">
       <a-text position="-0.431 0.5 0" color="white" value="Aanzetten"></a-text>
@@ -247,6 +254,10 @@
 
   <a-box id="uitzettenVlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="darkblue" position="1.888 0.990 3.426"rotation="-45 180 0" scale="0.4 0.4 0.4">
       <a-text position="-0.431 0.5 0" color="white" value="Uitzetten"></a-text>
+  </a-box>
+
+  <a-box id="checkVlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="darkblue" position="1.313 .990 3.426"rotation="-45 180 0" scale="0.4 0.4 0.4">
+      <a-text position="-0.431 0.5 0" color="white" value="Check"></a-text>
   </a-box>
 
   <a-text id="js--text-element" position="2.250 1.306 3.705" width="4" color="black" value="hahaahha" rotation="0 180 0"></a-text>
@@ -292,10 +303,11 @@
     </a-plane>
   </a-entity>
 
+
   <a-entity id="righthand" teleport-controls="cameraRig: #cameraRig;  startEvents:  thumbupstart; endEvents: thumbupend; teleportOrigin: #head;collisionEntities: .second-navmesh;"
     oculus-touch-controls="hand: right" thumb-controls="hand: right" mixin="point">
   </a-entity>
-
+    </a-entity>
   <a-plane position="2.503 2.677 0.783" width="1.940" height="0.640" look-at="#head" scale="0.4 0.4 0.4">
     <a-text value="Pipetteren" position="-0.521"></a-text>
   </a-plane>
@@ -347,8 +359,8 @@
 
    <!-- <a-entity sound="src: url(sound/SafetyGoggles.mp3); autoplay: false" id="js--bril" class="pcikup js--grabbable" gltf-model="src: url(models/SafetyBril/SafetyGoggle.gltf)"   rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials grabbable static-body ></a-entity> -->
 
-   <a-entity scale="0.1 0.1 0.1" position="-0.187 1.308 -8.421" id="bril" rotation="0 180 0" sound="src: url(sound/SafetyGoggles.mp3); autoplay: false" id="js--bril" class="pcikup js--grabbable">
-     <a-entity gltf-part="src: #safetyBril; part: bril" grabbable material="color:grey"  modify-material collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
+   <a-entity scale="0.1 0.1 0.1" position="-0.187 1.308 -8.421" id="bril" rotation="0 180 0" sound="src: url(sound/SafetyGoggles.mp3); autoplay: false" id="js--bril" class="pcikup js--grabbable"grabbable static-body>
+     <a-entity gltf-part="src: #safetyBril; part: bril"  material="color:grey"  modify-material collision-filter="group: green; collidesWith: default, green" static-body></a-entity>
      <a-entity gltf-part="src: #safetyBril; part: glas" material="color: white;opacity:0.5;blending:additive;"  modify-material ></a-entity>
    </a-entity>
 

@@ -18,6 +18,8 @@
 //       }
 //     })
 
+var meltingPoint = 0;
+
 //==================== CHEMISTRY API STUFF
 const BASE_URL = "https://neelpatel05.pythonanywhere.com"
 const ELEMENT_NUMBER = document.getElementById('js--element-number')
@@ -37,6 +39,11 @@ fetchApiData = () => {
     // AFRAME.log(response[randomElement]);
     ELEMENT_NUMBER.setAttribute("value", response[randomElement].name)
     ELEMENT_SYMBOL.setAttribute("value", response[randomElement].meltingPoint + " K")
+    meltingPoint = response[randomElement].meltingPoint;
+    if(response[randomElement].meltingPoint < 800){
+      fetchApiData();
+    }
+
     // ELEMENT_NAME.setAttribute("value", response[randomElement].standardState)
   });
 }
@@ -191,35 +198,35 @@ function changeTempWithInterval(direction) {
       }
 
       if(continueTimeer === true && direction === "plus" && vlamAan === true){
-            tellerWelkeVlam += 100;
-            textField.setAttribute('value', tellerWelkeVlam + " K");
+            tellerWelkeVlam += 50;
+            textField.setAttribute('value', tellerWelkeVlam + " Kelvin");
             checkFlameNumber(tellerWelkeVlam);
             changeTempWithInterval("plus");
       }
       if(continueTimeer === true && direction === "minus" && vlamAan === true){
-        if(tellerWelkeVlam < 300){
-            tellerWelkeVlam = 294;
+        if(tellerWelkeVlam < 525){
+            tellerWelkeVlam = 523;
         }else{
-          tellerWelkeVlam -= 100;
+          tellerWelkeVlam -= 50;
 
         }
-            textField.setAttribute('value', tellerWelkeVlam + " K");
+            textField.setAttribute('value', tellerWelkeVlam + " Kelvin");
             checkFlameNumber(tellerWelkeVlam);
             changeTempWithInterval("minus");
       }
-    }, 100);
+    }, 500);
 };
 
 function checkFlameNumber(tellerWelkeVlam){
-  if(tellerWelkeVlam > 290 && tellerWelkeVlam < 525 ){
+  if(tellerWelkeVlam > 523 && tellerWelkeVlam < 1273 ){
     console.log("pauzevlam");
     setFlameNumber(1);
   }
-  if(tellerWelkeVlam > 525 && tellerWelkeVlam < 773 ){
+  if(tellerWelkeVlam > 1273 && tellerWelkeVlam < 1473 ){
     console.log("blauwevlam");
     setFlameNumber(2);
   }
-  if(tellerWelkeVlam > 773 && tellerWelkeVlam < 1023 ){
+  if(tellerWelkeVlam > 1473 && tellerWelkeVlam < 1773 ){
       console.log("ruisvlam");
     setFlameNumber(3);
   }
@@ -280,16 +287,28 @@ switch(counterFlameNumberCount) {
 
   document.getElementById("uitzettenVlam").addEventListener('click', function(evnt){
     textField.setAttribute('value', "-" + " K");
-    tellerWelkeVlam = 300;
+    tellerWelkeVlam = 523;
     vlamAan = false;
     fireElemnt.setAttribute("sprite-particles",{enable:false});
   });
   document.getElementById("aanzettenVlam").addEventListener('click', function(evnt){
-    textField.setAttribute('value', "0" + " K");
-    tellerWelkeVlam = 300;
+    textField.setAttribute('value', "523" + " K");
+    tellerWelkeVlam = 523;
     vlamAan = true;
     fireElemnt.setAttribute("sprite-particles",{enable:true});
   });
+
+  document.getElementById("checkVlam").addEventListener('click', function(evnt){
+    let valueBrander = parseInt(textField.getAttribute('value'), 10);
+  //  AFRAME.log("Goed");
+      if(valueBrander > (meltingPoint - 100) && valueBrander < (meltingPoint + 100)){
+        AFRAME.log("Goed");
+      }else{
+        AFRAME.log("Not goed "+meltingPoint);
+        AFRAME.log("Not goed "+valueBrander);
+      }
+  });
+
 
 
 
