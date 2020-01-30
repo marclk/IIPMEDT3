@@ -185,6 +185,8 @@ function testIfUserIsSafe(){
   if(labcoatAan === true && brilAan === true){
   document.getElementById("normalMesh").setAttribute("position",{z:0, y:4.124, x:0});
   document.getElementById("deur-dicht").remove();
+  document.getElementById("doFirstPlane").remove();
+
   }
 }
 
@@ -224,8 +226,9 @@ function changeTempWithInterval(direction) {
 
       if(continueTimeer === true && direction === "plus" && vlamAan === true){
             tellerWelkeVlam += 50;
-            textField.setAttribute('value', tellerWelkeVlam + " Kelvin");
-            checkFlameNumber(tellerWelkeVlam);
+            textField.setAttribute('value', tellerWelkeVlam + " K");
+            checkFlameNumber(tellerWelkeVlam );
+            textField.setAttribute("color","white");
             //changeTempWithInterval("plus");
       }
       if(continueTimeer === true && direction === "minus" && vlamAan === true){
@@ -235,8 +238,9 @@ function changeTempWithInterval(direction) {
           tellerWelkeVlam -= 50;
 
         }
-            textField.setAttribute('value', tellerWelkeVlam + " Kelvin");
+            textField.setAttribute('value', tellerWelkeVlam + " K");
             checkFlameNumber(tellerWelkeVlam);
+            textField.setAttribute("color","white");
             //changeTempWithInterval("minus");
       }
     }, 500);
@@ -309,26 +313,56 @@ switch(counterFlameNumberCount) {
 }
 
 
+var vlamStaatAan = false;
 
-  document.getElementById("uitzettenVlam").addEventListener('click', function(evnt){
-    textField.setAttribute('value', "-" + " K");
-    tellerWelkeVlam = 523;
-    vlamAan = false;
-    fireElemnt.setAttribute("sprite-particles",{enable:false});
-  });
+  // document.getElementById("uitzettenVlam").addEventListener('click', function(evnt){
+  //   textField.setAttribute('value', "-" + " K");
+  //   tellerWelkeVlam = 523;
+  //   vlamAan = false;
+  //   fireElemnt.setAttribute("sprite-particles",{enable:false});
+  // });
   document.getElementById("aanzettenVlam").addEventListener('click', function(evnt){
-    textField.setAttribute('value', "523" + " K");
-    tellerWelkeVlam = 523;
-    vlamAan = true;
-    fireElemnt.setAttribute("sprite-particles",{enable:true});
+    let vlamAanUitLabel = document.getElementById("vlamAanUitLabel");
+    if(vlamStaatAan == false){
+      vlamAanUitLabel.setAttribute("value","Uit");
+      vlamStaatAan= true;
+      textField.setAttribute('value', "523" + " K");
+      tellerWelkeVlam = 523;
+      vlamAan = true;
+      fireElemnt.setAttribute("sprite-particles",{enable:true});
+      textField.setAttribute("color","white");
+    }else{
+      vlamAanUitLabel.setAttribute("value","Aan");
+      vlamStaatAan=false;
+      textField.setAttribute('value', "-" + " K");
+      tellerWelkeVlam = 523;
+      vlamAan = false;
+      fireElemnt.setAttribute("sprite-particles",{enable:false});
+    }
+
+
   });
 
   document.getElementById("checkVlam").addEventListener('click', function(evnt){
     let valueBrander = parseInt(textField.getAttribute('value'), 10);
+    let checkBLock = document.getElementById("checkVlam");
+
+
   //  AFRAME.log("Goed");
       if(valueBrander > (meltingPoint - 100) && valueBrander < (meltingPoint + 100)){
         AFRAME.log("Goed");
+        textField.setAttribute("color","green");
+        checkBLock.setAttribute("color","green");
+        document.getElementById("branderLabelAboveTable").setAttribute("color","green");
+        document.getElementById("branderLabelHand").setAttribute("color","green");
+        document.getElementById("branderlabelToDoList").remove();
+
       }else{
+        textField.setAttribute("color","red");
+        checkBLock.setAttribute("color","red");
+        document.getElementById("branderLabelAboveTable").setAttribute("color","red");
+        document.getElementById("branderLabelHand").setAttribute("color","red");
+
         AFRAME.log("Not goed "+meltingPoint);
         AFRAME.log("Not goed "+valueBrander);
       }
