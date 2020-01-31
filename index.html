@@ -123,13 +123,29 @@
 
       <!-- Audio Files -->
 
+      <a-plane id="Bronvermelding" width="6.490" height="3" rotation="0 -90 0" position="13.580 2.876 2.118" visible="false" >
+        <a-text value="Bronvermelding" color="black" position="-0.731 1.252 0"></a-text>
+        <a-text value="thumb controls component(https://github.com/supermedium/superframe/tree/master/components/thumb-controls/)"  color="black" position="-3.092 0.799 0.001" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="super hands(https://github.com/wmurphyrd/aframe-super-hands-component)"                                      color="black" position="-3.092 0.671 0.001" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="physics system(https://github.com/donmccurdy/aframe-physics-system)"                                         color="black" position="-3.092 0.544 0.001" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="event set component(https://www.npmjs.com/package/aframe-event-set-component)"                               color="black" position="-3.092 0.423 0.001" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="physics extra's(https://github.com/wmurphyrd/aframe-physics-extras)"                                         color="black" position="-3.092 0.297 0.001" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="teleport controls(https://github.com/fernandojsg/aframe-teleport-controls)"                                  color="black" position="-3.092 0.177 0.001" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="look-at(https://github.com/supermedium/superframe/tree/master/components/look-at)"                           color="black" position="-3.092 0.058 0.001" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="haptics (https://github.com/supermedium/superframe/tree/master/components/haptics)"                          color="black" position="-3.092 -0.083 0.001" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="state component(https://github.com/supermedium/superframe/tree/master/components/state)"                     color="black" position="-3.092 -0.202 0.001" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="log component(https://github.com/supermedium/superframe/tree/master/components/log)"                         color="black" position="-3.092 -0.313 0.001" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="sprite particles(https://github.com/harlyq/aframe-sprite-particles-component)"                               color="black" position="-3.092 -0.433 0.001" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="gltf-part component(https://github.com/supermedium/superframe/tree/master/components/gltf-part/)"            color="black" position="-3.092 -0.564 0.001" width="5.5" text="wrapCount:100"></a-text>
+      </a-plane>
+
+
       <a-entity id="js--wrongAudio-t1" sound="src: url(wrong.mp3);" position="2.422 1.106 -2.530" ></a-entity>
       <a-entity id="js--wrongAudio-t2" sound="src: url(wrong.mp3);" position="2.775 1.106 -2.342" ></a-entity>
 
       <a-entity id="js--trashAudio-t1" sound="src: url(trash.mp3);" position="2.422 1.106 -2.530" ></a-entity>
       <a-entity id="js--trashAudio-t2" sound="src: url(trash.mp3);" position="2.775 1.106 -2.342" ></a-entity>
 
-      <a-entity id="js--mainAudio" sound="src: url(main.mp3), autoplay: true;" position="2.422 1.106 -2.530"  ></a-entity>
 
       <!-- END Audio Files -->
       <a-entity id="js--propje" data-trashed="false" grabbable draggable droppable position="2 1.083 -2.856" scale="0.05 0.05 0.05" class="pcikup trash" data-color="green" gltf-part="src: #propje; part: Sphere" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body>
@@ -211,7 +227,7 @@
 
   <a-plane width="1.140" height="1.320" position="4.088 1.417 0.903" rotation="0 -90 0" class="objectivesss" visible="false">
   <a-text value="Doel:" width="3.5" position="-0.466 0.520 0.021" color="black"></a-text>
-  <a-text value="Pippeteer de juiste hoeveelheid"  width="0.8" position="-0.440 0.157 0.056" color="black" text="wrapCount: 12" width="0.8" position="-0.440 0.128 0.056" color="black"> </a-text>
+  <a-text value="Pipeteer de juiste hoeveelheid A = opzuigen, B = legen"  width="0.8" position="-0.440 0.157 0.056" color="black" text="wrapCount: 12" width="0.8" position="-0.440 0.128 0.056" color="black"> </a-text>
 </a-plane>
 
   <a-plane width="1.140" height="1.320" position="4.074 1.417 3.946" rotation="0 -90 0" class="objectivesss" visible="false">
@@ -411,7 +427,7 @@
     collision-filter="group: green; collidesWith: default, green">
   </a-box> -->
 
-  <a-entity layout="type: line; margin: 1.2" console-pane position="3.3 2.23 0.8">
+  <a-entity layout="type: line; margin: 1.2" console-pane position="3.3 2.23 0.8" visible="false">
     <a-entity log="max: 15;" geometry="primitive: plane; height: 1.5" material="color: #002B36" text="color: #6E878F" look-at="#head"></a-entity>
   </a-entity>
 
@@ -468,12 +484,12 @@
     <a-text align="center" value=" 2000 MkII Control Scheme v0.8 (uitleg)"  color="#fff" position="0 2 0.01"></a-text>
 
     <a-entity position="-1.6 1 0.01" width="3" height="7">
-      <a-text id="js--control-title" align="left" value="Welkom Bij de tutorial!" color="#fff" position="-1.15 .3 0.01"></a-text>
+      <a-text id="js--control-title" align="left" value="Welkom Bij de tutorial!" color="#fff" position="-1.15 .3 0.01" ></a-text>
       <a-plane color="yellow" scale="1.1 1.1 1.1" component-padding="0.1" width="3" height=".6 " position="0 -.3 0">
-        <a-text id="js--control-step" align="center" value="Knop naam"  color="#000"></a-text>
+        <a-text id="js--control-step" align="center" value=""  color="#000"></a-text>
       </a-plane>
 
-      <a-text id="js--control-desc" width="4" baseline="top" value="Welkom in het Lab! Wat leuk dat je het lab wilt ontdekken in Virtual Reality! Stap in de schoenen van een wetenschapper en leer om gaan met de verschillende taken in het Lab! Loop eerst door de controller tutorial door met je de triggers op volgende te klikken. Trek daarna je jas aan en doe je bril op om je avontuur te starten!" color="#fff" wrapPixel="150" position="-1.65 -.8 0"></a-text>
+      <a-text id="js--control-desc"  baseline="top" value="Welkom in het Lab! Wat leuk dat je het lab wilt ontdekken in Virtual Reality! Loop eerst door de controller tutorial heen, dit doe je door met je de triggers op volgende te klikken. Trek daarna je labjas aan en doe je veiligheidsbril op om je avontuur te starten!" color="#fff" text="wrapCount:32;width:3;lineHeight:60;" position="-1.65 -.8 0"></a-text>
     </a-entity>
 
     <!-- <a-plane class="js--control-step" color="#dedede" component-padding="0.1" width="3" height=".6" position="-1.6 .3 0.01">
@@ -516,7 +532,7 @@
     event-set__dragon="_event: dragover-start; wireframe: true"
     event-set__dragoff="_event: dragover-end; wireframe: false">
     <a-entity id="js--pipet" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf" rotation="0 0 90"></a-entity>
-    <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".001" position="0 0 0" rotation="0 0 90"></a-plane>
+    <!-- <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".001" position="0 0 0" rotation="-90 0 90"></a-plane> -->
   </a-entity>
 
   <a-entity id="pipet-stuff" position="2.157 1.5 1.077">
@@ -632,63 +648,8 @@
       <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.3; distance: 0"  position="8 10 18"></a-entity>
       <a-entity light="type: point; color: #f4f4f4; intensity: 0.6; distance: 0" position="1.87 14 -8.613"></a-entity>
       <a-entity light="type:  point;  color:  #f4f4f4;  intensity:  0.6;  castShadow:  true;  shadowCameraFov:80" position="11.544 3.298 0.180"></a-entity>
-      <a-entity id="light" light="type: spot; color: #ffff97; intensity: 0.260; distance: 0;angle:27;"  position="-3.396 4.223 -8.519" rotation="-57.670 -3.290 0"></a-entity>
+      <a-entity id="light" light="type: spot; color: #ffff97; intensity: 0.260; distance: 0;angle:23;"  position="-3.519 4.223 -6.755" rotation="-71.123 -180 176.716"></a-entity>
 </a-scene>
-
-<script>
-  //
-  // TRASHCOMPLETE = false;
-  //
-  // trashAudioT1 = document.getElementById("js--trashAudio-t1");
-  // trashAudioT2 = document.getElementById("js--trashAudio-t2");
-  //
-  // wrongAudioT1 = document.getElementById("js--wrongAudio-t1");
-  // wrongAudioT2 = document.getElementById("js--wrongAudio-t2");
-  //
-  // trashItems = document.getElementsByClassName("trash");
-  // trashCount = 0;
-  //
-  // //drop test
-  // AFRAME.registerComponent('droptest', {
-  //   play: function () {
-  //     this.el.addEventListener('drag-drop', function (evt) {
-  //       AFRAME.log(trashCount);
-  //       if(this.id == "afval_1" && evt.detail.dropped.dataset.color == "red"){
-  //         AFRAME.log("Goed gedropped ouwe");
-  //         trashAudioT1.components.sound.playSound();
-  //         evt.detail.dropped.setAttribute("visible", false);
-  //         // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
-  //         // evt.detail.dropped.removeAttribute("dynamic-body");
-  //         evt.detail.dropped.dataset.trashed = "true";
-  //       }else if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
-  //         trashAudioT2.components.sound.playSound();
-  //         AFRAME.log("Goed gedropped ouwe");
-  //         evt.detail.dropped.setAttribute("visible", false);
-  //         // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
-  //         // evt.detail.dropped.removeAttribute("dynamic-body");
-  //         evt.detail.dropped.dataset.trashed = "true";
-  //       }else{
-  //         AFRAME.log("hahahahha u pleb das fout " + evt.detail.dropped.dataset.color);
-  //         wrongAudioT1.components.sound.playSound();
-  //         wrongAudioT2.components.sound.playSound();
-  //       }
-  //
-  //       if(trashItems[trashCount].dataset.trashed == "true"){
-  //         trashCount = trashCount+1;
-  //       }
-  //
-  //       if(trashCount == (trashItems.length) ){
-  //         AFRAME.log("All parts Trashed!!!");
-  //         TRASHCOMPLETE = true;
-  //         document.getElementById("afvalLabelAboveTable").setAttribute("color","green");
-  //         document.getElementById("afvalLabelHand").setAttribute("color","green");
-  //         document.getElementById("afvallabelToDoList").remove();
-  //         AFRAME.log(TRASHCOMPLETE);
-  //       }
-  //     });
-  //   }
-  // });
-</script>
 
   <script src="main.js"></script>
   <!-- <script src="pipet_oculus.js"></script> -->
