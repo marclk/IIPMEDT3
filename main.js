@@ -123,7 +123,7 @@ let hoveringOverTube = false;
 
 let dropletSound = new Audio("drop.mp3");
 
-let randomThreshhold = 0;
+// let randomThreshhold = 0;
 
 // generatePipetThreshhold => {
 //   if (randomThreshhold < .05) {
@@ -131,18 +131,18 @@ let randomThreshhold = 0;
 //   }
 // }
 
-generatePipetThreshhold = () => {
-  setTimeout(function () {
-      if(randomThreshhold > .05){
-        return;
-      }
-      randomThreshhold = (Math.floor(Math.random()* 20))/100
-      AFRAME.log("random pipeteer threshhold: " + randomThreshhold)
-      generatePipetThreshhold()
-  }, 5)
-}
-
-generatePipetThreshhold()
+// generatePipetThreshhold = () => {
+//   setTimeout(function () {
+//       if(randomThreshhold > .05){
+//         return;
+//       }
+//       randomThreshhold = (Math.floor(Math.random()* 20))/100
+//       AFRAME.log("random pipeteer threshhold: " + randomThreshhold)
+//       generatePipetThreshhold()
+//   }, 5)
+// }
+//
+// generatePipetThreshhold()
 
 //https://github.com/harlyq/aframe-sprite-particles-component#properties
 //================================ F I R E
@@ -610,10 +610,10 @@ emptyPipetEnd = () => {
 
   // AFRAME.log(TEST_CYLINDER_FILL.getAttribute("height"))
   let filledJuice = TEST_CYLINDER_FILL.getAttribute("height")
-  AFRAME.log("pipet fill threshhold minimum: " + (randomThreshhold-0.05) + ", maximum: " + (randomThreshhold+0.05))
+  // AFRAME.log("pipet fill threshhold minimum: " + (randomThreshhold-0.05) + ", maximum: " + (randomThreshhold+0.05))
   AFRAME.log("current juicy filled: " + filledJuice)
-  if (filledJuice < (randomThreshhold+0.05) && filledJuice > (randomThreshhold-0.05)) {
-    AFRAME.log("you filled the test tube correctly, pass!" + randomThreshhold + " - " + filledJuice);
+  if (filledJuice > 0.2) {
+    // AFRAME.log("you filled the test tube correctly, pass!" + randomThreshhold + " - " + filledJuice);
     document.getElementById("pipeterenLabelAboveTable").setAttribute("color","green");
     document.getElementById("pipetLabelHand").setAttribute("color","green");
     document.getElementById("pipetlabelToDoList").remove();
@@ -621,7 +621,7 @@ emptyPipetEnd = () => {
     correctSound.components.sound.playSound();
     checkIfeveryThingIsDone();
   } else {
-    AFRAME.log("sorry but you failed, failure!" + randomThreshhold + " - " + filledJuice)
+    // AFRAME.log("sorry but you failed, failure!" + randomThreshhold + " - " + filledJuice)
   }
 
   // setTimeout(function (e) {
@@ -630,13 +630,13 @@ emptyPipetEnd = () => {
 
 }
 
-setTimeout(function (e) {
-  // console.log(THRESHHOLD_METER.getAttribute("position").y)
-  THRESHHOLD_METER_YAXIS = THRESHHOLD_METER.getAttribute("position").y
-  // randomThreshhold = .25
-  // cylinder height / filledjuicy for filling can't exceed 0.2
-  THRESHHOLD_METER.setAttribute("position", {x: THRESHHOLD_METER.getAttribute("position").x, y: (THRESHHOLD_METER_YAXIS + randomThreshhold), z: THRESHHOLD_METER.getAttribute("position").z})
-}, 2000)
+// setTimeout(function (e) {
+//   // console.log(THRESHHOLD_METER.getAttribute("position").y)
+//   THRESHHOLD_METER_YAXIS = THRESHHOLD_METER.getAttribute("position").y
+//   // randomThreshhold = .25
+//   // cylinder height / filledjuicy for filling can't exceed 0.2
+//   THRESHHOLD_METER.setAttribute("position", {x: THRESHHOLD_METER.getAttribute("position").x, y: (THRESHHOLD_METER_YAXIS + randomThreshhold), z: THRESHHOLD_METER.getAttribute("position").z})
+// }, 2000)
 
 // emptyPipetEnd()
 
@@ -674,9 +674,9 @@ setTimeout(function (e) {
           // evt.detail.dropped.removeAttribute("dynamic-body");
           evt.detail.dropped.dataset.trashed = "true";
 
-          redTrashCounter++
+          // redTrashCounter++
           //send to a-text
-          redTrashCountLabel.setAttribute("value", redTrashCounter)
+          // redTrashCountLabel.setAttribute("value", redTrashCounter)
         }else if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
           trashAudioT2.components.sound.playSound();
           AFRAME.log("Goed gedropped ouwe");
@@ -685,9 +685,9 @@ setTimeout(function (e) {
           // evt.detail.dropped.removeAttribute("dynamic-body");
           evt.detail.dropped.dataset.trashed = "true";
 
-          greenTrashCounter++
+          // greenTrashCounter++
           //send to a-text
-          greenTrashCountLabel.setAttribute("value", greenTrashCounter)
+          // greenTrashCountLabel.setAttribute("value", greenTrashCounter)
         }else{
           AFRAME.log("hahahahha u pleb das fout " + evt.detail.dropped.dataset.color);
           wrongAudioT1.components.sound.playSound();
