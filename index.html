@@ -10,13 +10,11 @@
     <script src="vendor/aframe-physics-extras.min.js"></script>
     <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-    <!-- <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
     <script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script>
     <script src="https://unpkg.com/aframe-state-component@6.7.0/dist/aframe-state-component.min.js"></script>
     <script src="https://unpkg.com/aframe-log-component/dist/aframe-log-component.min.js"></script>
     <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script>
     <script src="https://unpkg.com/aframe-gltf-part-component/dist/aframe-gltf-part-component.min.js"></script>
-    <!-- <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script> -->
   </head>
   <body>
     <a-scene physics="gravity: -8.8;debug:false;" shadow="type: pcfsoft;">
@@ -102,23 +100,9 @@
       <a-entity position="3.589 1.151 7.253" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material grabbable collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2" class="pcikup"></a-entity>
       <a-entity position="3.589 1.151 6.904" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material grabbable collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2" class="pcikup"></a-entity>
 
-      <!-- <a-entity position="3.893 1.151 7.552" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity> -->
-      <!-- <a-entity position="3.893 1.151 7.253" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity> -->
-      <!-- <a-entity position="3.893 1.151 6.904" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity> -->
-
       <a-entity position="3.893 1.151 7.552" dynamic-body gltf-part="src: #waterFles; part: Tuit" material="color:#d8d8d8;blending:additive"  modify-material grabbable collision-filter="group: green; collidesWith: default, green" scale=".15 .15 .15" class="pcikup"></a-entity>
       <a-entity position="3.893 1.151 7.253" dynamic-body gltf-part="src: #waterFles; part: Tuit" material="color:#d8d8d8;blending:additive"  modify-material grabbable collision-filter="group: green; collidesWith: default, green" scale=".15 .15 .15" class="pcikup"></a-entity>
       <a-entity position="3.893 1.151 6.904" dynamic-body gltf-part="src: #waterFles; part: Tuit" material="color:#d8d8d8;blending:additive"  modify-material grabbable collision-filter="group: green; collidesWith: default, green" scale=".15 .15 .15" class="pcikup"></a-entity>
-
-      <!-- <a-entity id="waterfles" gltf-model="#waterFles" dynamic-body grabbable collision-filter="group: green; collidesWith: default, green" position="3.893 1.151 7.552" scale=".15 .15 .15" class="pcikup"  >    </a-entity> -->
-
-
-
-      <!-- <a-entity id="waterfles" gltf-model="#waterFles" dynamic-body grabbable collision-filter="group: green; collidesWith: default, green" position="3.893 1.151 7.253" scale=".15 .15 .15" class="pcikup"  >  </a-entity> -->
-
-
-
-      <!-- <a-entity id="waterfles" gltf-model="#waterFles" dynamic-body grabbable collision-filter="group: green; collidesWith: default, green" position="3.893 1.151 6.904" scale=".15 .15 .15" class="pcikup"  >   </a-entity> -->
 
 
 
@@ -216,10 +200,6 @@
         class="pcikup">
       </a-box>
 
-      <!-- <a-text id="js--red-trashcan" position="2.795 1.8 -2.376" color="crimson" value="0" look-at="#head"></a-text>
-      <a-text id="js--green-trashcan" position="2.234 1.8 -2.376" color="green" value="0" look-at="#head"></a-text> -->
-
-  <!-- <a-entity gltf-model="#labTafel"  scale="0.390 0.390 0.390" ></a-entity> -->
 
   <a-plane width="1.140" height="1.320" position="4.041 1.417 -2.383" rotation="0 -90 0" class="objectivesss" visible="false">
     <a-text value="Doel:" width="3.5" position="-0.466 0.520 0.021" color="black"></a-text>
@@ -321,9 +301,6 @@
       <a-text id="vlamAanUitLabel" position="-0.009 0.043 0.253" align="center" anchor="center" color="white" value="Aan"></a-text>
   </a-box>
 
-  <!-- <a-box id="uitzettenVlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="darkblue" position="1.888 0.990 3.426"rotation="-45 180 0" scale="0.4 0.4 0.4">
-      <a-text position="-0.431 0.5 0" color="white" value="Uitzetten"></a-text>
-  </a-box> -->
 
   <a-box id="checkVlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="darkblue" position="1.813 0.990 3.426"rotation="-45 180 0" scale="0.4 0.4 0.4">
       <a-text position="-0.212 0.351 0.194" color="white" value="Antw:" rotation="0 0 0" width="3"></a-text>
@@ -365,17 +342,10 @@
 
   <a-sky src="#sky" rotation="0 -75 0"></a-sky>
 
-  <!-- <a-entity class="cube pcikup" mixin="cube" position="0 0.265 0" material="color: red"></a-entity> -->
 
   <a-entity id="cameraRig" class="camera-parent teleport-object" position="-3.266 0 -9.5" rotation="0 180 0">
 
       <a-entity id="head" camera  look-controls="pointerLockEnabled: true">
-        <!-- <a-entity animation__fusing="property:scale; easing:easeInCubic; dur:500; from:1 1 1; to: 0.1 0.1 0.1; startEvents: fusing"
-                  animation__mouseleave="property:scale; easing:easeInCubic; dur:250; to:1 1 1;  startEvents: mouseleave "
-                  animation__click="property:scale; easing:easeInCubic; dur:250; to:1 1 1;  startEvents: click"
-                  raycaster="objects: .clickable"
-                  id="js--cursor"  cursor="fuse:true; FuseTimeout:0" material="color:red; shader:flat;" geometry="primitive: ring; radiusInner:0.01; radiusOuter:0.015" position="0 0 -.5">
-        </a-entity> -->
       </a-entity>
       <a-entity
         teleport-controls="cameraRig: #cameraRig;  startEvents:  thumbupstart; endEvents: thumbupend; teleportOrigin: #head;collisionEntities: .second-navmesh;"
@@ -406,27 +376,6 @@
   <a-plane id="branderLabelAboveTable" position="2.503 2.677 3.965" width="1.940" height="0.640" look-at="#head" scale="0.4 0.4 0.4">
     <a-text value="Brander" position="-0.521"></a-text>
   </a-plane>
-  <!-- <a-entity class="cube pcikup" mixin="cube" position="0 0.265 0" material="color: red"></a-entity> -->
-  <!-- <a-box
-    dynamic-body
-    hoverable
-    grabbable
-    stretchable
-    draggable
-    event-set__hoveron="_event: hover-start;"
-    event-set__hoveroff="_event: hover-end;"
-    event-set__dragon="_event: dragover-start;"
-    event-set__dragoff="_event: dragover-end; "
-    id="tape_example"
-    class="tape pcikup"
-    color="blue"
-    position="2 0.5 -3"
-    width="1"
-    height="1"
-    depth="1"
-
-    collision-filter="group: green; collidesWith: default, green">
-  </a-box> -->
 
   <a-entity layout="type: line; margin: 1.2" console-pane position="3.3 2.23 0.8" visible="false">
     <a-entity log="max: 15;" geometry="primitive: plane; height: 1.5" material="color: #002B36" text="color: #6E878F" look-at="#head"></a-entity>
@@ -442,14 +391,6 @@
   <a-entity visible="false" id="normalMesh" class="second-navmesh" gltf-model="scene/navmesh(1).gltf"   position="0 -20  0" nav-mesh></a-entity>
   <a-entity visible="false" id="first-navmesh" class="second-navmesh" gltf-model="scene/navmesh(2).gltf"   position="0 -0.041 0" nav-mesh></a-entity>
   <a-entity class=" " gltf-model="scene/SceneV5.gltf" shadow="receive: true" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive:  box; height: 1; depth: 1;width:1;" collision-filter="group: green; collidesWith: default, green" ></a-entity>
-   <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
-
-   <!-- <a-entity sound="src: url(sound/SafetyGoggles.mp3); autoplay: false" id="js--bril" class="pcikup js--grabbable" gltf-model="src: url(models/SafetyBril/SafetyGoggle.gltf)"   rotation="0 -90 0" scale=".15 .15 .15" position="-0.215 1.560 -8.368" modify-materials grabbable static-body ></a-entity> -->
-
-   <!-- <a-entity  class="pcikup js--grabbable" scale="0.1 0.1 0.1" position="-0.187 1.308 -8.421" id="js--bril" rotation="0 180 0" sound="src: url(sound/SafetyGoggles.mp3); autoplay: false"  grabbable static-body>
-     <a-entity gltf-part="src: #safetyBril; part: bril"   material="color:grey"  modify-material></a-entity>
-     <a-entity   gltf-part="src: #safetyBril; part: glas"  material="color: white;opacity:0.5;blending:additive;"   modify-material ></a-entity>
-   </a-entity> -->
 
    <a-entity id="js--goggleSound" sound="src: url(sound/SafetyGoggles.mp3);" position="-0.277 1.106 -8.356" ></a-entity>
    <a-entity  id="js--bril" class="pcikup js--grabbable" gltf-model="src: url(models/SafetyBril/SafetyGoggleV2.gltf)" grabbable   rotation="0 180 0"  scale="0.1 0.1 0.1" position="-0.187 1.308 -8.421" modify-materials  static-body ></a-entity>
@@ -493,21 +434,6 @@
       <a-text id="js--control-desc"  baseline="top" value="Welkom in het Lab! Wat leuk dat je het lab wilt ontdekken in Virtual Reality! Loop eerst door de controller tutorial heen, dit doe je door met je de triggers op volgende te klikken. Trek daarna je labjas aan en doe je veiligheidsbril op om je avontuur te starten!" color="#fff" text="wrapCount:32;width:3;lineHeight:60;" position="-1.65 -.8 0"></a-text>
     </a-entity>
 
-    <!-- <a-plane class="js--control-step" color="#dedede" component-padding="0.1" width="3" height=".6" position="-1.6 .3 0.01">
-      <a-text align="center" value="Grip = Iets vastpakken"  color="#000"></a-text>
-    </a-plane>
-
-    <a-plane class="js--control-step" color="#dedede" component-padding="0.1" width="3" height=".6" position="-1.6 -.4 0.01">
-      <a-text align="center" value="Trigger = Selecteren"  color="#000"></a-text>
-    </a-plane>
-
-    <a-plane class="js--control-step" color="#dedede" component-padding="0.1" width="3" height=".6" position="-1.6 -1.1 0.01">
-      <a-text align="center" value="Knop A = Pipet: Opzuigen"  color="#000"></a-text>
-    </a-plane>
-
-    <a-plane class="js--control-step" color="#dedede" component-padding="0.1" width="3" height=".6" position="-1.6 -1.8 0.01">
-      <a-text align="center" value="Knop B = Pipet: Legen"  color="#000"></a-text>
-    </a-plane> -->
 
     <a-entity id="js--controls" position="-.5 -1.876 5.930" rotation="-20 0 0" scale="0.6 0.6 0.6">
       <a-plane clickable id="js--controls-next" class="clickable" color="yellow" width="2.5" height="0.75" onclick="nextControl()"><a-text id="volgende-knop" value="Volgende >" color="white" position="-0.484 0 0 "> </a-text></a-plane>
@@ -533,17 +459,14 @@
     event-set__dragon="_event: dragover-start; wireframe: true"
     event-set__dragoff="_event: dragover-end; wireframe: false">
     <a-entity id="js--pipet" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf" rotation="0 0 90"></a-entity>
-    <!-- <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".001" position="0 0 0" rotation="-90 0 90"></a-plane> -->
   </a-entity>
 
   <a-entity id="pipet-stuff" position="2.157 1.5 1.077">
-    <!-- <a-cylinder id="js--test-cylinder-succ" color="crimson" scale=".02 .25 .02" ></a-cylinder> -->
     <a-entity  position="0 -0.381 -0.771">
       <a-entity gltf-part="src: #test-tube; part: Cylinder" material="color:white;opacity:0.5;blending:additive" ></a-entity>
       <a-cylinder id="js--test-cylinder-succ" radius=".01" height=".2" color="blue"></a-cylinder>
     </a-entity>
 
-    <!-- <a-cylinder   ></a-cylinder> -->
 
     <a-entity  position="0.55 -0.381 -0.771">
       <a-entity gltf-part="src: #test-tube; part: Cylinder" material="color:white;opacity:0.5;blending:additive" ></a-entity>
@@ -568,8 +491,6 @@
     <a-entity class=" " id="deur-open" scale="1 1 1" gltf-model="models/deur/deur-open.gltf" position="0 0 -7.520" rotation="0 90 0"></a-entity>
     <a-entity class=" " id="deur-dicht" scale="1 1 1" gltf-model="models/deur/deur-dicht.gltf" position="0 0 -7.624" rotation="0 90 0"></a-entity>
 
-    <!-- pokeball -->
-   <!-- <a-entity geometry="primitive: sphere; radius:0.25 "  modify-materials dynamic-body hoverable grabbable scale="0.003 0.003 0.003" rotation="0 180 0" position="-0.5 2 -0.5"  collision-filter="group: green; collidesWith: default, green" ></a-entity> -->
 
    <!-- Long wall sheared -->
    <a-plane width="15" visible="false" height="5"  position="-1.738 1.015 1.013" color="red" rotation="0 86.530 0" collision-filter="group: green; collidesWith: default, green" static-body ></a-plane>
@@ -653,7 +574,6 @@
 </a-scene>
 
   <script src="main.js"></script>
-  <!-- <script src="pipet_oculus.js"></script> -->
   <script src="tutorial.js"></script>
 
   <script src="vendor/aframe-extras.min.js"></script>
