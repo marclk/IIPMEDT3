@@ -59,11 +59,8 @@ const TEST_CYLINDER_SUCC = document.getElementById('js--test-cylinder-succ')
 const TEST_CYLINDER_FILL = document.getElementById('js--test-cylinder-fill')
 const THRESHHOLD_METER = document.getElementById('js--threshhold-meter')
 
-// =============== GIVES A LOT OF ERRORS v HAHA
-// const GRABBABLES = document.getElementsByClassName('js--grabbable')
-// console.log(GRABBABLES.length)
-// AFRAME.log("aantal grabbables: " + GRABBABLES.length);
-// =============== HONOURABLE MENTION THOUGH LMAO
+
+// =============== HONOURABLE MENTION THOUGH
 
 AFRAME.log("dit is hoe je dingen logt :^)");
 
@@ -99,12 +96,6 @@ document.getElementById('lefthand').addEventListener('ybuttonup', function(event
 
 });
 
-// document.getElementById('righthand').addEventListener('thumbupstart', function(event) {
-//   // AFRAME.log("Right thumbstick");
-//   let head = document.getElementById('cameraRig');
-//   //let position = document.getElementById('cameraRig').getAttribute("rotation");
-//   document.getElementById('cameraRig').setAttribute('rotation', {x: head.getAttribute("rotation").x,  y: (head.getAttribute("rotation").y + 45), z: head.getAttribute("rotation").z });
-// });
 
 
 const INTERVAL_FREQ = 100;
@@ -125,70 +116,9 @@ let hoveringOverTube = false;
 
 let dropletSound = new Audio("drop.mp3");
 
-// let randomThreshhold = 0;
 
-// generatePipetThreshhold => {
-//   if (randomThreshhold < .05) {
-//     randomThreshhold = (Math.floor(Math.random()* 20))/100
-//   }
-// }
-
-// generatePipetThreshhold = () => {
-//   setTimeout(function () {
-//       if(randomThreshhold > .05){
-//         return;
-//       }
-//       randomThreshhold = (Math.floor(Math.random()* 20))/100
-//       AFRAME.log("random pipeteer threshhold: " + randomThreshhold)
-//       generatePipetThreshhold()
-//   }, 5)
-// }
-//
-// generatePipetThreshhold()
-
-//https://github.com/harlyq/aframe-sprite-particles-component#properties
 //================================ F I R E
 var fireElemnt =   document.getElementById("fire");
-
-  // document.getElementById("ruizendevlam").addEventListener('click', function(evnt){
-  //   fireElemnt.setAttribute("sprite-particles",{enable:true}); //kan je het gelehe element mee aan en uit zetten
-  //     fireElemnt.pause(); //Nodig om het element te kunnen veranderen.
-  //       fireElemnt.setAttribute("sprite-particles",{color:"darkblue,black,black"});//Set de kleurvan de vlam
-  //       fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"}); //scale van de vlam (0..1) = onderkantlamdikte en (2..2) = bovenkantvlamdikte
-  //       fireElemnt.setAttribute("sprite-particles",{textureCount:3});//wat dikte
-  //     fireElemnt.play();//Nodig om het element te kunnen starten.
-  // });
-  //
-  // document.getElementById("pauzevlam").addEventListener('click', function(evnt){
-  //     fireElemnt.setAttribute("sprite-particles",{enable:true});
-  //     fireElemnt.pause();
-  //       fireElemnt.setAttribute("sprite-particles",{color:"black,black,white,white,white"});
-  //       fireElemnt.setAttribute("sprite-particles",{scale:"0..1,1..3"});
-  //       fireElemnt.setAttribute("sprite-particles",{textureCount:0});
-  //     fireElemnt.play();
-  // });
-  //
-  //
-  // document.getElementById("blauwevlam").addEventListener('click', function(evnt){
-  //   fireElemnt.setAttribute("sprite-particles",{enable:true});
-  //   fireElemnt.pause();
-  //   fireElemnt.setAttribute("sprite-particles",{color:"mediumblue,mediumblue,mediumblue,black"});
-  //   fireElemnt.setAttribute("sprite-particles",{textureCount:0});
-  //   fireElemnt.setAttribute("sprite-particles",{scale:"0..1,2..2"});
-  //     fireElemnt.play();
-  //
-  //
-  // });
-
-
-
-// document.getElementById("nextButtonFlame").addEventListener('click', function(evnt){
-//   fireElementSetWay("next");
-// });
-//
-// document.getElementById("previousButtonFlame").addEventListener('click', function(evnt){
-//   fireElementSetWay("previous");
-// });
 var labcoatAan = false;
 var brilAan = false;
 
@@ -233,21 +163,12 @@ var pauseFlameEffect = document.getElementById("js--flamePauze");
 
 
 document.getElementById("nextButtonFlame").addEventListener('click', function(evnt){
-  // continueTimeer = true;
   changeTempWithInterval("plus");
 });
-// document.getElementById("nextButtonFlame").addEventListener('triggerup', function(evnt){
-//  continueTimeer = false;
-// });
-
 
 document.getElementById("previousButtonFlame").addEventListener('click', function(evnt){
-  // continueTimeer = true;
   changeTempWithInterval("minus");
 });
-// document.getElementById("previousButtonFlame").addEventListener('triggerup', function(evnt){
-//  continueTimeer = false;
-// });
 
 
 var tellerWelkeVlam = 300, time = 1000;
@@ -274,7 +195,6 @@ function changeTempWithInterval(direction) {
             textField.setAttribute('value', tellerWelkeVlam + " K");
             checkFlameNumber(tellerWelkeVlam);
             textField.setAttribute("color","white");
-            //changeTempWithInterval("minus");
       }
     }, 500);
 };
@@ -297,26 +217,6 @@ function checkFlameNumber(tellerWelkeVlam){
   }
 }
 
-
-
-// function fireElementSetWay(way){
-//     if(way === "next"){
-//       if(counterFlameNumber > 3){
-//         counterFlameNumber= 0;
-//       }
-//       counterFlameNumber++;
-//       setFlameNumber(counterFlameNumber);
-//     }
-//     else{
-//       if(counterFlameNumber < 0){
-//         counterFlameNumber= 3;
-//       }
-//       counterFlameNumber--;
-//       setFlameNumber(counterFlameNumber);
-//     }
-//
-//
-// }
 
 function setFlameNumber(counterFlameNumberCount){
   fireElemnt.pause();
@@ -350,13 +250,6 @@ switch(counterFlameNumberCount) {
 
 
 var vlamStaatAan = false;
-
-  // document.getElementById("uitzettenVlam").addEventListener('click', function(evnt){
-  //   textField.setAttribute('value', "-" + " K");
-  //   tellerWelkeVlam = 523;
-  //   vlamAan = false;
-  //   fireElemnt.setAttribute("sprite-particles",{enable:false});
-  // });
   document.getElementById("aanzettenVlam").addEventListener('click', function(evnt){
     let vlamAanUitLabel = document.getElementById("vlamAanUitLabel");
 
@@ -390,7 +283,6 @@ var vlamStaatAan = false;
     let checkBLock = document.getElementById("checkVlam");
 
 
-  //  AFRAME.log("Goed");
       if(valueBrander > (meltingPoint - 100) && valueBrander < (meltingPoint + 100)){
         AFRAME.log("Goed");
         textField.setAttribute("color","green");
@@ -450,38 +342,9 @@ let startTimer;
 let deltaFlame = 0;
 let temperatureStepper;
 
-//start 1 keer
-// riseTemperatureStart = () => {
-//   //eventuele condities idk copy paste
-//   if (tempCondities) {
-//     //beginpunt timer
-//     startTimer = new Date();
-//
-//     //check tijd elke x miliseconde met interval
-//     temperatureStepper = setInterval(f => {
-//       let endTimer = new Date();
-//       //bereken einde en pas aan naar normaal getal; ~330 na 1 seconde
-//       deltaFlame = (endTimer - startTimer)/6;
-//
-//       // textField.setAttribute('value', deltaFlame);
-//
-//     }, INTERVAL_FREQ);
-//   }
-// }
-//
-// // verwijder interval
-// riseTemperatureEnd = () => {
-//   clearInterval(temperatureStepper);
-// }
 
 
 //===================== PIPET SCRIPT
-
-// AFRAME.registerComponent('hover-pipet', {
-//   play: function () {
-//
-//   }
-// });
 
 PIPET_CONTAINER.addEventListener('grab-start', function (e) {
   grabbedObject = true;
@@ -534,18 +397,12 @@ fillPipetStart = (substance) => {
       let endPipetFeedbackTimer = new Date();
       deltaPipetFeedbackTimer = endPipetFeedbackTimer - startPipetFeedbackTimer;
       modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight + activeFeedbackBarHeight;
-      // console.log("modified delta before: " + modifiedDeltaPipetFeedbackTimer);
       if (modifiedDeltaPipetFeedbackTimer <= 0) {
         modifiedDeltaPipetFeedbackTimer = .0001;
       } else if (modifiedDeltaPipetFeedbackTimer > .5) {
         modifiedDeltaPipetFeedbackTimer = .5;
       }
-      // console.log("modified delta after: " + modifiedDeltaPipetFeedbackTimer);
-      // modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight;
-      // PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
-      // PIPET_FEEDBAR.setAttribute("position", ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + "-.06 " + " .03");
       succCylinderRatio = succCylinderRatio + .005
-      // AFRAME.log(substance.getAttribute("height"))
 
       if (succCylinderRatio >= .5) {
         succCylinderRatio = .5
@@ -577,18 +434,12 @@ emptyPipetStart = (substance) => {
       deltaPipetFeedbackTimerFill = endPipetFeedbackTimer - startPipetFeedbackTimer;
 
       modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight + activeFeedbackBarHeight;
-      // modifiedDeltaPipetFeedbackTimerFill = (deltaPipetFeedbackTimerFill/6000) + initialFeedbackBarHeight + activeFeedbackBarHeight;
-
-      // console.log("delta empty: " + deltaPipetFeedbackTimerFill);
 
       if (modifiedDeltaPipetFeedbackTimer <= 0) {
         modifiedDeltaPipetFeedbackTimer = 0.001;
       } else if (modifiedDeltaPipetFeedbackTimer > .5) {
         modifiedDeltaPipetFeedbackTimer = .5;
       }
-      // console.log("modified delta after: " + modifiedDeltaPipetFeedbackTimerFill);
-      // PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
-      // PIPET_FEEDBAR.setAttribute("position", ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + "-.06 " + " .03");
 
       fillCylinderRatio = fillCylinderRatio + .005
 
@@ -610,38 +461,19 @@ emptyPipetEnd = () => {
     activeFeedbackBarHeight = .0001
   }
 
-  // AFRAME.log(TEST_CYLINDER_FILL.getAttribute("height"))
   let filledJuice = TEST_CYLINDER_FILL.getAttribute("height")
-  // AFRAME.log("pipet fill threshhold minimum: " + (randomThreshhold-0.05) + ", maximum: " + (randomThreshhold+0.05))
   AFRAME.log("current juicy filled: " + filledJuice)
   if (filledJuice > 0.2) {
-    // AFRAME.log("you filled the test tube correctly, pass!" + randomThreshhold + " - " + filledJuice);
     document.getElementById("pipeterenLabelAboveTable").setAttribute("color","green");
     document.getElementById("pipetLabelHand").setAttribute("color","green");
     document.getElementById("pipetlabelToDoList").remove();
     isDonePippeteren = true;
     correctSound.components.sound.playSound();
     checkIfeveryThingIsDone();
-  } else {
-    // AFRAME.log("sorry but you failed, failure!" + randomThreshhold + " - " + filledJuice)
   }
 
-  // setTimeout(function (e) {
-  //   console.log(THRESHHOLD_METER.getAttribute("position").y)
-  // }, 500)
 
 }
-
-// setTimeout(function (e) {
-//   // console.log(THRESHHOLD_METER.getAttribute("position").y)
-//   THRESHHOLD_METER_YAXIS = THRESHHOLD_METER.getAttribute("position").y
-//   // randomThreshhold = .25
-//   // cylinder height / filledjuicy for filling can't exceed 0.2
-//   THRESHHOLD_METER.setAttribute("position", {x: THRESHHOLD_METER.getAttribute("position").x, y: (THRESHHOLD_METER_YAXIS + randomThreshhold), z: THRESHHOLD_METER.getAttribute("position").z})
-// }, 2000)
-
-// emptyPipetEnd()
-
 
 
 
@@ -672,24 +504,14 @@ emptyPipetEnd = () => {
           AFRAME.log("Goed gedropped ouwe");
           trashAudioT1.components.sound.playSound();
           evt.detail.dropped.setAttribute("visible", false);
-          // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
-          // evt.detail.dropped.removeAttribute("dynamic-body");
           evt.detail.dropped.dataset.trashed = "true";
 
-          // redTrashCounter++
-          //send to a-text
-          // redTrashCountLabel.setAttribute("value", redTrashCounter)
         }else if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
           trashAudioT2.components.sound.playSound();
           AFRAME.log("Goed gedropped ouwe");
           evt.detail.dropped.setAttribute("visible", false);
-          // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
-          // evt.detail.dropped.removeAttribute("dynamic-body");
           evt.detail.dropped.dataset.trashed = "true";
 
-          // greenTrashCounter++
-          //send to a-text
-          // greenTrashCountLabel.setAttribute("value", greenTrashCounter)
         }else{
           AFRAME.log("hahahahha u pleb das fout " + evt.detail.dropped.dataset.color);
           wrongAudioT1.components.sound.playSound();
@@ -714,166 +536,3 @@ emptyPipetEnd = () => {
       });
     }
   });
-
-
-
-
-//===================== ROEL'S COAT N GOGGGGGLES
-//
-// SAFETY_GOGGLE.addEventListener('click', function(evnt){
-//   console.log("Im registerd!!!");
-//  //this.remove();
-//   // GUI_RADIO.click();
-//   // GUI_RADIO.click();
-//   // goggleOnHead = true;
-//   // this.removeAttribute("gui-interactable");
-//   // this.setAttribute("visible","false");
-//   // checkIfSafetyIsGood(labCoatOn,goggleOnHead);
-//   this.remove();
-//
-//
-// });
-//
-// LAB_COAT.addEventListener('click', function(evnt){
-//   console.log("Im registerd!!!");
-//   //this.remove();
-//   // GUI_RADIO_SECOND.click();
-//   labCoatOn = true;
-//   // this.removeAttribute("gui-interactable");
-//   // this.setAttribute("visible","false");
-//   // checkIfSafetyIsGood(labCoatOn,goggleOnHead);
-//
-// });
-//
-// }
-//
-//
-// function checkIfSafetyIsGood(labCoatOn,goggleOnHead){
-//
-//
-//
-//
-//   if(labCoatOn === true && goggleOnHead === true){
-//     console.log("jeej safety");
-//
-//       setTimeout(function(){
-//         document.getElementById("js--clipBoard").firstElementChild.remove();
-//         document.getElementById("js--clipboardContent").setAttribute("position", {z:0,y:0,x:0});
-//       }, 1000);
-//
-//
-//
-//
-//   }else{
-//     console.log("not yet");
-//   }
-
-
-// for (let i = 0; i < GRABBABLES.length; i++) {
-//   GRABBABLES[i].addEventListener('grab-start', function (e) {
-//     grabbedObject = true;
-//
-//     let ID = GRABBABLES[i].id;
-//
-//     switch (ID) {
-//       case "js--pipet-container":
-//         document.getElementById('js--pipet-colision-box-succ').addEventListener('hover-start', function (evt) {
-//           hoveringOverTube = true;
-//           AFRAME.log("hovered over the succ test tube")
-//           document.getElementById('cameraRig').addEventListener('abuttondown', function (e) {
-//             fillPipetStart(TEST_CYLINDER_SUCC);
-//             aButtonHeld = true;
-//           })
-//           document.getElementById('cameraRig').addEventListener('abuttonup', function (e) {
-//             aButtonHeld = false;
-//             fillPipetEnd();
-//           })
-//         })
-//         document.getElementById('js--pipet-colision-box-fill').addEventListener('hover-start', function (evt) {
-//           hoveringOverTube = true;
-//           AFRAME.log("hovered over the fill test tube")
-//           document.getElementById('cameraRig').addEventListener('bbuttondown', function (e) {
-//             emptyPipetStart(TEST_CYLINDER_FILL);
-//             bButtonHeld = true;
-//           })
-//
-//           document.getElementById('cameraRig').addEventListener('bbuttonup', function (e) {
-//             bButtonHeld = false;
-//             emptyPipetEnd();
-//           })
-//         })
-//         document.getElementById('js--pipet-colision-box-fill').addEventListener('hover-end', function (evt) {
-//           hoveringOverTube = false;
-//         })
-//         document.getElementById('js--pipet-colision-box-succ').addEventListener('hover-end', function (evt) {
-//           hoveringOverTube = false;
-//         })
-//         break;
-//
-//       // case "js--labcoat" || "js--bril":
-//       //   document.getElementById('cameraRig').addEventListener('abuttondown', function (e) {
-//       //     aButtonHeld = true;
-//       //   })
-//       //   document.getElementById('cameraRig').addEventListener('bbuttondown', function (e) {
-//       //
-//       //     bButtonHeld = true;
-//       //   })
-//       //   document.getElementById('cameraRig').addEventListener('abuttonup', function (e) {
-//       //     aButtonHeld = false;
-//       //     GRABBABLES[i].remove()
-//       //   })
-//       //   document.getElementById('cameraRig').addEventListener('bbuttonup', function (e) {
-//       //     bButtonHeld = false;
-//       //     GRABBABLES[i].remove()
-//       //   })
-//       //   break;
-//
-//       // case "js--bril":
-//       //   document.getElementById('rig').addEventListener('abuttondown', function (e) {
-//       //
-//       //     aButtonHeld = true;
-//       //   })
-//       //   document.getElementById('rig').addEventListener('bbuttondown', function (e) {
-//       //
-//       //     bButtonHeld = true;
-//       //   })
-//       //   document.getElementById('rig').addEventListener('abuttonup', function (e) {
-//       //     aButtonHeld = false;
-//       //
-//       //   })
-//       //   document.getElementById('rig').addEventListener('bbuttonup', function (e) {
-//       //     bButtonHeld = false;
-//       //
-//       //   })
-//       //   break;
-//       //
-//       // default:
-//
-//     }
-//
-//   })
-//
-//   GRABBABLES[i].addEventListener('grab-end', function (e) {
-//     grabbedObject = false;
-//   })
-// }
-
-
-// const SAFETY_GOGGLE = document.getElementById('js--bril');
-// const LAB_COAT = document.getElementById('js--labcoat');
-// // const GUI_RADIO = document.getElementById('js--gui-radio');
-// // const GUI_RADIO_SECOND = document.getElementById('js--gui-radio-second');
-//
-// var goggleOnHead = false
-// var labCoatOn = false;
-
-// AFRAME.registerComponent('test-tube', {
-//       play: function() {
-//         this.el.addEventListener('dragover-start', function(evt) {
-//           // evt.detail.dropped.setAttribute('material', 'color',
-//           //   '#'+(Math.random()*0xFFFFFF<<0).toString(16s))
-//           //  // notify super-hands that the gesture was accepted
-//           // evt.preventDefault()
-//         })
-//       }
-//     })
