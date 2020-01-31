@@ -18,7 +18,7 @@
     <script src="https://unpkg.com/aframe-gltf-part-component/dist/aframe-gltf-part-component.min.js"></script>
     <!-- <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script> -->
   </head>
-  <body> 
+  <body>
     <a-scene physics="gravity: -8.8;debug:false;" shadow="type: pcfsoft;">
       <a-assets>
         <a-asset-item id="erlenmeyer-statief" src="models/Erlenmeyer+Statief/Erlenmeyer_Statief_Labeled.gltf"></a-asset-item>
@@ -129,6 +129,8 @@
 
       <a-entity id="js--trashAudio-t1" sound="src: url(trash.mp3);" position="2.422 1.106 -2.530" ></a-entity>
       <a-entity id="js--trashAudio-t2" sound="src: url(trash.mp3);" position="2.775 1.106 -2.342" ></a-entity>
+
+      <a-entity id="js--mainAudio" sound="src: url(main.mp3), autoplay: true;" position="2.422 1.106 -2.530"  ></a-entity>
 
       <!-- END Audio Files -->
       <a-entity id="js--propje" data-trashed="false" grabbable draggable droppable position="2 1.083 -2.856" scale="0.05 0.05 0.05" class="pcikup trash" data-color="green" gltf-part="src: #propje; part: Sphere" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body>

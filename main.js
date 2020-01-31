@@ -19,8 +19,6 @@ function checkIfeveryThingIsDone(){
   }
 }
 
-
-
 //==================== CHEMISTRY API STUFF
 const BASE_URL = "https://neelpatel05.pythonanywhere.com"
 const ELEMENT_NUMBER = document.getElementById('js--element-number')
@@ -83,6 +81,10 @@ document.getElementById('righthand').addEventListener('thumbleftstart', function
   //let position = document.getElementById('cameraRig').getAttribute("rotation");
   document.getElementById('cameraRig').setAttribute('rotation', {x: head.getAttribute("rotation").x,  y: (head.getAttribute("rotation").y + 45), z: head.getAttribute("rotation").z });
 });
+
+var mainAudio = document.getElementById("js--mainAudio");
+
+document.getElementById('cameraRig').components.sound.playSound();
 
 var isactive = false;
 document.getElementById('lefthand').addEventListener('ybuttonup', function(event) {
@@ -669,28 +671,23 @@ emptyPipetEnd = () => {
         if(this.id == "afval_1" && evt.detail.dropped.dataset.color == "red"){
           AFRAME.log("Goed gedropped ouwe");
           trashAudioT1.components.sound.playSound();
-
-        
-          //evt.detail.dropped.position.set(1, 2, -3);
-           // notify super-hands that the gesture was accepted
+          evt.detail.dropped.setAttribute("visible", false);
+          // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
           // evt.detail.dropped.removeAttribute("dynamic-body");
           evt.detail.dropped.dataset.trashed = "true";
-          evt.detail.dropped.setAttribute("visible", false);
 
-          trashCount++;
           // redTrashCounter++
           //send to a-text
           // redTrashCountLabel.setAttribute("value", redTrashCounter)
         }else if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
           trashAudioT2.components.sound.playSound();
-
+          AFRAME.log("Goed gedropped ouwe");
+          evt.detail.dropped.setAttribute("visible", false);
           // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
           // evt.detail.dropped.removeAttribute("dynamic-body");
           evt.detail.dropped.dataset.trashed = "true";
-          evt.detail.dropped.setAttribute("visible", false);
 
-          trashCount++;
-          //greenTrashCounter++
+          // greenTrashCounter++
           //send to a-text
           // greenTrashCountLabel.setAttribute("value", greenTrashCounter)
         }else{
@@ -699,12 +696,11 @@ emptyPipetEnd = () => {
           wrongAudioT2.components.sound.playSound();
         }
 
+        if(trashItems[trashCount].dataset.trashed == "true"){
+          trashCount = trashCount+1;
+        }
 
-        // if(trashItems[trashCount].dataset.trashed == "true"){
-        //   trashCount = trashCount+1;
-        // }
-
-        if(trashCount == (trashItems.length) ){
+        if(trashCount == (trashItems.length-2) ){
           AFRAME.log("All parts Trashed!!!");
           TRASHCOMPLETE = true;
           isDoneAfval = true;
