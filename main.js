@@ -5,7 +5,7 @@ var isDoneAfval = false;
 var isDoneBrander = false;
 
 var correctSound =   document.getElementById("js--correctSound");
-
+var completeSound =   document.getElementById("js--completeSound");
 
 
 
@@ -13,6 +13,9 @@ var correctSound =   document.getElementById("js--correctSound");
 function checkIfeveryThingIsDone(){
   if(isDonePippeteren == true && isDoneAfval == true && isDoneBrander == true){
     document.getElementById("lockt-box").remove();
+    completeSound.components.sound.playSound();
+
+
   }
 }
 
