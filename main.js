@@ -609,7 +609,7 @@ setTimeout(function (e) {
   THRESHHOLD_METER.setAttribute("position", {x: THRESHHOLD_METER.getAttribute("position").x, y: (THRESHHOLD_METER_YAXIS + randomThreshhold), z: THRESHHOLD_METER.getAttribute("position").z})
 }, 2000)
 
-emptyPipetEnd()
+// emptyPipetEnd()
 
 
 
@@ -626,6 +626,12 @@ emptyPipetEnd()
   trashItems = document.getElementsByClassName("trash");
   trashCount = 0;
 
+  const greenTrashCountLabel = document.getElementById('js--green-trashcan');
+  const redTrashCountLabel = document.getElementById('js--red-trashcan');
+
+  let redTrashCounter = 0;
+  let greenTrashCounter = 0;
+
   //drop test
   AFRAME.registerComponent('droptest', {
     play: function () {
@@ -638,6 +644,10 @@ emptyPipetEnd()
           // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
           // evt.detail.dropped.removeAttribute("dynamic-body");
           evt.detail.dropped.dataset.trashed = "true";
+
+          redTrashCounter++
+          //send to a-text
+          redTrashCountLabel.setAttribute("value", redTrashCounter)
         }else if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
           trashAudioT2.components.sound.playSound();
           AFRAME.log("Goed gedropped ouwe");
@@ -645,6 +655,10 @@ emptyPipetEnd()
           // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
           // evt.detail.dropped.removeAttribute("dynamic-body");
           evt.detail.dropped.dataset.trashed = "true";
+
+          greenTrashCounter++
+          //send to a-text
+          greenTrashCountLabel.setAttribute("value", greenTrashCounter)
         }else{
           AFRAME.log("hahahahha u pleb das fout " + evt.detail.dropped.dataset.color);
           wrongAudioT1.components.sound.playSound();
