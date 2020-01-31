@@ -4,6 +4,10 @@ var isDonePippeteren = false;
 var isDoneAfval = false;
 var isDoneBrander = false;
 
+var correctSound =   document.getElementById("js--correctSound");
+
+
+
 
 
 function checkIfeveryThingIsDone(){
@@ -389,7 +393,10 @@ var vlamStaatAan = false;
         document.getElementById("branderLabelAboveTable").setAttribute("color","green");
         document.getElementById("branderLabelHand").setAttribute("color","green");
         document.getElementById("branderlabelToDoList").remove();
+        roaringFlameEffect.components.sound.stopSound();
+        pauseFlameEffect.components.sound.stopSound();
         isDoneBrander = true;
+        correctSound.components.sound.playSound();
         checkIfeveryThingIsDone();
 
       }else{
@@ -608,6 +615,7 @@ emptyPipetEnd = () => {
     document.getElementById("pipetLabelHand").setAttribute("color","green");
     document.getElementById("pipetlabelToDoList").remove();
     isDonePippeteren = true;
+    correctSound.components.sound.playSound();
     checkIfeveryThingIsDone();
   } else {
     AFRAME.log("sorry but you failed, failure!" + randomThreshhold + " - " + filledJuice)
@@ -680,6 +688,7 @@ emptyPipetEnd()
           document.getElementById("afvalLabelAboveTable").setAttribute("color","green");
           document.getElementById("afvalLabelHand").setAttribute("color","green");
           document.getElementById("afvallabelToDoList").remove();
+          correctSound.components.sound.playSound();
           checkIfeveryThingIsDone();
           AFRAME.log(TRASHCOMPLETE);
         }
