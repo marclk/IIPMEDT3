@@ -1,4 +1,4 @@
-let index, controlsR, controlsL, controlSteps;
+let index, controlsR, controlsL, controlSteps, controlBtnNext, controllerInput;
 
 window.onload = function(){
   controlsR = document.getElementsByClassName("js--oculus-touch-controls-R");
@@ -45,7 +45,7 @@ window.onload = function(){
         }
 
         if(i == (controlsR.length - 2)){
-          
+
           document.getElementById("volgende-knop").setAttribute("value", "Ga door de deur");
           document.getElementById("volgende-knop").setAttribute("position", {x:-0.789});
           document.getElementById("volgende-knop").setAttribute("color", "black");
