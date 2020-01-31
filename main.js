@@ -52,7 +52,7 @@ fetchApiData = () => {
 fetchApiData();
 
 //==================== PIPET STUFF
-const PIPET_FEEDBAR = document.getElementById('js--pipet-feedbar')
+// const PIPET_FEEDBAR = document.getElementById('js--pipet-feedbar')
 const PIPET_CONTAINER = document.getElementById('js--pipet-container')
 const PIPET_COLISION_BOX = document.getElementById('js--pipet-colision-box')
 const TEST_CYLINDER_SUCC = document.getElementById('js--test-cylinder-succ')
@@ -542,8 +542,8 @@ fillPipetStart = (substance) => {
       }
       // console.log("modified delta after: " + modifiedDeltaPipetFeedbackTimer);
       // modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight;
-      PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
-      PIPET_FEEDBAR.setAttribute("position", ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + "-.06 " + " .03");
+      // PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
+      // PIPET_FEEDBAR.setAttribute("position", ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + "-.06 " + " .03");
       succCylinderRatio = succCylinderRatio + .005
       // AFRAME.log(substance.getAttribute("height"))
 
@@ -587,8 +587,8 @@ emptyPipetStart = (substance) => {
         modifiedDeltaPipetFeedbackTimer = .5;
       }
       // console.log("modified delta after: " + modifiedDeltaPipetFeedbackTimerFill);
-      PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
-      PIPET_FEEDBAR.setAttribute("position", ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + "-.06 " + " .03");
+      // PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
+      // PIPET_FEEDBAR.setAttribute("position", ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + "-.06 " + " .03");
 
       fillCylinderRatio = fillCylinderRatio + .005
 
