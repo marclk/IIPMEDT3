@@ -698,7 +698,7 @@ setTimeout(function (e) {
           trashCount = trashCount+1;
         }
 
-        if(trashCount == (trashItems.length) ){
+        if(trashCount == (trashItems.length-2) ){
           AFRAME.log("All parts Trashed!!!");
           TRASHCOMPLETE = true;
           isDoneAfval = true;
