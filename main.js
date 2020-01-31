@@ -45,16 +45,19 @@ fetchApiData = () => {
 fetchApiData();
 
 //==================== PIPET STUFF
-const PIPET_FEEDBAR = document.getElementById('js--pipet-feedbar');
-const PIPET_CONTAINER = document.getElementById('js--pipet-container');
-const PIPET_COLISION_BOX = document.getElementById('js--pipet-colision-box');
-const TEST_CYLINDER_SUCC = document.getElementById('js--test-cylinder-succ');
-const TEST_CYLINDER_FILL = document.getElementById('js--test-cylinder-fill');
+const PIPET_FEEDBAR = document.getElementById('js--pipet-feedbar')
+const PIPET_CONTAINER = document.getElementById('js--pipet-container')
+const PIPET_COLISION_BOX = document.getElementById('js--pipet-colision-box')
+const TEST_CYLINDER_SUCC = document.getElementById('js--test-cylinder-succ')
+const TEST_CYLINDER_FILL = document.getElementById('js--test-cylinder-fill')
+const THRESHHOLD_METER = document.getElementById('js--threshhold-meter')
 
-// GIVES A LOT OF ERRORS v
-const GRABBABLES = document.getElementsByClassName('js--grabbable')
+// =============== GIVES A LOT OF ERRORS v HAHA
+// const GRABBABLES = document.getElementsByClassName('js--grabbable')
 // console.log(GRABBABLES.length)
 // AFRAME.log("aantal grabbables: " + GRABBABLES.length);
+// =============== HONOURABLE MENTION THOUGH LMAO
+
 AFRAME.log("dit is hoe je dingen logt :^)");
 
 document.getElementById('cube').addEventListener('hoveron', function(evt) {
@@ -113,9 +116,26 @@ let hoveringOverTube = false;
 
 let dropletSound = new Audio("drop.mp3");
 
-let randomThreshhold = (Math.floor(Math.random()* 25))/100
-AFRAME.log("random pipeteer threshhold: " + randomThreshhold)
+let randomThreshhold = 0;
 
+// generatePipetThreshhold => {
+//   if (randomThreshhold < .05) {
+//     randomThreshhold = (Math.floor(Math.random()* 20))/100
+//   }
+// }
+
+generatePipetThreshhold = () => {
+  setTimeout(function () {
+      if(randomThreshhold > .05){
+        return;
+      }
+      randomThreshhold = (Math.floor(Math.random()* 20))/100
+      AFRAME.log("random pipeteer threshhold: " + randomThreshhold)
+      generatePipetThreshhold()
+  }, 5)
+}
+
+generatePipetThreshhold()
 
 //https://github.com/harlyq/aframe-sprite-particles-component#properties
 //================================ F I R E
@@ -511,7 +531,7 @@ fillPipetStart = (substance) => {
       // console.log("modified delta after: " + modifiedDeltaPipetFeedbackTimer);
       // modifiedDeltaPipetFeedbackTimer = (deltaPipetFeedbackTimer/6000) + initialFeedbackBarHeight;
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
-      PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
+      PIPET_FEEDBAR.setAttribute("position", ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + "-.06 " + " .03");
       succCylinderRatio = succCylinderRatio + .005
       // AFRAME.log(substance.getAttribute("height"))
 
@@ -556,7 +576,7 @@ emptyPipetStart = (substance) => {
       }
       // console.log("modified delta after: " + modifiedDeltaPipetFeedbackTimerFill);
       PIPET_FEEDBAR.setAttribute("height", modifiedDeltaPipetFeedbackTimer);
-      PIPET_FEEDBAR.setAttribute("position", "-.06 " + ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + " .03");
+      PIPET_FEEDBAR.setAttribute("position", ((modifiedDeltaPipetFeedbackTimer/2)-0.225) + "-.06 " + " .03");
 
       fillCylinderRatio = fillCylinderRatio + .005
 
@@ -578,11 +598,11 @@ emptyPipetEnd = () => {
     activeFeedbackBarHeight = .0001
   }
 
-  AFRAME.log(TEST_CYLINDER_FILL.getAttribute("height"))
+  // AFRAME.log(TEST_CYLINDER_FILL.getAttribute("height"))
   let filledJuice = TEST_CYLINDER_FILL.getAttribute("height")
   AFRAME.log("pipet fill threshhold minimum: " + (randomThreshhold-0.05) + ", maximum: " + (randomThreshhold+0.05))
   AFRAME.log("current juicy filled: " + filledJuice)
-  if (filledJuice < (randomThreshhold+0.5) && filledJuice > (randomThreshhold-0.05)) {
+  if (filledJuice < (randomThreshhold+0.05) && filledJuice > (randomThreshhold-0.05)) {
     AFRAME.log("you filled the test tube correctly, pass!" + randomThreshhold + " - " + filledJuice);
     document.getElementById("pipeterenLabelAboveTable").setAttribute("color","green");
     document.getElementById("pipetLabelHand").setAttribute("color","green");
@@ -592,8 +612,20 @@ emptyPipetEnd = () => {
   } else {
     AFRAME.log("sorry but you failed, failure!" + randomThreshhold + " - " + filledJuice)
   }
-  // console.log(deltaPipetFeedbackTimer);
+
+  // setTimeout(function (e) {
+  //   console.log(THRESHHOLD_METER.getAttribute("position").y)
+  // }, 500)
+
 }
+
+setTimeout(function (e) {
+  // console.log(THRESHHOLD_METER.getAttribute("position").y)
+  THRESHHOLD_METER_YAXIS = THRESHHOLD_METER.getAttribute("position").y
+  // randomThreshhold = .25
+  // cylinder height / filledjuicy for filling can't exceed 0.2
+  THRESHHOLD_METER.setAttribute("position", {x: THRESHHOLD_METER.getAttribute("position").x, y: (THRESHHOLD_METER_YAXIS + randomThreshhold), z: THRESHHOLD_METER.getAttribute("position").z})
+}, 2000)
 
 emptyPipetEnd()
 
