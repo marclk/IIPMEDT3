@@ -19,11 +19,8 @@
     <!-- <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script> -->
   </head>
   <body>
-<<<<<<< HEAD
     <a-scene physics="gravity: -8.8;debug:false;" shadow="type: pcfsoft;">
-=======
-    <a-scene physics="gravity: -8.8;debug:true;" shadow="type: pcfsoft;">
->>>>>>> 83dc801a126f54a75532ffb49d6ee74e81ab5967
+
       <a-assets>
         <a-asset-item id="erlenmeyer-statief" src="models/Erlenmeyer+Statief/Erlenmeyer_Statief_Labeled.gltf"></a-asset-item>
         <a-asset-item id="test-tube" src="models/TestTube/TestTube.gltf"></a-asset-item>
@@ -127,13 +124,29 @@
 
       <!-- Audio Files -->
 
+      <a-plane id="Bronvermelding" width="6.490" height="3" rotation="0 180 0" position="1.279 1.916 8.658" visible="false" >
+        <a-text value="Bronvermelding" color="black" position="-0.731 1.252 0"></a-text>
+        <a-text value="thumb controls component(https://github.com/supermedium/superframe/tree/master/components/thumb-controls/)"  color="black" position="-3.092 0.799 0" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="super hands(https://github.com/wmurphyrd/aframe-super-hands-component)"                                      color="black" position="-3.092 0.671 0" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="physics system(https://github.com/donmccurdy/aframe-physics-system)"                                         color="black" position="-3.092 0.544 0" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="event set component(https://www.npmjs.com/package/aframe-event-set-component)"                               color="black" position="-3.092 0.423 0" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="physics extra's(https://github.com/wmurphyrd/aframe-physics-extras)"                                         color="black" position="-3.092 0.297 0" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="teleport controls(https://github.com/fernandojsg/aframe-teleport-controls)"                                  color="black" position="-3.092 0.177 0" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="look-at(https://github.com/supermedium/superframe/tree/master/components/look-at)"                           color="black" position="-3.092 0.058 0" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="haptics (https://github.com/supermedium/superframe/tree/master/components/haptics)"                          color="black" position="-3.092 -0.083 0" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="state component(https://github.com/supermedium/superframe/tree/master/components/state)"                     color="black" position="-3.092 -0.202 0" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="log component(https://github.com/supermedium/superframe/tree/master/components/log)"                         color="black" position="-3.092 -0.313 0" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="sprite particles(https://github.com/harlyq/aframe-sprite-particles-component)"                               color="black" position="-3.092 -0.433 0" width="5.5" text="wrapCount:100"></a-text>
+        <a-text value="gltf-part component(https://github.com/supermedium/superframe/tree/master/components/gltf-part/)"            color="black" position="-3.092 -0.564 0" width="5.5" text="wrapCount:100"></a-text>
+      </a-plane>
+
+
       <a-entity id="js--wrongAudio-t1" sound="src: url(wrong.mp3);" position="2.422 1.106 -2.530" ></a-entity>
       <a-entity id="js--wrongAudio-t2" sound="src: url(wrong.mp3);" position="2.775 1.106 -2.342" ></a-entity>
 
       <a-entity id="js--trashAudio-t1" sound="src: url(trash.mp3);" position="2.422 1.106 -2.530" ></a-entity>
       <a-entity id="js--trashAudio-t2" sound="src: url(trash.mp3);" position="2.775 1.106 -2.342" ></a-entity>
 
-      <a-entity id="js--mainAudio" sound="src: url(main.mp3), autoplay: true;" position="2.422 1.106 -2.530"  ></a-entity>
 
       <!-- END Audio Files -->
       <a-entity id="js--propje" data-trashed="false" grabbable draggable droppable position="2 1.083 -2.856" scale="0.05 0.05 0.05" class="pcikup trash" data-color="green" gltf-part="src: #propje; part: Sphere" material="color:white;roughness:0.2"  modify-material collision-filter="group: green; collidesWith: default, green" dynamic-body>
@@ -520,7 +533,7 @@
     event-set__dragon="_event: dragover-start; wireframe: true"
     event-set__dragoff="_event: dragover-end; wireframe: false">
     <a-entity id="js--pipet" scale="2 2 2" gltf-model="models/Pipet/pipetLowPoly.gltf" rotation="0 0 90"></a-entity>
-    <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".001" position="0 0 0" rotation="0 0 90"></a-plane>
+    <a-plane id="js--pipet-feedbar" side="double" color="crimson" width=".02" height=".001" position="0 0 0" rotation="0 0 -90"></a-plane>
   </a-entity>
 
   <a-entity id="pipet-stuff" position="2.157 1.5 1.077">
@@ -638,61 +651,6 @@
       <a-entity light="type:  point;  color:  #f4f4f4;  intensity:  0.6;  castShadow:  true;  shadowCameraFov:80" position="11.544 3.298 0.180"></a-entity>
       <a-entity id="light" light="type: spot; color: #ffff97; intensity: 0.260; distance: 0;angle:27;"  position="-3.396 4.223 -8.519" rotation="-57.670 -3.290 0"></a-entity>
 </a-scene>
-
-<script>
-  //
-  // TRASHCOMPLETE = false;
-  //
-  // trashAudioT1 = document.getElementById("js--trashAudio-t1");
-  // trashAudioT2 = document.getElementById("js--trashAudio-t2");
-  //
-  // wrongAudioT1 = document.getElementById("js--wrongAudio-t1");
-  // wrongAudioT2 = document.getElementById("js--wrongAudio-t2");
-  //
-  // trashItems = document.getElementsByClassName("trash");
-  // trashCount = 0;
-  //
-  // //drop test
-  // AFRAME.registerComponent('droptest', {
-  //   play: function () {
-  //     this.el.addEventListener('drag-drop', function (evt) {
-  //       AFRAME.log(trashCount);
-  //       if(this.id == "afval_1" && evt.detail.dropped.dataset.color == "red"){
-  //         AFRAME.log("Goed gedropped ouwe");
-  //         trashAudioT1.components.sound.playSound();
-  //         evt.detail.dropped.setAttribute("visible", false);
-  //         // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
-  //         // evt.detail.dropped.removeAttribute("dynamic-body");
-  //         evt.detail.dropped.dataset.trashed = "true";
-  //       }else if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
-  //         trashAudioT2.components.sound.playSound();
-  //         AFRAME.log("Goed gedropped ouwe");
-  //         evt.detail.dropped.setAttribute("visible", false);
-  //         // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
-  //         // evt.detail.dropped.removeAttribute("dynamic-body");
-  //         evt.detail.dropped.dataset.trashed = "true";
-  //       }else{
-  //         AFRAME.log("hahahahha u pleb das fout " + evt.detail.dropped.dataset.color);
-  //         wrongAudioT1.components.sound.playSound();
-  //         wrongAudioT2.components.sound.playSound();
-  //       }
-  //
-  //       if(trashItems[trashCount].dataset.trashed == "true"){
-  //         trashCount = trashCount+1;
-  //       }
-  //
-  //       if(trashCount == (trashItems.length) ){
-  //         AFRAME.log("All parts Trashed!!!");
-  //         TRASHCOMPLETE = true;
-  //         document.getElementById("afvalLabelAboveTable").setAttribute("color","green");
-  //         document.getElementById("afvalLabelHand").setAttribute("color","green");
-  //         document.getElementById("afvallabelToDoList").remove();
-  //         AFRAME.log(TRASHCOMPLETE);
-  //       }
-  //     });
-  //   }
-  // });
-</script>
 
   <script src="main.js"></script>
   <!-- <script src="pipet_oculus.js"></script> -->

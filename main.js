@@ -14,10 +14,12 @@ function checkIfeveryThingIsDone(){
   if(isDonePippeteren == true && isDoneAfval == true && isDoneBrander == true){
     document.getElementById("lockt-box").remove();
     completeSound.components.sound.playSound();
+     document.getElementById("Bronvermelding").setAttribute("visible","true");
 
 
   }
 }
+
 
 //==================== CHEMISTRY API STUFF
 const BASE_URL = "https://neelpatel05.pythonanywhere.com"
@@ -82,9 +84,7 @@ document.getElementById('righthand').addEventListener('thumbleftstart', function
   document.getElementById('cameraRig').setAttribute('rotation', {x: head.getAttribute("rotation").x,  y: (head.getAttribute("rotation").y + 45), z: head.getAttribute("rotation").z });
 });
 
-var mainAudio = document.getElementById("js--mainAudio");
 
-document.getElementById('cameraRig').components.sound.playSound();
 
 var isactive = false;
 document.getElementById('lefthand').addEventListener('ybuttonup', function(event) {
