@@ -105,17 +105,17 @@
       <!-- <a-entity position="3.893 1.151 7.253" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity> -->
       <!-- <a-entity position="3.893 1.151 6.904" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity> -->
 
-      <a-entity id="waterfles" dynamic-body collision-filter="group: green; collidesWith: default, green" position="3.893 1.151 7.552" scale=".15 .15 .15">
+      <a-entity id="waterfles" dynamic-body grabbable collision-filter="group: green; collidesWith: default, green" position="3.893 1.151 7.552" scale=".15 .15 .15">
         <a-entity  gltf-part="src: #waterFles; part: Cylinder" material="color:white;opacity:0.5;blending:additive"  modify-material ></a-entity>
         <a-entity   gltf-part="src: #waterFles; part: Tuit" material="color:white;roughness:0.7;metalness:0.5;blending:additive"  modify-material ></a-entity>
       </a-entity>
 
-      <a-entity id="waterfles" dynamic-body collision-filter="group: green; collidesWith: default, green" position="3.893 1.151 7.253" scale=".15 .15 .15">
+      <a-entity id="waterfles" dynamic-body grabbable collision-filter="group: green; collidesWith: default, green" position="3.893 1.151 7.253" scale=".15 .15 .15">
         <a-entity  gltf-part="src: #waterFles; part: Cylinder" material="color:white;opacity:0.5;blending:additive"  modify-material ></a-entity>
         <a-entity   gltf-part="src: #waterFles; part: Tuit" material="color:white;roughness:0.7;metalness:0.5;blending:additive"  modify-material ></a-entity>
       </a-entity>
 
-      <a-entity id="waterfles" dynamic-body collision-filter="group: green; collidesWith: default, green" position="3.893 1.151 6.904" scale=".15 .15 .15">
+      <a-entity id="waterfles" dynamic-body grabbable collision-filter="group: green; collidesWith: default, green" position="3.893 1.151 6.904" scale=".15 .15 .15">
         <a-entity  gltf-part="src: #waterFles; part: Cylinder" material="color:white;opacity:0.5;blending:additive"  modify-material ></a-entity>
         <a-entity   gltf-part="src: #waterFles; part: Tuit" material="color:white;roughness:0.7;metalness:0.5;blending:additive"  modify-material ></a-entity>
       </a-entity>
@@ -365,7 +365,7 @@
         oculus-touch-controls="hand: left" thumb-controls="hand: left">
         <a-plane scale="0.2 0.2 1" width="1.140" height="1.320" position="-0.15 0 0.3" rotation="-150 90 0" id="objectives">
           <a-text value="Nog te doen:" width="2.5" position="-0.335 0.497 0.01" color="black"></a-text>
-          <a-text id="afvalLabelHand" value="Afval scheiden" width="3" position="-0.750 0.010 0.028" color="black"></a-text>
+          <a-text id="afvalLabelHand" value="Afval scheiden" width="3" position="-0.451 0.654 0.01" color="black"></a-text>
           <a-text id="pipetLabelHand" value="Pipetteren"  width="3" position="-0.451 0.054 0.01" color="black"> </a-text>
           <a-text id="branderLabelHand" value="Brander instellen" width="3" position="-0.451 -0.177 0.01" color="black"></a-text>
         </a-plane>
@@ -501,7 +501,7 @@
     <a-entity position="2.334 0.559 0.101" scale="6 6 6" rotation="0 90 0" gltf-model="models/Pipet/pipetLowPoly.gltf"></a-entity>
 
     <a-text align="center" value="Erlenmeyer:"   color="#fff" position="1.350 -0.476 0.010"></a-text>
-    <a-entity position="1.924 -0.75 0.101" scale=".2 .2 .2" rotation="0 0 0" gltf-model="models/Erlenmeyer/Flask.gltf"></a-entity>
+    <a-entity position="2.346 -0.75 0.101" scale=".2 .2 .2" rotation="0 0 0" gltf-model="models/Erlenmeyer/Flask.gltf"></a-entity>
 
   </a-plane>
 </a-entity>
