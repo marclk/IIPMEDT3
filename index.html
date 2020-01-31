@@ -97,9 +97,9 @@
 
         <a-entity rotation="0 90 0" position="0 0 0" class="pcikup"  modify-materials  gltf-part="src: #pipetGoud; part: pipet" material="color:#FFD700;metalness:0.9;roughness:0.350;side:double;" collision-filter="group: green; collidesWith: default, green"grabbable draggable droppable dynamic-body scale="2 2 2"></a-entity>
       </a-entity>
-      <a-entity position="3.589 1.151 7.552" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity>
-      <a-entity position="3.589 1.151 7.253" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity>
-      <a-entity position="3.589 1.151 6.904" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity>
+      <a-entity position="3.589 1.151 7.552" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material grabbable collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity>
+      <a-entity position="3.589 1.151 7.253" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material grabbable collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity>
+      <a-entity position="3.589 1.151 6.904" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material grabbable collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity>
 
       <!-- <a-entity position="3.893 1.151 7.552" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity> -->
       <!-- <a-entity position="3.893 1.151 7.253" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity> -->
@@ -198,8 +198,8 @@
         class="pcikup">
       </a-box>
 
-      <a-text id="js--red-trashcan" position="2.795 1.8 -2.376" color="crimson" value="0" look-at="#head"></a-text>
-      <a-text id="js--green-trashcan" position="2.234 1.8 -2.376" color="green" value="0" look-at="#head"></a-text>
+      <!-- <a-text id="js--red-trashcan" position="2.795 1.8 -2.376" color="crimson" value="0" look-at="#head"></a-text>
+      <a-text id="js--green-trashcan" position="2.234 1.8 -2.376" color="green" value="0" look-at="#head"></a-text> -->
 
   <!-- <a-entity gltf-model="#labTafel"  scale="0.390 0.390 0.390" ></a-entity> -->
 
@@ -349,7 +349,7 @@
 
   <!-- <a-entity class="cube pcikup" mixin="cube" position="0 0.265 0" material="color: red"></a-entity> -->
 
-  <a-entity id="cameraRig" class="camera-parent teleport-object" position="-3.266 1.6 -9.5" rotation="0 180 0">
+  <a-entity id="cameraRig" class="camera-parent teleport-object" position="-3.266 0 -9.5" rotation="0 180 0">
 
       <a-entity id="head" camera  look-controls="pointerLockEnabled: true">
         <!-- <a-entity animation__fusing="property:scale; easing:easeInCubic; dur:500; from:1 1 1; to: 0.1 0.1 0.1; startEvents: fusing"
@@ -532,14 +532,14 @@
       <a-cylinder id="js--test-cylinder-fill" radius=".01" height=".001" position ="0 -0.110 0" color="orange"></a-cylinder>
     </a-entity>
 
-    <a-box id="js--pipet-colision-box-fill" class="pcikup" scale=".05 .6 .05"  material="visible: false;" position="0.55 -0.2 -0.771" rotation="0 0 0" collision-filter="collisionForces: false" droppable accepts=""  modify-material static-body
+    <a-box id="js--pipet-colision-box-fill" class="pcikup" scale=".2 .6 .2"  material="visible: false;" position="0.55 -0.2 -0.771" rotation="0 0 0" collision-filter="collisionForces: false" droppable accepts=""  modify-material static-body
       event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
       event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false">
     </a-box>
 
-    <a-box id="js--threshhold-meter" scale="-.120 -.01 -.021" position=".471 -.490 -.772" color="green"></a-box>
+    <a-box id="js--threshhold-meter" scale="-.120 -.01 -.021" position=".471 -.290 -.772" color="green"></a-box>
 
-    <a-box id="js--pipet-colision-box-succ" class="pcikup" scale=".05 .6 .05"  material="visible: false;" position="0 -0.2 -0.771" rotation="0 0 0" collision-filter="collisionForces: false" droppable accepts="" modify-material static-body
+    <a-box id="js--pipet-colision-box-succ" class="pcikup" scale=".2 .6 .2"  material="visible: false;" position="0 -0.2 -0.771" rotation="0 0 0" collision-filter="collisionForces: false" droppable accepts="" modify-material static-body
       event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
       event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false">
     </a-box>
@@ -571,6 +571,7 @@
   </a-entity>
 
   <a-entity id="js--correctSound" sound="src: url(sound/CorrectSound.mp3);" position="2.386 2.257 6.531" ></a-entity>
+  <a-entity id="js--completeSound" sound="src: url(sound/completion.mp3);" position="2.386 2.257 6.531" ></a-entity>
 
   <a-entity id="Locked-Tafel" position="0 0 9.589" visible="false" class=" ">
     <a-box  class=" " geometry="primitive:  box; height: 3.380; depth: 0.990;width:1.380"  id="tsst"  position="2.665 .481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
