@@ -87,7 +87,15 @@
           <a-asset-item id="brokenErlenmeyer" src="models/Afval/brokenErlenmeyer.gltf" ></a-asset-item>
           <a-asset-item id="propje" src="models/Afval/Propje.gltf" ></a-asset-item>
           <a-asset-item id="erlenmeyer-statief" src="models/Erlenmeyer+Statief/Erlenmeyer_Statief_Labeled.gltf"></a-asset-item>
+          <a-asset-item id="pipetGoud" src="models/Pipet/pipetGoud.gltf" ></a-asset-item>
       </a-assets>
+
+      <a-entity id="light" light="type: spot; color: #ffff97; intensity: 50; distance: 3.34; angle: 8; shadowBias: 0.73" position="2.4359 4.223 7.17943" rotation="-90 -3.29 0"></a-entity>
+
+      <a-entity rotation="0 90 0" position="2.420 1.217 7.169" class="pcikup" gltf-part="src: #pipetGoud; part: pipet" material="color:#FFD700;metalness:0.9;roughness:0.350;side:double;"  modify-material collision-filter="group: green; collidesWith: default, green"grabbable draggable droppable static-body scale="2 2 2">
+        <a-text value="Beste laborant" width="0.250" rotation="0 90 0" color="#FFFF00 " position="0.030 -0.096 0.040"></a-text>
+      </a-entity>
+
 
       <!-- Audio Files -->
 
@@ -139,6 +147,10 @@
 
       <a-plane width="1.160" height="0.420" position="-0.197 2.668 -7.518" rotation="0 -90 0" id="objectives">
         <a-text value="Let op je veiligheid!"   width="0.8" position="-0.440 0.011 0.056" color="black" text="wrapCount: 15" width="0.8" position="-0.440 0.128 0.056" color="black"> </a-text>
+      </a-plane>
+      <a-plane  id="doFirstPlane" width="1.160" height="0.420" position="-0.197 1.757 -7.518" rotation="0 -90 0" color="orange">
+        <a-text value="2: Zet je bril op"   width="1.3" position="-0.437 -0.080 0.056" color="black" text="wrapCount: 20" width="0.8" position="-0.440 0.128 0.056" color="black"> </a-text>
+        <a-text value="1: Doe je labjas aan"   width="1.3" position="-0.519 0.094 0.056" color="black" text="wrapCount: 20" width="0.8" position="-0.440 0.128 0.056" color="black"> </a-text>
       </a-plane>
 
       <a-box
@@ -244,46 +256,61 @@
   </a-entity>
 
 <!-- Flame -->
-  <a-entity id="fire" rotation="0 0 90" position="2.447 1.156 3.556"
+  <a-entity id="fire" rotation="0 0 90" position="2.447 1.156 3.822"
     sprite-particles="enable:false;lifeTime:0.3;drag:2;destinationWeight:0; destinationOffset: 0; texture: assets/explosion_sheet.png; textureFrame: 5 5; velocity: .2 .1 -.2.. .6 .1 .2; acceleration: 1; spawnRate: 100; scale:0..1,1..2; opacity: 1,0; angularVelocity: 0 00; blending: additive; enableInEditor: true; velocityScale: 2.43; velocityScaleMinMax: 3.34 0.74; emitterTime: 1.87; particleSize: 30; alphaTest: 0.88">
   </a-entity>
 
-  <a-entity position="2.439 1.007 3.550" static-body gltf-part="src: #brander; part: Cylinder" material="color:white;metalness:1;"   modify-material collision-filter="group: green; collidesWith: default, green" scale="0.05 0.045 0.05"></a-entity>
+  <a-entity position="2.439 1.007 3.821" static-body gltf-part="src: #brander; part: Cylinder" material="color:white;metalness:1;"   modify-material collision-filter="group: green; collidesWith: default, green" scale="0.05 0.045 0.05"></a-entity>
 
- <a-entity  position="2.444 1.176 3.553" scale=".6 .6 .6">
+ <a-entity  position="2.444 1.176 3.826" scale=".6 .6 .6">
     <a-entity gltf-part="src: #erlenmeyer-statief; part: erlenmeyer" material="color: white; opacity: .5;" position="0 0.063 0"></a-entity>
-    <a-entity gltf-part="src: #erlenmeyer-statief; part: statief" material="color: darkslategray;" scale="1 1.330 1" position="0 0.043 0"></a-entity>
+    <a-entity gltf-part="src: #erlenmeyer-statief; part: statief" material="color: darkslategray;" scale="1 1.330 1" position="0 0.043 0" rotation="0 180 0"></a-entity>
     <a-cone radius-top="0.09" radius-bottom=".11" height="0.120" color="crimson" position="0 0.204 0"></a-cone>
   </a-entity>
 
-  <a-box id="aanzettenVlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="darkblue" position="3.355 0.990 3.426"rotation="-45 180 0" scale="0.4 0.4 0.4">
-      <a-text position="-0.431 0.5 0" color="white" value="Aanzetten"></a-text>
+  <a-box id="aanzettenVlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="orange" position="3.092 0.987 3.426"rotation="-45 180 0" scale="0.4 0.4 0.4">
+      <a-text position="-0.212 0.351 0.194" color="white" value="Brander:" rotation="0 0 0" width="3"></a-text>
+      <a-text id="vlamAanUitLabel" position="-0.009 0.043 0.253" align="center" anchor="center" color="white" value="Aan"></a-text>
   </a-box>
 
-  <a-box id="uitzettenVlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="darkblue" position="1.888 0.990 3.426"rotation="-45 180 0" scale="0.4 0.4 0.4">
+  <!-- <a-box id="uitzettenVlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="darkblue" position="1.888 0.990 3.426"rotation="-45 180 0" scale="0.4 0.4 0.4">
       <a-text position="-0.431 0.5 0" color="white" value="Uitzetten"></a-text>
+  </a-box> -->
+
+  <a-box id="checkVlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="darkblue" position="1.813 0.990 3.426"rotation="-45 180 0" scale="0.4 0.4 0.4">
+      <a-text position="-0.212 0.351 0.194" color="white" value="Antw:" rotation="0 0 0" width="3"></a-text>
+      <a-text position="0.001 0.019 0.252" align="center" anchor="center" color="white" value="Check" width="3.5"></a-text>
   </a-box>
 
-  <a-box id="checkVlam"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="darkblue" position="1.313 .990 3.426"rotation="-45 180 0" scale="0.4 0.4 0.4">
-      <a-text position="-0.431 0.5 0" color="white" value="Check"></a-text>
+
+
+  <a-box id="nextButtonFlame"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="grey" position="2.276 0.990 3.425"rotation="-45 180 0" scale="0.4 0.4 0.4">
+      <a-text position="0.010 0.187 0.266" color="white" value="+" rotation="0 0 -90" width="10"></a-text>
+      <a-text position="-0.212 0.351 0.194" color="white" value="Temp:" rotation="0 0 0" width="3"></a-text>
   </a-box>
 
-  <a-text id="js--text-element" position="2.250 1.306 3.705" width="4" color="black" value="hahaahha" rotation="0 180 0"></a-text>
-
-  <a-box id="nextButtonFlame"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="blue" position="2.224 0.990 3.425"rotation="-45 180 0" scale="0.4 0.4 0.4">
-      <a-text position="-0.846 0.5 0" color="white" value="NExt"></a-text>
+  <a-box id="previousButtonFlame"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="grey" position="2.582 0.990 3.425"rotation="-45 180 0" scale="0.4 0.4 0.4">
+      <a-text position="-0.161 0.052 0.274" color="white" value="-" rotation="0 0 0" width="15"></a-text>
+      <a-text position="-0.212 0.351 0.194" color="white" value="Temp:" rotation="0 0 0" width="3"></a-text>
   </a-box>
 
-  <a-box id="previousButtonFlame"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="blue" position="2.697 0.990 3.425"rotation="-45 180 0" scale="0.4 0.4 0.4">
-      <a-text position="-0.846 0.5 0" color="white" value="Previous"></a-text>
-  </a-box>
-
-  <a-entity scale=".5 .5 .5" rotation="0 200 0" position="2.672 1.378 3.618">
+  <a-entity scale=".5 .5 .5" rotation="0 200 0" position="2.751 1.738 4.040">
     <a-plane position="0 0 -.001" color="darkslategray"></a-plane>
-    <a-text id="js--element-number" position="-.46 .29 0" width="4" color="black" value="hahaahha"></a-text>
-    <a-text id="js--element-symbol" position="-.46 .04 0" color="black" value="hahaahha"></a-text>
-    <a-text id="js--element-name" position="-.43 -.19 0" width="2.4" color="black" value=""></a-text>
-    <a-text id="js--element-mass" position="-.43 -.33 0" width="2.4" color="black" value=""></a-text>
+    <a-text id="" position="-0.430 0.428 0" width="2" color="black" value="Stof:"></a-text>
+    <a-text id="js--element-number" position="-.46 .29 0" width="3.5" color="black" value="hahaahha"></a-text>
+    <a-text id="js--element-symbol" position="-.46 .04 0" color="white" value="hahaahha"></a-text>
+    <a-text id="js--element-name" position="-.43 -.19 0" width="2.4" color="black" value="K = Kelvin"></a-text>
+    <a-text id="js--element-mass" position="-.43 -.33 0" width="2" color="black" value="1 graad = 273 Kelvin"></a-text>
+  </a-entity>
+
+  <a-entity scale=".5 .5 .5" rotation="0 -200 0" position="2.164 1.738 4.040">
+    <a-plane position="0 0 -.001" color="darkslategray"></a-plane>
+    <a-text id="" position="-0.430 0.428 0" width="2" color="black" value="Te verhitten:"></a-text>
+    <a-text id="" position="-.46 .29 0" color="black" width="3.5" value="Temperatuur:"></a-text>
+    <a-text id="js--text-element" position="-.46 .04 0" width="5" color="white" value="" ></a-text>
+    <a-text id="" position="-.43 -.19 0"  width="2.4" color="black" value="K = Kelvin"></a-text>
+    <a-text id="" position="-.43 -.33 0" width="2" color="black" value="1 graad = 273 Kelvin"></a-text>
+
   </a-entity>
 
   <a-sky src="#sky" rotation="0 -75 0"></a-sky>
@@ -306,10 +333,10 @@
         mixin="point" id="lefthand"
         oculus-touch-controls="hand: left" thumb-controls="hand: left">
         <a-plane scale="0.2 0.2 1" width="1.140" height="1.320" position="-0.15 0 0.3" rotation="-150 90 0" id="objectives">
-          <a-text value="Afval scheiden" width="3" position=" -0.440 0.271 0.01" color="black"></a-text>
           <a-text value="Nog te doen:" width="2.5" position="-0.335 0.497 0.01" color="black"></a-text>
-          <a-text value="Pipetteren"  width="3" position="-0.451 0.054 0.01" color="black"> </a-text>
-          <a-text value="Brander instellen" width="3" position="-0.451 -0.177 0.01" color="black"></a-text>
+          <a-text id="afvalLabelHand" value="Afval scheiden" width="3" position="-0.750 0.010 0.028" color="black"></a-text>
+          <a-text id="pipetLabelHand" value="Pipetteren"  width="3" position="-0.451 0.054 0.01" color="black"> </a-text>
+          <a-text id="branderLabelHand" value="Brander instellen" width="3" position="-0.451 -0.177 0.01" color="black"></a-text>
         </a-plane>
       </a-entity>
 
@@ -319,15 +346,15 @@
       </a-entity>
   </a-entity>
 
-  <a-plane position="2.503 2.677 0.783" width="1.940" height="0.640" look-at="#head" scale="0.4 0.4 0.4">
+  <a-plane id="pipeterenLabelAboveTable" position="2.503 2.677 0.783" width="1.940" height="0.640" look-at="#head" scale="0.4 0.4 0.4">
     <a-text value="Pipetteren" position="-0.521"></a-text>
   </a-plane>
 
-  <a-plane position="2.503 2.677 -2.376" width="1.940" height="0.640" look-at="#head" scale="0.4 0.4 0.4">
+  <a-plane id="afvalLabelAboveTable" position="2.503 2.677 -2.376" width="1.940" height="0.640" look-at="#head" scale="0.4 0.4 0.4">
     <a-text value="Afval scheiden" position="-0.521"></a-text>
   </a-plane>
 
-  <a-plane position="2.503 2.677 3.965" width="1.940" height="0.640" look-at="#head" scale="0.4 0.4 0.4">
+  <a-plane id="branderLabelAboveTable" position="2.503 2.677 3.965" width="1.940" height="0.640" look-at="#head" scale="0.4 0.4 0.4">
     <a-text value="Brander" position="-0.521"></a-text>
   </a-plane>
   <!-- <a-entity class="cube pcikup" mixin="cube" position="0 0.265 0" material="color: red"></a-entity> -->
@@ -358,13 +385,13 @@
 
   <a-plane width="3" height="1.140" position="2.691 2.709 6.241" rotation="0 180 0">
     <a-text value="Te doen om vrij te spelen:" position="-1.251 0.423 0" color="black"></a-text>
-    <a-text value="Pipetteren" position="-0.478 0.163 0" color="black"> </a-text>
-    <a-text value="Afval scheiden" position="-0.705 -0.125 0" color="black"></a-text>
-    <a-text value="Brander instelen" position="-0.716 -0.410 0" color="black"></a-text>
+    <a-text id="pipetlabelToDoList" value="Pipetteren" position="-0.478 0.163 0" color="black"> </a-text>
+    <a-text id="afvallabelToDoList" value="Afval scheiden" position="-0.705 -0.125 0" color="black"></a-text>
+    <a-text id="branderlabelToDoList" value="Brander instelen" position="-0.716 -0.410 0" color="black"></a-text>
   </a-plane>
 
-  <a-entity visible="true" id="normalMesh" class="second-navmesh" gltf-model="scene/navmesh(1).gltf"   position="0 -20  0" nav-mesh></a-entity>
-  <a-entity visible="true" id="first-navmesh" class="second-navmesh" gltf-model="scene/navmesh(2).gltf"   position="0 -0.041 0" nav-mesh></a-entity>
+  <a-entity visible="false" id="normalMesh" class="second-navmesh" gltf-model="scene/navmesh(1).gltf"   position="0 -20  0" nav-mesh></a-entity>
+  <a-entity visible="false" id="first-navmesh" class="second-navmesh" gltf-model="scene/navmesh(2).gltf"   position="0 -0.041 0" nav-mesh></a-entity>
   <a-entity class=" " gltf-model="scene/SceneV5.gltf" shadow="receive: true" scale="1 1 1" position="0 0 0"  modify-materials geometry="primitive:  box; height: 1; depth: 1;width:1;" collision-filter="group: green; collidesWith: default, green" ></a-entity>
    <!-- collision-filter="group: green; collidesWith: default, green" static-body -->
 
@@ -613,6 +640,9 @@
         if(trashCount == (trashItems.length) ){
           AFRAME.log("All parts Trashed!!!");
           TRASHCOMPLETE = true;
+          document.getElementById("afvalLabelAboveTable").setAttribute("color","green");
+          document.getElementById("afvalLabelHand").setAttribute("color","green");
+          document.getElementById("afvallabelToDoList").remove();
           AFRAME.log(TRASHCOMPLETE);
         }
       });
