@@ -216,11 +216,11 @@
     <a-text value="i" color="white" position="-0.053 0.015 -0.004" rotation="-90"></a-text>
   </a-cylinder>
 
-  <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="3.750 0.985 0.776" rotation="0 180 0">
+  <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="2.450 0.985 0.743" rotation="0 180 0">
     <a-text value="i" color="white" position="-0.053 0.015 -0.004" rotation="-90"></a-text>
   </a-cylinder>
 
-  <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="3.750 0.985 4.017" rotation="0 180 0">
+  <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="2.783 0.985 3.912" rotation="0 180 0">
     <a-text value="i" color="white" position="-0.053 0.015 -0.004" rotation="-90"></a-text>
   </a-cylinder>
 
@@ -345,7 +345,7 @@
 
 
 
-  <a-entity id="cameraRig" class="camera-parent teleport-object" position="-3.266 1.6 -7.629" movement-controls>
+  <a-entity id="cameraRig" class="camera-parent teleport-object" position="-3.266 0 -7.629" >
       <a-entity id="head" camera  look-controls="pointerLockEnabled: true">
         <!-- <a-entity animation__fusing="property:scale; easing:easeInCubic; dur:500; from:1 1 1; to: 0.1 0.1 0.1; startEvents: fusing"
                   animation__mouseleave="property:scale; easing:easeInCubic; dur:250; to:1 1 1;  startEvents: mouseleave "
@@ -562,6 +562,8 @@
     <a-plane rotation="0 90 0" height="3.720" width="1.650" material="opacity:.3" color="red" position="1.662 0 -0.117" collision-filter="group: green; collidesWith: default, green" ></a-plane>
     <a-plane rotation="0 -90 0" height="3.720" width="1.650" material="opacity:.3" color="red" position="-1.780 0 -0.117" collision-filter="group: green; collidesWith: default, green" ></a-plane>
   </a-entity>
+
+  <a-entity id="js--correctSound" sound="src: url(sound/CorrectSound.mp3);" position="2.386 2.257 6.531" ></a-entity>
 
   <a-entity id="Locked-Tafel" position="0 0 9.589" visible="false" class=" ">
     <a-box  class=" " geometry="primitive:  box; height: 3.380; depth: 0.990;width:1.380"  id="tsst"  position="2.665 .481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
