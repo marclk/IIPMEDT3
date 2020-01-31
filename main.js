@@ -162,7 +162,11 @@ var fireElemnt =   document.getElementById("fire");
 // });
 var labcoatAan = false;
 var brilAan = false;
+
+
 document.getElementById("js--labcoat").addEventListener('click', function(evnt){
+  document.getElementById("js--coatSound").components.sound.playSound();
+
   this.remove();
   labcoatAan = true;
   testIfUserIsSafe()
@@ -170,6 +174,7 @@ document.getElementById("js--labcoat").addEventListener('click', function(evnt){
 });
 
 document.getElementById("js--bril").addEventListener('click', function(evnt){
+  document.getElementById("js--goggleSound").components.sound.playSound();
   this.remove();
   brilAan = true;
   testIfUserIsSafe()
@@ -191,6 +196,10 @@ var counterFlameNumber = 0;
 var vlamAan = false;
 const textField = document.getElementById('js--text-element');
 textField.setAttribute('value', "-" + " K");
+
+
+var roaringFlameEffect = document.getElementById("js--flameBlue");
+var pauseFlameEffect = document.getElementById("js--flamePauze");
 
 
 
@@ -243,6 +252,7 @@ function changeTempWithInterval(direction) {
 
 function checkFlameNumber(tellerWelkeVlam){
   if(tellerWelkeVlam > 523 && tellerWelkeVlam < 1273 ){
+
     console.log("pauzevlam");
     setFlameNumber(1);
   }
@@ -251,6 +261,8 @@ function checkFlameNumber(tellerWelkeVlam){
     setFlameNumber(2);
   }
   if(tellerWelkeVlam > 1473 && tellerWelkeVlam < 1773 ){
+    roaringFlameEffect.components.sound.playSound();
+    pauseFlameEffect.components.sound.stopSound();
       console.log("ruisvlam");
     setFlameNumber(3);
   }
@@ -318,7 +330,11 @@ var vlamStaatAan = false;
   // });
   document.getElementById("aanzettenVlam").addEventListener('click', function(evnt){
     let vlamAanUitLabel = document.getElementById("vlamAanUitLabel");
+
     if(vlamStaatAan == false){
+      roaringFlameEffect.components.sound.stopSound();
+      pauseFlameEffect.components.sound.stopSound();
+      pauseFlameEffect.components.sound.playSound();
       vlamAanUitLabel.setAttribute("value","Uit");
       vlamStaatAan= true;
       textField.setAttribute('value', "523" + " K");
@@ -327,6 +343,8 @@ var vlamStaatAan = false;
       fireElemnt.setAttribute("sprite-particles",{enable:true});
       textField.setAttribute("color","white");
     }else{
+      roaringFlameEffect.components.sound.stopSound();
+      pauseFlameEffect.components.sound.stopSound();
       vlamAanUitLabel.setAttribute("value","Aan");
       vlamStaatAan=false;
       textField.setAttribute('value', "-" + " K");

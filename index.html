@@ -307,6 +307,8 @@
   </a-box>
 
 
+<a-entity id="js--flamePauze" sound="src: url(sound/pauzevlam.mp3);" position="2.422 1.106 3.818" ></a-entity>
+<a-entity id="js--flameBlue" sound="src: url(sound/burner.mp3);" position="2.422 1.106 3.818" ></a-entity>
 
   <a-box id="nextButtonFlame"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="grey" position="2.276 0.990 3.425"rotation="-45 180 0" scale="0.4 0.4 0.4">
       <a-text position="0.010 0.187 0.266" color="white" value="+" rotation="0 0 -90" width="10"></a-text>
@@ -425,10 +427,12 @@
      <a-entity gltf-part="src: #safetyBril; part: bril"   material="color:grey"  modify-material></a-entity>
      <a-entity   gltf-part="src: #safetyBril; part: glas"  material="color: white;opacity:0.5;blending:additive;"   modify-material ></a-entity>
    </a-entity> -->
-   <a-entity sound="src: url(sound/SafetyGoggles.mp3); autoplay: false" id="js--bril" class="pcikup js--grabbable" gltf-model="src: url(models/SafetyBril/SafetyGoggleV2.gltf)" grabbable   rotation="0 180 0"  scale="0.1 0.1 0.1" position="-0.187 1.308 -8.421" modify-materials  static-body ></a-entity>
 
+   <a-entity id="js--goggleSound" sound="src: url(sound/SafetyGoggles.mp3);" position="-0.277 1.106 -8.356" ></a-entity>
+   <a-entity  id="js--bril" class="pcikup js--grabbable" gltf-model="src: url(models/SafetyBril/SafetyGoggleV2.gltf)" grabbable   rotation="0 180 0"  scale="0.1 0.1 0.1" position="-0.187 1.308 -8.421" modify-materials  static-body ></a-entity>
 
-   <a-entity sound="src: url(sound/JacketPutOn.mp3); autoplay: false" id="js--labcoat" class="pcikup js--grabbable" gltf-model="src: url(models/Labjas/labjasV2.gltf)" grabbable   rotation="0 -165.820 0" scale="1.5 1.5 1.5" position="-0.505 1.560 -8.996" modify-materials  static-body ></a-entity>
+    <a-entity id="js--coatSound" sound="src: url(sound/JacketPutOn.mp3);" position="0.108 1.106 -8.799" ></a-entity>
+   <a-entity  id="js--labcoat" class="pcikup js--grabbable" gltf-model="src: url(models/Labjas/labjasV2.gltf)" grabbable   rotation="0 -165.820 0" scale="1.5 1.5 1.5" position="-0.505 1.560 -8.996" modify-materials  static-body ></a-entity>
 
 <!-- Controller Tutorial in gang -->
   <a-entity id="js--tutorial" position="-3.514 0.586 -7.917" scale="0.5 0.5 0.5" rotation="0 180 0">
