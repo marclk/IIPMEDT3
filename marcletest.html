@@ -1,0 +1,100 @@
+<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.12.4/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras/dist/aframe-physics-extras.min.js"></script>
+    <script src="https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
+      <script>
+      //drop test
+      AFRAME.registerComponent('droptest', {
+        play: function () {
+          this.el.addEventListener('drag-drop', function (evt) {
+            console.log("Dropped")
+            evt.detail.dropped.setAttribute('material', 'color',
+              '#'+(Math.random()*0xFFFFFF<<0).toString(16));
+          });
+        }
+      });
+    </script>
+
+    <body>
+    <a-scene>
+      <a-assets>
+
+                <a-mixin id="point" raycaster="showLine: true; objects: .pcikup;far:0.5;"
+                         collision-filter="collisionForces: false"
+                         static-body="shape: sphere; sphereRadius: 0.001"
+                         super-hands="colliderEvent: raycaster-intersection;
+                                      colliderEventProperty: els;
+                                      colliderEndEvent:raycaster-intersection-cleared;
+                                      colliderEndEventProperty: clearedEls;
+                                      grabStartButtons: gripdown, pointdown, triggerdown;
+                                      grabEndButtons: gripup, pointup, triggerup;"
+                          haptics="events: triggerdown; dur: 200; force: 0.5"
+                          progressive-controls="objects: #js--pipet-container, js--pipet-colision-box;"
+                        ></a-mixin>
+      </a-assets>
+      <!-- super hands controls -->
+      <a-entity
+        progressive-controls="objects: .tape, #tape_player"
+        position="0 1.6 0">
+      </a-entity>
+
+      <a-entity id="cameraRig" class="camera-parent teleport-object" position="0 0 0">
+
+        <a-entity id="head" camera  look-controls="pointerLockEnabled: true"></a-entity>
+
+        <a-entity
+        teleport-controls="cameraRig: #cameraRig; button: trigger; teleportOrigin: #head;collisionEntities: .second-navmesh;"
+        mixin="point" id="lefthand"
+        oculus-touch-controls="hand: left" thumb-controls="hand: left">
+        </a-entity>
+
+        <a-entity
+        teleport-controls="cameraRig: #cameraRig; button: trigger; teleportOrigin: #head;collisionEntities: .second-navmesh;"
+        oculus-touch-controls="hand: right" thumb-controls="hand: right" mixin="point">
+        </a-entity>
+        </a-entity>
+
+
+      <!-- grabbable etc. box -->
+      <a-box
+        dynamic-body
+        hoverable
+        grabbable
+        stretchable
+        draggable
+        event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+        event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
+        event-set__dragon="_event: dragover-start; wireframe: true"
+        event-set__dragoff="_event: dragover-end; wireframe: false"
+        id="tape_example"
+        class="tape"
+        color="blue"
+        position="2 0.5 -3">
+      </a-box>
+      <!-- droppable box -->
+      <a-box
+        static-body
+        collision-filter="collisionForces: false"
+        droppable
+        droptest
+        id="tape_player"
+        color="red"
+        width="2"
+        height="2"
+        depth="2"
+        opacity="0.5"
+        position="-2 2 -3">
+      </a-box>
+      <!-- floor with static body, stop the box from falling -->
+      <a-plane
+        static-body
+        position="0 0 -4"
+        rotation="-90 0 0"
+        width="8"
+        height="8"
+        color="#7BC8A4"
+        shadow>
+      </a-plane>
+    </a-scene>
+  </body>
