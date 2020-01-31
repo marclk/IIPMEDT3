@@ -597,58 +597,58 @@
 </a-scene>
 
 <script>
-
-  TRASHCOMPLETE = false;
-
-  trashAudioT1 = document.getElementById("js--trashAudio-t1");
-  trashAudioT2 = document.getElementById("js--trashAudio-t2");
-
-  wrongAudioT1 = document.getElementById("js--wrongAudio-t1");
-  wrongAudioT2 = document.getElementById("js--wrongAudio-t2");
-
-  trashItems = document.getElementsByClassName("trash");
-  trashCount = 0;
-
-  //drop test
-  AFRAME.registerComponent('droptest', {
-    play: function () {
-      this.el.addEventListener('drag-drop', function (evt) {
-        AFRAME.log(trashCount);
-        if(this.id == "afval_1" && evt.detail.dropped.dataset.color == "red"){
-          AFRAME.log("Goed gedropped ouwe");
-          trashAudioT1.components.sound.playSound();
-          evt.detail.dropped.setAttribute("visible", false);
-          // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
-          // evt.detail.dropped.removeAttribute("dynamic-body");
-          evt.detail.dropped.dataset.trashed = "true";
-        }else if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
-          trashAudioT2.components.sound.playSound();
-          AFRAME.log("Goed gedropped ouwe");
-          evt.detail.dropped.setAttribute("visible", false);
-          // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
-          // evt.detail.dropped.removeAttribute("dynamic-body");
-          evt.detail.dropped.dataset.trashed = "true";
-        }else{
-          AFRAME.log("hahahahha u pleb das fout " + evt.detail.dropped.dataset.color);
-          wrongAudioT1.components.sound.playSound();
-          wrongAudioT2.components.sound.playSound();
-        }
-
-        if(trashItems[trashCount].dataset.trashed == "true"){
-          trashCount = trashCount+1;
-        }
-
-        if(trashCount == (trashItems.length) ){
-          AFRAME.log("All parts Trashed!!!");
-          TRASHCOMPLETE = true;
-          document.getElementById("afvalLabelAboveTable").setAttribute("color","green");
-          document.getElementById("afvalLabelHand").setAttribute("color","green");
-          document.getElementById("afvallabelToDoList").remove();
-          AFRAME.log(TRASHCOMPLETE);
-        }
-      });
-    }
-  });
+  //
+  // TRASHCOMPLETE = false;
+  //
+  // trashAudioT1 = document.getElementById("js--trashAudio-t1");
+  // trashAudioT2 = document.getElementById("js--trashAudio-t2");
+  //
+  // wrongAudioT1 = document.getElementById("js--wrongAudio-t1");
+  // wrongAudioT2 = document.getElementById("js--wrongAudio-t2");
+  //
+  // trashItems = document.getElementsByClassName("trash");
+  // trashCount = 0;
+  //
+  // //drop test
+  // AFRAME.registerComponent('droptest', {
+  //   play: function () {
+  //     this.el.addEventListener('drag-drop', function (evt) {
+  //       AFRAME.log(trashCount);
+  //       if(this.id == "afval_1" && evt.detail.dropped.dataset.color == "red"){
+  //         AFRAME.log("Goed gedropped ouwe");
+  //         trashAudioT1.components.sound.playSound();
+  //         evt.detail.dropped.setAttribute("visible", false);
+  //         // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
+  //         // evt.detail.dropped.removeAttribute("dynamic-body");
+  //         evt.detail.dropped.dataset.trashed = "true";
+  //       }else if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
+  //         trashAudioT2.components.sound.playSound();
+  //         AFRAME.log("Goed gedropped ouwe");
+  //         evt.detail.dropped.setAttribute("visible", false);
+  //         // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
+  //         // evt.detail.dropped.removeAttribute("dynamic-body");
+  //         evt.detail.dropped.dataset.trashed = "true";
+  //       }else{
+  //         AFRAME.log("hahahahha u pleb das fout " + evt.detail.dropped.dataset.color);
+  //         wrongAudioT1.components.sound.playSound();
+  //         wrongAudioT2.components.sound.playSound();
+  //       }
+  //
+  //       if(trashItems[trashCount].dataset.trashed == "true"){
+  //         trashCount = trashCount+1;
+  //       }
+  //
+  //       if(trashCount == (trashItems.length) ){
+  //         AFRAME.log("All parts Trashed!!!");
+  //         TRASHCOMPLETE = true;
+  //         document.getElementById("afvalLabelAboveTable").setAttribute("color","green");
+  //         document.getElementById("afvalLabelHand").setAttribute("color","green");
+  //         document.getElementById("afvallabelToDoList").remove();
+  //         AFRAME.log(TRASHCOMPLETE);
+  //       }
+  //     });
+  //   }
+  // });
 </script>
 
   <script src="main.js"></script>
