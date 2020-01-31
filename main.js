@@ -1,23 +1,3 @@
-
-// const SAFETY_GOGGLE = document.getElementById('js--bril');
-// const LAB_COAT = document.getElementById('js--labcoat');
-// // const GUI_RADIO = document.getElementById('js--gui-radio');
-// // const GUI_RADIO_SECOND = document.getElementById('js--gui-radio-second');
-//
-// var goggleOnHead = false
-// var labCoatOn = false;
-
-// AFRAME.registerComponent('test-tube', {
-//       play: function() {
-//         this.el.addEventListener('dragover-start', function(evt) {
-//           // evt.detail.dropped.setAttribute('material', 'color',
-//           //   '#'+(Math.random()*0xFFFFFF<<0).toString(16s))
-//           //  // notify super-hands that the gesture was accepted
-//           // evt.preventDefault()
-//         })
-//       }
-//     })
-
 var meltingPoint = 0;
 
 //==================== CHEMISTRY API STUFF
@@ -57,6 +37,7 @@ const PIPET_COLISION_BOX = document.getElementById('js--pipet-colision-box');
 const TEST_CYLINDER_SUCC = document.getElementById('js--test-cylinder-succ');
 const TEST_CYLINDER_FILL = document.getElementById('js--test-cylinder-fill');
 
+// GIVES A LOT OF ERRORS v
 const GRABBABLES = document.getElementsByClassName('js--grabbable')
 // console.log(GRABBABLES.length)
 // AFRAME.log("aantal grabbables: " + GRABBABLES.length);
@@ -118,7 +99,7 @@ let hoveringOverTube = false;
 
 let dropletSound = new Audio("drop.mp3");
 
-let randomThreshhold = (Math.floor(Math.random()* 20))/100
+let randomThreshhold = (Math.floor(Math.random()* 25))/100
 AFRAME.log("random pipeteer threshhold: " + randomThreshhold)
 
 
@@ -404,177 +385,80 @@ let deltaFlame = 0;
 let temperatureStepper;
 
 //start 1 keer
-riseTemperatureStart = () => {
-  //eventuele condities idk copy paste
-  if (tempCondities) {
-    //beginpunt timer
-    startTimer = new Date();
-
-    //check tijd elke x miliseconde met interval
-    temperatureStepper = setInterval(f => {
-      let endTimer = new Date();
-      //bereken einde en pas aan naar normaal getal; ~330 na 1 seconde
-      deltaFlame = (endTimer - startTimer)/6;
-
-      // textField.setAttribute('value', deltaFlame);
-
-    }, INTERVAL_FREQ);
-  }
-}
-
-// verwijder interval
-riseTemperatureEnd = () => {
-  clearInterval(temperatureStepper);
-}
-
-
-
-//===================== ROEL'S COAT N GOGGGGGLES
+// riseTemperatureStart = () => {
+//   //eventuele condities idk copy paste
+//   if (tempCondities) {
+//     //beginpunt timer
+//     startTimer = new Date();
 //
-// SAFETY_GOGGLE.addEventListener('click', function(evnt){
-//   console.log("Im registerd!!!");
-//  //this.remove();
-//   // GUI_RADIO.click();
-//   // GUI_RADIO.click();
-//   // goggleOnHead = true;
-//   // this.removeAttribute("gui-interactable");
-//   // this.setAttribute("visible","false");
-//   // checkIfSafetyIsGood(labCoatOn,goggleOnHead);
-//   this.remove();
+//     //check tijd elke x miliseconde met interval
+//     temperatureStepper = setInterval(f => {
+//       let endTimer = new Date();
+//       //bereken einde en pas aan naar normaal getal; ~330 na 1 seconde
+//       deltaFlame = (endTimer - startTimer)/6;
 //
+//       // textField.setAttribute('value', deltaFlame);
 //
-// });
-//
-// LAB_COAT.addEventListener('click', function(evnt){
-//   console.log("Im registerd!!!");
-//   //this.remove();
-//   // GUI_RADIO_SECOND.click();
-//   labCoatOn = true;
-//   // this.removeAttribute("gui-interactable");
-//   // this.setAttribute("visible","false");
-//   // checkIfSafetyIsGood(labCoatOn,goggleOnHead);
-//
-// });
-//
+//     }, INTERVAL_FREQ);
+//   }
 // }
 //
-//
-// function checkIfSafetyIsGood(labCoatOn,goggleOnHead){
-//
-//
-//
-//
-//   if(labCoatOn === true && goggleOnHead === true){
-//     console.log("jeej safety");
-//
-//       setTimeout(function(){
-//         document.getElementById("js--clipBoard").firstElementChild.remove();
-//         document.getElementById("js--clipboardContent").setAttribute("position", {z:0,y:0,x:0});
-//       }, 1000);
-//
-//
-//
-//
-//   }else{
-//     console.log("not yet");
-//   }
+// // verwijder interval
+// riseTemperatureEnd = () => {
+//   clearInterval(temperatureStepper);
+// }
 
 
 //===================== PIPET SCRIPT
+
 // AFRAME.registerComponent('hover-pipet', {
 //   play: function () {
 //
 //   }
 // });
 
-for (let i = 0; i < GRABBABLES.length; i++) {
-  GRABBABLES[i].addEventListener('grab-start', function (e) {
-    grabbedObject = true;
+PIPET_CONTAINER.addEventListener('grab-start', function (e) {
+  grabbedObject = true;
 
-    let ID = GRABBABLES[i].id;
+  document.getElementById('js--pipet-colision-box-succ').addEventListener('hover-start', function (evt) {
+    hoveringOverTube = true;
+    AFRAME.log("hovered over the succ test tube")
+    document.getElementById('cameraRig').addEventListener('abuttondown', function (e) {
+      fillPipetStart(TEST_CYLINDER_SUCC);
+      aButtonHeld = true;
+    })
+    document.getElementById('cameraRig').addEventListener('abuttonup', function (e) {
+      aButtonHeld = false;
+      fillPipetEnd();
+    })
+  })
+  document.getElementById('js--pipet-colision-box-fill').addEventListener('hover-start', function (evt) {
+    hoveringOverTube = true;
+    AFRAME.log("hovered over the fill test tube")
+    document.getElementById('cameraRig').addEventListener('bbuttondown', function (e) {
+      emptyPipetStart(TEST_CYLINDER_FILL);
+      bButtonHeld = true;
+    })
 
-    switch (ID) {
-      case "js--pipet-container":
-        document.getElementById('js--pipet-colision-box-succ').addEventListener('hover-start', function (evt) {
-          hoveringOverTube = true;
-          AFRAME.log("hovered over the succ test tube")
-          document.getElementById('cameraRig').addEventListener('abuttondown', function (e) {
-            fillPipetStart(TEST_CYLINDER_SUCC);
-            aButtonHeld = true;
-          })
-          document.getElementById('cameraRig').addEventListener('abuttonup', function (e) {
-            aButtonHeld = false;
-            fillPipetEnd();
-          })
-        })
-        document.getElementById('js--pipet-colision-box-fill').addEventListener('hover-start', function (evt) {
-          hoveringOverTube = true;
-          AFRAME.log("hovered over the fill test tube")
-          document.getElementById('cameraRig').addEventListener('bbuttondown', function (e) {
-            emptyPipetStart(TEST_CYLINDER_FILL);
-            bButtonHeld = true;
-          })
-
-          document.getElementById('cameraRig').addEventListener('bbuttonup', function (e) {
-            bButtonHeld = false;
-            emptyPipetEnd();
-          })
-        })
-        document.getElementById('js--pipet-colision-box-fill').addEventListener('hover-end', function (evt) {
-          hoveringOverTube = false;
-        })
-        document.getElementById('js--pipet-colision-box-succ').addEventListener('hover-end', function (evt) {
-          hoveringOverTube = false;
-        })
-        break;
-
-      // case "js--labcoat" || "js--bril":
-      //   document.getElementById('cameraRig').addEventListener('abuttondown', function (e) {
-      //     aButtonHeld = true;
-      //   })
-      //   document.getElementById('cameraRig').addEventListener('bbuttondown', function (e) {
-      //
-      //     bButtonHeld = true;
-      //   })
-      //   document.getElementById('cameraRig').addEventListener('abuttonup', function (e) {
-      //     aButtonHeld = false;
-      //     GRABBABLES[i].remove()
-      //   })
-      //   document.getElementById('cameraRig').addEventListener('bbuttonup', function (e) {
-      //     bButtonHeld = false;
-      //     GRABBABLES[i].remove()
-      //   })
-      //   break;
-
-      // case "js--bril":
-      //   document.getElementById('rig').addEventListener('abuttondown', function (e) {
-      //
-      //     aButtonHeld = true;
-      //   })
-      //   document.getElementById('rig').addEventListener('bbuttondown', function (e) {
-      //
-      //     bButtonHeld = true;
-      //   })
-      //   document.getElementById('rig').addEventListener('abuttonup', function (e) {
-      //     aButtonHeld = false;
-      //
-      //   })
-      //   document.getElementById('rig').addEventListener('bbuttonup', function (e) {
-      //     bButtonHeld = false;
-      //
-      //   })
-      //   break;
-      //
-      // default:
-
-    }
-
+    document.getElementById('cameraRig').addEventListener('bbuttonup', function (e) {
+      bButtonHeld = false;
+      emptyPipetEnd();
+    })
+  })
+  document.getElementById('js--pipet-colision-box-fill').addEventListener('hover-end', function (evt) {
+    hoveringOverTube = false;
+  })
+  document.getElementById('js--pipet-colision-box-succ').addEventListener('hover-end', function (evt) {
+    hoveringOverTube = false;
   })
 
-  GRABBABLES[i].addEventListener('grab-end', function (e) {
-    grabbedObject = false;
-  })
-}
+})
+
+PIPET_CONTAINER.addEventListener('grab-end', function (e) {
+  grabbedObject = false;
+})
+
+
 
 fillPipetStart = (substance) => {
   if (!bButtonHeld && !aButtonHeld && grabbedObject && hoveringOverTube) {
@@ -662,11 +546,174 @@ emptyPipetEnd = () => {
 
   AFRAME.log(TEST_CYLINDER_FILL.getAttribute("height"))
   let filledJuice = TEST_CYLINDER_FILL.getAttribute("height")
-  AFRAME.log("pipet fill threshhold minimum: " + randomThreshhold)
-  if (randomThreshhold > filledJuice > randomThreshhold+0.1) {
+  AFRAME.log("pipet fill threshhold minimum: " + (randomThreshhold-0.05) + ", maximum: " + (randomThreshhold+0.05))
+  AFRAME.log("current juicy filled: " + filledJuice)
+  if (filledJuice < (randomThreshhold+0.5) && filledJuice > (randomThreshhold-0.05)) {
     AFRAME.log("you filled the test tube correctly, pass!" + randomThreshhold + " - " + filledJuice)
   } else {
     AFRAME.log("sorry but you failed, failure!" + randomThreshhold + " - " + filledJuice)
   }
   // console.log(deltaPipetFeedbackTimer);
 }
+
+emptyPipetEnd()
+
+//===================== ROEL'S COAT N GOGGGGGLES
+//
+// SAFETY_GOGGLE.addEventListener('click', function(evnt){
+//   console.log("Im registerd!!!");
+//  //this.remove();
+//   // GUI_RADIO.click();
+//   // GUI_RADIO.click();
+//   // goggleOnHead = true;
+//   // this.removeAttribute("gui-interactable");
+//   // this.setAttribute("visible","false");
+//   // checkIfSafetyIsGood(labCoatOn,goggleOnHead);
+//   this.remove();
+//
+//
+// });
+//
+// LAB_COAT.addEventListener('click', function(evnt){
+//   console.log("Im registerd!!!");
+//   //this.remove();
+//   // GUI_RADIO_SECOND.click();
+//   labCoatOn = true;
+//   // this.removeAttribute("gui-interactable");
+//   // this.setAttribute("visible","false");
+//   // checkIfSafetyIsGood(labCoatOn,goggleOnHead);
+//
+// });
+//
+// }
+//
+//
+// function checkIfSafetyIsGood(labCoatOn,goggleOnHead){
+//
+//
+//
+//
+//   if(labCoatOn === true && goggleOnHead === true){
+//     console.log("jeej safety");
+//
+//       setTimeout(function(){
+//         document.getElementById("js--clipBoard").firstElementChild.remove();
+//         document.getElementById("js--clipboardContent").setAttribute("position", {z:0,y:0,x:0});
+//       }, 1000);
+//
+//
+//
+//
+//   }else{
+//     console.log("not yet");
+//   }
+
+
+// for (let i = 0; i < GRABBABLES.length; i++) {
+//   GRABBABLES[i].addEventListener('grab-start', function (e) {
+//     grabbedObject = true;
+//
+//     let ID = GRABBABLES[i].id;
+//
+//     switch (ID) {
+//       case "js--pipet-container":
+//         document.getElementById('js--pipet-colision-box-succ').addEventListener('hover-start', function (evt) {
+//           hoveringOverTube = true;
+//           AFRAME.log("hovered over the succ test tube")
+//           document.getElementById('cameraRig').addEventListener('abuttondown', function (e) {
+//             fillPipetStart(TEST_CYLINDER_SUCC);
+//             aButtonHeld = true;
+//           })
+//           document.getElementById('cameraRig').addEventListener('abuttonup', function (e) {
+//             aButtonHeld = false;
+//             fillPipetEnd();
+//           })
+//         })
+//         document.getElementById('js--pipet-colision-box-fill').addEventListener('hover-start', function (evt) {
+//           hoveringOverTube = true;
+//           AFRAME.log("hovered over the fill test tube")
+//           document.getElementById('cameraRig').addEventListener('bbuttondown', function (e) {
+//             emptyPipetStart(TEST_CYLINDER_FILL);
+//             bButtonHeld = true;
+//           })
+//
+//           document.getElementById('cameraRig').addEventListener('bbuttonup', function (e) {
+//             bButtonHeld = false;
+//             emptyPipetEnd();
+//           })
+//         })
+//         document.getElementById('js--pipet-colision-box-fill').addEventListener('hover-end', function (evt) {
+//           hoveringOverTube = false;
+//         })
+//         document.getElementById('js--pipet-colision-box-succ').addEventListener('hover-end', function (evt) {
+//           hoveringOverTube = false;
+//         })
+//         break;
+//
+//       // case "js--labcoat" || "js--bril":
+//       //   document.getElementById('cameraRig').addEventListener('abuttondown', function (e) {
+//       //     aButtonHeld = true;
+//       //   })
+//       //   document.getElementById('cameraRig').addEventListener('bbuttondown', function (e) {
+//       //
+//       //     bButtonHeld = true;
+//       //   })
+//       //   document.getElementById('cameraRig').addEventListener('abuttonup', function (e) {
+//       //     aButtonHeld = false;
+//       //     GRABBABLES[i].remove()
+//       //   })
+//       //   document.getElementById('cameraRig').addEventListener('bbuttonup', function (e) {
+//       //     bButtonHeld = false;
+//       //     GRABBABLES[i].remove()
+//       //   })
+//       //   break;
+//
+//       // case "js--bril":
+//       //   document.getElementById('rig').addEventListener('abuttondown', function (e) {
+//       //
+//       //     aButtonHeld = true;
+//       //   })
+//       //   document.getElementById('rig').addEventListener('bbuttondown', function (e) {
+//       //
+//       //     bButtonHeld = true;
+//       //   })
+//       //   document.getElementById('rig').addEventListener('abuttonup', function (e) {
+//       //     aButtonHeld = false;
+//       //
+//       //   })
+//       //   document.getElementById('rig').addEventListener('bbuttonup', function (e) {
+//       //     bButtonHeld = false;
+//       //
+//       //   })
+//       //   break;
+//       //
+//       // default:
+//
+//     }
+//
+//   })
+//
+//   GRABBABLES[i].addEventListener('grab-end', function (e) {
+//     grabbedObject = false;
+//   })
+// }
+
+
+// const SAFETY_GOGGLE = document.getElementById('js--bril');
+// const LAB_COAT = document.getElementById('js--labcoat');
+// // const GUI_RADIO = document.getElementById('js--gui-radio');
+// // const GUI_RADIO_SECOND = document.getElementById('js--gui-radio-second');
+//
+// var goggleOnHead = false
+// var labCoatOn = false;
+
+// AFRAME.registerComponent('test-tube', {
+//       play: function() {
+//         this.el.addEventListener('dragover-start', function(evt) {
+//           // evt.detail.dropped.setAttribute('material', 'color',
+//           //   '#'+(Math.random()*0xFFFFFF<<0).toString(16s))
+//           //  // notify super-hands that the gesture was accepted
+//           // evt.preventDefault()
+//         })
+//       }
+//     })
