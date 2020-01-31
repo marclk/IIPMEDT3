@@ -1,5 +1,19 @@
 var meltingPoint = 0;
 
+var isDonePippeteren = false;
+var isDoneAfval = false;
+var isDoneBrander = false;
+
+
+
+function checkIfeveryThingIsDone(){
+  if(isDonePippeteren == true && isDoneAfval == true && isDoneBrander == true){
+    document.getElementById("lockt-box").remove();
+  }
+}
+
+
+
 //==================== CHEMISTRY API STUFF
 const BASE_URL = "https://neelpatel05.pythonanywhere.com"
 const ELEMENT_NUMBER = document.getElementById('js--element-number')
@@ -357,6 +371,8 @@ var vlamStaatAan = false;
         document.getElementById("branderLabelAboveTable").setAttribute("color","green");
         document.getElementById("branderLabelHand").setAttribute("color","green");
         document.getElementById("branderlabelToDoList").remove();
+        isDoneBrander = true;
+        checkIfeveryThingIsDone();
 
       }else{
         textField.setAttribute("color","red");
@@ -569,7 +585,12 @@ emptyPipetEnd = () => {
   AFRAME.log("pipet fill threshhold minimum: " + (randomThreshhold-0.05) + ", maximum: " + (randomThreshhold+0.05))
   AFRAME.log("current juicy filled: " + filledJuice)
   if (filledJuice < (randomThreshhold+0.05) && filledJuice > (randomThreshhold-0.05)) {
-    AFRAME.log("you filled the test tube correctly, pass!" + randomThreshhold + " - " + filledJuice)
+    AFRAME.log("you filled the test tube correctly, pass!" + randomThreshhold + " - " + filledJuice);
+    document.getElementById("pipeterenLabelAboveTable").setAttribute("color","green");
+    document.getElementById("pipetLabelHand").setAttribute("color","green");
+    document.getElementById("pipetlabelToDoList").remove();
+    isDonePippeteren = true;
+    checkIfeveryThingIsDone();
   } else {
     AFRAME.log("sorry but you failed, failure!" + randomThreshhold + " - " + filledJuice)
   }
@@ -589,6 +610,67 @@ setTimeout(function (e) {
 }, 2000)
 
 emptyPipetEnd()
+
+
+
+
+//==================== prullenbak
+  TRASHCOMPLETE = false;
+
+  trashAudioT1 = document.getElementById("js--trashAudio-t1");
+  trashAudioT2 = document.getElementById("js--trashAudio-t2");
+
+  wrongAudioT1 = document.getElementById("js--wrongAudio-t1");
+  wrongAudioT2 = document.getElementById("js--wrongAudio-t2");
+
+  trashItems = document.getElementsByClassName("trash");
+  trashCount = 0;
+
+  //drop test
+  AFRAME.registerComponent('droptest', {
+    play: function () {
+      this.el.addEventListener('drag-drop', function (evt) {
+        AFRAME.log(trashCount);
+        if(this.id == "afval_1" && evt.detail.dropped.dataset.color == "red"){
+          AFRAME.log("Goed gedropped ouwe");
+          trashAudioT1.components.sound.playSound();
+          evt.detail.dropped.setAttribute("visible", false);
+          // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
+          // evt.detail.dropped.removeAttribute("dynamic-body");
+          evt.detail.dropped.dataset.trashed = "true";
+        }else if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
+          trashAudioT2.components.sound.playSound();
+          AFRAME.log("Goed gedropped ouwe");
+          evt.detail.dropped.setAttribute("visible", false);
+          // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
+          // evt.detail.dropped.removeAttribute("dynamic-body");
+          evt.detail.dropped.dataset.trashed = "true";
+        }else{
+          AFRAME.log("hahahahha u pleb das fout " + evt.detail.dropped.dataset.color);
+          wrongAudioT1.components.sound.playSound();
+          wrongAudioT2.components.sound.playSound();
+        }
+
+        if(trashItems[trashCount].dataset.trashed == "true"){
+          trashCount = trashCount+1;
+        }
+
+        if(trashCount == (trashItems.length) ){
+          AFRAME.log("All parts Trashed!!!");
+          TRASHCOMPLETE = true;
+          isDoneAfval = true;
+          document.getElementById("afvalLabelAboveTable").setAttribute("color","green");
+          document.getElementById("afvalLabelHand").setAttribute("color","green");
+          document.getElementById("afvallabelToDoList").remove();
+          checkIfeveryThingIsDone();
+          AFRAME.log(TRASHCOMPLETE);
+        }
+      });
+    }
+  });
+
+
+
 
 //===================== ROEL'S COAT N GOGGGGGLES
 //
