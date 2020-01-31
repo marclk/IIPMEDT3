@@ -671,9 +671,9 @@ emptyPipetEnd = () => {
           // evt.detail.dropped.removeAttribute("dynamic-body");
           evt.detail.dropped.dataset.trashed = "true";
 
-          redTrashCounter++
+          // redTrashCounter++
           //send to a-text
-          redTrashCountLabel.setAttribute("value", redTrashCounter)
+          // redTrashCountLabel.setAttribute("value", redTrashCounter)
         }else if(this.id == "afval_2" && evt.detail.dropped.dataset.color == "green"){
           trashAudioT2.components.sound.playSound();
           AFRAME.log("Goed gedropped ouwe");
@@ -682,9 +682,9 @@ emptyPipetEnd = () => {
           // evt.detail.dropped.removeAttribute("dynamic-body");
           evt.detail.dropped.dataset.trashed = "true";
 
-          greenTrashCounter++
+          // greenTrashCounter++
           //send to a-text
-          greenTrashCountLabel.setAttribute("value", greenTrashCounter)
+          // greenTrashCountLabel.setAttribute("value", greenTrashCounter)
         }else{
           AFRAME.log("hahahahha u pleb das fout " + evt.detail.dropped.dataset.color);
           wrongAudioT1.components.sound.playSound();
