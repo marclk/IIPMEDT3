@@ -18,8 +18,8 @@
     <script src="https://unpkg.com/aframe-gltf-part-component/dist/aframe-gltf-part-component.min.js"></script>
     <!-- <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script> -->
   </head>
-  <body> 
-    <a-scene physics="gravity: -8.8;debug:false;" shadow="type: pcfsoft;">
+  <body>
+    <a-scene physics="gravity: -8.8;debug:true;" shadow="type: pcfsoft;">
       <a-assets>
         <a-asset-item id="erlenmeyer-statief" src="models/Erlenmeyer+Statief/Erlenmeyer_Statief_Labeled.gltf"></a-asset-item>
         <a-asset-item id="test-tube" src="models/TestTube/TestTube.gltf"></a-asset-item>
@@ -97,28 +97,27 @@
 
         <a-entity rotation="0 90 0" position="0 0 0" class="pcikup"  modify-materials  gltf-part="src: #pipetGoud; part: pipet" material="color:#FFD700;metalness:0.9;roughness:0.350;side:double;" collision-filter="group: green; collidesWith: default, green"grabbable draggable droppable dynamic-body scale="2 2 2"></a-entity>
       </a-entity>
-      <a-entity position="3.589 1.151 7.552" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material grabbable collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity>
-      <a-entity position="3.589 1.151 7.253" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material grabbable collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity>
-      <a-entity position="3.589 1.151 6.904" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material grabbable collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity>
+      <a-entity position="3.589 1.151 7.552" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material grabbable collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2" class="pcikup"></a-entity>
+      <a-entity position="3.589 1.151 7.253" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material grabbable collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2" class="pcikup"></a-entity>
+      <a-entity position="3.589 1.151 6.904" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material grabbable collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2" class="pcikup"></a-entity>
 
       <!-- <a-entity position="3.893 1.151 7.552" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity> -->
       <!-- <a-entity position="3.893 1.151 7.253" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity> -->
       <!-- <a-entity position="3.893 1.151 6.904" dynamic-body gltf-part="src: #erlenmeyer; part: Erlenmeyer" material="color:white;opacity:0.5;blending:additive"  modify-material collision-filter="group: green; collidesWith: default, green" scale=".2 .2 .2"></a-entity> -->
 
-      <a-entity id="waterfles" dynamic-body grabbable collision-filter="group: green; collidesWith: default, green" position="3.893 1.151 7.552" scale=".15 .15 .15">
-        <a-entity  gltf-part="src: #waterFles; part: Cylinder" material="color:white;opacity:0.5;blending:additive"  modify-material ></a-entity>
-        <a-entity   gltf-part="src: #waterFles; part: Tuit" material="color:white;roughness:0.7;metalness:0.5;blending:additive"  modify-material ></a-entity>
-      </a-entity>
+      <a-entity position="3.893 1.151 7.552" dynamic-body gltf-part="src: #waterFles; part: Tuit" material="color:#d8d8d8;blending:additive"  modify-material grabbable collision-filter="group: green; collidesWith: default, green" scale=".15 .15 .15" class="pcikup"></a-entity>
+      <a-entity position="3.893 1.151 7.253" dynamic-body gltf-part="src: #waterFles; part: Tuit" material="color:#d8d8d8;blending:additive"  modify-material grabbable collision-filter="group: green; collidesWith: default, green" scale=".15 .15 .15" class="pcikup"></a-entity>
+      <a-entity position="3.893 1.151 6.904" dynamic-body gltf-part="src: #waterFles; part: Tuit" material="color:#d8d8d8;blending:additive"  modify-material grabbable collision-filter="group: green; collidesWith: default, green" scale=".15 .15 .15" class="pcikup"></a-entity>
 
-      <a-entity id="waterfles" dynamic-body grabbable collision-filter="group: green; collidesWith: default, green" position="3.893 1.151 7.253" scale=".15 .15 .15">
-        <a-entity  gltf-part="src: #waterFles; part: Cylinder" material="color:white;opacity:0.5;blending:additive"  modify-material ></a-entity>
-        <a-entity   gltf-part="src: #waterFles; part: Tuit" material="color:white;roughness:0.7;metalness:0.5;blending:additive"  modify-material ></a-entity>
-      </a-entity>
+      <!-- <a-entity id="waterfles" gltf-model="#waterFles" dynamic-body grabbable collision-filter="group: green; collidesWith: default, green" position="3.893 1.151 7.552" scale=".15 .15 .15" class="pcikup"  >    </a-entity> -->
 
-      <a-entity id="waterfles" dynamic-body grabbable collision-filter="group: green; collidesWith: default, green" position="3.893 1.151 6.904" scale=".15 .15 .15">
-        <a-entity  gltf-part="src: #waterFles; part: Cylinder" material="color:white;opacity:0.5;blending:additive"  modify-material ></a-entity>
-        <a-entity   gltf-part="src: #waterFles; part: Tuit" material="color:white;roughness:0.7;metalness:0.5;blending:additive"  modify-material ></a-entity>
-      </a-entity>
+
+
+      <!-- <a-entity id="waterfles" gltf-model="#waterFles" dynamic-body grabbable collision-filter="group: green; collidesWith: default, green" position="3.893 1.151 7.253" scale=".15 .15 .15" class="pcikup"  >  </a-entity> -->
+
+
+
+      <!-- <a-entity id="waterfles" gltf-model="#waterFles" dynamic-body grabbable collision-filter="group: green; collidesWith: default, green" position="3.893 1.151 6.904" scale=".15 .15 .15" class="pcikup"  >   </a-entity> -->
 
 
 
@@ -365,7 +364,7 @@
         oculus-touch-controls="hand: left" thumb-controls="hand: left">
         <a-plane scale="0.2 0.2 1" width="1.140" height="1.320" position="-0.15 0 0.3" rotation="-150 90 0" id="objectives">
           <a-text value="Nog te doen:" width="2.5" position="-0.335 0.497 0.01" color="black"></a-text>
-          <a-text id="afvalLabelHand" value="Afval scheiden" width="3" position="-0.451 0.654 0.01" color="black"></a-text>
+          <a-text id="afvalLabelHand" value="Afval scheiden" width="3" position="-0.451 0.306 0.007" color="black"></a-text>
           <a-text id="pipetLabelHand" value="Pipetteren"  width="3" position="-0.451 0.054 0.01" color="black"> </a-text>
           <a-text id="branderLabelHand" value="Brander instellen" width="3" position="-0.451 -0.177 0.01" color="black"></a-text>
         </a-plane>
@@ -563,11 +562,11 @@
    <a-box  geometry="primitive:  box; height: 13.560; depth: 1.920;width:1.350" visible="false" id="tsst"  position="7.463 0.272 -0.105" color="yellow" rotation="0 90 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
    <a-box  geometry="primitive:  box; height: 6.4; depth: 1.130;width:3.150" visible="false" id="tsst"   position="-1.879 1.531 1.711" color="yellow" rotation="0 86.290 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
 
-  <a-entity visible="true" id="lockt-box" position="2.706 1.849 7.178" static-body>
-    <a-plane rotation="0 180 0" height="3.720" width="3.3650" material="opacity:.3" color="red" position="0 0 -0.923" collision-filter="group: green; collidesWith: default, green" ></a-plane>
-    <a-plane rotation="0 0 0" height="3.720" width="3.650" material="opacity:.3" color="red" position="0 0 0.705" collision-filter="group: green; collidesWith: default, green" ></a-plane>
-    <a-plane rotation="0 90 0" height="3.720" width="1.650" material="opacity:.3" color="red" position="1.662 0 -0.117" collision-filter="group: green; collidesWith: default, green" ></a-plane>
-    <a-plane rotation="0 -90 0" height="3.720" width="1.650" material="opacity:.3" color="red" position="-1.780 0 -0.117" collision-filter="group: green; collidesWith: default, green" ></a-plane>
+  <a-entity visible="true" id="lockt-box" position="2.706 1.849 7.178" >
+    <a-plane rotation="0 180 0" height="3.720" width="3.3650" material="opacity:.3" color="red" position="0 0 -0.923" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
+    <a-plane rotation="0 0 0" height="3.720" width="3.650" material="opacity:.3" color="red" position="0 0 0.705" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
+    <a-plane rotation="0 90 0" height="3.720" width="1.650" material="opacity:.3" color="red" position="1.662 0 -0.117" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
+    <a-plane rotation="0 -90 0" height="3.720" width="1.650" material="opacity:.3" color="red" position="-1.780 0 -0.117" collision-filter="group: green; collidesWith: default, green" static-body></a-plane>
   </a-entity>
 
   <a-entity id="js--correctSound" sound="src: url(sound/CorrectSound.mp3);" position="2.386 2.257 6.531" ></a-entity>
