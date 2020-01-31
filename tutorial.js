@@ -1,25 +1,33 @@
 let index, controlsR, controlsL, controlSteps, controlBtnNext, controllerInput;
 
 window.onload = function(){
-  controlsR = document.getElementsByClassName("js--oculus-touch-controls-R");
-  controlsL = document.getElementsByClassName("js--oculus-touch-controls-L");
 
-  controlSteps = document.getElementsByClassName("js--control-step");
+  tutorialTitle = document.getElementById("js--control-title");
+
+  tutorialButton = document.getElementById("js--control-step");
+
+  tutorialDescription = document.getElementById("js--control-desc");
 
   controlBtnNext = document.getElementById("js--controls-next");
 
+  controlsR = document.getElementsByClassName("js--oculus-touch-controls-R");
+  controlsL = document.getElementsByClassName("js--oculus-touch-controls-L");
+
   controllerInput = document.querySelector("#cameraRig");
 
-  controlBtnNext.addEventListener("onclick", function (e){
-    nextControl();
-  });
+  tutorialTitleArr = ["Teleport/draaien", "Selecteren", "Vastpakken", "Pipet: Opzuigen", "Pipet: Legen"];
+  tutorialBtnArr = ["Thumbstick", "Trigger", "Grip", "A Knop (rechts)", "B Knop (rechts)"];
+  tutorialDescriptionArr = ["Door de linker thumbstick naar voren te duwen is het mogelijk om naar een andere positie te teleporten! \n Met de rechter thumbstick kan je de camera draaien. Probeer het uit!", "Met de Trigger kan je knoppen selecteren. Klik op de 'i' tjes bij de tafels om meer info te krijgen per taak!", "Met de grip button kan je objecten oppakken en neer plaatsen. Gebruik het om een gebroken erlenmeyer weg te gooien of een pipet op te pakken om te beginnen met pipeteren!", "Tijdens het vast houden van de pipet kan je met de A knop vloeistof opzuigen! Zorg er natuurlijk wel voor dat je de pipet bij de goede reageerbuis houd!", "Met de B knop kan je de pipet legen als je het bij de goede reageerbuis houd, je wilt natuurlijk niet dat de vloeistof op de grond valt. "];
 
-  controllerInput.addEventListener("ybuttondown", function (e){
+  controlBtnNext.addEventListener("click", function (e){
     nextControl();
   });
+  var setFirstTime = false;
 
   nextControl = () =>{
+
     for (let i = 0; i < controlsR.length; i++) {
+
       if(controlsR[i].hasAttribute("animation")){
         let sourceR = controlsR[i].getAttribute("src");
         controlsR[i].removeAttribute("animation");
@@ -37,12 +45,9 @@ window.onload = function(){
           controlsL[2].setAttribute("mtl", source1.replace("obj", "mtl"));
         }
 
-        if(controlSteps[i].hasAttribute("scale")){
-          controlSteps[i].removeAttribute("scale");
-          controlSteps[i].setAttribute("color", "#dedede");
-          controlSteps[i+1].setAttribute("scale", "1.1 1.1 1.1");
-          controlSteps[i+1].setAttribute("color", "yellow");
-        }
+        tutorialTitle.setAttribute("value", tutorialTitleArr[i+1]);
+        tutorialButton.setAttribute("value", tutorialBtnArr[i+1]);
+        tutorialDescription.setAttribute("value", tutorialDescriptionArr[i+1]);
 
         if(i == (controlsR.length - 2)){
 
@@ -53,6 +58,30 @@ window.onload = function(){
         }
         return;
       }
+      if(setFirstTime === false){
+        setFirstTime = true;
+        controlsR[0].setAttribute("animation", "property: components.material.material.color; type: color; from: black; to: yellow; dur: 1000; loop: true; dir: alternate; easing: easeInOutCirc");
+        controlsL[0].setAttribute("animation", "property: components.material.material.color; type: color; from: black; to: yellow; dur: 1000; loop: true; dir: alternate; easing: easeInOutCirc");
+
+        tutorialTitle.setAttribute("value", tutorialTitleArr[0]);
+        tutorialButton.setAttribute("value", tutorialBtnArr[0]);
+        tutorialDescription.setAttribute("value", tutorialDescriptionArr[0]);
+      }
+
     }
   }
+  //
+  // controlSteps = document.getElementsByClassName("js--control-step");
+  //
+  //
+  //
+
+  //
+  //
+  controllerInput.addEventListener("ybuttondown", function (e){
+    nextControl();
+  });
+  //
+
+
 }

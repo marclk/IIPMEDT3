@@ -218,11 +218,11 @@
     <a-text value="i" color="white" position="-0.053 0.015 -0.004" rotation="-90"></a-text>
   </a-cylinder>
 
-  <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="3.750 0.985 0.776" rotation="0 180 0">
+  <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="2.450 0.985 0.743" rotation="0 180 0">
     <a-text value="i" color="white" position="-0.053 0.015 -0.004" rotation="-90"></a-text>
   </a-cylinder>
 
-  <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="3.750 0.985 4.017" rotation="0 180 0">
+  <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="2.783 0.985 3.912" rotation="0 180 0">
     <a-text value="i" color="white" position="-0.053 0.015 -0.004" rotation="-90"></a-text>
   </a-cylinder>
 
@@ -309,6 +309,8 @@
   </a-box>
 
 
+<a-entity id="js--flamePauze" sound="src: url(sound/pauzevlam.mp3);" position="2.422 1.106 3.818" ></a-entity>
+<a-entity id="js--flameBlue" sound="src: url(sound/burner.mp3);" position="2.422 1.106 3.818" ></a-entity>
 
   <a-box id="nextButtonFlame"  class="js--pixel clickable" width="0.5" height="0.5" depth="0.5" color="grey" position="2.276 0.990 3.425"rotation="-45 180 0" scale="0.4 0.4 0.4">
       <a-text position="0.010 0.187 0.266" color="white" value="+" rotation="0 0 -90" width="10"></a-text>
@@ -343,9 +345,8 @@
 
   <!-- <a-entity class="cube pcikup" mixin="cube" position="0 0.265 0" material="color: red"></a-entity> -->
 
+  <a-entity id="cameraRig" class="camera-parent teleport-object" position="-3.266 0 -9.5" rotation="0 180 0">
 
-
-  <a-entity id="cameraRig" class="camera-parent teleport-object" position="-3.266 1.6 -7.629" movement-controls>
       <a-entity id="head" camera  look-controls="pointerLockEnabled: true">
         <!-- <a-entity animation__fusing="property:scale; easing:easeInCubic; dur:500; from:1 1 1; to: 0.1 0.1 0.1; startEvents: fusing"
                   animation__mouseleave="property:scale; easing:easeInCubic; dur:250; to:1 1 1;  startEvents: mouseleave "
@@ -427,43 +428,47 @@
      <a-entity gltf-part="src: #safetyBril; part: bril"   material="color:grey"  modify-material></a-entity>
      <a-entity   gltf-part="src: #safetyBril; part: glas"  material="color: white;opacity:0.5;blending:additive;"   modify-material ></a-entity>
    </a-entity> -->
-   <a-entity sound="src: url(sound/SafetyGoggles.mp3); autoplay: false" id="js--bril" class="pcikup js--grabbable" gltf-model="src: url(models/SafetyBril/SafetyGoggleV2.gltf)" grabbable   rotation="0 180 0"  scale="0.1 0.1 0.1" position="-0.187 1.308 -8.421" modify-materials  static-body ></a-entity>
 
+   <a-entity id="js--goggleSound" sound="src: url(sound/SafetyGoggles.mp3);" position="-0.277 1.106 -8.356" ></a-entity>
+   <a-entity  id="js--bril" class="pcikup js--grabbable" gltf-model="src: url(models/SafetyBril/SafetyGoggleV2.gltf)" grabbable   rotation="0 180 0"  scale="0.1 0.1 0.1" position="-0.187 1.308 -8.421" modify-materials  static-body ></a-entity>
 
-   <a-entity sound="src: url(sound/JacketPutOn.mp3); autoplay: false" id="js--labcoat" class="pcikup js--grabbable" gltf-model="src: url(models/Labjas/labjasV2.gltf)" grabbable   rotation="0 -165.820 0" scale="1.5 1.5 1.5" position="-0.505 1.560 -8.996" modify-materials  static-body ></a-entity>
+    <a-entity id="js--coatSound" sound="src: url(sound/JacketPutOn.mp3);" position="0.108 1.106 -8.799" ></a-entity>
+   <a-entity  id="js--labcoat" class="pcikup js--grabbable" gltf-model="src: url(models/Labjas/labjasV2.gltf)" grabbable   rotation="0 -165.820 0" scale="1.5 1.5 1.5" position="-0.505 1.560 -8.996" modify-materials  static-body ></a-entity>
 
 <!-- Controller Tutorial in gang -->
   <a-entity id="js--tutorial" position="-3.514 0.586 -7.917" scale="0.5 0.5 0.5" rotation="0 180 0">
 
    <a-entity id="js--oculus-touch-l" position="0 .5 -3" rotation="0 -90 0" scale="10 10 10">
      <a-obj-model src="#touch-body-l-obj-body" mtl="#touch-body-l-mtl-body" color="black"></a-obj-model>
-     <a-obj-model src="#touch-body-l-obj-b-x" color="black" ></a-obj-model>
-     <a-obj-model src="#touch-body-l-obj-b-y" color="black" ></a-obj-model>
-     <a-obj-model class="js--oculus-touch-controls-L" src="#touch-body-l-obj-thumbstick" color="black" animation="property: components.material.material.color; type: color; from: black; to: yellow; dur: 1000; loop: true; dir: alternate; easing: easeInOutCirc" ></a-obj-model>
-     <a-obj-model class="js--oculus-touch-controls-L" src="#touch-body-l-obj-grip" color="black" ></a-obj-model>
+     <a-obj-model src="#touch-body-l-obj-b-enter" mtl="#touch-body-l-mtl-b-enter" color="black" ></a-obj-model>
+     <a-obj-model src="#touch-body-l-obj-b-x" mtl="#touch-body-l-mtl-b-x" color="black" ></a-obj-model>
+     <a-obj-model src="#touch-body-l-obj-b-y" mtl="#touch-body-l-mtl-b-y" color="black" ></a-obj-model>
+     <a-obj-model class="js--oculus-touch-controls-L" src="#touch-body-l-obj-thumbstick" color="black" ></a-obj-model>
      <a-obj-model class="js--oculus-touch-controls-L" src="#touch-body-l-obj-trigger" color="black"></a-obj-model>
+     <a-obj-model class="js--oculus-touch-controls-L" src="#touch-body-l-obj-grip" color="black" ></a-obj-model>
    </a-entity>
 
    <a-entity id="js--oculus-touch-r" position="1 1 -3" rotation="90 -90 -90" scale="10 10 10">
      <a-obj-model src="#touch-body-r-obj-body" mtl="#touch-body-r-mtl-body" ></a-obj-model>
      <a-obj-model src="#touch-body-r-obj-b-home" mtl="#touch-body-r-mtl-b-home" ></a-obj-model>
-     <a-obj-model class="js--oculus-touch-controls-R" src="#touch-body-r-obj-thumbstick" animation="property: components.material.material.color; type: color; from: black; to: yellow; dur: 1000; loop: true; dir: alternate; easing: easeInOutCirc" color="black" ></a-obj-model>
-     <a-obj-model class="js--oculus-touch-controls-R" src="#touch-body-r-obj-grip" color="black" ></a-obj-model>
+     <a-obj-model class="js--oculus-touch-controls-R" src="#touch-body-r-obj-thumbstick" color="black" ></a-obj-model>
      <a-obj-model class="js--oculus-touch-controls-R" src="#touch-body-r-obj-trigger" color="black" ></a-obj-model>
+     <a-obj-model class="js--oculus-touch-controls-R" src="#touch-body-r-obj-grip" color="black" ></a-obj-model>
      <a-obj-model class="js--oculus-touch-controls-R" src="#touch-body-r-obj-b-a" color="black" ></a-obj-model>
      <a-obj-model class="js--oculus-touch-controls-R" src="#touch-body-r-obj-b-b" color="black" ></a-obj-model>
    </a-entity>
 
   <a-plane color="#000" component-padding="0.1" opacity="0.7" width="7" height="4.5" position="0 3 -4" rotation="0 0 0">
 
-    <a-text align="center" value="Elite 2000 MkII Control Scheme v0.8 (uitleg)"  color="#fff" position="-1.25 1.8 0.01"></a-text>
+    <a-text align="center" value=" 2000 MkII Control Scheme v0.8 (uitleg)"  color="#fff" position="0 2 0.01"></a-text>
 
-    <a-entity position="-1.6 1 0.01" width="3" height="7 ">
-      <a-plane class="js--control-step" color="yellow" scale="1.1 1.1 1.1" component-padding="0.1" width="3" height=".6 " position="0 0 0">
-        <a-text align="center" value="Thumbstick = Teleport/Bewegen"  color="#000"></a-text>
+    <a-entity position="-1.6 1 0.01" width="3" height="7">
+      <a-text id="js--control-title" align="left" value="Welkom Bij de tutorial!" color="#fff" position="-1.15 .3 0.01"></a-text>
+      <a-plane color="yellow" scale="1.1 1.1 1.1" component-padding="0.1" width="3" height=".6 " position="0 -.3 0">
+        <a-text id="js--control-step" align="center" value="Knop naam"  color="#000"></a-text>
       </a-plane>
 
-      <a-text align="center" value="Hahahahahhahahahahahahahahahahahahahahahahahahahahahahahahahahahaha" width="3" color="#000"></a-text>
+      <a-text id="js--control-desc" width="4" baseline="top" value="Welkom in het Lab! Wat leuk dat je het lab wilt ontdekken in Virtual Reality! Stap in de schoenen van een wetenschapper en leer om gaan met de verschillende taken in het Lab! Loop eerst door de controller tutorial door met je de triggers op volgende te klikken. Trek daarna je jas aan en doe je bril op om je avontuur te starten!" color="#fff" wrapPixel="150" position="-1.65 -.8 0"></a-text>
     </a-entity>
 
     <!-- <a-plane class="js--control-step" color="#dedede" component-padding="0.1" width="3" height=".6" position="-1.6 .3 0.01">
@@ -482,8 +487,8 @@
       <a-text align="center" value="Knop B = Pipet: Legen"  color="#000"></a-text>
     </a-plane> -->
 
-    <a-entity id="js--controls" position="2 -1.758 0.077">
-      <a-plane id="js--controls-next" color="yellow" width="2.5" height="0.75" onclick="nextControl()"><a-text id="volgende-knop" value="Volgende >" color="white" position="-0.484 0 0 "> </a-text></a-plane>
+    <a-entity id="js--controls" position="-.5 -1.876 5.930" rotation="-20 0 0" scale="0.6 0.6 0.6">
+      <a-plane clickable id="js--controls-next" class="clickable" color="yellow" width="2.5" height="0.75" onclick="nextControl()"><a-text id="volgende-knop" value="Volgende >" color="white" position="-0.484 0 0 "> </a-text></a-plane>
     </a-entity>
 
     <a-text align="center" value="Oppakbaar:"  color="#fff" position="2.103 1.497 0.010"></a-text>
@@ -560,6 +565,8 @@
     <a-plane rotation="0 90 0" height="3.720" width="1.650" material="opacity:.3" color="red" position="1.662 0 -0.117" collision-filter="group: green; collidesWith: default, green" ></a-plane>
     <a-plane rotation="0 -90 0" height="3.720" width="1.650" material="opacity:.3" color="red" position="-1.780 0 -0.117" collision-filter="group: green; collidesWith: default, green" ></a-plane>
   </a-entity>
+
+  <a-entity id="js--correctSound" sound="src: url(sound/CorrectSound.mp3);" position="2.386 2.257 6.531" ></a-entity>
 
   <a-entity id="Locked-Tafel" position="0 0 9.589" visible="false" class=" ">
     <a-box  class=" " geometry="primitive:  box; height: 3.380; depth: 0.990;width:1.380"  id="tsst"  position="2.665 .481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
