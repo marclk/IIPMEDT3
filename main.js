@@ -423,7 +423,10 @@ var inforBUttons = document.getElementsByClassName("infoButton");
 var panels = document.getElementsByClassName("objectivesss");
 var isAlreadySet = false;
 
+
+
 for (let i = 0; i < inforBUttons.length; i++) {
+
   inforBUttons[i].addEventListener('click', function(evnt){
     if(isAlreadySet === false){
 
@@ -438,9 +441,14 @@ for (let i = 0; i < inforBUttons.length; i++) {
         inforBUttons[i].setAttribute("color","blue");
       isAlreadySet = false;
     }
-    //console.log("Number " + i);
+    //console.log("Number " + i); 
   });
 };
+
+for (let j = 0; j < inforBUttons.length; j++) {
+  inforBUttons[j].click();
+}
+
 
 
 //================================== B R A N D E R  A F S T E L L E N
@@ -675,7 +683,7 @@ emptyPipetEnd = () => {
           // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
           // evt.detail.dropped.removeAttribute("dynamic-body");
           evt.detail.dropped.dataset.trashed = "true";
-
+          trashCount++;
           // redTrashCounter++
           //send to a-text
           // redTrashCountLabel.setAttribute("value", redTrashCounter)
@@ -686,7 +694,7 @@ emptyPipetEnd = () => {
           // evt.detail.dropped.setAttribute("scale" "0.0001 0.0001 0.0001");
           // evt.detail.dropped.removeAttribute("dynamic-body");
           evt.detail.dropped.dataset.trashed = "true";
-
+          trashCount++;
           // greenTrashCounter++
           //send to a-text
           // greenTrashCountLabel.setAttribute("value", greenTrashCounter)
@@ -696,11 +704,11 @@ emptyPipetEnd = () => {
           wrongAudioT2.components.sound.playSound();
         }
 
-        if(trashItems[trashCount].dataset.trashed == "true"){
-          trashCount = trashCount+1;
-        }
+        // if(trashItems[trashCount].dataset.trashed == "true"){
+        //   trashCount = trashCount+1;
+        // }
 
-        if(trashCount == (trashItems.length-2) ){
+        if(trashCount == (trashItems.length) ){
           AFRAME.log("All parts Trashed!!!");
           TRASHCOMPLETE = true;
           isDoneAfval = true;

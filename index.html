@@ -19,7 +19,7 @@
     <!-- <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script> -->
   </head>
   <body>
-    <a-scene physics="gravity: -8.8;debug:false;" shadow="type: pcfsoft;">
+    <a-scene physics="gravity: -8.8;debug:false;" shadow="type: pcfsoft;" renderer="antialias: true; highRefreshRate:true;">
       <a-assets>
         <a-asset-item id="erlenmeyer-statief" src="models/Erlenmeyer+Statief/Erlenmeyer_Statief_Labeled.gltf"></a-asset-item>
         <a-asset-item id="test-tube" src="models/TestTube/TestTube.gltf"></a-asset-item>
@@ -34,9 +34,9 @@
                           hoverable grabbable draggable
                           event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
                           event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
-                          dynamic-body shadow></a-mixin>
+                          dynamic-body shadow></a-mixin> 
 
-        <a-mixin id="point" raycaster="showLine: true; objects: .pcikup, .clickable;far:0.5;"
+        <a-mixin id="point" raycaster="showLine: true; objects: .pcikup, .clickable;far:0.75;"
                  collision-filter="collisionForces: false"
                  static-body="shape: sphere; sphereRadius: 0.001"
                  super-hands="colliderEvent: raycaster-intersection;
@@ -45,7 +45,7 @@
                               colliderEndEventProperty: clearedEls;
                               grabStartButtons: gripdown, pointdown, triggerdown;
                               grabEndButtons: gripup, pointup, triggerup;"
-                  haptics="events: triggerdown; dur: 200; force: 0.5"
+                  haptics="events: triggerdown; dur: 200; force: 1"
                   progressive-controls="objects: #js--pipet-container, #js--propje, #js--broken-erlenmeyer;">
         </a-mixin>
         <a-asset-item id="touch-body-l-obj-body" src="models/oculus_cv1_controller_left/oculus_cv1_controller_left_body.obj"></a-asset-item>
@@ -222,7 +222,7 @@
 
   <a-plane width="1.140" height="1.320" position="4.041 1.417 -2.383" rotation="0 -90 0" class="objectivesss" visible="false">
     <a-text value="Doel:" width="3.5" position="-0.466 0.520 0.021" color="black"></a-text>
-    <a-text value="Het jusite afval in de juiste container stoppen"   width="0.8" position="-0.440 0.157 0.056" color="black" text="wrapCount: 12" width="0.8" position="-0.440 0.128 0.056" color="black"> </a-text>
+    <a-text value="Groen = groene container, Rood = rode container"   width="0.8" position="-0.440 0.157 0.056" color="black" text="wrapCount: 12" width="0.8" position="-0.440 0.128 0.056" color="black"> </a-text>
   </a-plane>
 
   <a-plane width="1.140" height="1.320" position="4.088 1.417 0.903" rotation="0 -90 0" class="objectivesss" visible="false">
@@ -232,10 +232,10 @@
 
   <a-plane width="1.140" height="1.320" position="4.074 1.417 3.946" rotation="0 -90 0" class="objectivesss" visible="false">
     <a-text value="Doel:" width="3.5" position="-0.466 0.520 0.021" color="black" ></a-text>
-    <a-text value="Zet de juiste temperatuur die weergeven word" text="wrapCount: 12" width="0.8" position="-0.440 0.157 0.056" color="black"> </a-text>
+    <a-text value="Temperatuur links moet rechts hetzelfde zijn (+/- 100) druk op check om te bevestigen. + is 50 erbij - is 50 eraf" text="wrapCount: 18" width="0.880" position="-0.483 0.188 0.056" color="black"> </a-text>
   </a-plane>
 
-  <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="3.750 0.985 -2.430"  rotation="0 180 0">
+  <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="3.396 0.985 -2.609"  rotation="0 180 0">
     <a-text value="i" color="white" position="-0.053 0.015 -0.004" rotation="-90"></a-text>
   </a-cylinder>
 
@@ -243,7 +243,7 @@
     <a-text value="i" color="white" position="-0.053 0.015 -0.004" rotation="-90"></a-text>
   </a-cylinder>
 
-  <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="2.783 0.985 3.912" rotation="0 180 0">
+  <a-cylinder color="blue" height="0.02" radius="0.120" class="infoButton clickable" position="3.572 0.985 3.490" rotation="0 180 0">
     <a-text value="i" color="white" position="-0.053 0.015 -0.004" rotation="-90"></a-text>
   </a-cylinder>
 
@@ -366,7 +366,7 @@
 
   <!-- <a-entity class="cube pcikup" mixin="cube" position="0 0.265 0" material="color: red"></a-entity> -->
 
-  <a-entity id="cameraRig" sound="src: url(main.mp3); autoplay: true; volume: 0.05;" class="camera-parent teleport-object" position="-3.266 0 -9.5" rotation="0 180 0" movement-controls>
+  <a-entity id="cameraRig" sound="src: url(main.mp3); autoplay: true; volume: 0.05; loop: true;" class="camera-parent teleport-object" position="-3.266 0 -9.5" rotation="0 180 0" >
 
       <a-entity id="head" camera  look-controls="pointerLockEnabled: true">
         <!-- <a-entity animation__fusing="property:scale; easing:easeInCubic; dur:500; from:1 1 1; to: 0.1 0.1 0.1; startEvents: fusing"
@@ -399,7 +399,7 @@
   </a-plane>
 
   <a-plane id="afvalLabelAboveTable" position="2.503 2.677 -2.376" width="1.940" height="0.640" look-at="#head" scale="0.4 0.4 0.4">
-    <a-text value="Afval scheiden" position="-0.521"></a-text>
+    <a-text value="Afval scheiden" position="-0.745 0.004 0.013"></a-text>
   </a-plane>
 
   <a-plane id="branderLabelAboveTable" position="2.503 2.677 3.965" width="1.940" height="0.640" look-at="#head" scale="0.4 0.4 0.4">
@@ -435,7 +435,7 @@
     <a-text value="Te doen om vrij te spelen:" position="-1.251 0.423 0" color="black"></a-text>
     <a-text id="pipetlabelToDoList" value="Pipetteren" position="-0.478 0.163 0" color="black"> </a-text>
     <a-text id="afvallabelToDoList" value="Afval scheiden" position="-0.705 -0.125 0" color="black"></a-text>
-    <a-text id="branderlabelToDoList" value="Brander instelen" position="-0.716 -0.410 0" color="black"></a-text>
+    <a-text id="branderlabelToDoList" value="Brander instellen" position="-0.716 -0.410 0" color="black"></a-text>
   </a-plane>
 
   <a-entity visible="false" id="normalMesh" class="second-navmesh" gltf-model="scene/navmesh(1).gltf"   position="0 -20  0" nav-mesh></a-entity>
@@ -527,7 +527,7 @@
 
 <!-- droppable box -->
 
-  <a-entity class="pcikup js--grabbable" id="js--pipet-container" data-color="red" material="visible: false"  geometry="primitive: box; width: 0.450; height: 0.08; depth: 0.06"   position="3.231 1.022 0.358"   modify-materials grabbable draggable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green"     event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+  <a-entity class="pcikup js--grabbable" id="js--pipet-container"  data-color="red" material="visible: false"  geometry="primitive: box; width: 0.450; height: 0.08; depth: 0.06"   position="3.231 1.022 0.358"   modify-materials grabbable draggable hoverable dynamic-body collision-filter="group: green; collidesWith: default, green"     event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
     event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
     event-set__dragon="_event: dragover-start; wireframe: true"
     event-set__dragoff="_event: dragover-end; wireframe: false">
@@ -588,7 +588,7 @@
   </a-entity>
 
   <a-entity id="js--correctSound" sound="src: url(sound/CorrectSound.mp3);" position="2.386 2.257 6.531" ></a-entity>
-  <a-entity id="js--completeSound" sound="src: url(sound/completion.mp3);" position="2.386 2.257 6.531" ></a-entity>
+  <a-entity id="js--completeSound" sound="src: url(sound/completion.mp3); volume: .75;" position="2.386 2.257 6.531" ></a-entity>
 
   <a-entity id="Locked-Tafel" position="0 0 9.589" visible="false" class=" ">
     <a-box  class=" " geometry="primitive:  box; height: 3.380; depth: 0.990;width:1.380"  id="tsst"  position="2.665 .481 -2.418" color="green" rotation="-90 0 90" collision-filter="group: green; collidesWith: default, green" static-body></a-box>
